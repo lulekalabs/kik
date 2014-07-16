@@ -1,0 +1,59 @@
+<% # advocate/account/profiles/_show 
+  edit ||= false
+%>
+<div id="<%= dom_id(@person) %>" class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+
+      <%= error_messages_for :user, :person %>
+
+      <%= render :partial => 'tabs' %>
+
+      <div id="data-show" style="<%= edit ? 'display:none;' : '' %>">
+        <div class="two_big_content">
+          <div class="left">
+          
+            <%= render :partial => "contact_data" %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "Jetzt Daten ändern", 
+            "$('#data-show').hide();$('#data-edit').show();",
+              {:title => "ändern"} %>
+        </b></div>
+        <div class="pad_10"></div>
+      </div>
+
+      <div id="data-edit" style="<%= edit ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => advocate_account_profile_path(:select => :contact), 
+            :html => {:method => :put} do |f| %>
+        
+        <div class="two_big_content">
+          
+          <div class="left">
+          
+            <%= render :partial => "contact_data", :locals => {:f => f, :edit => true} %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow_hover"><b>
+          <%= submit_tag "Jetzt speichern" %>
+        </b></div>
+        <div class="pad_10"></div>
+        <% end %>
+      </div>
+
+
+
+
+    </div>
+    <%= render :partial => 'sidebar_grades_datas' %>
+  </div>
+
+
+  <div class="bottom_footer"></div>
+
+</div>
+

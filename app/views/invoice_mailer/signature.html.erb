@@ -1,0 +1,17 @@
+Guten Tag <%= @customer.salutation_and_title_and_last_name %>,
+
+im Anhang finden Sie Ihre neue Rechnung <%= @invoice.human_number %> vom <%= I18n.l(@invoice.created_at.to_date) %> über <%= @invoice.total.format %> als qualifiziert elektronisch signierte PDF-Datei sowie das gesetzlich geforderte Verifikationsprotokoll ebenfalls als PDF-Datei. Zum Ansehen von PDF-Dateien benötigen Sie das kostenlose Programm Adobe Reader.
+
+Hinweise zur Rechnungsprüfung und Aufbewahrung:
+
+Die anliegende Rechnung ist als PDF-Datei gemäß § 14 Abs. 3 UStG qualifiziert elektronisch signiert (unterschrieben). Zur Ansicht der elektronischen Signatur in der Rechnung öffnen Sie bitte den Kartenreiter „Unterschriften“ am linken Rand des Adobe Reader. Der Adobe Reader ist ein kostenloses Programm dessen aktuelle Version Sie sich auf der offiziellen Seite des Herstellers Adobe herunterladen können: http://get.adobe.com/de/reader
+
+Für den Fall, dass der Adobe Reader oder ein anderes Programm anzeigt, dass es mit einer Unterschrift (Signatur) Probleme gibt, können Sie auch auf folgender Seite die qualifizierte elektronische Signatur der Rechnung jederzeit prüfen und verifizieren: https://www.signaturportal.de/electronic-invoice-check.html
+
+Zur Geltendmachung der Vorsteuer sind Sie als Rechnungsempfänger verpflichtet, die elektronische Signatur dieser Rechnung zu prüfen (verifizieren), ein Prüfprotokoll zu erzeugen sowie dieses gegen Veränderungen zu schützen und gemeinsam mit der elektronischen Rechnung aufzubewahren (speichern). Das gesetzlich geforderte Verifikationsprotokoll erhalten Sie angehängt als zusätzliche PDF-Datei zusammen mit der Rechnung per E-Mail an die von Ihnen hinterlegte E-Mail-Adresse. Speichern Sie die qualifiziert elektronisch signierte Rechnung und das Verifikationsprotokoll sicher ab. Beachten Sie bitte, dass ein Ausdruck nicht genügt! Rechnungen müssen im privaten Bereich 2 Jahre und im Unternehmensbereich 10 Jahre aufbewahrt (gespeichert) werden.
+
+Bei Fragen zu Ihrer Rechnung stehen wir Ihnen jederzeit gern zur Verfügung. 
+
+Wir bedanken uns für Ihr Vertrauen und freuen uns auf die weitere Zusammenarbeit.
+
+<%= render :partial => "notifier/footer" %>

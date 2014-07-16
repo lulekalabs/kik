@@ -1,0 +1,9 @@
+<%
+  collection_method_name ||= :press_release_path
+%>
+
+<%= render :partial => "shared/sidebar_tag_cloud", :locals => {:collection_method_name => collection_method_name} %>
+
+<div class="pad_20"></div>
+
+<%= render :partial => "shared/sidebar_archive", :locals => {:collection_method_name => collection_method_name} %>

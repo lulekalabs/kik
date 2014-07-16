@@ -1,0 +1,25 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Sie haben eine neue Nachricht von <%= @comment.person.is_a?(Client) ? "Rechtsuchenden" : "Anwalt" %> <%= @comment.person.title_and_name %> auf Ihre <%= @commentable.class.human_name %> vom <%= l(@commentable.created_at) %> erhalten.
+
+Möchten Sie auf die Nachricht antworten, dann klicken Sie bitte auf folgenden Link:
+
+<%- if @receiver.is_a?(Advocate) && @commentable.is_a?(Response) -%>
+<%= advocate_account_question_response_url(@kase, @response) %>
+<%- elsif @receiver.is_a?(Client) && @commentable.is_a?(Response) -%>
+<%= client_account_question_response_url(@kase, @response) %>
+<%- elsif @receiver.is_a?(Advocate) && @commentable.is_a?(Kase) -%>
+<%= advocate_account_question_url(@kase) %>
+<%- elsif @receiver.is_a?(Client) && @commentable.is_a?(Kase) -%>
+<%= client_account_question_url(@kase) %>
+<%- end -%>
+
+-------------------------------------------------------------------------------
+<%= h(@comment.message) %>
+-------------------------------------------------------------------------------
+
+<%- if @receiver.is_a?(Advocate) -%>
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Mandantensuche.
+<%- end -%>
+
+<%= render :partial => "notifier/footer_lean" %>

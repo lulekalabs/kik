@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+
+    <title>advofinder.de</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="" />
+    <link rel="SHORTCUT ICON" href="/favicon_advo.ico"/>
+    <%= stylesheet_link_tag ('advofinder/basics' , 'advofinder/content' ,'scaffold' , 'jquery.fancybox', 'addthis' , 'modal', 'facebox' ,:media => :screen)  %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "jquery.fancybox-1.2.1_mo" %>
+     <%= javascript_include_tag "facebox" %> 
+    <%= auto_discovery_link_tag(:rss, feed_service_blogs_url(:format => :rss), 
+      {:title => "advofinder.de News Feed"}) %>
+    <%= feedback_javascript_tag %>
+	  <%= ga_async_javascript_tag("UA-10351133-2") %>
+  </head>
+  <body>
+    <div class="opener_top">
+     
+    </div>
+
+    <div class="mainFrame">
+      <%= render :partial => 'layouts/advofinder/header' %>
+
+      <%= yield %>
+
+      <%= render :partial => 'layouts/advofinder/footer' %>
+    </div>
+    <div style="display:none" id="feedback"></div>
+    <%= render :partial  => 'pages/pre_launch_splash' if Project.pre_launch? %> 
+    
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4d94699d0bc6f382"></script>   
+  </body>
+</html>

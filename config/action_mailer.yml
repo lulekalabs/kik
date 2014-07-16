@@ -1,0 +1,197 @@
+development:
+  kik:
+    perform_deliveries: false
+    host: "localhost:3000"
+    site_url: 'kik.de' 
+    signup_email: 'kann-ich-klagen.de | Anmeldung <service@kik.de>'
+    newsletter_email: 'kann-ich-klagen.de | Newsletter <news@kik.de>'
+    admin_email: 'kann-ich-klagen.de | Admin <kik@kik.de>' 
+    contact_email: 'kann-ich-klagen.de | Kontakt <feedback@kik.de>'
+    feedback_email: 'kann-ich-klagen.de | Feedback <kik@kik.de>'
+    press_email: 'kann-ich-klagen.de | Presse <kik@kik.de>'
+    help_email: 'kann-ich-klagen.de | Hilfe <kik@kik.de>'
+    search_filter_email: 'kann-ich-klagen.de | Fragen-Radar <kik@kik.de>'
+    message_email: 'kann-ich-klagen.de | Benachrichtigung <kik@kik.de>'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  advofinder:
+    perform_deliveries: false
+    site_url: 'advofinder.de' 
+    signup_email: 'advofinder.de | Anmeldung <service@advofinder.de>'
+    newsletter_email: 'advofinder.de | Newsletter <news@advofinder.de>'
+    admin_email: 'advofinder.de | Admin <kik@advofinder.de>' 
+    contact_email: 'advofinder.de | Kontakt <feedback@advofinder.de>'
+    feedback_email: 'advofinder.de | Feedback <kik@advofinder.de>'
+    press_email: 'advofinder.de | Presse <kik@advofinder.de>'
+    help_email: 'advofinder.de | Hilfe <kik@advofinder.de>'
+    search_filter_email: 'advofinder.de | Fragen-Radar <kik@advofinder.de>'
+    message_email: 'advofinder.de | Benachrichtigung <kik@advofinder.de>'
+    signaturportal_email: 'advofinder.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  signaturportal_kik:
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  signaturportal_advofinder:
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+    
+test:
+  kik:
+    perform_deliveries: false
+    site_url: 'kik.tst' 
+    signup_email: 'kann-ich-klagen.de | Anmeldung <service@kik.tst>'
+    newsletter_email: 'kann-ich-klagen.de | Newsletter <news@kik.tst>'
+    admin_email: 'kann-ich-klagen.de | Admin <kik@kik.tst>' 
+    contact_email: 'kann-ich-klagen.de | Kontakt <feedback@kik.tst>'
+    feedback_email: 'kann-ich-klagen.de | Feedback <kik@kik.tst>'
+    press_email: 'kann-ich-klagen.de | Presse <kik@kik.tst>'
+    help_email: 'kann-ich-klagen.de | Hilfe <kik@kik.tst>'
+    search_filter_email: 'kann-ich-klagen.de | Fragen-Radar <kik@kik.tst>'
+    message_email: 'kann-ich-klagen.de | Benachrichtigung <kik@kik.tst>'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  advofinder: 
+    perform_deliveries: false
+    site_url: 'advofinder.tst' 
+    signup_email: 'advofinder.de | Anmeldung <service@advofinder.tst>'
+    newsletter_email: 'advofinder.de | Newsletter <news@advofinder.tst>'
+    admin_email: 'advofinder.de | Admin <kik@advofinder.tst>' 
+    contact_email: 'advofinder.de | Kontakt <feedback@advofinder.tst>'
+    feedback_email: 'advofinder.de | Feedback <kik@advofinder.tst>'
+    press_email: 'advofinder.de | Presse <kik@advofinder.tst>'
+    help_email: 'advofinder.de | Hilfe <kik@advofinder.tst>'
+    search_filter_email: 'advofinder.de | Fragen-Radar <kik@advofinder.tst>'
+    message_email: 'advofinder.de | Benachrichtigung <kik@advofinder.tst>'
+    signaturportal_email: 'advofinder.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  signaturportal_kik:
+    signaturportal_email: 'advofinder.de | Rechnung <kann-ich-klagen@sigmail.de>'
+  signaturportal_advofinder:
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+    
+staging:
+  kik:
+    address: "mail.progra.de"
+    port: 25
+    perform_deliveries: true
+    domain: "kann-ich-klagen.de"
+    host: "kik.codecuisine.de"
+    authentication: :plain
+    user_name: 'mailrobot@kann-ich-klagen.de'
+    password: 'admin'
+    site_url: 'kik.codecuisine.de' 
+    signup_email: 'kann-ich-klagen.de | Anmeldung <email@kann-ich-klagen.de>'
+    newsletter_email: 'kann-ich-klagen.de | Newsletter <email@kann-ich-klagen.de>'
+    admin_email: 'kann-ich-klagen.de | Admin <rosmary.stegmann@gmail.com>' 
+#    admin_email: 'kann-ich-klagen.de | Admin <jfesslmeier@gmail.com>' 
+    contact_email: 'kann-ich-klagen.de | Kontakt <email@kann-ich-klagen.de>'
+    feedback_email: 'kann-ich-klagen.de | Feedback <email@kann-ich-klagen.de>'
+    press_email: 'kann-ich-klagen.de | Presse <email@kann-ich-klagen.de>'
+    help_email: 'kann-ich-klagen.de | Hilfe <email@kann-ich-klagen.de>'
+    search_filter_email: 'kann-ich-klagen.de | Fragen-Radar <email@kann-ich-klagen.de>'
+    message_email: 'kann-ich-klagen.de | Benachrichtigung <email@kann-ich-klagen.de>'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+    
+  advofinder:
+    address: "mail.progra.de"
+    port: 25
+    perform_deliveries: true
+    domain: "advofinder.de"
+    host: "kik.codecuisine.de"
+    authentication: :plain
+    user_name: 'mailrobot@kann-ich-klagen.de'
+    password: 'admin'
+    site_url: 'kik.codecuisine.de' 
+    signup_email: 'advofinder.de | Anmeldung <email@advofinder.de>'
+    newsletter_email: 'advofinder.de | Newsletter <email@advofinder.de>'
+    admin_email: 'advofinder.de | Admin <rosmary.stegmann@gmail.com>' 
+#    admin_email: 'advofinder.de | Admin <jfesslmeier@gmail.com>' 
+    contact_email: 'advofinder.de | Kontakt <email@advofinder.de>'
+    feedback_email: 'advofinder.de | Feedback <email@advofinder.de>'
+    press_email: 'advofinder.de | Presse <email@advofinder.de>'
+    help_email: 'advofinder.de | Hilfe <email@advofinder.de>'
+    search_filter_email: 'advofinder.de | Fragen-Radar <email@advofinder.de>'
+    message_email: 'advofinder.de | Benachrichtigung <email@advofinder.de>'
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+    
+  signaturportal_kik:
+    address: "sigmail.de"
+    port: 25
+    perform_deliveries: true
+    domain: "kann-ich-klagen.de"
+    host: "kik.codecuisine.de"
+    authentication: :plain
+    user_name: '1010130771@sigmail.de'
+    password: 'kik2009!'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+    
+  signaturportal_advofinder:
+    address: "sigmail.de"
+    port: 25
+    perform_deliveries: true
+    domain: "advofinder.de"
+    host: "kik.codecuisine.de"
+    authentication: :plain
+    user_name: '1010158845@sigmail.de'
+    password: 'advofinder2011'
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+
+production:
+  kik:
+    address: "mail.progra.de"
+    port: 25
+    perform_deliveries: true
+    domain: "kann-ich-klagen.de"
+    host: "www.kann-ich-klagen.de"
+    authentication: :plain
+    user_name: 'mailrobot@kann-ich-klagen.de'
+    password: 'admin'
+    site_url: 'kann-ich-klagen.de' 
+    signup_email: 'kann-ich-klagen.de | Anmeldung <email@kann-ich-klagen.de>'
+    newsletter_email: 'kann-ich-klagen.de | Newsletter <email@kann-ich-klagen.de>'
+    admin_email: 'kann-ich-klagen.de | Admin <email@kann-ich-klagen.de>'
+    contact_email: 'kann-ich-klagen.de | Kontakt <email@kann-ich-klagen.de>'
+    feedback_email: 'kann-ich-klagen.de | Feedback <email@kann-ich-klagen.de>'
+    press_email: 'kann-ich-klagen.de | Presse <email@kann-ich-klagen.de>'
+    help_email: 'kann-ich-klagen.de | Hilfe <email@kann-ich-klagen.de>'
+    search_filter_email: 'kann-ich-klagen.de | Fragen-Radar <email@kann-ich-klagen.de>'
+    message_email: 'kann-ich-klagen.de | Benachrichtigung <email@kann-ich-klagen.de>'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+    
+  advofinder:
+    address: "mail.progra.de"
+    port: 25
+    perform_deliveries: true
+    domain: "advofinder.de"
+    host: "www.advofinder.de"
+    authentication: :plain
+    user_name: 'mailrobot@kann-ich-klagen.de'
+    password: 'admin'
+    site_url: 'advofinder.de' 
+    signup_email: 'advofinder.de | Anmeldung <email@advofinder.de>'
+    newsletter_email: 'advofinder.de | Newsletter <email@advofinder.de>'
+    admin_email: 'advofinder.de | Admin <email@advofinder.de>'
+    contact_email: 'advofinder.de | Kontakt <email@advofinder.de>'
+    feedback_email: 'advofinder.de | Feedback <email@advofinder.de>'
+    press_email: 'advofinder.de | Presse <email@advofinder.de>'
+    help_email: 'advofinder.de | Hilfe <email@advofinder.de>'
+    search_filter_email: 'advofinder.de | Fragen-Radar <email@advofinder.de>'
+    message_email: 'advofinder.de | Benachrichtigung <email@advofinder.de>'
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+
+  signaturportal_kik:
+    address: "sigmail.de"
+    port: 25
+    perform_deliveries: true
+    domain: "kann-ich-klagen.de"
+    host: "www.kann-ich-klagen.de"
+    authentication: :plain
+    user_name: '1010130771@sigmail.de'
+    password: 'kik2009!'
+    signaturportal_email: 'kann-ich-klagen.de | Rechnung <kann-ich-klagen@sigmail.de>'
+    
+  signaturportal_advofinder:
+    address: "sigmail.de"
+    port: 25
+    perform_deliveries: true
+    domain: "advofinder.de"
+    host: "www.advofinder.de"
+    authentication: :plain
+    user_name: '1010158845@sigmail.de'
+    password: 'advofinder2011'
+    signaturportal_email: 'advofinder.de | Rechnung <advo-finder@sigmail.de>'
+

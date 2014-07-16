@@ -1,0 +1,2 @@
+module Advofinder::ReviewsHelper
+end

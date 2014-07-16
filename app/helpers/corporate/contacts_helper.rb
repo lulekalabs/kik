@@ -1,0 +1,2 @@
+module Corporate::ContactsHelper
+end

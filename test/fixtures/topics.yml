@@ -1,0 +1,9 @@
+arbeitsrecht:
+  id: 1
+  name: Arbeitsrecht
+agrarrecht:
+  id: 2
+  name: Agrarrecht
+bank_und_kapitalmartrecht:
+  id: 3
+  name: Bank- und Kapitalmarktrecht

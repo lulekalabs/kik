@@ -1,0 +1,360 @@
+
+
+
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+
+<%= render :partial => 'tabs' %>
+
+      <div class="two_big_content">
+        <div class="left">
+          <ul class="profil">
+            <li><span class="one"><b>Kundennummer</b></span><span class="two"><b>01235698</b> (kann nicht geändert werden)</span></li>
+            <li><span class="one"><b>ID</b></span><span class="two"><b>012345689</b> (kann nicht geändert werden)</span></li>
+            <li><span class="one">E-Mail-Adresse</span><span class="two">g.koenig@mgok.de</span></li>
+            <li><span class="one">Anrede</span><span class="two">Frau</span></li>
+            <li><span class="one">Titel</span><span class="two"></span></li>
+            <li><span class="one">Vorname</span><span class="two">Lisa</span></li>
+            <li><span class="one">Nachname</span><span class="two">Maninkari</span></li>
+            <li><span class="one">Kanzleiname</span><span class="two">Schweizer</span></li>
+            <li><span class="one">Zuständige Kammer</span><span class="two">Rechtsanwaltskammer für den Oberlandesgerichtsbezirk Braunschweig</span></li>
+            <li><span class="one">Straße Hausnr. der Kanzlei</span><span class="two">Gentzstr. 5</span></li>  
+            <li><span class="one">PLZ der Kanzlei</span><span class="two">80796</span></li>
+            <li><span class="one">Ort der Kanzlei</span><span class="two">München</span></li>
+            <li><span class="one">Fachanwalt</span><span class="two">Agrarecht, Familienrecht, Miet- und Wohnungseigentum</span></li>
+            <li><span class="one">Rechtsgebiete</span><span class="two t_red">noch nicht gewählt</span></li>
+            <li><span class="one">Telefonnr. für Rückfragen</span><span class="two">023-56895623</span></li>
+            <li><span class="one">Internetauftritt der Kanzlei</span><span class="two">www.schweizer.eu</span></li>
+            <li><span class="one">Sprachen</span><span class="two t_red">noch nicht gewählt</span></li>
+
+
+            <li><span class="one">Newsletter</span><span class="two">+ kann-ich-klagen.de Newsletter für Anwälte</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="two_big_bottom_arrow"><b><%= link_to "Jetzt Daten ändern", {:title => "ändern"} %></b></div>
+      <div class="pad_10"></div>
+      
+      <p style="color:red">  bei klick auf "Daten ändern" erscheint an dieser Stelle die input box wie beim Rechtsuchenden. </p>
+      
+      <div class="two_big_top clearer">
+        <h2><b>Meine Daten ergänzen</b></h2>
+      </div>
+      <div class="two_big_content">
+        <div class="left">
+          <ul class="profil">
+
+            <li><span class="one">Rechtsgebiete</span>
+              <span class="two"><a href="" >Jetzt auswählen &#187;</a></span>
+            </li>
+
+            <li><span class="one">Rechtsgebiete</span>
+              <span class="two">
+                <a href="" >&#171; Schließen</a><br /><br />
+                <% Topic.all.each do |topic |%>
+                 <%= check_box_tag  false %>
+                  <%= h(topic.name)%><br />
+                <%end%>
+              </span>
+            </li>
+
+            <li><span class="one">Sprachen</span>
+              <span class="two_1">
+                <%= check_box_tag  :englisch %>
+                <%= label_tag  "Englisch " %><br />
+                <%= check_box_tag  :france %>
+                <%= label_tag  "Französisch" %><br />
+                <%= check_box_tag  :greek %>
+                <%= label_tag  "Griechisch" %><br />
+                <%= check_box_tag  :italy %>
+                <%= label_tag  "Italienisch" %><br />
+                <%= check_box_tag  :nederland %>
+                <%= label_tag  "Niederländisch" %><br />
+                <%= check_box_tag  :katalan %>
+                <%= label_tag  "Katalanisch" %><br />
+                <%= check_box_tag  :hungary %>
+                <%= label_tag  "Ungarisch" %><br />
+                <%= check_box_tag  :polen %>
+                <%= label_tag  "Polnisch " %><br />
+                <%= check_box_tag  :portugal %>
+                <%= label_tag  "Portugiesisch" %><br />
+                <%= check_box_tag  :russia %>
+                <%= label_tag  "Russisch" %><br />
+
+                <%= check_box_tag  :sweden %>
+                <%= label_tag  "Schwedisch" %><br />
+                <%= check_box_tag  :slovak %>
+                <%= label_tag  "Slowakisch" %><br />
+
+                <%= check_box_tag  :spain %>
+                <%= label_tag  "Spanisch" %><br />
+
+                <%= check_box_tag  :czech %>
+                <%= label_tag  "Tschechisch" %><br />
+
+                <%= check_box_tag  :turkey %>
+                <%= label_tag  "Türkisch" %><br />
+              </span>
+              <span class="two_1"><a href="" class="t_right">Mehr Sprachen &#187; </a></span>
+            </li>
+
+            <li><span class="one">Mehr Sprachen </span>
+             
+              <span class="two_1">
+                 <a href="" class="t_right">&#171; Schliessen</a><br /><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Afrikaans" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Albanisch - Tosk" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Amharisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Arabisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Armenisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Aserbaidschanisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Assami" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Aymara" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Bahasa Indonesia" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Baskisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Bengali" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Bislama" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Bosnisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Bulgarisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Burmesisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Chinesisch Mandarin" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Dänisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Dari - Ost-Farsi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Dzongkha - Druk" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Estnisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Ewe" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Faröisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Fidschi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Finnisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Friesisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Galegisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Georgisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Guarani" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Gujarati" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Gurung" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Haiti-Kreol" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Hebräisch - Iwrit" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Hindi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Hiri Motu" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Ikiribati" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Inuktitut" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Irisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Isländisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Japanisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kabye" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kannada" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kasachisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kashmiri" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Khmer" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kirgisisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Komoro" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Konkani - Goa" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Koreanisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Kroatisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Laotisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Latein" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Lettisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Letzeburgisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Litauisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Malagasy" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Malayalam" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Malaysisch" %>
+             </span>
+              <span class="two_1">
+
+                
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Maledivisch - Divehi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Maltesisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Manipuri" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Maori" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Marathi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Mazedonisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Mongolisch - Chalcha" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Nauru " %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Ndebele" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Nepali" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Norwegisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Nyanja" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Oriya" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Palau" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Panjabi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Paschto - Süd" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Pedi" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Persisch" %><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Quechua"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Rätoromanisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Rumänisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Rumänisch - Moldawisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Rundi"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Rwanda"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Samoanisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Sangho"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Sanskrit"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Serbisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Seselwa"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Sindhi"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Singhalesisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Slowenisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Somali"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Sotho"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Swahili"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Swati"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tadschikisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tagalog - Pilipino"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tamil"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tamilisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Telugu"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Thai"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tigrinya"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tok Pisin"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tonga"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tsonga"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tswana"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Turkmenisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Tuvalu"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Ukrainisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Urdu"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Usbekisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Venda"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Vietnamesisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Weißrussisch"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Wolof"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Xhosa"%><br />
+                <%= check_box_tag  :english %>
+                <%= label_tag  "Zulu"%>
+
+
+              </span>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="two_big_bottom_arrow"><b><%= link_to "Jetzt speichern", {:title => ""} %></b></div>
+
+    </div>
+<%= render :partial => 'sidebar_grades_datas' %>
+  </div>
+
+
+  <div class="bottom_footer"></div>
+
+</div>
+

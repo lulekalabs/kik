@@ -1,0 +1,57 @@
+<%
+  f ||= nil
+  edit ||= false
+  show ||= false
+  review ||= false
+  auto_debit_confirmation ||= false
+  object ||= order_data || @person
+%>
+<div class="two_big_content"> 
+  <h2>Rechnungsanschrift:</h2>
+  <div class="left">
+
+    <%= render :partial => "advocate/account/profiles/billing_address_data", :object => @billing_address || @order.billing_address,
+      :locals => {:f => f, :edit => edit, :object_name => "person", :hidden_fields => review} %>
+
+    <%= render :partial => "advocate/account/profiles/tax_data", :object => @order,
+      :locals => {:f => f, :edit => edit, :hidden_fields => review} %>
+    <div class="clearer_20"></div>
+    
+    <h2>Versandart:</h2> 
+    <%= render :partial => "advocate/account/profiles/billing_method_data", :object => @order,
+      :locals => {:f => f, :edit => edit, :hidden_fields => review} %>
+    <div class="clearer_20"></div>
+
+    <h2>Zahlungsart:</h2> 
+    <%= render :partial => "advocate/account/profiles/payment_method_data", :object => @order,
+    :locals => {:f => f, :edit => edit, :auto_debit_confirmation => !show, :hidden_fields => review} %>
+
+    <div class="clearer_20"></div>
+    
+    <% if edit %>
+    <div>
+      <%= submit_tag "Weiter", :class => "button_right" %>
+    </div>
+    <div class="button_left"></div>
+    <% end %>
+
+    <div class="clearer"></div>
+  </div>
+</div>
+<% if edit || show %>
+<div class="two_big_bottom"></div>
+<% else %>
+<div class="two_big_bottom_arrow">
+  <b><%= submit_tag "Daten ändern", :name => "_change" %> </b>
+</div> 
+<% end %>
+
+<% if review %>
+<div class="clearer_10"></div>  
+<div>
+  <%= submit_tag "Kontakt-Paket kaufen", :class => "button_right" %>
+</div>
+<div class="button_left"></div>
+<% end %>
+
+<div class="clearer_10"></div>  

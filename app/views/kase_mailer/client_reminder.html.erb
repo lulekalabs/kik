@@ -1,0 +1,19 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+damit das Mandanten-Fragen-System von kann-ich-klagen.de optimal funktioniert, ist es erforderlich, dass eine Frage, die sich erledigt hat oder zu der ein Anwalt gefunden wurde, geschlossen wird. So wird verhindert, dass Anwälte sich vergebens bei Ihnen auf eine Frage bewerben, die nicht mehr aktuell ist.
+
+Wir erlauben uns daher in regelmäßigen Abständen bei Ihnen als Rechtsuchender nachzufragen, ob Ihre Frage <%= @kase.id %>, gestellt am <%= l(@kase.created_at) %>, noch aktuell ist. Bitte nehmen Sie sich kurz Zeit um zu prüfen.
+
+A. Ihre Frage ist noch aktuell? Dann müssen Sie nichts unternehmen und können diese E-Mail ignorieren.
+
+B. Sie haben einen Anwalt gefunden? Dann klicken Sie bitte auf folgenden Link:
+
+<%= show_close_client_account_question_url(@kase, :close_reason => "advocate_found") %>
+
+C. Ihre Frage hat sich erledigt? Dann klicken Sie bitte auf folgenden Link:
+
+<%= show_close_client_account_question_url(@kase, :close_reason => "client_cancel") %>
+
+Wir bedanken uns für Ihr Vertrauen und Ihre Mithilfe!
+
+<%= render :partial => "notifier/footer_lean" %>

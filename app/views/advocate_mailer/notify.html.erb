@@ -1,0 +1,7 @@
+Lieber kann-ich-klagen.de Administrator,
+
+<%= @person.salutation_and_title_and_last_name %> mit der E-Mail <%= h(@person.email) %> hat sich gerade bei kann-ich-klagen.de angemeldet und bestätigt.
+
+Bitte gehen Sie jetzt auf <%= admin_url %>, um das neue Mitglied freizuschalten.
+
+<%= render :partial => "notifier/footer" %>

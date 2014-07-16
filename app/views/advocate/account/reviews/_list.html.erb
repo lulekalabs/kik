@@ -1,0 +1,68 @@
+<div class="pad_10"></div> 
+<div class="left w400">
+  <% form_for :search_filter, :url => advocate_account_reviews_path, :html => {:method => :get} do |f| %>
+  <div class="left w150">
+    Bewertungen sortieren:
+  </div>
+  <div class="left">
+      <%= f.select :sort_order, collect_for_reviews_search_order_select, {},
+        {:class => "quest w210", :style => "background-color:#fffef7",
+          :id => "search-filter-sort-order-fake", :onclick => "$('#search-submit').trigger('click');"} %>
+  </div>
+
+  <div class="clearer_5"></div>  
+  <div class="left w150">
+    Bewertungen anzeigen:
+  </div>
+  <div class="left">
+    <%= f.select :per_page, collect_for_per_page_select, {},
+      {:class => "quest w210", :style => "background-color:#fffef7",
+        :id => "search-filter-per-page-fake", :onclick => "$('#search-submit').trigger('click');"} %>
+  </div></div>
+  <%= submit_tag "Suche", :id => "search-submit", :style => "position:absolute;top:-10000px;left-10000px;" %>
+  <% end %>
+<div class="right w210">
+  Seiten: <b><%= @reviews.total_pages %></b>
+  <p>
+    <%= will_paginate @reviews, :previous_label => "&#171;", :next_label => "&#187;" %>
+  </p>
+</div>
+
+<div class="clearer_10"></div>  
+<h2></h2> 
+
+
+
+
+<div class="pad_10"></div> 	
+
+<% unless @reviews.empty? %>
+
+  <% @reviews.each do |review| %>
+    <div class="note_small">
+    	<%= grade_point_average(review) %>
+    </div>
+    <div class="block_300_user">
+    		<p><b>Note <%= grade_point_average(review) %></b> von <b><%= h(review.reviewer.user_id) %></b> (ID:<%= review.reviewer.user.id %>)</p>
+    		<p>Bewertung vom <%= l(review.created_at) %></p>
+    </div>
+    <div class="pad_15">   
+    	    <div class="button_white_right_blue">
+        		<%= link_to "Bewertung anzeigen", advocate_account_review_path(review), 
+        		  {:title => "Bewertungsdetails zeigen"} %>
+        	</div>
+        	<div class="button_white_left_blue"></div> 
+    </div>
+
+    <div class="clearer"></div> 
+    <% unless review == @reviews.last %>
+    <h2></h2>
+    <% end %>
+  <% end %>  
+
+<% else %>
+
+  Es gibt noch keine Bewertungen.
+
+<% end %>
+

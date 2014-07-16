@@ -1,0 +1,44 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+vielen Dank für Ihr Interesse an kann-ich-klagen.de.
+
+kann-ich-klagen.de bietet Rechtsuchenden eine schnelle, bequeme Möglichkeit, den passenden Anwalt unverbindlich und vor allem kostenfrei über das Internet zu finden, ohne selbst recherchieren zu müssen.
+
+Sie erhalten diese Aktivierungs-E-Mail, weil mit Ihrer Adresse <%= h(@person.email) %> kürzlich auf www.kann-ich-klagen.de eine Frage gestellt wurde.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Bitte klicken Sie einmalig auf folgenden Aktivierungs-Link, um Ihre kostenfreie Frage zu bestätigen:
+
+<%= activate_question_url(:id => @kase.activation_code) %>
+
+Sollten Sie den oben stehenden Aktivierungs-Link nicht anklicken können, dann können Sie den Link auch einfach kopieren und in die Adresszeile Ihres Internetbrowsers einfügen, um Ihre kostenlose Anmeldung zu bestätigen. Bitte achten Sie darauf, den Link vollständig zu kopieren und einzufügen.
+
+
+Sie haben folgende Einwilligungen und Bestätigungen erteilt:
+
+<% if @person.send_evaluate_message -%>
+Ja, ich möchte kostenlos Anwälte bewerten können, die mich kontaktiert haben.
+
+<% end -%>
+Ja, ich akzeptiere die Nutzungsbedingungen und Datenschutzerklärung.
+
+<% if @person.enrollment? -%>
+Ja, ich möchte den kann-ich-klagen.de Newsletter erhalten.
+
+<% end -%>
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Die Bestätigung Ihrer Frage ist notwendig, um sicherzustellen, dass Sie diese E-Mail erhalten wollten und nicht gegen Ihren Willen angemeldet wurden.
+
+Ohne Bestätigung kann Ihre Frage nicht aktiviert und von kann-ich-klagen.de freigeschaltet werden.
+
+Wir informieren Sie gesondert per E-Mail, sobald Ihre Frage freigeschaltet ist. Einstweilen bitten wir Sie um Ihre Geduld, da jede Frage vor Freischaltung individuell geprüft wird, um Missbrauch zu vermeiden.
+
+Falls Sie Hilfe bei der Aktivierung benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter email@kann-ich-klagen.de zur Verfügung. kann-ich-klagen.de gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+Sie haben gar keine Frage gestellt? Dann müssen Sie nichts unternehmen und können diese E- Mail ignorieren. Eine Anmeldung wird ohne Ihre Bestätigung nicht erfolgen.
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.
+
+<%= render :partial => "notifier/footer" %>

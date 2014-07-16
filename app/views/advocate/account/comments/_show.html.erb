@@ -1,0 +1,25 @@
+<% # advocate/account/comments/_show
+  comment ||= show || @comment
+  commentable ||= nil
+  editable ||= false
+  show_new ||= false
+%>
+<% if show_new %>
+  <div class="line_answer" id="<%= dom_id(Comment.new, dom_id(commentable)) %>" style="display:;">
+    <%= render :partial => "advocate/account/comments/new", :locals => {:commentable => commentable,
+      :header_message => "Ihre Antwort:", :decline_response => true} %>
+  </div>
+<% end %>
+<div id="<%= dom_id(comment) %>" class="line_answer">
+   <p>
+    <% if comment.person.is_a?(Client) %>
+     <b ><%= "#{comment.person.class.human_name} #{comment.person.salutation_and_title_and_last_name}" %></b>
+    <% else %>
+     <b style="color:#969696"> <%= "#{comment.person.class.human_name} #{comment.person.salutation_and_title_and_last_name}" %> </b>
+    <% end %>
+  </p>
+  <p>antwortet am <%= l(comment.created_at) %> </p>
+  <p class="pad_10 pad_l_12">
+    <%= auto_link_all(markdown(sh(comment.message))) %>
+  </p>
+</div>

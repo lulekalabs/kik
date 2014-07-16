@@ -1,0 +1,57 @@
+<div class="blue_right">
+  <% draw_flash_message do |type, message| %>
+    <%= content_tag :div, message, :class => type  %>
+  <% end %>
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <% form_for :enrollment, :url => remove_press_journalists_path, :html => {:method => :post} do |f| %>
+          
+
+          <h2>Presseverteiler abbestellen</h2>
+          <p>Hier können Sie sich aus dem Presseverteiler austragen - einfach Ihre E-Mail-Adresse eingeben, die Sie bei der Bestellung verwendet haben. 
+          </p>    
+          
+          <div class="clearer_10"></div>  
+          <div class="left">
+  <%# E-Mail-Adresse* %>
+            <%= f.text_field :email, {:class => "field w303"}%>
+          </div>
+
+          <div class="clearer_10"></div>  
+
+          <div>
+            <%= submit_tag "abbestellen" , :class => "button_right" %>
+          </div>
+          <div class="button_left"></div>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+            
+          </ul>
+           <h2>Widerrufmöglichkeit:</h2>
+          <ul>
+            <li>Sie können die Einwilligung zur Nutzung Ihrer Daten für den Presseverteiler jederzeit mit Wirkung für die Zukunft widerrufen, sende Sie uns dazu eine <%= mail_to Notifier.newsletter_email, 'E-Mail', {:class => "white",  :encode => "hex" }%> oder per Abbestell-Link am Ende jeder Pressemitteilung.</li>
+
+          </ul>
+          <h2>Datenschutz:</h2>
+          <ul>
+            <li>Die Unterrichtung zum Datenschutz finden Sie auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de", :class => "white"} %></li>
+           </ul>
+          <div class="clearer"></div>
+         
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => "shared/default_fields_js" %>

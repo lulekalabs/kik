@@ -1,0 +1,151 @@
+<html>
+<style>
+    html, body, div, h1, h2, form, p, input , a{
+      margin:0pt;
+      padding:0pt;
+      font-family: Verdana, Arial;
+      color:#FFF;
+} 
+html { height: 100%; }
+body { min-height: 100%; height: 100%; }
+body {
+   color:#fff;
+   font-size: 12px;
+   height:auto !important;
+}
+
+#question {
+  background: url(/images/widget/bg.jpg) repeat-x #8dba38;
+  padding:10px;
+  border: 2px #99ca3c solid;
+  
+ 
+}
+#question, textarea,  input.button {
+ 
+  -moz-border-radius:6px;
+  -khtml-border-radius:6px;
+  -webkit-border-radius:6px;
+}
+textarea {
+   color:#565656;
+   border-top:#bbb 1px solid;
+   border-left:#bbb 1px solid;
+   border-right:#eee 1px solid;
+   border-bottom:#eee 1px solid;
+   margin:10px 0;
+   font-family: Verdana, Arial;
+   font-size:13px;
+   padding:3px;
+   overflow:hidden;
+   width:100%; 
+   height:30%; 
+}
+input.button {
+      font-size:11px;
+      font-family:Verdana,Arial;
+      font-weight:bold;
+      color:#4f7200;
+      padding: 3px;
+      cursor:pointer;
+      border:2px solid #99ca3c;
+      margin:4px 0 0 4px;
+      float:right;
+      background-color:#fff;
+}
+h3 { 
+  font-weight:bold; 
+  font-size: 14px;
+  text-align:left; 
+  color:#4f7200;
+ 
+}
+
+h4 { 
+  font-weight:normal; 
+  font-size: 12px;
+  text-align:left; 
+  color:#969696;
+ 
+}
+#question p.errors{ 
+  font-weight:normal; 
+  font-size: 12px;
+  text-align:left; 
+  color:#f90f3b;
+  padding-bottom:10px;
+}
+p{ 
+  font-weight:normal; 
+  font-size: 12px;
+  text-align:left; 
+  color:#000;
+  padding-bottom:10px;
+}
+#question h1 { 
+  font-weight:normal; 
+  font-size: 12px;
+  text-align:center; 
+  border-bottom:1px solid #dadada;
+ padding-bottom:5px;
+}
+#question h2 {
+  font-size: 12px;
+  font-weight:bold;
+   padding:5px 0;
+  text-align:center;
+}
+#question h4 {
+  font-size: 12px;
+  text-align:center; 
+  font-weight:normal;
+  padding:0;
+  margin:0; color:#fff;
+}
+.clear{clear:both;}
+
+a {color:#4f7200;; text-decoration:underline;}
+
+
+a.logo img{
+ border:0;
+float:left;
+
+}
+
+  </style>
+
+  <body>
+    <h4>Rechtsservice</h4>
+
+    <h3>Fragen Sie kostenlos an bei einem Anwalt</h3>
+
+    <p>Das Service-Angebot des Mein sch&#246;ner Garten-Ratgeber Recht deckt ein breites Spektrum ab. Mitunter ben&#246;tigen und w&#252;nschen Sie vielleicht aber eine weitergehende, individuelle Rechtsberatung.</p>
+
+    <p>Das Gesetz verbietet uns jedoch - so wie allen anderen Zeitschriften und Zeitungen auch - Sie &#252;ber unser Service-Angebot hinaus individuell und kostenlos rechtlich zu beraten.</p>
+
+   <p> Die L&#246;sung: Unsere Leserinnen und Leser k&#246;nnen kostenlos den Rechtsservice unseres Partners <a href="http://www.kann-ich-klagen.de" target="_blank">kann-ich-klagen.de</a> nutzen und mittels dem angebotenen Mandanten-Fragen-Portal den passenden Anwalt finden. <a href="http://www.kann-ich-klagen.de" target="_blank">kann-ich-klagen.de</a> wurde entwickelt von Michael Schweizer aus der Kanzlei Prof. Schweizer.</p>
+
+    <p>So funktioniert's: Stellen Sie hier geb&#252;hrenfrei Ihre Fragen und schildern Sie unverbindlich Ihr Rechtsproblem. Danach k&#246;nnen Sie sich zur&#252;cklehnen. Bereits nach kurzer Zeit erhalten Sie kostenlos Nachrichten und Bewerbungen von interessierten Anw&#228;lten - ohne weitere Verpflichtungen.</p>
+
+    <p>Ihr Vorteil: Kein stundenlanges Bl&#228;ttern in dicken Telefonb&#252;chern oder endloses Surfen im Internet auf der Suche nach einem Anwalt. Interessierte Anw&#228;lte melden sich vielmehr bei Ihnen. Vergleichen Sie bequem von zu Hause aus die Angebote und w&#228;hlen Sie bei Interesse den passenden Anwalt aus. Und ganz wichtig: Eine Verpflichtung, einen Anwalt zu beauftragen, besteht zu keiner Zeit. </p>
+     <div id="question">
+      <h1>Partnerangebot-Rechtsservice</h1>
+      <h2>Fragen Sie einen Anwalt!</h2>
+      <h4>Interessierte Anw&auml;lte melden sich kostenlos bei Ihnen!</h4>
+      <div class="clear"></div>
+      <!--
+      <p class="errors">errors</p>
+      -->
+      <% form_for :kase, @kase, :url => new_questions_url, :html => {:target => "_blank"} do |f| %>
+        <%= f.text_area :description %>
+        <%= f.hidden_field :referrer, :value => "schoener_garten" %>
+        <%= submit_tag "Jetzt Frage stellen &#187;", :class => "button" %>
+      <% end %>
+      <a href="/unternehmen/imprint" target="top" class="logo"><img src="/images/widget/kann_ich_klagen_logo.png" width="220" height="36" alt="Kann Ich Klagen Logo"></a>
+         
+       <div class="clear"></div>  
+
+    
+  </body>
+</html>

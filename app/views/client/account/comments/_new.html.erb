@@ -1,0 +1,27 @@
+<% # client/account/comments/_new 
+  header_message ||= "Ihre Antwort auf die Bewerbung:"
+  commentable ||= nil
+  kase ||= if commentable.is_a?(Response)
+    commentable.kase
+  end
+%>
+<%= error_messages_for :comment %>
+<% remote_form_for :comment, @comment && @comment.new_record? ? @comment : Comment.new, 
+  :url => client_account_question_response_comments_path(*[kase, commentable].compact) do |f| %>
+<div class="clearer_10"></div>   
+  <p><b>Ihre Anwort:</b></p>
+  <p><%= f.text_area :message %></p>
+
+  <% if commentable.is_a?(Response) && commentable.open? && current_user.person.is_a?(Client) %>
+    <%= link_to_remote content_tag(:b, "Bewerbung ablehnen"), 
+      :url => decline_client_account_question_response_path(*[kase, commentable].compact),
+        :method => :put,
+          :confirm => "Wollen Sie die Bewerbung ablehnen?" %>
+  <% end %>
+
+  <div>
+    <%= submit_tag "Antwort absenden", :class => "button_right" %>
+  </div>
+  <div class="button_left"></div>
+  <div class="clearer"></div> 
+<% end %>

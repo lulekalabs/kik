@@ -1,0 +1,94 @@
+<% # advocate/account/questions/_show 
+  kase ||= show || @kase
+  open ||= false
+%>
+<!-- question -->
+<div class="quest_top clearer"></div>
+<div class="quest_content">
+  <%= profile_image_tag(kase.person) %>
+  <div class="left">
+    <p><b>Frage <%= kase.id %> vom <%= l(kase.created_at) %></b></p>
+    <p>Gestellt von: <%= h(kase.person.user.login) %></p>
+    
+    <% if kase.can_be_accessed_by?(@person) %>
+    <p>
+      <%= link_to_function "Kontaktdaten ansehen &#187;",
+        "$('#contact-info-content').show();$('#open-contact-info-link').hide();$('#close-contact-info-link').show();", 
+          :id => "open-contact-info-link" %>
+      <%= link_to_function "Kontaktdaten schliessen &#187;",
+        "$('#contact-info-content').hide();$('#open-contact-info-link').show();$('#close-contact-info-link').hide();", 
+          :id => "close-contact-info-link", :style => "display:none;" %>
+    </p>
+    <div class="c_daten" id="contact-info-content" style="display:none;">
+      <p>Michael Meier</p>
+      <p>Meierstr.101</p>
+      <p>80796 Meierhofen</p>
+      <p>meier@meier.de</p>
+      <p>0179/55662233</p>
+      <p>keine Rechtschutzversicherung</p>
+    </div>
+    <% else %>
+      <p><%= link_to("Kontaktdaten ansehen &#187;", overview_advocate_path) %></p>
+    <% end %>
+  </div>
+  <div class="right">
+    <div class="quest_buttom_open">Frage: <%= kase.human_current_state_name %></div>
+    <div class="t_10">Haben Sie das Mandat erhalten? <a>Bitte hier klicken!</a></div>
+    <div class="clearer_5"></div>
+    <div><%= link_to "Bewerbung abgeben", regard_advocate_account_questions_path , :class=>"quest_buttom_apply_show" %></div> 
+  </div>
+  <div class="clearer"></div>
+  <p>Rechtsgebiet(e): <%= topics_list_in_words(kase) %></p>
+  <p><b>Betreff: <%= h(kase.summary) %></b></p> 
+  <p><%= I18n.t("{{count}} Anwalt", :count => kase.responses.count, :scope => :pluralizations).titleize %>&nbsp;<%= kase.responses.count > 1 ? "haben den Rechtsuchenden bereits kontaktiert" : "hat den Rechtsuchenden bereits kontaktiert" %></p> 
+  <% if kase.not_expired? %>
+  <p>Laufzeit: noch <%= distance_of_time_in_words_to_now kase.expires_at %> </p>
+  <% elsif kase.expired? %>
+  <p>Laufzeit: zu Ende </p> 
+  <% end %>
+
+</div>
+
+<div class="quest_content_open" id="<%= dom_id(kase, :content_open)%>" style="<%= open ? '' : 'display:none;' %>">
+  <p><%= h(kase.description) %></p>
+  <p><b>Was haben Sie bereits unternommen?</b><br />
+     <%= h(kase.action_description) %></p>
+
+  <%= render :partial => "shared/comments/index", :locals => {
+      :commentable => kase, :form_url => new_advocate_account_question_comment_path(kase) } %>
+
+  <div class="clearer_10"></div>
+
+  <%= render :partial => "shared/assets/images", :locals => {
+    :assetable => kase, :object_name => :kase, :form_url => advocate_account_question_path(kase)} %>
+
+  <%= render :partial => "shared/assets/documents", :locals => {
+    :assetable => kase, :object_name => :kase, :form_url => advocate_account_question_path(kase)}%>
+
+</div>
+<div class="quest_bottom">
+  <%= link_to_open_close_toggle ["Frage minimieren", "Frage maximieren"], 
+  dom_id(kase, :content_open), open %>
+</div>
+
+<!-- responses -->
+<% kase.responses.each do |response| %>
+  <div class="quest_advo_top clearer"></div>
+  <div class="quest_advo_content"> 
+    <div class="left">
+      <b>Bewerbung</b> geschickt am <%= I18n.l(response.created_at) %>
+      <div class="clearer_10"></div> 
+      <p><%= h(response.description) %></p> 
+    </div>
+    <div class="right">
+      <div class="quest_buttom_open">Status: <%= response.human_current_state_name %></div>
+      <div ><%= link_to " Bewerbung ansehen", regard_advocate_account_question_response_path(kase, response),
+        :class=>"quest_buttom_apply_show" %></div> 
+    </div> 
+  </div> 
+  <div class="quest_advo_bottom"></div>
+  <div class="clearer_10"></div> 
+<% end %>
+
+
+

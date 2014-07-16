@@ -1,0 +1,34 @@
+<%
+  details ||= false
+  posts ||= content || @posts
+%>
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Der <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> Blog</h2>
+        <%= render :partial => "post", :collection => posts, :locals => {:details => details} %>
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+
+          <%= render :partial => "shared/sidebar_tag_cloud_and_archive",
+            :locals => {:collection_method_name => :service_blogs_path} %>
+
+          <div class="pad_5"></div>
+          <h2></h2>
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+            service_blogs_path, :class => "white_none" %>
+          <div class="pad_10"></div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+

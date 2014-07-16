@@ -1,0 +1,24 @@
+<%= @enrollment.mailer_salutation_and_title_and_last_name %>,
+
+vielen Dank für Ihr Interesse am <%= project_name %> <%= @enrollment.to_s %>.
+
+Sie erhalten diese Aktivierungs-E-Mail, weil mit Ihrer Adresse <%= h(@person.email) %> kürzlich auf <%= project_name %> ein Newsletter bestellt wurde.
+
++++++++++++++++++++++++++++++++++++++++++
+
+Bitte klicken Sie einmalig auf folgenden Aktivierungs-Link, um Ihre kostenlose Anmeldung zu bestätigen und abzuschließen:
+
+<%= activate_service_newsletter_url(@enrollment.activation_code) %>  
+
+Sollten Sie den oben stehenden Aktivierungs-Link nicht anklicken können, dann können Sie den Link auch einfach kopieren und in die Adresszeile Ihres Internetbrowsers einfügen, um Ihre kostenlose Anmeldung zu bestätigen. Bitte achten Sie darauf, den Link vollständig zu kopieren und einzufügen. 
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+Sie haben keinen Newsletter bestellt? Dann müssen Sie nichts unternehmen und können diese E-Mail ignorieren. Sie werden keinen Newsletter erhalten.
+
+Falls Sie Hilfe bei der Aktivierung benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter <%= Notifier.unprettify(Notifier.newsletter_email) %> zur Verfügung. <%= project_name %> gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+<%= render :partial => "notifier/footer" %>
+                                                  
+
+

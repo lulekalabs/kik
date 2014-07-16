@@ -1,0 +1,30 @@
+<% # client/account/comments/_show 
+  comment ||= show || @comment
+  last ||= false
+  show_new ||= false
+  title ||= if comment.person.is_a?(Advocate)
+    comment.person.female? ? "Rechtsanwältin" : "Rechtsanwalt"
+  else
+    comment.person.female? ? "Rechtsuchender" : "Rechtsuchenden"
+  end
+%>
+<div class="clearer"></div>
+<div id="<%= dom_id(comment, dom_id(comment.commentable)) %>" class="">   
+ <h2>
+   <% if af_realm? %>
+    <% if comment.person.is_a?(Advocate) %>
+    Kommentar von <%= link_to "#{title} #{h(comment.person.salutation_and_title_and_last_name(true))}",
+      profile_advofinder_client_advocate_path(comment.person) %> zu dieser Bewertung:
+    <% else %>
+    Kommentar von <%= content_tag(:b, "#{title} #{h(comment.person.salutation_and_title_and_last_name(true))}") %> zu dieser Bewertung:
+    <% end %>
+   <% else %>
+   Kommentar von <%= content_tag(:b, "#{title} #{h(comment.person.salutation_and_title_and_last_name(true))}") %> zu dieser Bewertung:
+   <% end %>
+ </h2> 
+  <p>kommentiert am <%= l(comment.created_at) %> </p>
+  <p><%= h(comment.message) %></p>
+</div>
+<% unless last %>
+<h2></h2>
+<% end %>

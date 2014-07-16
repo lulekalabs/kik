@@ -1,0 +1,44 @@
+<%
+  article ||= print_article || @article
+%>
+<div class="clearer"></div>
+<div class="pad_20"></div>
+
+  <b style="font-size:16px"><%= article.title %></b>
+ <div class="pad_5"></div>
+
+  <div>Veröffentlicht am <%= l(article.published_at) %></div>
+  <div class="pad_5"></div>
+  <% unless article.summary.blank? %>
+  <b><%= h(article.summary)%></b>
+  <% end %>
+  <div class="pad_5">
+    <%#= h(article.body) %>
+    <%= markdown(sh(article.body)) %>
+  </div>
+  <div class="clearer"></div>
+<div class="pad_20"></div>
+  <% if article.image? %>
+    <a class="modal_xxx iframe" href="<%= article.image.url %>">
+      <%= image_tag(article.image.url(:thumb)) %>
+    </a>
+  <% end %>
+
+
+  <% if article.primary_attachment.file? && Asset.image?(article.primary_attachment.content_type) %>
+    <a class="iframe" href="<%= article.primary_attachment.url %>">
+      <%= image_tag(article.primary_attachment.url(:thumb)) %>
+    </a>
+  <% end %>
+
+  <% if article.secondary_attachment.file? && Asset.image?(article.secondary_attachment.content_type) %>
+    <a class="iframe" href="<%= article.secondary_attachment.url %>">
+      <%= image_tag(article.secondary_attachment.url(:thumb)) %>
+    </a>
+  <% end %>
+
+<div class="clearer"></div>
+<div class="pad_20"></div>
+<div class="left"><a href="#" onclick="self.close();">Druckansicht schließen</a></div>
+<div class="right"><a href="#" onclick="window.print();"><b> Drucken  &#187;</b></a></div>
+

@@ -1,0 +1,3 @@
+<%= render :super %>
+<br/>
+<%= render(:active_scaffold => "admin/mandates", :constraints => {:client_id => @record.id, :type => "ClientMandate"}) %>

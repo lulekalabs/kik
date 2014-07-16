@@ -1,0 +1,127 @@
+<%= form_flash_messages %>  
+<div class="blue_right">
+  <div class="main">
+  <% form_for :search_filter, :url => advocate_account_search_filters_path do |f| %>
+    <div class="content">
+      
+      <div class="col_1">
+        <%= error_messages_for :search_filter, :header_message => "Es sind Fehler aufgetreten" %>
+
+        <h2>Bitte wählen Sie einen Suchfilter für Ihren Fragen-Radar:</h2>
+        <div class="pad_10"></div>
+         <p>kann-ich-klagen.de sendet Ihnen als teilnehmender Anwalt regelmäßig und kostenlos aktuelle Fragen von potentiellen Mandanten zur Einsicht. Wählen Sie dazu den von Ihnen gewünschten Suchfilter und erhalten Sie ab sofort Fragen individuell gefiltert nach Rechtsgebieten und regionalen Wünschen. Sie können später jederzeit Ihren Suchfilter ändern.</p>
+         
+         <div class="left w303">
+               <div class="pad_5"></div>  
+               <p><b>Region:</b></p>
+           
+               <div>
+                 <%= f.radio_button :select_region, "all", :onclick => "$('#radius-select-container').hide();$('#province-select-container').hide();" %>&nbsp;
+                 <%= f.label :select_region_all, "deutschlandweit" %>
+               </div> 
+               <div>
+                 <%= f.radio_button :select_region, "province", :onclick => "$('#radius-select-container').hide();$('#province-select-container').show();" %>&nbsp;
+                 <%= f.label :select_region_province, "auf einzelnes Bundesland beschränken" %>
+                </div>
+               <div>
+                 <%= f.radio_button :select_region, "radius", :onclick => "$('#radius-select-container').show();$('#province-select-container').hide();" %>&nbsp;
+                 <%= f.label :select_region_radius, "auf Umkreis der Kanzlei beschränken" %>
+               </div>   
+               
+               <div class="clearer"></div>
+               <div class="pad_20"></div>
+               <p><b>Rechtsgebiete:</b></p>
+
+               <div>
+                 <%= f.radio_button :select_topic, "all", :onclick => "$('#topic-select-container').hide();" %>&nbsp;
+                 <%= f.label :select_topic_all, "alle Rechtsgebiete" %>
+               </div> 
+               <div>
+                 <%= f.radio_button :select_topic, "some", :onclick => "$('#topic-select-container').show();" %>&nbsp;
+                 <%= f.label :select_topic_some, "auf einzelne Rechtsgebiete beschränken" %>
+               </div>
+          </div>
+          
+          
+          
+          <div class="right w309">
+            <div id="radius-select-container" style="<%= @search_filter.select_region == "radius" ? '' : 'display:none;' %>">
+                <div class="pad_5">
+                  <p class="line">PLZ der Kanzlei:&nbsp;
+                    <% if logged_in? && current_user.person.is_a?(Advocate) && current_user.person.business_address %>
+                      <b><%= h(current_user.person.business_address.postal_code) %></b>
+                    <% end %>
+                  </p>
+                </div>
+                <%= f.select :radius, collect_for_search_radius_select(true, true), {},
+                :class => "quest w100 ", :style => "background-color:#fffef7 " %>
+            </div>    
+            
+            <div id="province-select-container" style="<%= @search_filter.select_region == "province" ? '' : 'display:none;' %>">
+                <div class="pad_5">
+                    <p class="line">Bundesländer:</p>
+                 </div>
+                 <%= f.select :province_code, collect_for_provinces_select(true), {}, {:class => "quest w210"} %>
+            </div>   
+                 
+            <div id="topic-select-container" style="<%= @search_filter.select_topic == "some" ? '' : 'display:none;' %>">
+                 <div class="pad_5">
+                    <p class="line">Rechtsgebiete:</p>
+                 </div>
+                   <% Topic.visible.alphabetical.reject {|t| t.name.blank?}.each do |topic| %>
+                    <div>
+                      <%= check_box_tag "search_filter[topic_ids][]", topic.id,
+                        @search_filter.topics.include?(topic) %>&nbsp;
+                      <%= label :a, :b, h(topic.name), :for => dom_id(topic) %>
+                    </div>
+                   <% end %>
+            </div>     
+          </div>
+
+          <div class="clearer_20"></div>
+          <h2>E-Mail-Benachrichtigung(en) über neu eingegange Fragen:</h2>  
+          <div class="clearer_5"></div>
+          
+          <div>
+            <%= f.radio_button :select_digest, "immediately" %>&nbsp;
+            <%= f.label :select_digest_immediately, "sofort (jede neue, passende Frage einzeln per E-Mail)" %>
+          </div>
+           <div>
+             <%= f.radio_button :select_digest, "daily" %>&nbsp;
+             <%= f.label :select_digest_daily, "tägliche Zusammenfassung (alle neuen, passenden Fragen zusammengefasst in einer E-Mail)" %>
+           </div>
+           <div>
+             <%= f.radio_button :select_digest, "never" %>&nbsp;
+             <%= f.label :select_digest_never, "nie (passende Fragen werden nur online im Bereich \"Offene Fragen\" angezeigt)" %>
+            </div>
+          <div class="clearer_20"></div> 
+          <div class="button_right">
+            <%= submit_tag "Suchfilter speichern", :class => "button_right" %>
+            <!--
+           		<a href="" title="Filtereinstellungen speichern">Filter speichern</a>
+           	-->
+          </div>
+          <div class="button_left"></div> 
+           	 
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+       
+        
+            <div class="pad_r_l_15">
+              <%= render :partial => "advocate/account/search_filters/sidebar_search_filter" %>
+              
+              Ändern Sie Ihren Fragen-Radar Filter indem Sie links Ihre bisherige Auswahl anpassen und auf "Suchfilter speichern" klicken. 
+              <div class="pad_20"></div>
+              <b>
+                <%= link_to "Fragen-Radar Ergebnisse anzeigen &#187;", 
+                  search_filter_questions_path, :class => "white" %>
+              </b> 
+             
+         </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <div class="bottom"></div>
+</div>

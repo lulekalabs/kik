@@ -1,0 +1,27 @@
+<div class="clearer"></div>  
+<div class="pad_20"></div>  
+<div class="menue_c"> 
+  <ul> 
+    
+      <li class="small <%= current_page?(advocate_account_profile_preview_path) ? 'select' : ''%>">
+        <%= link_to "Profil", advocate_account_profile_preview_path %>
+      </li>
+
+      <%= tab_list_item_link_to "Bewertungen #{@advocate.reviews.visible.count > 0 ? "(#{@advocate.reviews.visible.count})" : ""}",
+        reviews_advocate_account_profile_preview_path, 
+          {:class => "middle"}%> 
+
+      <%= tab_list_item_link_to "Mitteilungen #{@advocate.advomessages.visible.count > 0 ? "(#{@advocate.advomessages.visible.count})" : ""}", messages_advocate_account_profile_preview_path, 
+        {:class => "middle"} %>
+
+      <%= tab_list_item_link_to "Artikel #{@advocate.articles.law_article.published.count > 0 ? "(#{@advocate.articles.law_article.published.count})" : ""}", articles_advocate_account_profile_preview_path %>       
+      
+      <% if logged_in? && @advocate == current_user.person %>
+         <li class="last">
+          <%= link_to "Daten ändern &#187;", details_advocate_account_profile_path, {:title => "Meine Daten verwalten und ändern"} %> 
+         </li>
+      <% end %>
+    
+  </ul>
+</div>
+<div class="clearer_5"></div>

@@ -1,0 +1,13 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Ihre Frage vom <%= l(@kase.created_at) %> wurde geschlossen. Anwälte können sich nicht mehr bewerben.
+
+Sie finden die Frage nunmehr in Ihrem persönlichen Mein Bereich unter Geschlossene Fragen & Bewerbungen.
+
+Unter folgendem Link können Sie Ihre Frage ansehen und auf Wunsch wieder öffnen, sollten Sie weiter einen Anwalt suchen wollen:
+
+<%= closed_client_account_questions_url %>
+
+Wir bedanken uns für Ihr Vertrauen.
+
+<%= render :partial => "notifier/footer_lean" %>

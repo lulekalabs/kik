@@ -1,0 +1,58 @@
+<%
+  details ||= false
+  entries ||= content || @entries
+%>   
+
+<% draw_flash_message do |type, message| %>
+  <%= content_tag :div, message, :class => type  %>
+<% end %>
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>
+          Rechtslexikon
+        </h2> 
+        <p><b>Geht es Ihnen auch so:</b> Irgendwo wird Ihnen ein Rechtsbegriff vorgehalten - in einem Bußgeldbescheid, in einem Brief, auf einem Schild. </p>
+        <p>Oft lesen Sie auch in einer Zeitschrift oder in einer Zeitung so ein Stück Juristendeutsch und möchten sich erst einmal über den genauen Wortlaut informieren.</p>
+       <p>  <% if kik_realm? %>kann-ich-klagen.de 
+                  <% end %>
+                  <% if af_realm? %>advofinder.de
+                  <% end %> schafft Durchblick und übersetzt das Juristendeutsch kostenlos für Sie. </p>
+
+       <p> Senden Sie uns einfach den Rechtsbegriff mit nachfolgendem Formular. Sobald übersetzt und an dieser Stelle eingestellt wurde, informieren wir Sie per E-Mail.</p>
+
+        <%= render :partial => "submit" %>
+        
+        <h2>
+           <%= query_filter_in_words ? "Einträge für #{query_filter_in_words}" : "Einträge" %>
+         </h2> 
+        
+        <%= render :partial => "entry", :collection => entries, :locals => {:details => details} %>
+        
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Rechtslexikon von A-Z</h2>
+          <% %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z).each do |letter| %>
+            <span>
+              <%= link_to content_tag(:b, letter),
+                client_dictionaries_path(:filter => letter), {:class => "white"} %>
+            </span>
+          <% end %>
+          <div class="clearer"></div>
+
+          <div class="pad_5"></div>
+          <h2></h2>
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+            client_dictionaries_path, :class => "white_none" %>
+          <div class="pad_10"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+

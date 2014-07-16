@@ -1,0 +1,21 @@
+<%= f.text_field :subject, :class => "field w600" %>
+<div class="pad_5"> </div>  
+<%= f.text_area :message, :class => "question_field text" %>
+<%= f.hidden_field :assigned, :id => "advomessage-assigned" %>
+<div class="clearer_5"></div>
+<div>
+  <% if f.object.new_record? %>
+    <%= submit_tag "Jetzt Mitteilung veröffentlichen", :class => "button_right" %>
+  <% else %>
+    <%= submit_tag "Jetzt Mitteilung ändern", :class => "button_right" %>
+  <% end %>
+</div>
+<div class="button_left"></div>
+<div class="right_button">
+  <% if f.object.new_record? %>
+    <%= link_to 'abbrechen' %>
+  <% else %>
+    <%= link_to_remote("abbrechen", :url => advocate_account_advomessage_path(f.object), 
+      :method => :get) %>
+  <% end %>
+</div>  

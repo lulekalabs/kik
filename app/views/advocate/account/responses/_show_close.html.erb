@@ -1,0 +1,31 @@
+<div class="modal_close" style="width:350px;" id="<%= dom_id(@response, :show_close) %>">
+  <b>Möchten Sie die Bewerbung schliessen?</b> 
+  <%= error_messages_for :kase %>
+  <div class="clearer_10"></div>
+  
+  <% remote_form_for :response, @response, :url => close_advocate_account_question_response_path(@kase, @response), :html => {:method => :put} do |f| %>
+
+   
+    <%= f.radio_button :close_action, "no", :onclick => "$('input.closeReason').attr('checked', false)" %>
+    <%= f.label :close_action_no, "Nein" %>
+    <div class="clearer_10"></div>
+    <%= f.radio_button :close_action, "close", :style => "display:none;" %>
+    <b><img src="/images/point_black.png" width="14" height="14" alt="Point Black"/> <%= f.label :close_action_close, "Ja, aus folgendem Grund:" %></b>   
+    <div class="pad_l_22">
+        <div class="clearer_10"></div>      
+        <%= f.radio_button :close_reason, "advocate_cancel", :class => "closeReason",
+          :onclick => "$('#response_close_action_close').attr('checked', true)" %>
+        <%= f.label :close_reason_advocate_cancel, "Ich ziehe meine Bewerbung zurück" %>
+        <div class="clearer_10"></div>
+        <%= f.radio_button :close_reason, "advocate_mandated", :class => "closeReason",
+          :onclick => "$('#response_close_action_close').attr('checked', true)" %>
+        <%= f.label :close_reason_advocate_mandated, "Ich habe das Mandat erhalten" %>
+        <div class="clearer_20"></div> 
+    </div>
+    <div class="button_abort">
+      <%= link_to_function("Abbrechen", "jQuery(document).trigger('close.facebox')") %>
+    </div>  
+    <%= submit_tag "" , :class => "button_send" %>
+    
+  <% end %>
+</div>

@@ -1,0 +1,67 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        
+
+          <h2>Beirat</h2>
+          
+           <% if kik_realm? %>
+           
+              <p>
+              kann-ich-klagen.de bereitet derzeit die Ernennung eines Beirats vor. Dieser soll als dauerhaft bestehendes Gremium die Entscheidungsträger bei Grundsatz- und Zukunftsfragen auf einer breiten fachlichen Grundlage interdisziplinär, unabhängig und ehrenamtlich beraten. Die Beiratsmitglieder aus Wirtschaft, Wissenschaft, Kultur und Medien werden die Angebote und Arbeit von kann-ich-klagen.de evaluieren, gesellschaftliche Anforderungen bewerten sowie Empfehlungen für die Weiterentwicklung aussprechen und im Falle einer erforderlichen Konfliktlösung beitragen. Sobald der Beirat ernannt wurde, werden an dieser Stelle weiterführende Informationen veröffentlicht.
+   </p>
+
+             <p>Gern werden noch Empfehlungen für zu nominierende Kandidaten für den Beirat seitens interessierter Rechtsuchender und Anwälte entgegengenommen.
+             </p>
+
+             <p> <b><%= link_to "Kontaktieren", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von kann-ich-klagen.de "} %></b> Sie uns. Wir freuen uns auf Sie.</p>
+         </div>
+
+         <div class="col_2">
+            <%= render :partial => 'shared/sidebar_stats' %>
+           <div class="pad_r_l_15">
+             <div class="pad_10"></div>
+
+             <h2><b>Kontaktieren Sie uns: </b></h2>
+             <p>Wir freuen uns auf Sie!</p>
+             <div class="pad_10"></div>
+             <p>Telefon: (030) 609 895 090</p>
+             <p>Telefax: (030) 609 895 099 </p> 
+          <% end %>
+          <% if af_realm? %>
+          
+             <p>
+            advofinder.de bereitet derzeit die Ernennung eines Beirats vor. Dieser soll als dauerhaft bestehendes Gremium die Entscheidungsträger bei Grundsatz- und Zukunftsfragen auf einer breiten fachlichen Grundlage interdisziplinär, unabhängig und ehrenamtlich beraten. Die Beiratsmitglieder aus Wirtschaft, Wissenschaft, Kultur und Medien werden die Angebote und Arbeit von advofinder.de evaluieren, gesellschaftliche Anforderungen bewerten sowie Empfehlungen für die Weiterentwicklung aussprechen und im Falle einer erforderlichen Konfliktlösung beitragen. Sobald der Beirat ernannt wurde, werden an dieser Stelle weiterführende Informationen veröffentlicht.
+  </p>
+
+            <p>Gern werden noch Empfehlungen für zu nominierende Kandidaten für den Beirat seitens interessierter Rechtsuchender und Anwälte entgegengenommen. 
+            </p>
+
+            <p> <b><%= link_to "Kontaktieren", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von advofinder.de "} %></b> Sie uns. Wir freuen uns auf Sie.</p>
+        </div>
+
+        <div class="col_2">
+           <%= render :partial => 'shared/sidebar_stats' %>
+          <div class="pad_r_l_15">
+            <div class="pad_10"></div>
+
+            <h2><b>Kontaktieren Sie uns: </b></h2>
+            <p>Wir freuen uns auf Sie!</p>
+            <div class="pad_10"></div>
+            <p>Telefon: (030) 577 085 760</p>
+            <p>Telefax: (030) 577 085 769 </p>
+          <% end %>
+         
+          
+          <p><%= mail_to Notifier.contact_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+          <div class="pad_20"></div>
+          
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+  <head>
+    <title>kann-ich-klagen.de</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="language" content="de"/>
+    <meta http-equiv="Content-Style-Type" content="text/css"/>
+    <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+    <link rel="SHORTCUT ICON" href="/favicon.ico"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="/stylesheets/basics.css"/>
+    <link rel="stylesheet" media="print" type="text/css" href="/stylesheets/basics.css"/>
+
+    <script language="Javascript1.2" type="">
+      <!--
+
+      function printpage() {
+        window.print();
+      }
+
+      //-->
+    </script>
+  </head>
+  <body onload="printpage()" class="print">
+   
+      <div class="mainFrame_print">
+        <div class="clearer"></div>
+        <div class="pad_50 left" style="font-size:22px;">Druckansicht</div>
+
+        <div class="pad_20 right">
+          <%= image_tag "kann_ich_klagen_logo_print.jpg", :alt => "kann-ich-klagen.de Startseite", :title => "kann-ich-klagen.de Startseite" %>
+        </div>
+ <div class="clearer"></div>
+        <div class="pad_50"></div>
+       
+          <%= yield %>
+        
+        <div class="clearer"></div>
+        <div class="pad_50"></div>
+        <p> Diese Information wird von www.kann-ich-klagen.de als Druckansicht zur Verfügung gestellt.</p>
+
+        <p>Copyright © 2010 kann-ich-klagen.de - alle Rechte vorbehalten</p>
+
+        <p>Bitte lesen Sie unsere Nutzungsbedingungen und Datenschutzbestimmungen. Vervielfältigungs- und Nutzungsrechte werden nur mit gesonderter Vereinbarung eingeräumt.</p>
+      </div>
+   
+  </body>
+</html>

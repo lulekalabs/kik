@@ -1,0 +1,11 @@
+<div class="sub_content">
+
+  <%= link_to "Newsletter bestellen", new_service_newsletter_path, {:title => "Newsletter von kann-ich-klagen.de bestellen ", 
+    :class => current_page?(new_service_newsletter_path) ? "select" : ""} %>
+  <%= image_tag 'bullet_grey.gif' %>
+  <%= link_to "Newsletter abbestellen", cancel_service_newsletters_path, {:title => "Newsletter von kann-ich-klagen.de abbestellen ", :class => current_page?(cancel_service_newsletters_path) ? "select" : ""} %>
+  
+ </div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>
+

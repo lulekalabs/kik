@@ -1,0 +1,9 @@
+Lieber <%= project_name %> Administrator,
+
+<%= h(@reviewer.title_and_name) %> mit der <%= h(@reviewer.number) %> hat gerade Anwalt <%= h(@reviewee.title_and_name) %> mit der <%= h(@reviewee.number) %> bewertet.
+
+Hier können Sie die Anwaltsbewertung <%= @review.number %> prüfen und freischalten: 
+
+<%= admin_review_url(@review) %>
+
+<%= render :partial => "notifier/footer_lean" %>

@@ -1,0 +1,54 @@
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Benachrichtigungen</h2>
+        <% form_for :search_filter, @search_filter, :url => advocate_account_messages_url, 
+          :html => {:method => :get, :id => "search-form"} do |f| %>  
+        
+          <div class="left ">
+            Benachrichtigungen filtern nach:
+          </div>
+          <div class="left pad_l_10">
+            <%= f.select :state, [["ungelesen", "unread"], ["gelesen", "read"], ["alle", nil]], {},
+              {:class => "quest w210", :style => "background-color:#fffef7", :onchange => "$('#search-form').trigger('submit');"} %>
+          </div>
+          <div class="right w210">
+            <% unless @messages.blank? %>
+              Seiten: <b><%= @messages.total_pages %></b>
+              <p>
+                <%= will_paginate @messages, :previous_label => "&#171;", :next_label => "&#187;" %>
+              </p>
+            <% end %>
+          </div>
+          <%= submit_tag "Suchen", :id => "search-submit", :style => "position:absolute;left:-1000px;top:-1000px;" %>
+        <% end %>
+         
+         <div class="clearer_20"></div>  
+
+        <% @messages.each do |message| %>
+          <%= render :partial => "shared/messages/show", :object => message,
+            :locals => {:url => advocate_account_message_path(message)} %>
+          
+          <% if @messages.last != message %>
+            <h2></h2>
+          <% end %>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li></li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

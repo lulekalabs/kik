@@ -1,0 +1,50 @@
+quentin:
+  id: 1
+  first_name: Quentin
+  last_name: Terrantino
+  email: quentin@test.tst
+  phone_number: +49 (89) 123 4567
+  gender: m
+  newsletter: 1
+  remedy_insured: 1
+  type: Client
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+aaron:
+  id: 2
+  first_name: Aaron
+  last_name: Schweizer
+  email: aaron@test.tst
+  phone_number: +49 (89) 666 6666
+  gender: f
+  newsletter: 1
+  remedy_insured: 1
+  bar_association_id: 1
+  primary_expertise_id: 3
+  secondary_expertise_id: 
+  academic_title_id: 1
+  company_name: Rechtsanwaltskanzlei Schweizer und Söhne
+  company_url: http://www.schweizer.tst
+  referral_source: "Rechtsanwaltsmagazin, Bild, Heute Journal"
+  type: Advocate
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+homer:
+  id: 3
+  first_name: Homer
+  last_name: Simpson
+  email: homer@test.tst
+  phone_number: +49 (89) 999 9999
+  gender: m
+  newsletter: 1
+  remedy_insured: 1
+  bar_association_id: 2
+  primary_expertise_id: 1
+  secondary_expertise_id: 2
+  academic_title_id: 2
+  company_name: Rechtsanwaltskanzlei Homer Simpson
+  company_url: http://www.simpsons.tst
+  referral_source: "Marge's Magazin"
+  type: Advocate
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>

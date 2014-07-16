@@ -1,0 +1,127 @@
+<% if kik_realm? %><div class="blue"> 
+<% end %>
+<% if af_realm? %><div class="green">
+<% end %>
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+      <ul> 
+        
+        <li><span class="headline">Herzlich Willkommen in Ihrem persönlichen Bereich! </span></li>
+        <li>Überzeugen Sie sich nun von <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> kostenlos und ohne weitere Verpflichtungen.</li> 
+        <li>Bei Fragen nutzen Sie bitte unser <%= link_to "Kontaktformular", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von kann-ich-klagen.de "} %>.</li>
+        <li>Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.</li>
+        
+      </ul>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Ihre Daten und Services auf einen Blick</h2>
+        <p>Der persönliche Bereich ist ein geschützter Bereich, zu dem nur Sie Zugang haben. Hier können Sie alle Fragen und Bewerbungen sowie Nachichten jederzeit online ansehen, organisieren und verwalten. </p>
+        <div class="clearer_10"></div>  
+        
+       <% if kik_realm? %> 
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Meine Fragen &#38; Bewerbungen</b></h2></div>
+          <div class="two_small_content">
+            <img title="Bewerbungen" alt="Pressespiegel" src="/images/icons/fragen_bewerbungen.gif" style="float:right"/>
+            Hier finden Sie alle von Ihnen gestellte Fragen und von Anwälten erhaltene Bewerbungen im Überblick.
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", client_account_questions_path, {:title => ""} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Meine Bewertungen</b></h2></div>
+          <div class="two_small_content">
+            <img title="Pressemeldungen" alt="Pressemeldungen" src="/images/icons/bewertungen.gif" style="float:right"/>
+            Hier können Sie die Anwälte bewerten, mit denen Sie auf kann-ich-klagen.de in Kontakt standen und abgegebene Bewertungen ansehen.
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", client_account_advocates_path, {:title => ""} %></b></div>
+
+        </div>
+
+        <div class="clearer_10"></div>
+        
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Neue Frage stellen</b></h2></div>
+          <div class="two_small_content">
+            <img title="Bilder &amp; Logos" alt="Bilder &amp; Logos" src="/images/icons/pressekontakt.gif" style="float:right"/>
+            Stellen Sie weitere Fragen und finden Sie den passenden Anwalt. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Weiter", new_question_path, {:title => ""} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Meine Daten</b></h2></div>
+          <div class="two_small_content">
+            <img title="Firmenprofil" alt="Firmenprofil" src="/images/icons/daten.gif" style="float:right"/>
+          Hier können Sie Ihre persönlichen Daten, E-Mail-Adresse, Newslettereinstellungen und Ihr Passwort ändern. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite",  client_account_profile_path, {:title => ""} %></b></div>
+         </div>
+         
+         <div class="clearer_10"></div>
+
+         <div class="left">
+           <div class="two_small_top clearer"><h2><b>Meine gemerkten Anwälte</b></h2></div>
+           <div class="two_small_content">
+             <img title="Bilder &amp; Logos" alt="Bilder &amp; Logos" src="/images/icons/anwalt_small.jpg" style="float:right"/>
+           Hier finden Sie die Liste aller Anwälte, deren Anwaltsprofil Sie sich gemerkt haben.  
+           </div>
+           <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", client_account_stores_path, {:title => ""} %></b></div>
+         </div>
+         <% end %>
+         <% if af_realm? %>
+         <div class="left">
+           <div class="two_small_top clearer"><h2><b>Meine gemerkten Anwälte</b></h2></div>
+           <div class="two_small_content">
+             <img title="Bilder &amp; Logos" alt="Bilder &amp; Logos" src="/images/advofinder/icons/anwalt_small.gif" style="float:right"/>
+           Hier finden Sie die Liste aller Anwälte, deren Anwaltsprofil Sie sich gemerkt haben.<br /> <br /> <br />  
+           </div>
+           <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", client_account_stores_path, {:title => ""} %></b></div>
+         </div>
+         <div class="right">
+           <div class="two_small_top clearer"><h2><b>Meine abgegebenen Bewertungen</b></h2></div>
+           <div class="two_small_content">
+             <img title="Pressemeldungen" alt="Pressemeldungen" src="/images/advofinder/icons/bewertungen.gif" style="float:right"/>
+             Hier können Sie die Anwälte bewerten, mit denen Sie auf advofinder.de in Kontakt standen und abgegebene Bewertungen ansehen.
+           </div>
+           <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", client_account_reviews_path, {:title => ""} %></b></div>
+
+         </div>
+
+         <div class="clearer_10"></div>
+
+         
+         <div class="left">
+           <div class="two_small_top clearer"><h2><b>Meine Daten</b></h2></div>
+           <div class="two_small_content">
+             <img title="Firmenprofil" alt="Firmenprofil" src="/images/advofinder/icons/daten.gif" style="float:right"/>
+           Hier können Sie Ihre persönlichen Daten, E-Mail-Adresse, Newslettereinstellungen und Ihr Passwort ändern. 
+           </div>
+           <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite",  client_account_profile_path, {:title => ""} %></b></div>
+          </div>
+
+          <div class="clearer_10"></div>
+
+          
+         <% end %>
+         
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        
+        <%= render :partial => "shared/sidebar_messages" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

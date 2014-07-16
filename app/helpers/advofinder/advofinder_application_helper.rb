@@ -1,0 +1,2 @@
+module Advofinder::AdvofinderApplicationHelper
+end

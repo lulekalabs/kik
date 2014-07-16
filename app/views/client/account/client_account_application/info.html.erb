@@ -1,0 +1,145 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+
+      <div class="two_big_top clearer">
+        <h2><b>Meine Daten</b></h2>
+      </div>
+      <div class="two_big_content">
+        <div class="left">
+          <ul class="profil">
+
+            <li><span class="one"><b>Kundennummer</b></span><span class="two"><b>01235698</b> (kann nicht geändert werden)</span></li>
+            <li><span class="one"><b>ID</b></span><span class="two"><b>0123569888</b> (kann nicht geändert werden)</span></li>
+            <li><span class="one"><b>Benutzername</b></span><span class="two"><b>Biene 95</b> (kann nicht geändert werden)</span></li>
+             <li><span class="one">E-Mail-Adresse</span><span class="two">g.koenig@mgok.de</span></li>
+            <li><span class="one">Anrede</span><span class="two">Frau</span></li>
+            <li><span class="one">Titel</span><span class="two">kein Titel</span></li>
+            <li><span class="one">Vorname</span><span class="two">Lisa</span></li>
+            <li><span class="one">Nachname</span><span class="two">Maninkari</span></li>
+            <li><span class="one">PLZ</span><span class="two">80796</span></li>
+            <li><span class="one">Wohnort</span><span class="two">München</span></li>
+            <li><span class="one">Straße / Nr.</span><span class="two">Gentzstr. 5</span></li>
+            <li><span class="one">Mobilfunk- o. Festnetznr.</span><span class="two">089-95662541</span></li>
+            <li><span class="one">Faxnummer</span><span class="two">089-95662547</span></li>
+             <li><span class="one">Abonnierter Newsletter</span><span class="two"> 
+               keiner <br />
+              kann-ich-klagen.de Newsletter für Rechtsuchende <br /></span></li>
+          </ul>
+            
+        </div>
+      </div>
+      <div class="two_big_bottom_arrow"><b><%= link_to "Jetzt Daten ändern", {:title => "ändern"} %></b></div>
+      <p style="color:red">  bei klick auf "Daten ändern" erscheint an dieser Stelle die untere Box,<br />Inhalt tauschen
+        <br /> bei speichern erscheint wieder der Obere!! </p>
+      <div class="two_big_top clearer">
+        <h2><b>Meine Daten ändern</b></h2>
+      </div>
+      <div class="two_big_content">
+        <div class="left">
+          <ul class="profil">
+             <li><span class="one">E-Mail-Adresse</span>
+               <span class="two"></span> <span class="two"><input class= "field_edit" value="g.koenig@mgok.de" /></span>
+             </li>
+            <li><span class="one">Anrede</span>
+              <span class="two">
+                <select class="option_f_h_edit" style="background-color:#fffef7 ">
+                  
+                  <option>Frau</option>
+                  <option>Mann</option>
+                </select>
+              </span>
+            </li>
+            <li><span class="one">Titel</span>
+               <span class="two">
+                <select class="option_f_h_edit" style="background-color:#fffef7 ">
+                  <option>kein Titel</option>
+                  <option>Prof.</option>
+                  <option>Prof./Dr.</option>
+                  <option>Dr.</option>
+                </select>
+              </span>
+            </li>
+            <li><span class="one">Vorname</span>
+              <span class="two"><input class= "field_edit" value="Lisa" /></span>
+            </li>
+            <li><span class="one">Nachname</span>
+              <span class="two"><input class= "field_edit" value="Maninkari" /></span>
+            </li>
+            <li><span class="one">PLZ</span>
+              <span class="two"><input class= "field_edit" value="80796" /></span>
+            </li>
+            <li><span class="one">Wohnort</span>
+              <span class="two"><input class= "field_edit" value="München" /></span>
+            </li>
+            <li><span class="one">Straße / Nr.</span>
+              <span class="two"><input class= "field_edit" value="Gentzstr." /><input class= "field_edit_nr" value="5" /></span>
+            </li>
+            <li><span class="one">Mobilfunk- o. Festnetznr.</span>
+              <span class="two"><input class= "field_edit" value="089-95662541" /></span>
+            </li>
+            <li><span class="one">Faxnummer</span>
+              <span class="two"><input class= "field_edit" value="089-95662547" /></span>
+            </li>
+             <li><span class="one">Abonnierter Newsletter</span>
+              <span class="two">
+               
+                Newsletter für Rechtsuchende <a href="">Jetzt abbestellen</a>  <br />
+                
+              </span>
+             </li>
+          </ul>
+        </div>
+      </div>
+      <div class="two_big_bottom_arrow"><b><%= link_to " Jetzt speichern", {:title => ""} %></b></div>
+
+    </div>
+    <div class="right">
+      <div class="two_small_top clearer"><h2><b>Mein Profilbild</b></h2></div> 
+      <div class="two_small_content">
+        <div class="right">
+          <p>Bitte laden Sie ein <br />aktuelles Bild<br /> von sich hoch.</p>
+        </div>
+        <img title="Profilbild" alt="Profilbild" src="/images/person/lay.jpg" class="left"/>
+        <div class="clearer"></div>
+        <a href="">Bild entfernen</a>
+        
+        <div class="clearer_5"></div>
+        
+        <input class="field" name="Datei" type="file" class="w126" maxlength="100000" accept="text/*"/>
+        <p class="pad_5 t_10">Das Bild muss als Grafikdatei (z.B. JPG, PNG oder GIF) vorliegen, eine Mindestgröße von 140 x 185 Pixel haben und darf nicht größer als 900 KB sein. </p>
+      </div>
+      <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt Profilbild hochladen", {:title => "Profilbild ändern"} %></b></div>
+      
+      <div class="clearer_10"></div> 
+
+      <div class="two_small_top clearer"><h2><b>Mein Passwort ändern</b></h2></div>
+      <div class="two_small_content">
+         <p>Altes Passwort:</p>
+        <p><input class= "field w200" value="Passwort" /></p>
+        <p>Neues Passwort:</p>
+        <p><input class= "field w200" value="Passwort" /></p>
+        <p>Neues Passwort wiederholen:</p>
+        <p><input class= "field w200" value="Passwort wiederholen" /></p>
+      </div>
+      <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt Passwort ändern", {:title => ""} %></b></div> 
+      
+      <div class="clearer_10"></div>
+        
+      <div class="two_small_top clearer"><h2><b>Konto deaktivieren</b></h2></div>
+      <div class="two_small_content">
+        <p>Deaktivieren Sie Ihr Konto und sperren Sie alle in Ihrem persönlichen Mein Bereich vorhandenen Daten. </p>
+        
+      </div>
+      <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt Konto deaktivieren", deactivate_client_account_path, {:title => ""} %></b></div>
+     
+     
+    </div>
+  </div>
+
+
+  <div class="bottom_footer"></div>
+
+</div>
+

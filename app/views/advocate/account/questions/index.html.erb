@@ -1,0 +1,147 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <h2>Meine Kontakte &#38; Bewerbungen </h2> 
+        <div class="menue_c_2"> 
+          <ul> 
+            <li class="<%= current_page?(open_advocate_account_questions_path) || current_page?(advocate_account_questions_path) || action_name == "contact" ? "select" : "" %>">
+              <%= link_to("Offene Kontakte &#38; Bewerbungen", open_advocate_account_questions_path) %>
+            </li>
+            <li class="<%= current_page?(closed_advocate_account_questions_path) ? "select" : "" %>">
+              <%= link_to("Geschlossene Kontakte &#38; Bewerbungen", closed_advocate_account_questions_path) %>
+            </li>
+          </ul>
+        </div>
+
+        <% unless @kases.blank? %>
+        
+          <% @kases.each do |kase| %>
+            <%= render :partial => "questions/show", :object => kase, :locals => {:open => false} %>
+            
+            <%= render :partial => "advocate/account/responses/show", :collection => kase.responses.responded_by(current_user.person),
+              :locals => {:question_response_url_helper => :advocate_account_question_response_path} %>
+          <% end %>
+        
+        <% else %>
+        
+          <div class="clearer"></div>
+          Keine Kontakte und Bewerbungen
+          
+        <% end %>
+
+      <% if false %>
+      
+        <div class="quest_advo_top clearer"></div>
+        <div class="quest_advo_content"> 
+          <div class="left">
+            <b>Bewerbung</b> geschickt am 30.02.2001 um 19:20 Uhr
+            <div class="clearer_10"></div> 
+            <p>Dies ist ein interessanter fall haha Dies ist ein interessanter fall. ich will ihn haben</p> 
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Status: gelesen</div>
+            <div ><%= link_to " Bewerbung ansehen", regard_advocate_account_questions_path , :class=>"quest_buttom_apply_show" %></div>    
+          </div> 
+
+        </div> 
+        <div class="quest_advo_bottom"></div>
+
+        <div class="quest_advo_top clearer"></div>
+        <div class="quest_advo_content"> 
+          <div class="left">
+            <b>Bewerbung</b> geschickt am 30.02.2001 um 19:20 Uhr
+            <div class="clearer_10"></div> 
+            <p>Dies ist ein interessanter fall haha Dies ist ein interessanter fall. ich will ihn haben</p> 
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Status: abgelehnt</div>
+            <div ><%= link_to " Bewerbung ansehen", regard_advocate_account_questions_path , :class=>"quest_buttom_apply_show" %></div>   
+          </div> 
+
+        </div> 
+        <div class="quest_advo_bottom"></div>
+
+        <div class="clearer_10"></div> 
+        <p style="color:red">die drei zeigen nur die jeweiligen Zustände die möglich sind. Beim ansehen der Bewerbung kann er sie dann schliessen. -unten- So sieht es aus wenn die Kontaktdaten offen sind siehe ticket 463</p>
+        <div class="clearer_10"></div> 
+
+
+        <div class="quest_top clearer"></div>
+        <div class="quest_content">
+
+          <img src="/images/person/lay_small.jpg" alt="Lay" /> 
+          <div class="left">       
+            <p><b>Frage 12345678 vom 30.02.2001, 19:20 Uhr</b></p>
+            <p>Gestellt von: USERNAME</p>
+
+            <p><a>Kontaktdaten schließen &#187;</a></p>
+            <div class="c_daten">
+              <p>Michael Meier</p>
+              <p>Meierstr.101</p>
+              <p>80796 Meierhofen</p>
+              <p>meier@meier.de</p>
+              <p>0179/55662233</p>
+              <p>keine Rechtschutzversicherung</p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Frage: geschlossen</div>
+            <div class="t_10">1 offen von 10 Bewerbungen</div>
+          </div>
+          <div class="clearer"></div>
+          <p>Rechtsgebiet(e): Arbeitsrecht, Strafrecht</p>
+          <p><b>Betreff: Mein Arbeitsunfall am 11.02.2010 in Berlin,  mit dem Dienstwagen meiner Frau</b></p> 
+          <p>10 Anwälte haben den Rechtsuchenden bereits kontaktiert </p> 
+          <p>Laufzeit: noch XY Tage, XY Stunden, XY Minuten </p>
+        </div>
+
+        <div class="quest_bottom"> <a href="">Frage maximieren  <%= image_tag 'quest_open.gif' %></a>  </div>
+
+
+      <% end %>
+
+
+
+
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <%= render :partial => "advocate/account/search_filters/sidebar_search_filter" %>
+          
+          <div class="pad_5"></div>
+          <%= link_to "&#187; Filter für Fragen-Radar zurücksetzen",
+            advocate_account_search_filters_path, :class => "white_none"%>
+            
+          <div class="clearer_20"></div>
+          <div class="pad_20"></div>
+          <h2>Fragen von Rechtsuchenden</h2>
+
+          <div class="pad_10"></div>
+          <a class="white_none" href=""><b>&#187; alle Fragen anzeigen</b></a>
+          <div class="pad_10"></div>
+
+          <ul>
+            <% Topic.visible.each do |topic| %>
+            <li>
+              <%= link_to(topic.name, questions_path(:topic_id => topic.to_param), 
+                :class => "white_none") %>&nbsp;(<%= topic.kases.count %>)
+            </li>
+            <% end %>
+          </ul>
+
+          <div class="clearer_10"></div>
+        
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

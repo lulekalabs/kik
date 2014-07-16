@@ -1,0 +1,158 @@
+<%
+  invoice ||= show || @invoice
+  products ||= invoice.line_item_products
+%>
+<div class="mainFrame">
+  
+  <!-- header-->
+  <div class="header">
+    <% if @pdf %>
+    <img src="<%= "#{Rails.root}/public/images/logos/kann_ich_klagen_logo.png" %>" width="203" height="33" alt="Kann Ich Klagen Logo">
+    <% else %>
+    <%= image_tag "logos/kann_ich_klagen_logo.png", :size => "203x33" %>
+    <% end %>
+  </div>
+
+  <!-- to address -->
+  <div class="col_left">
+    <p class="t_9"> kann-ich-klagen.de | Friedrichstraße 148 | 10117 Berlin </p>
+    <%= br_tag invoice.billing_address.company_name %>
+    <%= br_tag invoice.billing_address.title_and_name %>
+    <%= br_tag invoice.billing_address.note %>
+    <%= br_tag "#{invoice.billing_address.street} #{invoice.billing_address.street_number}" %>
+    <%= br_tag "#{invoice.billing_address.postal_code} #{invoice.billing_address.city}" %>
+  </div>
+
+  <!-- from address -->
+  <div class="col_right">
+    <p>
+      <b>kann-ich-klagen.de</b><br />
+      Friedrichstraße 148<br />
+      10117 Berlin
+    </p>
+    <p>
+      Fon (030) 609 895 090<br />
+      Fax (030) 609 895 099
+    </p>
+    <p>email@kann-ich-klagen.de</p>
+    <p><b>Ihre Kundendaten</b><br /> 
+      Kundennummer <%= h(invoice.buyer.number) %></p>
+      <p>
+        <b>Online-Hilfe</b><br /> 
+        <a href="www.kann-ich-klagen.de/anwalt/hilfe"> www.kann-ich-klagen.de/hilfe</a>
+      </p>
+      <p class="datum"><b>Berlin, <%= l(invoice.paid_at || invoice.created_at, :format => "%d.%m.%Y") %></b></p> 
+    </div>
+    <div class="row_1"> 
+      <label><b>Rechnung</b></label><span><b><%= invoice.short_number %></b></span>
+      <label>Rechnungsdatum</label><span><%= l(invoice.billing_date_on || invoice.created_at, :format => "%d.%m.%Y") %></span>
+      <label>Bestellnummer</label><span><%= invoice.order.short_number %></span>
+      <% if invoice.service_period_end_on %>
+      <label>Leistungszeitraum</label><span><%= l(invoice.service_period_start_on, :format => "%d.%m.%Y") %> – <%= l(invoice.service_period_end_on, :format => "%d.%m.%Y") %></span>
+      <% end %>
+      <label>Zahlungsart</label><span><%= invoice.payments.last.to_s %></span>
+      <label>Fälligkeit</label><span>sofort</span>
+    </div>
+
+    <!-- content -->
+    <div class="row_2"> 
+      <p><%= h(invoice.buyer.notifier_salutation_and_title_and_last_name) %>,</p>
+      <% if products.any?(&:has_unlimited_contacts?) %>
+        <p>im oben genannten Leistungszeitraum haben Sie Kontakte zu Rechtsuchenden gekauft, die im Rahmen des Flat-Pakets wie folgt vereinbarungsgemäß abgerechnet werden:</p>
+      <% else %>
+        <%
+          ec_line_item = invoice.line_items.select {|li| li.sellable.respond_to?(:product) && li.sellable.product.is_contact?}.first
+          ec_count = ec_line_item ? ec_line_item.sellable.quantity : 0
+          sc_product = products.select {|p| p.is_subscription? && !p.is_flex?}.first
+          sc_count = sc_product ? sc_product.contacts : 0
+          total_count = ec_count + sc_count
+        %>
+        <% if ec_count > 0 %>
+          <p>im oben genannten Leistungszeitraum haben Sie <%= total_count %> Kontakte zu Rechtsuchenden gekauft. Sie verfügten über <%= sc_count %> Inklusivkontakte im Rahmen des <%= h(products.select(&:is_subscription?).first.name) %>s, so dass <%= ec_count %> weitere Kontakte zusätzlich zum Paketpreis wie folgt vereinbarungsgemäß abgerechnet werden:</p>
+        <% else %>
+          <p>im oben genannten Leistungszeitraum haben Sie <%= total_count %> Kontakte zu Rechtsuchenden gekauft. Sie verfügten über <%= sc_count %> Inklusivkontakte im Rahmen des <%= h(products.select(&:is_subscription?).first.name) %>. Vereinbarungsgemäß erlauben wir uns wie folgt abzurechnen:</p>
+        <% end %>
+      <% end %>
+      <table>
+        <tr>
+          <th>Position</th>
+          <th>Bezeichnung</th>
+          <th>Einheiten</th>
+          <th>Einzelpreis </th>
+          <th>Rabatt</th>
+          <th>USt.</th>
+          <th>Brutto</th>
+        </tr>
+        <% invoice.line_items.each_with_index do |item, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td>
+            <%= h(item.sellable.name) %><br /> 
+            <% if item.sellable.respond_to?(:product) && item.sellable.product.length_in_issues == 1 %>
+              Mindestlaufzeit<br /> 30 Tage
+            <% elsif item.sellable.respond_to?(:product) && item.sellable.product.length_in_issues == 12 %>
+              Mindestlaufzeit<br /> 365 Tage
+            <% end %>  
+          </td>
+          <td>
+            <% if item.sellable.respond_to?(:product) && item.sellable.product.is_subscription? %>
+              1
+            <% elsif item.sellable.respond_to?(:product) && item.sellable.product.is_contact? %>
+              <%= item.sellable.quantity %>
+            <% else %>
+              1
+            <% end %>
+          </td>
+          <td>
+            <%= item.product.price.format %>
+            <%#= item.net_amount.format %>
+          </td>
+          <td><%= number_to_percentage(0) %></td>
+          <td><%= number_to_percentage(item.tax_rate) %></td>
+          <td class="last"><%= item.gross_amount.format %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td style="text-align:left" colspan="6">Nettogesamtbetrag</td>
+          <td class="last"><%= invoice.net_amount.format %></td>
+        </tr>
+        <tr>
+          <td style="text-align:left" colspan="6">Umsatzsteuer</td>
+          <td class="last">+ <%= invoice.tax_amount.format %></td>
+        </tr>
+        <tr>
+          <td style="text-align:left" colspan="6"><b>Bruttogesamtbetrag</b></td>
+          <td class="last"><b><%= invoice.gross_amount.format %></b></td>
+        </tr>
+      </table>
+      <div class="clearer_20"></div> 
+
+      <% if (payment = invoice.payments.last).is_a?(DebitBankPayment) %>
+        <p>Der obenstehende Bruttogesamtbetrag wird Ihnen wie vereinbart per Lastschrift abgebucht. Die letzten Ziffern Ihrer Kontonummer haben wir aus Sicherheitsgründen unkenntlich gemacht:</p>
+        <center><b>Kontonummer <%= h(payment.obfuscated_bank_account_number) %> | BLZ <%= h(payment.bank_routing_number) %> | Kreditinstitut <%= h(payment.bank_name) %> <%= h(payment.bank_location) %> | Kontoinhaber <%= h(payment.bank_account_owner_name) %></b></center>
+      <% elsif (payment = invoice.payments.last).is_a?(InvoicePayment) %>
+        <!-- hier der Text auf Rechnung -->
+        <p>Bitte überweisen Sie den obenstehenden Bruttogesamtbetrag auf das Konto:</p>
+        <center><b>Kontonummer 6540469332 | BLZ 70020270 | HypoVereinsbank</b></center>
+      <% elsif (payment = invoice.payments.last).is_a?(PaypalPayment) %>
+      <!-- hier der Text für Paypal <%= h(payment.paypal_account) %> -->
+      <% end %>
+    
+      <p>Unsere Nutzungsbedingungen können Sie jederzeit auf <%= Project.host %> einsehen.</p>
+      <div class="clearer_10"></div> 
+      <div style="font-size:7px;line-height:1.3em;">
+        <p><b>Hinweise zur Rechnungsprüfung und Aufbewahrung:</b><br /> Diese Rechnung ist als PDF-Datei gemäß § 14 Abs. 3 UStG qualifiziert elektronisch signiert (unterschrieben). Zur Ansicht der elektronischen Signatur in der Rechnung öffnen Sie bitte den Kartenreiter „Unterschriften“ am linken Rand des Adobe Reader. Der Adobe Reader ist ein kostenloses Programm dessen aktuelle Version Sie sich auf der offiziellen Seite des Herstellers Adobe herunterladen können: http://get.adobe.com/de/reader Für den Fall, dass der Adobe Reader oder ein anderes Programm anzeigt, dass es mit einer Unterschrift (Signatur) Probleme gibt, können Sie auch auf folgender Seite die elektronische Signatur der Rechnung jederzeit prüfen und verifizieren: https://www.signaturportal.de/electronic-invoice-check.html Zur Geltendmachung der Vorsteuer sind Sie als Rechnungsempfänger verpflichtet, die elektronische Signatur dieser Rechnung zu prüfen (verifizieren), ein Prüfprotokoll zu erzeugen sowie dieses gegen Veränderungen zu schützen und gemeinsam mit der elektronischen Rechnung aufzubewahren (speichern). Das gesetzlich geforderte Verifikationsprotokoll erhalten Sie als zusätzliche PDF-Datei zusammen mit der Rechnung per E-Mail an die von Ihnen hinterlegte E-Mail-Adresse. Speichern Sie die qualifiziert elektronisch signierte Rechnung und das Verifikationsprotokoll sicher ab. Beachten Sie bitte, dass ein Ausdruck nicht genügt! Rechnungen müssen im privaten Bereich 2 Jahre und im Unternehmensbereich 10 Jahre aufbewahrt (gespeichert) werden. </p>
+      </div>
+      <div class="clearer_10"></div>  
+      <p>Gern stehen wir Ihnen bei Fragen zur Verfügung.</p> 
+      <p>Mit freundlichen Grüßen </p> 
+      <p>Ihr <%= Project.name %> Team</p> 
+    </div>
+  </div> 
+
+  <%# footer, if not in PDF mode, will be rendered separately in PDF mode %>
+  <% unless @pdf %>
+    <%= render :partial => "layouts/pdf_footer.html" %>
+  <% end %>
+</div>
+

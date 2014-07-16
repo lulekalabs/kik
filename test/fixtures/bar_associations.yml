@@ -1,0 +1,9 @@
+bundesgrichtshof:
+  id: 1
+  name: Rechtsanwaltskammer bei dem Bundesgerichtshof
+bamberg:
+  id: 2
+  name: Rechtsanwaltskammer Bamberg
+berlin:
+  id: 3
+  name: Rechtsanwaltskammer Berlin

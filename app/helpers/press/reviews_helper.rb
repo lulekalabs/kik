@@ -1,0 +1,2 @@
+module Press::ReviewsHelper
+end

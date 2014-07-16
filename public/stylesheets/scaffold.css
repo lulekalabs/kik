@@ -1,0 +1,66 @@
+
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+
+
+.fieldWithErrors  {
+  padding: 2px;
+  background-color: red;
+  
+ 
+} 
+.fieldWithErrors input.field .w200  {
+  padding: 2px;
+  background-color: red;
+  width:208px;
+ 
+} 
+
+.fieldWithErrors input, .fieldWithErrors select {
+ 
+  color:red;
+
+
+}
+
+#errorExplanation {
+  width: 97%;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 5px;
+  margin-bottom:20px;
+  background: url(../images/hg_errors.jpg) #fffef7  repeat-y  top right;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 7px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+  font-size:16px;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 10px 10px 10px 0;
+  font-weight:bold;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+ background-image:url(../images/bullet_red.jpg) ;
+  line-height:13px;
+  background-repeat:no-repeat;
+	background-position: 0 5px ;
+	padding-left:14px;
+}
+

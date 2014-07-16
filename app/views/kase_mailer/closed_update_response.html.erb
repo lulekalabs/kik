@@ -1,0 +1,19 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+die Frage von <%= h(@kase.person.user_id) %>, gestellt am <%= l(@kase.created_at) %>, wurde aus folgendem Grund geschlossen:
+
+<%= @kase.human_close_reason %>
+
+Sie finden die Frage nunmehr in Ihrem persönlichen Mein Bereich unter "Geschlossene Kontakte & Bewerbungen". 
+
+Unter folgendem Link können Sie die Frage und den bisherigen Kommunikationsverlauf weiterhin ansehen: 
+
+<%= closed_advocate_account_questions_url %>
+
+Aktuelle Fragen von potentiellen Mandanten finden Sie hier: 
+
+<%= open_questions_url %>
+
+Wir bedanken uns für Ihr Vertrauen.
+
+<%= render :partial => "notifier/footer" %>

@@ -1,0 +1,26 @@
+Guten Tag <%= @client.salutation_and_title_and_last_name %>,
+
+von <%= @advocate.female? ? "Anwältin #{@advocate.title_and_name}" : "Anwalt #{@advocate.title_and_name}" %> wurde mitgeteilt, dass Sie das Mandat bzw. den Auftrag zur Beantwortung Ihrer Frage <%= @kase.number %>, gestellt am <%= l(@kase.created_at) %>, erteilt hätten.
+
+Damit das Mandanten-Fragen-System von kann-ich-klagen.de optimal funktioniert, ist erforderlich, dass eine Frage, zu der ein Anwalt gefunden wurde, geschlossen wird. So wird verhindert, dass Anwälte sich vergebens auf eine Frage bewerben, die nicht mehr aktuell ist.
+
+Ihre Frage wird aus diesem Grund in 24 Stunden automatisch geschlossen, sollten wir keine anderslautende Rückmeldung von Ihnen erhalten. Bitte nehmen Sie sich deswegen kurz Zeit um zu prüfen.
+
+A. Ja, Sie haben <%= @advocate.female? ? "Anwältin #{@advocate.title_and_name}" : "Anwalt #{@advocate.title_and_name}" %> das Mandat bzw. den Auftrag zur Beantwortung Ihrer Frage erteilt? Dann klicken Sie bitte auf folgenden Link, um Ihre Frage zu schließen:
+
+<%= accept_client_account_question_mandate_url(@kase, @advocate) %>
+
+
+B. Nein, Sie haben <%= @advocate.female? ? "Anwältin #{@advocate.title_and_name}" : "Anwalt #{@advocate.title_and_name}" %> NICHT das Mandat bzw. den Auftrag zur Beantwortung Ihrer Frage erteilt? Dann klicken Sie bitte innerhalb von 24 Stunden auf folgenden Link. Sie verhindern dadurch, dass Ihre Frage geschlossen wird und Sie können weiter Bewerbungen von Anwälten erhalten:
+
+<%= decline_client_account_question_mandate_url(@kase, @advocate) %>
+
+
+C. Für den Fall, dass bereits mehr als 24 Stunden vergangen sind und Ihre Frage somit bereits geschlossen wurde, können Sie unter folgendem Link Ihre Frage ansehen und auf Wunsch wieder öffnen, sollten Sie weiter einen Anwalt suchen wollen:
+
+<%= client_account_question_url(@kase) %>
+
+
+Wir bedanken uns für Ihr Vertrauen und Ihre Mithilfe! Falls Sie einmal Hilfe benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter email@kann-ich-klagen.de zur Verfügung.
+
+<%= render :partial => "notifier/footer_lean" %>

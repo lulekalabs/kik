@@ -1,0 +1,185 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+  active_product ||= current_user.person.last_active_product_subscription 
+  term_ends_on = current_user.person.last_active_recurring_product_subscription_term_period_end_on
+  cancel_subscription_on ||= current_user.person.last_active_recurring_product_subscription_term_cancel_on
+  next_recurring_order ||= current_user.person.next_recurring_order
+  can_cancel = current_user.person.can_cancel_current_product_subscription?
+  contact_product = Product.find_by_sku("K001")
+  products_count = 0
+%>
+<ul class="profil">
+
+  <% if edit %>
+    <% unless next_recurring_order %>
+  
+      <%#--- flex%>
+      <% if (flex = Product.find_by_sku("P001")) && flex.is_different_to?(active_product) && (flex.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, flex.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(flex.name) %></b><br />
+            Laufzeit: keine<br /> 
+            keine laufenden Kosten <br />
+            <%= t("{{count}} Inklusivkontakt", :count => flex.contacts, :scope => "pluralizations") %><br /> 
+            jeder einzelne Kontakt <%= contact_product.price.format %> + <%= number_to_percentage(19) %> MwSt.<br /> 
+            <% if flex.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+  
+      <%#--- p20 %>
+      <% if (p20 = Product.find_by_sku("P020")) && p20.is_different_to?(active_product) && (p20.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, p20.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(p20.name) %></b><br />
+            Laufzeit: 30 Tage<br /> 
+            <%= p20.price.format %> + 19 % MwSt. / Monat<br />
+            <%= t("{{count}} Inklusivkontakt", :count => p20.contacts, :scope => "pluralizations") %><br /> 
+            jeder weitere Kontakt <%= contact_product.price.format %> + <%= number_to_percentage(19) %> MwSt.<br /> 
+            <% if p20.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <%#--- s20 %>
+      <% if (s20 = Product.find_by_sku("S020")) && s20.is_different_to?(active_product) && (s20.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, s20.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(s20.name) %></b><br />
+            Laufzeit: 365 Tage<br /> 
+            <%= s20.price.format %> + 19 % MwSt. / Monat<br />
+            <%= t("{{count}} Inklusivkontakt", :count => s20.contacts, :scope => "pluralizations") %><br /> 
+            jeder weitere Kontakt <%= contact_product.price.format %> + <%= number_to_percentage(19) %> MwSt.<br /> 
+            <% if s20.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <%#--- p40 %>
+      <% if (p40 = Product.find_by_sku("P040")) && p40.is_different_to?(active_product) && (p40.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, p40.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(p40.name) %></b><br />
+            Laufzeit: 30 Tage<br /> 
+            <%= p40.price.format %> + 19 % MwSt. / Monat<br />
+            <%= t("{{count}} Inklusivkontakt", :count => p40.contacts, :scope => "pluralizations") %><br /> 
+            jeder weitere Kontakt <%= contact_product.price.format %> + <%= number_to_percentage(19) %> MwSt.<br /> 
+            <% if p40.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <%#--- s40 %>
+      <% if (s40 = Product.find_by_sku("S040")) && s40.is_different_to?(active_product) && (s40.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, s40.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(s40.name) %></b><br />
+            Laufzeit: 365 Tage<br /> 
+            <%= s40.price.format %> + 19 % MwSt. / Monat<br />
+            <%= t("{{count}} Inklusivkontakt", :count => s40.contacts, :scope => "pluralizations") %><br /> 
+            jeder weitere Kontakt <%= contact_product.price.format %> + <%= number_to_percentage(19) %> MwSt.<br /> 
+            <% if s40.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <%#--- p999 %>
+      <% if (p999 = Product.find_by_sku("P999")) && p999.is_different_to?(active_product) && (p999.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, p999.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(p999.name) %></b><br />
+            Laufzeit: 30 Tage<br /> 
+            <%= p999.price.format %> + 19 % MwSt. / Monat<br />
+            unbegrenzte Inklusivkontakte <br /> 
+            <% if p999.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <%#--- s999 %>
+      <% if (s999 = Product.find_by_sku("S999")) && s999.is_different_to?(active_product) && (s999.is_superior_to?(active_product) || can_cancel) %>
+        <li>
+          <span class="one_check">
+            <%= f.radio_button :desired_product_sku, s999.sku %>
+          </span>
+          <span class="two">
+            <b><%= h(s999.name) %></b><br />
+            Laufzeit: 365 Tage<br /> 
+            <%= s999.price.format %> + 19 % MwSt. / Monat<br />
+            unbegrenzte Inklusivkontakte <br /> 
+            <% if p999.is_inferior_to?(active_product) && cancel_subscription_on %>
+            <em>(Wechsel mit Ende der Mindestlaufzeit zum <%= l(term_ends_on, :format => "%d.%m.%Y") %> möglich)</em>
+            <% end %>
+          </span>
+        </li>
+        <% products_count += 1 %>
+      <% end %>
+
+      <% if products_count == 0 %>
+      <li>
+        <span class="one_check">
+        </span>
+        <span class="two">
+          Sie können in kein weiteres Paket wechseln.
+        </span>
+      </li>
+      <% end %>
+
+    <% else %>
+      <%# package already changed %>
+      <p>Sie wechseln ab dem <%= l(next_recurring_order.service_period_start_on) %> in ein neues Kontakt-Paket: <%= h(@person.next_recurring_product_subscription.name) %></p>
+    <% end %>
+  <% else %>
+
+  <li><span class="one">Aktuelles Kontakt-Paket</span><span class="two">
+    <% if active_product %>
+      <b><%= h(active_product.name) %></b>
+    <% else %>
+      Es wurde noch kein Paket gekauft, <%= link_to("zur Übersicht", advocate_account_products_path) %>.
+    <% end %>
+  </span></li>
+  <% if next_recurring_order %>
+  <li><span class="one">Neues Kontakt-Paket</span><span class="two">
+    Sie wechseln ab dem <%= l(next_recurring_order.service_period_start_on) %> in ein neues Kontakt-Paket: <b><%= h(@person.next_recurring_product_subscription.name) %></b>
+  </span></li>
+  <% end %>
+
+  <% end %>
+</ul>
+<div class="clearer"></div>

@@ -1,0 +1,434 @@
+<!-- advocates index -->
+<% if kik_realm? %> 
+
+
+ <% if logged_in? && current_user.person.is_a?(Client) %> 
+ 
+   <div class="white_site">
+   <div class="top clearer"></div>
+   <div class="content">
+     <p>Der Bereich Für Anwälte richtet sich ausschließlich an teilnehmende Anwälte.</p>
+  <p>
+  Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.</p>
+
+  <p>Ihr kann-ich-klagen.de Team</p>
+  </div>
+   <div class="bottom_footer"></div>
+ </div>
+ 
+ 
+    
+ 
+ 
+ 
+<% else %>
+<% if logged_in? && current_user.person.is_a?(Advocate) %>
+
+   <div class="blue">
+  <div class="top clearer"></div>
+  <div class="content">
+     <div class="right"><img src="/images/icons/info.jpg" width="227" height="236" alt="Info" style="position:relative; padding-right:20px"/></div>   
+        <div class="left">  
+    
+      <ul>
+        <li><span class="headline">Neuigkeiten und Mitteilungen von kann-ich-klagen.de </span></li>
+        <li><span class="nr"></span>
+          <span class="fliess">Vor kurzem ist kann-ich-klagen.de gestartet. Wir haben uns zwar viel Zeit genommen, um ausführlich zu testen, zum Start gilt aber leider auch für uns: nobody’s perfect. </span>
+        </li>
+
+        <li><span class="nr"></span>
+          <span class="fliess">Sollten Sie beim Surfen auf kann-ich-klagen.de nicht zurecht kommen oder einen Fehler finden, möchten wir Sie bitten uns den Fehler mitzuteilen, damit wir prüfen und beheben können. Klicken Sie dazu bitte einfach unten rechts auf jeder Seite auf den Button „Feedback“ und schildern Sie kurz den Fehler.</span>
+        </li>
+        <li><span class="nr"></span>
+          <span class="fliess">Für jeden erstmalig gemeldeten Fehler schenken wir Ihnen ein Guthaben für 5 Kontakte zu potentiellen Mandanten in Form eines Gutscheins. </span>
+        </li>
+      </ul>
+      </div> 
+       
+          
+   
+    <div class="pad_10"></div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+           <h2>Willkommen <%= h(current_user.person.title_and_name) %>!</h2>
+            <p>Schön, dass Sie wieder hier sind! Ist Ihr Anwaltsprofil up-to-date?</p>
+
+           <p>Unser Tipp für Ihr Online-Marketing auf kann-ich-klagen.de:</p>
+
+           <p>Je mehr aktuelle Informationen Ihr Anwaltsprofil über Sie, Ihre Arbeit und Ihre Kanzlei enthält, desto besser können Sie von Rechtsuchenden wahrgenommen werden. Ihr Anwaltsprofil ist Ihre Visitenkarte auf kann-ich-klagen.de. Pflegen Sie deshalb bitte regelmäßig Ihre <%= link_to "Basisdaten, Profildaten und Kontaktdaten", advocate_account_profile_path, {:title => "Meine Daten verwalten und ändern"} %>.</p>
+          
+
+           <p>Gibt es Neuigkeiten aus dem Umfeld Ihrer Kanzlei? Dann erstellen Sie eine <%= link_to "Mitteilung", advocate_account_advomessages_path, {:title => "Meine Daten verwalten und ändern"} %> – wahlweise in Textform oder als Video – und laden Sie sie hoch. Oder veröffentlichen Sie einen oder mehrere <%= link_to "Artikel in Ihrem Profil", advocate_account_articles_path, {:title => "Meine Artikel verwalten und ändern"} %>; etwa zu einem neuen Urteil oder einer Gesetzesänderung. Über die <%= link_to "Profilvorschau", advocate_account_profile_preview_path, {:title => "Meine Profilschau ansehen"} %>  können Sie jederzeit überprüfen, wie Ihr Anwaltsprofil aktuell aussieht.</p>
+
+           <p>Und neue Fragen von Rechtsuchenden finden Sie jederzeit im Bereich <%= link_to "Offene Fragen", open_questions_path, {:title => "Übersicht der offenen Fragen im Mandanten-Fragen-System ansehen"} %>. Ist dort eine interessante Frage für Sie dabei? Dann kontaktieren Sie den Mandanten und stellen Sie sich gleich bei ihm vor.</p>
+      </div>
+   <div class="col_2">
+     <%= render :partial => 'shared/sidebar_stats' %>
+     
+       
+       <%= render :partial => 'shared/sidebar_messages' %> 
+       
+
+   </div>
+ </div>
+
+</div>
+<div class="bottom"></div>
+</div>
+   
+<% else %> 
+  
+
+
+<div class="blue">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="right">
+      <img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/anwalt_01.jpg" style="position:relative;"/>
+    </div>
+    <div class="left" style="position:absolute;">
+      <ul>
+        <li><span class="headline">Das Mandanten-Fragen-Portal im Internet</span></li>
+        <li><span class="nr">1.</span>
+          <span class="fliess"><b>Profil anlegen und Startguthaben sichern</b><br />Melden Sie sich kostenlos und unverbindlich an und erstellen Sie ein Profil <br />von sich und Ihrer Kanzlei. Als Bonus erhalten Sie ein Startguthaben.</span>
+        </li>
+
+        <li><span class="nr">2.</span>
+          <span class="fliess"><b>Fragen von Rechtsuchenden erhalten</b><br />Erhalten Sie kostenlos Fragen von potentiellen Mandanten, gefiltert nach Ihren <br />ausgewählten Rechtsgebieten und regionalen Wünschen.</span>
+        </li>
+        <li><span class="nr">3.</span>
+          <span class="fliess"><b>Kontaktieren und Mandate erhalten</b><br />Erwerben Sie die Kontaktdaten von potentiellen Mandanten zum Festpreis.<br />Überzeugen Sie sie mit einem Beratungsangebot und gewinnen Sie neue Mandate. </span>
+        </li>
+      </ul>
+    </div>
+    <div class="pad_10"></div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <% if expect_pre_launch? %>  
+        
+        <h2>Werden auch Sie Anwalt der ersten Stunde!</h2>
+        <div class="kurze_zeit">
+          <h1><b>Aktion für Anwälte! Überzeugen Sie sich von kann-ich-klagen.de</b><br /> kostenlos <b>und</b> ohne weitere Verpflichtungen.</h1>
+
+          <div class="clearer"></div>
+          <div class="pad_20"></div>
+
+          <div class="left block_400">
+            <p>Als <b>Bonus</b> für Ihre frühzeitige, unverbindliche Anmeldung während der Voranmeldephase für Anwälte erhalten Sie ein <b>Startguthaben</b> für 
+              <b>100 Kontakte zu potentiellen Mandanten</b> (Einzelpreis ohne Paketbuchung: 5,00 € netto = 5,95 € brutto pro Kontakt)
+              <b>im Wert von 500,00 € netto (= 595,00 € brutto)</b>.</p>
+            <div class="pad_20"></div>
+            <p>Das Guthaben können Sie ab Gutschrift ein Jahr lang einlösen und damit die Vorteile von kann-ich-klagen.de ausführlich testen.* </p>
+          </div>
+
+          <div class="clearer"></div>
+          <div class="pad_20"></div>
+
+          <p>
+            Weitere Informationen über kann-ich-klagen.de finden Sie 
+            <%= link_to "<b>hier (PDF, 240 KB)</b>", "/pdf/infoflyer_31.08.2010.pdf", :popup => true, :title => "Infos über kann-ich-klagen.de als PDF-Datei zum herunterladen" %>.
+          </p>
+        </div> 
+        <div class="clearer"></div>
+        <div class="pad_20"></div>
+
+        <%= link_to image_tag("anmelden.png", {:title => "anmelden", :style => "padding-left:75px"}), new_advocate_user_path, {:title => "Jetzt anmelden und Guthaben sichern"} %>
+        <div class="clearer"></div>
+        <div class="pad_20"> * Eine Übertragung an Dritte oder Auszahlung des Startguthabens ist nicht möglich. Das Angebot </div>
+          <div class="pad_l_12">gilt für alle Anmeldungen während der Voranmeldephase für Anwälte. Ein Anwalt kann nur einmalig ein Startguthaben beanspruchen. Mehrfache Anmeldungen sind nicht gestattet.</div>
+          
+        <% else%>  
+          <h2>Profitieren Sie als Anwalt von kann-ich-klagen.de!</h2>
+          <div class="bonus_gratis">
+            <h1>Überzeugen Sie sich kostenlos <b>und</b> ohne weitere Verpflichtungen.</h1>
+            <div class="left block_400">
+              <p>kann-ich-klagen.de unterstützt Anwälte deutschlandweit bei der Mandantenakquise durch die Vorstellung von potentiellen Mandanten.</p>
+              <p>Teilnehmende Anwälte können rund um die Uhr kostenlos aktuelle Fragen von Rechtsuchenden einsehen und bei Interesse den Kontakt erwerben, sich vorstellen und eine Beratung anbieten. </p>
+              <p>Als <b>Bonus</b> für Ihre unverbindliche Anmeldung erhalten Sie als Anwalt ein <b>Startguthaben</b> für 
+                <b>50 Kontakte zu potentiellen Mandanten</b> (Einzelpreis ohne Paketbuchung: 5,00 € netto = 5,95 € brutto pro Kontakt)
+                <b>im Wert von 250,00 € netto (= 297,50 € brutto)</b>.</p>
+              <div class="pad_20"></div>
+              <p>Das Guthaben können Sie ab Gutschrift ein Jahr lang einlösen und damit die Vorteile von kann-ich-klagen.de ausführlich testen.* </p>
+            </div>
+
+            <div class="clearer"></div>
+            <div class="pad_20"></div>
+
+            <p>
+              Weitere Informationen über kann-ich-klagen.de finden Sie 
+              <%= link_to "<b>hier (PDF, 240 KB)</b>", "/pdf/infoflyer_31.08.2010.pdf", :popup => true, :title => "Infos über kann-ich-klagen.de als PDF-Datei zum herunterladen" %>.
+            </p>
+          </div> 
+          <div class="clearer"></div>
+          <div class="pad_20"></div>
+
+          <%= link_to image_tag("anmelden.png", {:title => "anmelden", :style => "padding-left:75px"}), new_advocate_user_path, {:title => "Jetzt anmelden und Guthaben sichern"} %>
+          <div class="clearer"></div>
+          <div class="pad_20"> * Eine Übertragung an Dritte oder Auszahlung des Startguthabens ist nicht möglich. Ein Anwalt </div>
+            <div class="pad_l_12">gilt für alle Anmeldungen während der Voranmeldephase für Anwälte. kann nur einmalig ein Starguthaben beanspruchen. Mehrfache Anmeldungen sind nicht gestattet. Der Einzelpreis eines Kontakts ohne Paketbuchung beträgt 5,00 € netto = 5,95 € brutto. Kontakte können einzeln oder vergünstigt durch Paketbuchung erworben werden.</div>
+            
+             <div class="clearer_45"></div>
+
+
+            <div class="left box_start_anwalt">
+              <div><img src="/images/icons/free.png" width="60" height="59" alt="Kostenlos"/> </div>
+              <p><b>Kostenlos</b></p>
+              <div>Keine Verpflichtungen</div>
+              <div>Keine Mitgliedschaft</div>
+              <div>Keine Gebührenfallen</div>
+              <div>Keine Kostentragung </div>
+            </div>
+                        
+            <div class="left pad_l_16 box_start_anwalt">
+               <div><img src="/images/icons/secret.png" width="60" height="59" alt="Sicherheit"/>  </div>
+              <p><b>Datenschutz</b></p>
+             <div>Keine Weitergabe Ihrer Daten an unbeteiligte Dritte.</div>
+            </div>
+
+            <div class="left pad_l_16 box_start_anwalt">
+               <div><img src="/images/icons/ssl.png" width="60" height="59" alt="SSL"/>      </div>
+              <p><b>Sicherheit</b></p>
+              <div>Sichere Datenübertragung mit verschlüsselter 128-Bit SSL-Verbindung und geschützter persönlicher Bereich.</div>
+            </div>
+
+            <div class="right box_start_anwalt">
+               <div><img src="/images/icons/service.png" width="60" height="59" alt="Service"/></div>
+              <p><b>Service</b></p>
+              <div>Teilnehmende Anwälte haben ein persönliches Profil mit Kontaktinformationen und Bewertungsmöglichkeit. </div>
+            </div>
+        <% end %>
+
+        <div class="clearer"></div>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Vorteile für Anwälte:</h2>
+          <ul class="haken">
+            <li class="green">Erhalten Sie regelmäßig und kostenlos plausible Fragen von potentiellen Mandanten in anonymisierter Form gefiltert nach Ihren Vorgaben.</li>
+            <li class="black">Stets neue Fragen von Rechtsuchenden rund um die Uhr einsehen.</li>
+            <li class="green">Sparen Sie Zeit durch effektive Suchfunktionen.</li>
+            <li class="black">Gezielte Ansprache von potentiellen Mandanten ohne Streuverluste.</li>
+            <li class="green">Gewinnen Sie neue Mandanten überregional oder ganz in Ihrer Nähe.</li>
+            <li class="black">Transparente Werbe- und Akquisekosten durch Festpreise.</li>
+            <li class="green">Kosten entstehen nur, wenn Sie sich entscheiden einen potentiellen Mandanten direkt zu kontaktieren.</li>
+            <li class="black">Keine Einrichtungsgebühren und verpflichtende Mindestlaufzeiten für Anwälte und Rechtsuchende. </li>
+            <li class="green">Maximale Reichweiten ohne Zugangsbarrieren indem kann-ich-klagen.de ein kostenloser Service für Rechtsuchende ist. </li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+ 
+ <% end %>
+  <% end %>
+  
+   
+<% end %>
+  <% if af_realm? %>
+      
+   <% if logged_in? && current_user.person.is_a?(Client) %> 
+
+     <div class="white_site">
+     <div class="top clearer"></div>
+     <div class="content">
+       <p>Der Bereich Für Anwälte richtet sich ausschließlich an teilnehmende Anwälte.</p>
+    <p>
+    Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.</p>
+
+    <p>Ihr advofinder.de Team</p>
+    </div>
+     <div class="bottom_footer"></div>
+   </div>
+
+
+
+
+
+
+  <% else %>
+  <% if logged_in? && current_user.person.is_a?(Advocate) %>
+
+     <div class="green">
+    <div class="top clearer"></div>
+    <div class="content">
+       <div class="right"><img src="/images/advofinder/info_logged_advo.jpg" width="227" height="236" alt="Info" style="position:relative; padding-right:20px"/></div>   
+          <div class="left">  
+
+        <ul>
+          <li><span class="headline">Neuigkeiten und Mitteilungen von advofinder.de </span></li>
+          <li><span class="nr"></span>
+            <span class="fliess">Vor kurzem ist advofinder.de gestartet. Wir haben uns zwar viel Zeit genommen, um ausführlich zu testen, zum Start gilt aber leider auch für uns: nobody’s perfect. </span>
+          </li>
+
+          <li><span class="nr"></span>
+            <span class="fliess">Sollten Sie beim Surfen auf advofinder.de nicht zurecht kommen oder einen Fehler finden, möchten wir Sie bitten uns den Fehler mitzuteilen, damit wir prüfen und beheben können. Klicken Sie dazu bitte einfach unten rechts auf jeder Seite auf den Button „Feedback“ und schildern Sie kurz den Fehler.</span>
+          </li>
+          
+        </ul>
+        </div> 
+
+
+
+      <div class="pad_10"></div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+
+  <div class="light">
+    <div class="main">
+      <div class="content">
+        <div class="col_1">
+             <h2>Willkommen <%= h(current_user.person.title_and_name) %>!</h2>
+              <p>Schön, dass Sie wieder hier sind! Ist Ihr Anwaltsprofil up-to-date?</p>
+
+             <p>Unser Tipp für Ihr Online-Marketing auf kann-ich-klagen.de:</p>
+
+             <p>Je mehr aktuelle Informationen Ihr Anwaltsprofil über Sie, Ihre Arbeit und Ihre Kanzlei enthält, desto besser können Sie von Rechtsuchenden wahrgenommen werden. Ihr Anwaltsprofil ist Ihre Visitenkarte auf kann-ich-klagen.de. Pflegen Sie deshalb bitte regelmäßig Ihre <%= link_to "Basisdaten, Profildaten und Kontaktdaten", advocate_account_profile_path, {:title => "Meine Daten verwalten und ändern"} %>.</p>
+
+
+             <p>Gibt es Neuigkeiten aus dem Umfeld Ihrer Kanzlei? Dann erstellen Sie eine <%= link_to "Mitteilung", advocate_account_advomessages_path, {:title => "Meine Daten verwalten und ändern"} %> – wahlweise in Textform oder als Video – und laden Sie sie hoch. Oder veröffentlichen Sie einen oder mehrere <%= link_to "Artikel in Ihrem Profil", advocate_account_articles_path, {:title => "Meine Artikel verwalten und ändern"} %>; etwa zu einem neuen Urteil oder einer Gesetzesänderung. Über die <%= link_to "Profilvorschau", advocate_account_profile_preview_path, {:title => "Meine Profilschau ansehen"} %>  können Sie jederzeit überprüfen, wie Ihr Anwaltsprofil aktuell aussieht.</p>
+
+             <p>Und neue Fragen von Rechtsuchenden finden Sie jederzeit im Bereich <%= link_to "Offene Fragen", open_questions_path, {:title => "Übersicht der offenen Fragen im Mandanten-Fragen-System ansehen"} %>. Ist dort eine interessante Frage für Sie dabei? Dann kontaktieren Sie den Mandanten und stellen Sie sich gleich bei ihm vor.</p>
+        </div>
+     <div class="col_2">
+       <%= render :partial => 'shared/sidebar_stats' %>
+
+
+         <%= render :partial => 'shared/sidebar_messages' %> 
+
+
+     </div>
+   </div>
+
+  </div>
+  <div class="bottom"></div>
+  </div>
+
+  <% else %> 
+
+
+
+  <div class="green">
+    <div class="top clearer"></div>
+    <div class="content" style="height:310px">
+      <div class="right">
+        <img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/advofinder/anwalt_01.jpg" style="position:relative;"/>
+      </div>
+      <div class="left" style="position:absolute;">
+        <ul>
+                <li><span class="headline">Der Anwalts-Check im Internet</span></li>
+                <li><span class="nr">1.</span>
+                  <span class="fliess"><b>Anmelden</b> <br />Wählen Sie ein kostenloses oder kostenpflichtiges advofinder.de-Paket ganz nach Ihren Bedürfnissen. advofinder.de ermöglicht Ihnen Online-Marketing mit integrierter Social Web Anbindung und Suchmaschinenoptimierung.</span>
+                </li>
+
+                <li><span class="nr">2.</span>
+                  <span class="fliess"><b>Profil anlegen</b> <br />Werden Sie im Internet gefunden: Erstellen Sie in nur wenigen Minuten ein persönliches Anwaltsprofil zur Darstellung Ihrer Person, Ihrer Kanzlei sowie Ihrer Arbeit und veröffentlichen Sie Artikel, Neuigkeiten aus der Kanzlei und Videos.</span>
+                </li>
+                <li><span class="nr">3.</span>
+                  <span class="fliess"><b>Anfragen und Feedback erhalten</b> <br />Überzeugen Sie mit Ihrem aktuellen und umfangreichen Anwaltsprofil: Erhalten Sie Anfragen von Rechtsuchenden sowie Feedback und Bewertungen von Mandanten zur Optimierung Ihres Serviceangebotes.</span>
+                </li>
+              </ul>
+            <div class="clearer_20"></div>   
+      </div>
+      <div class="pad_10"></div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+
+  <div class="light">
+    <div class="main">
+      <div class="content">
+        <div class="col_1">
+         
+
+          <h2>Legen Sie gleich Ihr persönliches Anwaltsprofil an!	</h2>
+          <div class="kurze_zeit">
+            <h1><b>Überzeugen Sie sich von advofinder.de, auch ohne finanzielle Verpflichtungen: Wählen Sie ein kostenloses oder kostenpflichtiges advofinder.de-Paket ganz nach Ihren Bedürfnissen.</b></h1>
+
+            <div class="clearer"></div>
+            <div class="pad_20"></div>
+
+            <div class="left block_400">
+              <p><b>Aktion!</b> Als Bonus für Ihre frühzeitige Anmeldung bis <b>31.12.2011</b> erhalten Sie bei Wahl eines kostenpflichtigen advofinder.de-Pakets, das gewählte Paket <b>90 weitere Tage lang gratis</b> im Anschluss an die Mindestlaufzeit.*</p>
+              <div class="pad_20"></div>
+              <p><b>Sparvorteil für Junganwälte:</b> Erhalten Sie zusätzlich einen <b>Rabatt von 20%</b> auf alle kostenpflichtigen advofinder.de-Pakete, wenn Sie zum Zeitpunkt Ihrer Anmeldung weniger als 5 Jahre zugelassen sind.</p>
+            </div>
+
+            <div class="clearer"></div>
+            <div class="pad_20"></div>
+
+            <p>
+              Weitere Informationen über advofinder.de finden Sie 
+              <%= link_to "<b>hier (PDF, 240 KB)</b>", "/pdf/infoflyer_advofinder_april_2011.pdf", :popup => true, :title => "Infos über advofinder.de als PDF-Datei zum herunterladen" %>.
+            </p>
+          </div> 
+          <div class="clearer"></div>
+          <div class="pad_20"></div>
+
+          <%= link_to image_tag("advofinder/anmelden_big.png", {:title => "anmelden", :style => "padding-left:105px"}), new_advocate_user_path, {:title => "Jetzt anmelden und Guthaben sichern"} %>
+          <div class="clearer"></div>
+          <div class="pad_20"> * Eine Auszahlung des Wertes der weiteren 90 Tage als Bonus ist nicht möglich. </div>
+            <div class="pad_l_12">Sie erhalten den Bonus der 90 Tage unabhängig davon gewährt, ob Sie das gewählte advofinder.de-Paket zum Ablauf der Mindestlaufzeit bereits gekündigt haben oder nicht. Mehrfache Anmeldungen sind nicht gestattet. Unser Versprechen: Keine versteckten Einrichtungs- und Aufnahmegebühren!</div>
+          <div class="clearer"></div>
+        </div>
+        <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>
+          <div class="pad_r_l_15">
+            <h2>Vorteile für Anwälte:</h2>
+            <ul class="haken">
+              <li class="green">Gezielte Ansprache von potentiellen Mandanten mit einem persönlichen, professionellen Anwaltsprofil.</li>
+              <li class="black">Potentielle Mandanten können Sie mittels Suchfunktion deutschlandweit finden, kontaktieren und weiterempfehlen; 24 Stunden am Tag.</li>
+              <li class="green">Bauen Sie Ihr eigenes Online-Renommee aus durch Bewertungen von zufriedenen Mandanten und Gewinnen Sie neue Mandanten.</li>
+              <li class="black">Veröffentlichen Sie Artikel zu Rechtsthemen sowie Neuigkeiten aus der Kanzlei und Videos.</li>
+              <li class="green">Erhalten Sie Feedback von Mandanten zur Optimierung des eigenen Serviceangebotes.</li>
+              <li class="black">Nutzen Sie die Möglichkeiten des Web 2.0 mit einem suchmaschinenoptimierten Anwaltsprofil und integrierter Social Web Anbindung.</li>
+              <li class="green">Maximale Reichweiten ohne Zugangsbarrieren indem advofinder.de ein kostenloser Service für Rechtsuchende ist.</li>
+              <li class="black">Profitieren Sie von Business- und Premium-Vorteilen wie inkludierter eigener Domain, Web-Visitenkarte mit Vanity-URL, gedrucktem Marketingmaterial, Einladungen zu Events bis hin zur Produktion eines professionellen Imagevideos für Ihre Kanzlei.</li>
+            </ul>
+            <div class="clearer"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+
+   <% end %>
+    <% end %>
+  
+  
+  <% end %>  
+  
+  
+  
+  
+  
+  
+    

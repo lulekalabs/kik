@@ -1,0 +1,171 @@
+
+ <% if af_realm? %> 
+<div class="green">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+      <ul> 
+        <li><span class="headline">Herzlich Willkommen in Ihrem persönlichen Bereich! </span></li>
+        <li>Sie haben Ihr Anwaltsprofil erfolgreich eingerichtet. Überzeugen Sie sich nun von advofinder.de kostenlos und ohne weitere Verpflichtungen.</li>
+        <li>Sie können ab jetzt die kostenlosen Funktionen von advofinder.de in vollem Umfang nutzen. Informationen über unsere weitergehenden kostenpflichtigen Funktionen finden Sie hier:
+          <%= link_to "Produktübersicht" %> </li>
+        <li>Bei Fragen nutzen Sie bitte unser <%= link_to "Kontaktformular", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von kann-ich-klagen.de "} %>.</li>
+        
+      </ul>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+ <% end %>  
+
+<% if kik_realm? %>  
+<div class="blue">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+      <ul> 
+        <li><span class="headline">Herzlich Willkommen in Ihrem persönlichen Bereich! </span></li>
+        <li>Sie haben Ihr Anwaltsprofil erfolgreich eingerichtet. Überzeugen Sie sich nun von kann-ich-klagen.de kostenlos und ohne weitere Verpflichtungen.
+        Bei Fragen nutzen Sie bitte unser <%= link_to "Kontaktformular", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von kann-ich-klagen.de "} %>.</li>
+        <li>Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg.</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+ <% end %> 
+
+
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Ihre Daten und Services auf einen Blick </h2>
+        
+         <% if kik_realm? %> 
+         <p>Der persönliche Bereich ist ein geschützter Bereich, zu dem nur Sie Zugang haben. Hier können Sie alle Fragen und Bewerbungen sowie Nachrichten jederzeit online ansehen, organisieren und verwalten. </p>
+         <div class="clearer_10"></div>
+          <div class="left">
+          <div class="two_small_top clearer"><h2><b>Meine Kontakte &amp; Bewerbungen</b></h2></div>
+          <div class="two_small_content">
+            <img alt="Bewerbungen" src="/images/icons/bewebungen.gif" style="float:right"/>
+              Hier können Sie Ihre aktuellen und vergangenen Bewerbungen einsehen und bearbeiten.
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", open_advocate_account_questions_path, {:title => ""} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Meine Daten</b></h2></div>
+          <div class="two_small_content">
+            <img alt="Daten" src="/images/icons/daten.gif" style="float:right"/>
+              Hier können Sie Ihre persönlichen Daten, Bankverbindung, E-Mail-Adresse, Newslettereinstellungen und Ihr Passwort ändern. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Meine Daten", advocate_account_profile_path, {:title => "Meine Daten"} %> </b></div>
+        </div> 
+       
+        <div class="clearer_10"></div>
+        
+          <div class="left">
+            <div class="two_small_top clearer"><h2><b>Mein Fragen-Radar</b></h2></div>
+            <div class="two_small_content">
+              <img alt="Info" src="/images/icons/info.gif" style="float:right"/>
+              Hier können Sie festlegen, ob und wie Sie über neu eingegangene Fragen von Rechtsuchenden informiert werden möchten.
+            </div>
+            <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", radar_advocate_account_path, {:title => ""} %></b></div>
+          </div>
+          <div class="right">
+            <div class="two_small_top clearer"><h2><b>Meine Bewertungen</b></h2></div>
+            <div class="two_small_content">
+              <img  alt="Bewertungen" src="/images/icons/bewertungen.gif" style="float:right"/>
+            Hier sehen Sie das Feedback von Rechtsuchenden und Ihren Mandanten.
+            </div>
+            <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_reviews_path, {:title => ""} %></b></div>
+          </div>
+          
+          <div class="clearer_10"></div>
+         
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Meine Mitteilungen</b></h2></div>
+          <div class="two_small_content">
+            <img  alt="Mitteilungen" src="/images/icons/pressemeldungen.gif" style="float:right"/>
+            Hier können Sie kurze Nachrichten z.B. Grußbotschaften als Text schreiben oder Video hochladen. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_advomessages_path, {:title => ""} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Meine Artikel</b></h2></div>
+          <div class="two_small_content">
+            <img  alt="Artikel" src="/images/icons/pressespiegel.gif" style="float:right"/>
+              Hier können Sie ausführliche Artikel zu Rechtsthemen schreiben und einstellen. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_articles_path, {:title => ""} %></b></div>
+        </div>
+       
+       <% end %>
+       
+       <% if af_realm? %> 
+        <p>Der persönliche Bereich ist ein geschützter Bereich, zu dem nur Sie Zugang haben. Hier können Sie Ihre persönlichen Daten verwalten, erhaltene Bewertungen ansehen und kommentieren, Mitteilungen Ihrer Kanzlei einstellen, Artikel veröffentlichen  sowie Ihr Anwaltsprofil aktualisieren und ergänzen.</p>
+        <div class="clearer_10"></div>
+         <div class="left">
+           <div class="two_small_top clearer"><h2><b>Meine Bewertungen</b></h2></div>
+           <div class="two_small_content">
+             <img  alt="Bewertungen" src="/images/advofinder/icons/bewertungen.gif" style="float:right"/>
+           Hier sehen Sie das Feedback von Rechtsuchenden und Mandanten. Sie haben die Möglichkeit die erhaltenen Bewertungen zu kommentieren.<br /> <br />
+           </div>
+           <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_reviews_path, {:title => ""} %></b></div>
+         </div>
+         <div class="right">
+         <div class="two_small_top clearer"><h2><b>Meine Daten</b></h2></div>
+         <div class="two_small_content">
+           <img  alt="Daten" src="/images/advofinder/icons/daten.gif" style="float:right"/>
+Hier können Sie Ihr Anwaltsprofil aktualisieren und Ihre persönlichen Daten, Bankverbindung, E-Mail-Adresse, Newslettereinstellungen sowie Ihr Passwort ändern.
+         </div>
+         <div class="two_small_bottom_arrow"><b><%= link_to "Meine Daten", advocate_account_profile_path, {:title => "Meine Daten"} %> </b></div>
+       </div>
+        
+       <div class="clearer_10"></div>
+       
+       <div class="left">
+         <div class="two_small_top clearer"><h2><b>Meine Mitteilungen</b></h2></div>
+         <div class="two_small_content">
+           <img alt="Mitteilungen" src="/images/advofinder/icons/pressemeldungen.gif" style="float:right"/>
+          Hier können Sie kurze Nachrichten Ihrer Kanzlei, z.B. Grußbotschaften oder geänderte Sprechzeiten, als Text schreiben oder als Video hochladen.
+         </div>
+         <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_advomessages_path, {:title => ""} %></b></div>
+       </div>
+       <div class="right">
+         <div class="two_small_top clearer"><h2><b>Meine Artikel</b></h2></div>
+         <div class="two_small_content">
+           <img title="Pressespiegel" alt="Pressespiegel" src="/images/advofinder/icons/pressespiegel.gif" style="float:right"/>
+            Hier können Sie ausführliche Artikel zu Rechtsthemen schreiben und in Ihrem Anwaltsprofil veröffentlichen. 
+         </div>
+         <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_articles_path, {:title => ""} %></b></div>
+       </div>
+       
+       <div class="clearer_10"></div>
+
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Meine Profilvorschau</b></h2></div>
+          <div class="two_small_content">
+            <img alt="Anwalt" src="/images/advofinder/icons/anwalt_small.gif" style="float:right"/>
+           Hier sehen Sie wie Rechtsuchende Ihr Anwaltsprofil auf advofinder.de angezeigt bekommen. Bitte prüfen Sie, ob die angezeigten Daten noch aktuell sind. 
+          </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zur Seite", advocate_account_profile_preview_path, {:title => ""} %></b></div>
+        </div>
+       
+      <% end %>
+          
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+
+        <%= render :partial => 'shared/sidebar_messages' %>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

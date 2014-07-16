@@ -1,0 +1,109 @@
+<div class="blue_right">
+  <% draw_flash_message do |type, message| %>
+    <%= content_tag :div, message, :class => type  %>
+  <% end %>
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        <h2>Bestellen Sie Ihren kostenlosen <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> Newsletter </h2>
+        <p>Erfahren Sie Neuigkeiten, Wissenswertes und besondere Aktionen rund um <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %>.
+          Wir informieren Sie regelmäßig über aktuelle Themen.
+        </p>
+        <div class="pad_10"></div>
+        <%= error_messages_for :enrollment,
+          :header_message => "Ihre Bestellung konnte leider nicht gesendet werden.",
+          :message => "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Bestellung absenden zu können." %>
+        <%form_for :enrollment, :url => service_newsletters_path do |f| %> 
+        
+             <div class="clearer_20"></div>  
+             
+             
+            
+            
+                 <div class="left">
+            <%= f.select :type, collect_for_enrollment_type_select("Bitte wählen: Newsletter für*"), {},
+              {:class => "option", :style => "background-color:#fffef7 "} %>
+            </div>
+            
+           
+
+            <div class="clearer_10"></div>  
+
+            <div class="left">
+              <%= f.select :gender, collect_for_gender_select(true, false), {},
+                {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+            </div>
+            <div class="left pad_l_16">
+              <%= f.select :academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+                {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+              
+          </div>
+            <div class="clearer_10"></div>  
+
+            <div class="left">
+              <%= f.text_field :first_name, {:class => "field w303"} %>
+            </div>
+            <div class="right">
+              <%= f.text_field :last_name, {:class => "field w303"} %>
+            </div>
+
+           <div class="clearer_10"></div>  
+
+            <div class="left">
+    <%# E-Mail-Adresse* %>
+              <%= f.text_field :email, {:class => "field w303"}%>
+            </div>
+            <div class="right">
+    <%# E-Mail-Adresse wiederholen* %>
+              <%= f.text_field :email_confirmation, {:class => "field w303"}%>
+            </div>
+
+            <div class="clearer_10"></div>  
+            <div class="left pad_5">Ja, ich möchte den <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> Newsletter erhalten. </div>
+
+            <div>
+              <%= submit_tag "bestellen" , :class => "button_right" %>
+            </div>
+            <div class="button_left"></div>
+
+            <div class="clearer"></div>
+          <% end %>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+           <h2>Hinweise:</h2>
+            <ul>
+              <li>Mit * versehene Felder sind Pflichtfelder.</li> 
+              <li>Ihre Daten werden ausschließlich von <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> vertraulich zu Zwecken des Newsletterversands verarbeitet, gespeichert und genutzt. Eine Weitergabe an unbeteiligte Dritte erfolgt nicht.</li>
+              <li>Zu statistischen Zwecken werten wir in anonymer Form aus, ob ein Newsletter geöffnet wird und welche Links im Newsletter angeklickt werden. Dabei werden keine personenbezogenen Daten erfasst, so dass nicht erkennbar ist, welcher Empfänger konkret geöffnet und geklickt hat. </li>
+            </ul>
+          <h2>Widerrufmöglichkeit:</h2>
+          <ul>
+            <li>
+            Sie können die Einwilligung zur Nutzung Ihrer Daten für den Newsletterversand jederzeit mit Wirkung für die Zukunft widerrufen per <%= mail_to Notifier.newsletter_email, 'E-Mail', {:class => "white",  :encode => "hex" }%>, per Abbestell-Link am Ende jedes Newsletters oder auf der Seite: <a class="white" href="<%= cancel_service_newsletters_path %>">Newsletter abbestellen</a>  
+             </li>
+            
+          </ul>
+          <h2>Datenschutz:</h2>
+          <ul>
+            <li>Die Unterrichtung zum Datenschutz finden Sie auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de", :class => "white"} %></li>
+           </ul> 
+           <h2>Presseverteiler:</h2>
+           <ul>
+             <li>Als Journalist können Sie sich auf der Seite <%= link_to "Presseverteiler", new_press_journalist_path, {:title => "Presseverteiler für Journalisten", :class => "white"} %> auch in den <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> Presseverteiler eintragen oder sich wieder austragen. Die Pressemitteilungen von <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> erhalten Sie dann per E-Mail, per Fax oder per Post – so wie Sie es wünschen.
+
+
+             </li>
+            </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => "shared/default_fields_js" %>

@@ -1,0 +1,119 @@
+<% 
+  cancel_js ||= nil
+%>
+<%= f.text_field :title, :class => "field w600" %>
+<div class="pad_5"> </div>  
+<%= f.text_area :body, :class => "question_field text" %>
+<%= f.hidden_field :kik_view %>
+<%= f.hidden_field :advofinder_view %>
+<div class="clearer_10"></div>
+
+
+
+  <% unless @article.image? %>
+  <% end %>
+
+  <p><b>Bild hochladen:</b></p>
+  <%= f.file_field(:image, :class => "field w303") %>
+  <div class="clearer"></div>
+  <div class="pad_10"></div>
+  <p><b>Dokumente hochladen:</b></p>
+  <%= f.file_field(:primary_attachment, :class => "field w303") %>
+  <div class="clearer"></div>
+  
+  <div id="<%= dom_id(f.object, "field-secondary-attachment") %>" style="display:none;">
+    <%= f.file_field(:secondary_attachment, :class => "field w303") %>
+    <div class="clearer"></div>
+  </div>
+  <div class="pad_10"></div>
+  
+  <div id="<%= dom_id(f.object, "more-secondary-attachment") %>">
+    
+      <%= link_to_function "weiteres Dokument hochladen", "$('##{dom_id(f.object, "field-secondary-attachment")}').show();$('##{dom_id(f.object, "more-secondary-attachment")}').hide();" %>
+   
+  </div>
+
+<div class="clearer_10"></div>     
+<div  style="display:">
+  <% if @article.assets? %>
+  
+    <p><b>Hochgeladene Dokumente:</b></p>
+  
+    <%#--- image attachment %>
+    <% if @article.image? %>
+    <p id="<%= dom_id(@article, :image) %>">
+      <a class="modal_xxx iframe" href="<%= @article.image.url %>">
+        <%= image_tag(@article.image.url(:thumb)) %>
+      </a>
+      <%= link_to_function "Bild löschen", nil, {} do |page| 
+        page << "if(confirm('Bild löschen?')){"
+        page.replace dom_id(@article, :image), ''
+        page << remote_function(:url => destroy_attachment_advocate_account_article_path(@article, 
+          :name => :image, :update => false), :method => :put)
+        page << "}"
+      end %>
+    </p>  
+    <% end %>
+   <div class="clearer_10"></div> 
+    <%#--- primary attachment %>
+    <% if @article.primary_attachment.file? %>
+    <p id="<%= dom_id(@article, :primary_attachment) %>">
+      <% if Asset.image?(@article.primary_attachment.content_type) %>
+        <a class="iframe" href="<%= @article.primary_attachment.url %>">
+          <%= image_tag(@article.primary_attachment.url(:thumb)) %>
+        </a>
+      <% else %>
+        <%= link_to(@article.primary_attachment_name,
+          @article.primary_attachment.url, {
+            :class => content_type_to_css_class(@article.primary_attachment.content_type),
+              :popup => true}) %>
+      <% end %>
+      <%= link_to_function "Datei löschen", nil, {} do |page| 
+        page << "if(confirm('Datei löschen?')){"
+          page.replace dom_id(@article, :primary_attachment), ''
+          page << remote_function(:url => destroy_attachment_advocate_account_article_path(@article, 
+            :name => :primary_attachment, :update => false), :method => :put)
+        page << "}"
+      end %>
+    </p>
+    <% end %>
+
+    <%#--- secondary attachment %>
+    <% if @article.secondary_attachment.file? %>
+    <p id="<%= dom_id(@article, :secondary_attachment) %>">
+      <% if Asset.image?(@article.secondary_attachment.content_type) %>
+        <a class="iframe" href="<%= @article.secondary_attachment.url %>">
+          <%= image_tag(@article.secondary_attachment.url(:thumb)) %>
+        </a>
+      <% else %>
+        <%= link_to(@article.secondary_attachment_name,
+          @article.secondary_attachment.url, {
+            :class => content_type_to_css_class(@article.secondary_attachment.content_type),
+              :popup => true}) %>
+      <% end %>
+     
+      <%= link_to_function "Datei löschen", nil, {} do |page| 
+        page << "if(confirm('Datei löschen?')){"
+          page.replace dom_id(@article, :secondary_attachment), ''
+          page << remote_function(:url => destroy_attachment_advocate_account_article_path(@article, 
+            :name => :secondary_attachment, :update => false), :method => :put)
+        page << "}"
+      end %>
+    </p>
+    <% end %>
+  
+  <% end %>
+</div>
+
+<div class="clearer_5"></div>
+
+<div class="clearer_5"></div>  
+<div>
+  <%= submit_tag "Artikel speichern", :class => "button_right" %>
+</div>
+<div class="button_left"></div><div class="right_button">
+  <% if cancel_js %>
+    <%= link_to_function('abbrechen', cancel_js)  %>
+  <% end %>
+</div>    
+<div class="clearer_5"></div>   

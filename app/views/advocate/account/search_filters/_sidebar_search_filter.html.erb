@@ -1,0 +1,32 @@
+<% if @search_filter %>
+<h2>Ihr aktueller Filter</h2>
+
+<ul>
+  <li>
+
+    <% unless @search_filter.tag_list.blank? %>
+    <p>Suchbegriff: <%= @search_filter.tag_list.join(", ") %></p>
+    <% end %>
+
+    <% unless @search_filter.topics_count == 0 %>
+    <p><%= t("Rechtsgebiet", :count => @search_filter.topics_count, :scope => "pluralizations") %>: <%= h(@search_filter.topics.map(&:name).join(", ")) %></p>
+    <% else %>
+      <p><%= t("Rechtsgebiet", :count => 2, :scope => "pluralizations") %>: alle</p>
+    <% end %>
+
+    <% unless @search_filter.city_and_postal_code.blank? %>
+    <p>Ort: <%= @search_filter.city_and_postal_code %></p>
+    <% else %>
+    <p>Ort: deutschlandweit</p>
+    <% end %>
+    
+    <% unless @search_filter.radius.blank? %>
+    <p>Umkreis: <%= @search_filter.radius %> km</p>
+    <% end %>
+    <% unless @search_filter.province.blank? %>
+      <p>Bundesland: <%= @search_filter.province %></p>
+    <% end %>
+  </li>
+</ul>
+<div class="clearer_5"></div>  
+<% end %>

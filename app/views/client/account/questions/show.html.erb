@@ -1,0 +1,35 @@
+<div class="blue_right">  
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        
+        <h2>Meine Fragen  &#38; Bewerbungen:</h2>
+      
+        <div class="left">
+          <%= link_to "&#171; Zurück zur Übersicht", return_to_previous_url %>
+        </div>
+      
+        <%= render :partial => "show", :locals => {:open => true, :show_responses => true} %>
+        
+        <div class="left">
+          <%= link_to "&#171; Zurück zur Übersicht", return_to_previous_url %>
+        </div>
+        
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li></li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>

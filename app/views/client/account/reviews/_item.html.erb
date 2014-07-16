@@ -1,0 +1,28 @@
+<%
+  review ||= item || @review
+  last ||= false
+  review_path_helper ||= nil
+  review_path_url ||= if review_path_helper
+    send(review_path_helper, @advocate, review)
+  else
+    current_user && current_user.person.is_a?(Advocate) ? advocate_account_review_path(review) : client_account_review_path(review)
+  end
+%>
+<div class="note_small">
+  <%= grade_point_average(review) %>
+</div>
+<div class="block_300_user">
+  <p><b><%= grade_point_average(review) %></b> für <b><%= h(review.reviewee.user_id) %></b> (ID: <%= review.reviewee.number %>)</p>
+  <p>Bewertung vom <%= l(review.created_at) %></p>
+</div>
+<div class="pad_15"> 
+  <div class="button_white_right_blue">
+    <%= link_to "Bewertung anzeigen", review_path_url, 
+      {:title => "Bewertungsdetails zeigen"} %>
+  </div>
+  <div class="button_white_left_blue"></div>
+</div>	 
+<div class="clearer"></div>               
+<% unless last %>
+<h2></h2>
+<% end %>

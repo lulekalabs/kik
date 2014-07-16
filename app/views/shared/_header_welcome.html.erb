@@ -1,0 +1,50 @@
+<div class="welcome" id="header-welcome">
+  <% if logged_in? %>
+  
+    <% if current_user.person.is_a?(Advocate) %>
+      <p class="t_right">Willkommen <%= h(current_user.person.title_and_name) %></p>
+      <% if (messages = current_user.person.unread_received_messages).empty? %>
+        <p class="t_right">Sie haben <b>keine neuen Benachrichtigungen</b></p>
+      <% else %>
+        <p class="t_right">Sie haben <%= link_to(t("{{count}} neue Benachrichtigung", :count => messages.size, :scope => "pluralizations"), unread_advocate_account_messages_path) %></p>
+      <% end %>
+      
+      <%#--- kik only %>
+      <% unless af_realm? %>
+        <% responses_count = current_user.person.accessible_kases.open.count %>
+        <% if responses_count > 0 %>
+        <p class="t_right"><%= t("Ist Ihre Bewerbung noch aktuell?", :count => responses_count, :scope => "pluralizations") %> Bitte <%= link_to(content_tag(:b, "prüfen &#187;"), open_advocate_account_questions_path) %></p>
+        <% end %>
+        <p class="t_right">Ihr Guthaben: <b><%= t("{{count}} Freikontakt", :count => current_user.person.promotion_contacts_count, :scope => "pluralizations").titleize %></b> | <b>
+          <% if current_user.person.unlimited_premium_contacts? %>
+            <%= "Unbegrenzt Inklusivkontakte" %>
+          <% else %>
+            <%= t("{{count}} Inklusivkontakt", :count => current_user.person.premium_contacts_count, :scope => "pluralizations").titleize %>
+          <% end %>
+        </b></p>
+      <% end %>
+    <% else %>
+      <p class="t_right">Willkommen <%= content_tag(:b, h(current_user.login)) %></p>
+      <% if (messages = current_user.person.unread_received_messages).empty? %>
+        <p class="t_right">Sie haben <b>keine neuen Benachrichtigungen</b></p>
+      <% else %>
+        <p class="t_right">Sie haben <%= link_to(t("{{count}} neue Benachrichtigung", :count => messages.size, :scope => "pluralizations"), unread_advocate_account_messages_path) %></p>
+      <% end %>
+      <% unless af_realm? %>
+        <% questions_count = current_user.person.questions.open.count %>
+        <% if questions_count > 0 %>
+        <p class="t_right"><%= t("Ist Ihre Frage noch aktuell?", :count => questions_count, :scope => "pluralizations") %> Bitte <%= link_to(content_tag(:b, "prüfen &#187;"), client_account_questions_path) %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if af_realm? %>
+    <%#--- advofinder only %>
+    <p class="t_right">Willkommen bei <b>advofinder.de</b></p> 
+    <% else %>
+    <%#--- kik only %>
+    <p class="t_right">Willkommen bei <b>kann-ich-klagen.de</b></p> 
+    <% end %>
+  <p class="t_right">Sie sind nicht eingeloggt</p>
+  <% end %>
+</div>

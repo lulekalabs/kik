@@ -1,0 +1,2 @@
+module Corporate::CorporateApplicationHelper
+end

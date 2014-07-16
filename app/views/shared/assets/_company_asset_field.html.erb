@@ -1,0 +1,15 @@
+<% # shared/assets/_company_asset_field
+  asset = company_asset_field
+%>
+<% f.fields_for "company_assets", asset do |a| %>
+  <% if !asset.nil? && !asset.new_record? %>
+    <%= image_tag(asset.file.url(:normal), :alt => "Kanzleifoto", :title => "Kanzleifoto", :size => "300x200") %>
+    <%= a.check_box :_delete %>
+    <%= a.label :_delete, 'löschen' %>
+  <% else %>
+    <%= f.file_field(:file, :class => "field w303", :onclick => "$(this).attr('name', 'person[company_assets_attributes][' + (typeof(ac) == 'undefined' ? ac = 1000 : ++ac) + '][file]')") %>
+  <% end %>
+  <div class="clearer"></div>
+  <div class="pad_10"></div>
+  <h2></h2>
+<% end %>

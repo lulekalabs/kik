@@ -1,0 +1,30 @@
+<!-- advocate/sub_content--> 
+<div class="sub_content">
+   <% if logged_in? && current_user.person.is_a?(Client) %> 
+
+     <% else %>
+  
+     <%= link_to "Startseite für Anwälte", advocate_path, {:title => "Zurück zur Startseite für Anwälte", :class => current_page?(advocate_path) ? "select" : ""} %>
+     <%= image_tag 'bullet_grey.gif' %>
+  
+  <% if logged_in? && current_user.person.is_a?(Advocate) %>   
+
+  <% else %>
+  
+  
+  <% if kik_realm? %>   
+  
+  <%= link_to "Jetzt anmelden und Startguthaben sichern", new_advocate_user_path, {:title => "Einmalig anmelden und Vorteile sichern", :class => current_page?(new_advocate_user_path) ? "select" : ""} %>
+    <% end %> 
+  <% if af_realm? %>
+  <%= link_to "Jetzt anmelden und Anwaltsprofil anlegen", new_advocate_user_path, {:title => "Einmalig anmelden und Vorteile sichern", :class => current_page?(new_advocate_user_path) ? "select" : ""} %>     
+   <% end %> 
+  
+  <%= image_tag 'bullet_grey.gif' %>
+  <% end %>  
+  
+  <%= link_to "Weiterempfehlen", new_advocate_recommendation_path, {:title => "Empfehlen Sie kann-ich-klagen.de an Kollegen/-innen weiter", :class => current_page?(new_advocate_recommendation_path) ? "select" : ""} %>
+   <% end %> 
+</div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>

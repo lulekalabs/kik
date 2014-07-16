@@ -1,0 +1,45 @@
+<% if logged_in? && current_user.person.is_a?(Advocate) %> 
+
+<% else %>
+<%
+  form_url ||= advofinder_search_path
+%>
+<% form_for :search_filter, @search_filter, :url => form_url, 
+:html => {:method => :get, :id => "search-form"} do |f| %>  
+<div class="grey">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left">
+      <div class="t_14"><b>Kostenlos Anwälte suchen, finden &#38; bewerten:</b></div>
+      <div class="left pad_5">
+        <%= f.text_field :person_name, :class => "field w230" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.text_field :postal_code, :class => "field w50" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.text_field :city, :class => "field w100" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.select :radius, collect_for_search_radius_select(true, true), {},
+          :class => "rights ", :style => "background-color:#fffef7 " %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= select_tag "search_filter[topic_ids][]", options_for_select(collect_for_topic_select("Rechtsgebiete"), @search_filter.topics.blank? ? nil : @search_filter.topics.last.id), :class => "rights", :name => "search_filter[topic_ids][]" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.text_field :tags, :class => "field w100" %>
+      </div>
+      <%= f.hidden_field :sort_order, :id => "search-filter-sort-order" %>
+      <%= f.hidden_field :per_page, :id => "search-filter-per-page" %>
+      <%= f.hidden_field :alphabetic_filter, :id => "search-filter-alphabetic-filter" %>
+    </div>
+    <div class="right">
+      <%= submit_tag "", :class => "suchen", :id => "search-submit" %>
+    </div>
+    <div class="info">*Umkreissuche zur eingegebenen PLZ nur m&#246;glich mit 5-stelliger PLZ.</div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<% end %>
+<% end %>

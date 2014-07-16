@@ -1,0 +1,26 @@
+prof:
+  id: 1
+  name: Prof.
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+prof_dr:
+  id: 2
+  name: Prof. Dr.
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+dr:
+  id: 3
+  name: Dr.
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+dipl_ing:
+  id: 4
+  name: Dipl.Ing.
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+no_title:
+  id: 5
+  name: kein Titel
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  

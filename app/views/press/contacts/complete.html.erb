@@ -1,0 +1,18 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <h2>Vielen Dank für Ihre Nachricht! </h2>
+    <div class="pad_10"></div>
+    <p><%= @current_contact.to_sender.notifier_salutation_and_title_and_last_name %>,</p>
+    <div class="pad_10"></div>
+    <p>wir danken für Ihr Interesse an kann-ich-klagen.de! Eine Kopie Ihrer Nachricht haben wir Ihnen soeben per E-Mail für Ihre Unterlagen gesendet. </p>
+    <p>Der Kontakt mit unseren Besuchern ist uns sehr wichtig. In der Regel antworten wir Ihnen innerhalb von 48 Stunden.</p>
+    <div class="pad_10"></div>
+    <p>  Antworten auf häufig gestellte Fragen finden Sie auch auf unserer Seite: <%= link_to "Hilfe &#38; FAQ", client_faqs_path, {:title => "kann-ich-klagen.de Hilfe"} %></p>
+    <div class="pad_10"></div>
+    <p>Ihr kann-ich-klagen.de Team  </p>
+    <div class="pad_10"></div>
+
+  </div>
+  <div class="bottom_footer"></div>
+</div>

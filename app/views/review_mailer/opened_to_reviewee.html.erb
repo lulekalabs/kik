@@ -1,0 +1,11 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Sie haben eine neue Anwaltsbewertung auf <%= project_host %> erhalten. 
+
+Zum Ansehen und Kommentieren der Anwaltsbewertung klicken Sie bitte auf folgenden Link: 
+
+<%= advocate_account_review_url(@review) %>
+
+Sollten Sie Fragen haben, stehen wir Ihnen gern per E-Mail zur Verfügung.
+
+<%= render :partial => "notifier/footer_lean" %>

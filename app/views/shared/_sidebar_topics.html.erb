@@ -1,0 +1,12 @@
+<%
+  collection_method_name ||= :press_release_path
+%>
+<h2>Rechtsthemen:</h2>
+<ul>
+  <% @topics.each do |topic| %>
+  <li>
+    <%= link_to topic.name, client_articles_path(:topic => topic.name), :class => 'white' %>
+  </li>
+  <% end %>
+ </ul>
+<div class="clearer"></div>

@@ -1,0 +1,38 @@
+<% # shared/assets/images
+  assetable ||= nil
+  form_url ||= client_account_question_path(assetable)
+  object_name ||= :kase
+  editable ||= false
+%>
+<p class="line">Bilder zur Frage:</p>
+<% assetable.assets.reject {|a| a.none_image?}.each do |image| %>
+<a class="iframe" href="<%= image.file.url %>">
+  <%= image_tag(image.file.url(:thumb)) %>
+</a>
+<% end %>
+
+<% if editable %>
+  <div id="<%= dom_id(assetable, :add_image_button) %>">
+    <div class="button_white_right_blue">
+      <%= link_to_function "Neues Bild hochladen", 
+      "$('##{dom_id(assetable, :image)}').show(); $('##{dom_id(assetable, :add_image_button)}').hide();" %>
+    </div>
+    <div class="button_white_left_blue"></div>
+    <div class="clearer_10"></div> 
+  </div>
+
+  <div id="<%= dom_id(assetable, :image) %>" class="line_answer" style="display:none">
+    <% form_for object_name, assetable, :url => form_url, 
+    :html => {:method => :put, :multipart => true} do |f| %>
+    <p><b>Ihr Bild:</b></p>
+    <p>
+      <%= render :partial => "shared/assets/field", :locals => {:f => f} %>
+    </p>
+    <div>
+      <%= submit_tag "Bild hochladen", :class => "button_right" %>
+    </div>
+    <div class="button_left"></div>
+    <div class="clearer"></div> 
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<%
+  object ||= tax_data || @person
+  edit ||= !defined?(:edit) && defined?(:f)
+  hidden_fields ||= false
+%>
+<ul class="profil">
+  
+  <li><span class="one">USt-IdNr.</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :tax_number, :class => "field_edit_270"%>
+    <% else %>
+      <%= h(object.tax_number) %>
+      <% if hidden_fields %>
+        <%= f.hidden_field :tax_number %>
+      <% end %>
+    <% end %>
+  </span></li>
+  
+</ul>

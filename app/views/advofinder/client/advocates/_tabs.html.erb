@@ -1,0 +1,28 @@
+<div class="clearer"></div>
+  
+<div class="pad_20"></div>  
+<div class="menue_c"> 
+  <ul>
+    <% if @advocate %>
+      <li class="small <%= current_page?(profile_advofinder_client_advocate_path(@advocate)) ? 'select' : ''%>">
+        <%= link_to "Profil", profile_advofinder_client_advocate_path(@advocate) %>
+      </li>
+
+      <%= tab_list_item_link_to "Bewertungen #{@advocate.reviews.visible.count > 0 ? "(#{@advocate.reviews.visible.count})" : ""}",
+        reviews_advofinder_client_advocate_path(@advocate), 
+          {:class => "middle"}%> 
+
+      <%= tab_list_item_link_to "Mitteilungen #{@advocate.advomessages.visible.count > 0 ? "(#{@advocate.advomessages.visible.count})" : ""}", messages_advofinder_client_advocate_path(@advocate) , 
+        {:class => "middle"} %>
+
+      <%= tab_list_item_link_to "Artikel #{@advocate.articles.law_article.published.count > 0 ? "(#{@advocate.articles.law_article.published.count})" : ""}", articles_advofinder_client_advocate_path(@advocate) %>       
+      
+      <% if current_user.person.can_review?(@advocate) %>
+        <li class="<%= current_page?(new_advofinder_client_advocate_review_path(@advocate)) || current_page?(advofinder_client_advocate_reviews_path(@advocate)) ? 'select' : '' %>">
+          <%= link_to "Jetzt bewerten", new_advofinder_client_advocate_review_path(@advocate) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="clearer_5"></div>

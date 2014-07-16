@@ -1,0 +1,11 @@
+<% if popup? %>
+  <%= render :partial => 'terms_content' %>
+<% else %>
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+     <%= render :partial => 'terms_content' %>
+ </div>
+  <div class="bottom_footer"></div>
+</div>
+<% end %>

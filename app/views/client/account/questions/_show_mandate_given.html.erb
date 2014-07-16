@@ -1,0 +1,63 @@
+<%
+  advocates ||= @kase.participating_advocates
+%>
+<div class="modal_close" style="width:350px;" id="<%= dom_id(@kase, :show_close) %>">
+  <b><%= "Haben Sie das Mandat erteilt?" %></b>
+
+  <%= error_messages_for :kase %>
+  <div class="clearer_10"></div>
+  <% remote_form_for :kase, @kase, :url => mandate_given_client_account_question_path(@kase), :html => {:method => :put} do |f| %>
+
+  <%= f.radio_button :mandate_given, "no", :onchange => "$('#kase_mandate_given_action_external').attr('checked', false);$('input.advocateFound').attr('checked', false);" %>
+  <%= f.label :mandate_given_no, "Nein, ich habe das Mandat nicht erteilt" %>
+
+  <div class="clearer_10"></div>
+
+  <%= f.radio_button :mandate_given, "yes", :onchange => "if(!$('#kase_mandate_given_action_external').attr('checked') && !$('#kase_mandate_given_action_internal').attr('checked')) $('#kase_mandate_given_action_external').attr('checked', true);", :style => "display:none;" %>
+
+  <b><img src="/images/point_black.png" width="14" height="14" alt="Point Black"/><%= f.label :mandate_given_yes, "Ja, ich habe erteilt an:"%></b>
+
+  <div class="clearer_10"></div>
+
+  <div class="pad_l_22">
+    <%= f.radio_button :mandate_given_action, "external", :onchange => "$('#kase_mandate_given_yes').attr('checked', true);$('input.advocateFound').attr('checked', false);" %>
+    <%= f.label :mandate_given_action_external, "Anwalt außerhalb von #{Project.name}"%>
+    <div class="clearer_10"></div>
+
+    <div style="<%= advocates.empty? ? 'display:none' : '' %>">
+      <%= f.radio_button :mandate_given_action, "internal", :style => "display:none;", :class => "advocateFound" %>
+      <b><img src="/images/point_black.png" width="14" height="14" alt="Point Black"/> <%= f.label :mandate_given_action_internal, "Folgenden Anwalt:" %></b>
+      <div class="clearer_10"></div>
+    
+      <div class="pad_l_22">  
+        <% unless advocates.empty? %>
+          <% advocates.each do |advocate| %>
+            <%= f.radio_button :mandated_advocate_id, advocate.id, :class => "advocateFound",
+              :onchange => "$('#kase_mandate_given_action_internal').attr('checked', true);$('#kase_mandate_given_yes').attr('checked', true)" %>
+            <label for="<%= "kase_mandated_advocate_id_#{advocate.id}" %>">
+              <%= profile_image_tag advocate, :size => :small %>
+              <%= h(advocate.title_and_name) %>
+            </label>
+            <div class="clearer_10"></div>
+          <% end %>
+          <%#--- set mandate %>
+          <% javascript_tag do %>
+            <% if @kase.mandated_advocate %>
+              <%= "$('#kase_mandate_given_yes').attr('checked', true);"%>
+              <%= "$('#kase_mandate_given_action_internal').attr('checked', true);"%>
+            <% else %>
+              <%= "$('input.advocateFound').attr('checked', false);" %>
+            <% end %>
+          <% end %>
+        <% end %> 
+      </div>  
+    </div>
+  </div>
+  <div class="clearer_20"></div>
+  <div class="button_abort">
+    <%#= link_to_function("Abbrechen", "$('a.show_close_question_modal').fancybox.close()") %>
+    <%= link_to_function("Abbrechen", "jQuery(document).trigger('close.facebox')") %>
+  </div>
+  <%= submit_tag "" , :class => "button_send" %>
+  <% end %> 
+</div>

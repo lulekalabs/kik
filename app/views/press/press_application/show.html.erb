@@ -1,0 +1,151 @@
+ <div class="light">
+   <div class="main">
+      <div class="content">
+      <div class="col_1">
+        <% if kik_realm? %> 
+        
+        <h2>Herzlich Willkommen im Pressebereich von kann-ich-klagen.de</h2>
+        <p>Falls wir Sie bei Ihrer Recherche persönlich unterstützen können, stehen wir Ihnen jederzeit gern zur Verfügung. </p>
+
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Pressekontakt</b></h2></div>
+            <div class="two_small_content">
+              <img title="Pressekontakt" alt="Pressekontakt" src="images/icons/pressekontakt.gif" style="float:right"/>
+              Gern beantworten wir Ihre Fragen rund um <br />kann-ich-klagen.de
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt kontaktieren", new_press_contact_path, {:title => "Ansprechpartner für Journalisten"} %></b></div>
+        </div>
+
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Presseverteiler</b></h2></div>
+            <div class="two_small_content">
+              <img title="Presseverteiler" alt="Presseverteiler" src="images/icons/presseverteiler.gif" style="float:right"/>
+              Abonnieren Sie die Pressemitteilungen von kann-ich-klagen.de
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen", new_press_journalist_path, {:title => "Presseverteiler für Journalisten"} %></b></div>
+
+        </div>
+
+        <div class="clearer_10"></div>  
+
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Pressespiegel</b></h2></div>
+            <div class="two_small_content">
+              <img title="Pressespiegel" alt="Pressespiegel" src="images/icons/pressespiegel.gif" style="float:right"/>
+              Aktuelle Pressestimmen und Berichterstattungen über kann-ich-klagen.de
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to_expect_pre_launch "Zum Pressespiegel", press_reviews_path, {:title => "kann-ich-klagen.de in der Presse"} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Pressemitteilungen</b></h2></div>
+            <div class="two_small_content">
+              <img title="Pressemeldungen" alt="Pressemeldungen" src="images/icons/pressemeldungen.gif" style="float:right"/>
+              Aktuelle Pressemitteilungen von kann-ich-klagen.de lesen.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zu den Pressemitteilungen ", press_releases_path, {:title => "Pressemitteilungen von kann-ich-klagen.de"} %></b></div>
+        </div>
+
+
+
+        <div class="clearer_10"></div>  
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Bilder &#38; Logos</b></h2></div>
+            <div class="two_small_content">
+              <img title="Bilder &#38; Logos" alt="Bilder &#38; Logos" src="images/icons/bilder.gif" style="float:right"/>
+              Hier erhalten Sie Bildmaterial rund um kann-ich-klagen.de
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zum Bildmaterial", resources_press_path, {:title => "Bilder und Logos zum herunterladen"} %></b></div>
+        </div>
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Firmenprofil</b></h2></div>
+            <div class="two_small_content">
+              <img title="Firmenprofil" alt="Firmenprofil" src="images/icons/firmenprofil.gif" style="float:right"/>
+              kann-ich-klagen.de auf einen Blick. Das Mandanten-Fragen-Portal im Kurzprofil.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zum Firmenprofil", company_profile_press_path, {:title => "Unternehmensbeschreibung in Kurzform"} %></b></div>
+        </div>
+
+      </div>
+      <% end %>
+      <% if af_realm? %>
+      <h2>Herzlich Willkommen im Pressebereich von advofinder.de</h2>
+      <p>Falls wir Sie bei Ihrer Recherche persönlich unterstützen können, stehen wir Ihnen jederzeit gern zur Verfügung. </p>
+
+      <div class="left">
+        <div class="two_small_top clearer"><h2><b>Pressekontakt</b></h2></div>
+          <div class="two_small_content">
+            <img title="Pressekontakt" alt="Pressekontakt" src="images/advofinder/icons/pressekontakt.gif" style="float:right"/>
+            Gern beantworten wir Ihre Fragen rund um <br />advofinder.de
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt kontaktieren", new_press_contact_path, {:title => "Ansprechpartner für Journalisten"} %></b></div>
+      </div>
+
+      <div class="right">
+        <div class="two_small_top clearer"><h2><b>Presseverteiler</b></h2></div>
+          <div class="two_small_content">
+            <img title="Presseverteiler" alt="Presseverteiler" src="images/advofinder/icons/presseverteiler.gif" style="float:right"/>
+            Abonnieren Sie die Pressemitteilungen von advofinder.de
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen", new_press_journalist_path, {:title => "Presseverteiler für Journalisten"} %></b></div>
+
+      </div>
+
+      <div class="clearer_10"></div>  
+
+      <div class="left">
+        <div class="two_small_top clearer"><h2><b>Pressespiegel</b></h2></div>
+          <div class="two_small_content">
+            <img title="Pressespiegel" alt="Pressespiegel" src="images/advofinder/icons/pressespiegel.gif" style="float:right"/>
+            Aktuelle Pressestimmen und Berichterstattungen über advofinder.de
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to_expect_pre_launch "Zum Pressespiegel", press_reviews_path, {:title => "advofinder.de in der Presse"} %></b></div>
+      </div>
+      <div class="right">
+        <div class="two_small_top clearer"><h2><b>Pressemitteilungen</b></h2></div>
+          <div class="two_small_content">
+            <img title="Pressemeldungen" alt="Pressemeldungen" src="images/advofinder/icons/pressemeldungen.gif" style="float:right"/>
+            Aktuelle Pressemitteilungen von advofinder.de lesen.
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to "Zu den Pressemitteilungen ", press_releases_path, {:title => "Pressemitteilungen von advofinder.de"} %></b></div>
+      </div>
+
+
+
+      <div class="clearer_10"></div>  
+      <div class="left">
+        <div class="two_small_top clearer"><h2><b>Bilder &#38; Logos</b></h2></div>
+          <div class="two_small_content">
+            <img title="Bilder &#38; Logos" alt="Bilder &#38; Logos" src="images/advofinder/icons/bilder.gif" style="float:right"/>
+            Hier erhalten Sie Bildmaterial rund um advofinder.de
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to "Zum Bildmaterial", resources_press_path, {:title => "Bilder und Logos zum herunterladen"} %></b></div>
+      </div>
+      <div class="right">
+        <div class="two_small_top clearer"><h2><b>Firmenprofil</b></h2></div>
+          <div class="two_small_content">
+            <img title="Firmenprofil" alt="Firmenprofil" src="images/advofinder/icons/firmenprofil.gif" style="float:right"/>
+            advofinder.de auf einen Blick. Der Anwalts-Check im Internet. 
+          </div>
+        <div class="two_small_bottom_arrow"><b><%= link_to "Zum Firmenprofil", company_profile_press_path, {:title => "Unternehmensbeschreibung in Kurzform"} %></b></div>
+      </div>
+
+    </div>
+      <% end %>
+      
+      
+      
+      
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+            <%= render :partial => "fudge" %>
+        </div>
+      
+        
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+  </div>

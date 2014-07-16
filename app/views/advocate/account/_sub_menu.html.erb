@@ -1,0 +1,43 @@
+<!-- account/sub_content-->
+<div class="sub_content">
+
+  <%= link_to "Übersicht", advocate_account_path, {:title => "Daten und Services auf einen Blick ", :class => current_page?(advocate_account_path) ? "select" : ""} %>
+
+  <%= image_tag 'bullet_grey.gif' %>
+  
+  <% if kik_realm? %>
+    <%= link_to "Meine Bewerbungen", open_advocate_account_questions_path, {:title => "Meine Bewerbungen", :class => current_page?(open_advocate_account_questions_path) ? "select" : ""} %>
+    <%= image_tag 'bullet_grey.gif' %>
+  <% end %>
+  
+   <%= link_to "Meine Bewertungen", advocate_account_reviews_path, {:title => "Meine Bewertungen", :class => current_page?(advocate_account_reviews_path) ? "select" : ""} %>  
+
+  <%= image_tag 'bullet_grey.gif' %>
+  
+  <% if kik_realm? %>
+     <%= link_to "Mein Fragen-Radar", advocate_account_search_filters_path, {:title => "Mein Fragen-Radar verwalten und ändern", :class => current_page?(advocate_account_search_filters_path) ? "select" : ""} %>
+    <%= image_tag 'bullet_grey.gif' %>
+  <% end %>
+  
+  <%= link_to "Meine Mitteilungen", advocate_account_advomessages_path, {:title => "Meine Daten verwalten und ändern", :class => current_page?(advocate_account_advomessages_path) ? "select" : ""} %> 
+  
+  <%= image_tag 'bullet_grey.gif' %>
+
+   <%= link_to "Meine Artikel", advocate_account_articles_path, {:title => "Meine Artikel verwalten und ändern", :class => current_page?(advocate_account_articles_path) ? "select" : ""} %>
+
+  <%= image_tag 'bullet_grey.gif' %>
+  
+  <% if af_realm? %>
+     <%= link_to "Mein Benachrichtigungen", advocate_account_messages_path, {:title => "Mein Benachrichtigungen", :class => current_page?(advocate_account_messages_path) ? "select" : ""} %>
+    <%= image_tag 'bullet_grey.gif' %>
+  <% end %>
+   
+  <%= link_to "Meine Daten", advocate_account_profile_path, {:title => "Meine Daten verwalten und ändern", :class => current_page?(advocate_account_profile_path) ? "select" : ""} %>
+  
+   <%= image_tag 'bullet_grey.gif' %>
+   
+  <%= link_to "Meine Profilvorschau", advocate_account_profile_preview_path, {:title => "Meine Profilschau ansehen", :class => current_page?(advocate_account_profile_preview_path) ? "select" : ""} %> 
+</div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>
+

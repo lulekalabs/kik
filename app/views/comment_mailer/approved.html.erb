@@ -1,0 +1,11 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Ihr Nachtrag zur Frage vom <%= l(@commentable.created_at) %> ist nun freigeschaltet.
+
+Der Nachtrag zur Frage ist jetzt für Anwälte sichtbar, damit Sie Nachrichten und Bewerbungen von interessierten Anwälten bekommen – selbstverständlich ohne weitere Verpflichtungen. Die Frage ist noch für <%= distance_of_time_in_words_to_now( @kase.expires_at) %> eingestellt.
+
+Sollten Sie Fragen haben, stehen wir Ihnen per E-Mail gern zur Verfügung. 
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.
+
+<%= render :partial => "notifier/footer" %>

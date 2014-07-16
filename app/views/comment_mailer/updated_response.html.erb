@@ -1,0 +1,13 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Sie haben sich auf die Frage von <%= @kase.person.title_and_name %> am <%= l(@response.created_at) %> beworben. Der Rechtsuchende hat einen Nachtrag zu seiner Frage ergänzt.
+
+Möchten Sie die Frage und den Nachtrag ansehen, dann klicken Sie bitte auf folgenden Link:
+
+<%= advocate_account_question_response_url(@kase, @response) %>
+
+Sollten Sie Fragen haben, stehen wir Ihnen per E-Mail gern zur Verfügung.
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Mandatensuche.
+
+<%= render :partial => "notifier/footer" %>

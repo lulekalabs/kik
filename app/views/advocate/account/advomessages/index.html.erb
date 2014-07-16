@@ -1,0 +1,27 @@
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+        <h2>Meine Mitteilungen</h2>
+        <p>Veröffentlichen Sie hier Ereignisse und aktuelle Mitteilungen zu sich und Ihrer Kanzlei. Punkten Sie mit Aktualität und halten Sie potentielle Mandanten mit interessanten Nachrichten auf dem Laufenden. </p>
+        <p><b>Nehmen Sie sich ein paar Minuten Zeit, um ab und an eine Mittteilung zu veröffentlichen – Sie werden feststellen, es lohnt sich! </b></p>
+
+        <%= render :partial => "new_control" %>
+
+        <%= render :partial => "show", :collection => @advomessages %>
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <div class="clearer"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom"></div>
+  </div>
+</div>

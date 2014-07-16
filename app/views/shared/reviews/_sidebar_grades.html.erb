@@ -1,0 +1,77 @@
+         <%= render :partial => 'shared/sidebar_stats' %>  
+        <div class="pad_r_l_15">
+          <h2>Bewertungsnoten:</h2>
+          <% if kik_realm? %> 
+            <div class="left"><img title="sehr gut" alt="Note eins" src="/images/z_1.jpg" />
+            </div>
+            <p> = sehr gut</p>
+            <div class="clearer_5"></div>
+            <div class="left "><img title="gut" alt="Note zwei" src="/images/z_2.jpg" /></div>
+            <p> = gut</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="befriedigend" alt="Note drei" src="/images/z_3.jpg" /></div>
+            <p> = befriedigend</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="ausreichend" alt="Note vier" src="/images/z_4.jpg" /></div>
+            <p> = ausreichend</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="mangelhaft" alt="Note fuenf" src="/images/z_5.jpg" /></div>
+            <p> = mangelhaft</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="ungenügend" alt="Note sechs" src="/images/z_6.jpg" /></div>
+            <p> = ungenügend</p>
+          <% end %>
+          <% if af_realm? %> 
+            <div class="left"><img title="sehr gut" alt="Note eins" src="/images/advofinder/z_1.jpg" />
+            </div>
+            <p> = sehr gut</p>
+            <div class="clearer_5"></div>
+            <div class="left "><img title="gut" alt="Note zwei" src="/images/advofinder/z_2.jpg" /></div>
+            <p> = gut</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="befriedigend" alt="Note drei" src="/images/advofinder/z_3.jpg" /></div>
+            <p> = befriedigend</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="ausreichend" alt="Note vier" src="/images/advofinder/z_4.jpg" /></div>
+            <p> = ausreichend</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="mangelhaft" alt="Note fuenf" src="/images/advofinder/z_5.jpg" /></div>
+            <p> = mangelhaft</p>
+            <div class="clearer_5"></div>
+            <div class="left"><img title="ungenügend" alt="Note sechs" src="/images/advofinder/z_6.jpg" /></div>
+            <p> = ungenügend</p>
+          <% end %> 
+         <div class="clearer_10"></div>    
+          <h2>Hinweise:</h2>
+          <p>Die FÜNF WERTE, welche das
+kann-ich-klagen.de-Bewertungssystem
+zur Berechnung der Gesamtnote aus
+Sicht von Mandanten berücksichtigt,
+lauten:</p>
+        <ul>
+            <li>Verständlichkeit</li>
+            <li>Zuverlässigkeit</li>
+            <li>Menschlichkeit</li>
+            <li>Erreichbarkeit</li>
+            <li>Auftreten</li>
+
+          </ul>
+          <p>Erfahren Sie mehr darüber, wie die nebenstehende Gesamtnote
+berechnet wird, über die berücksichtigten FÜNF WERTE und das <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> 
+Bewertungssystem.</p>
+<p>Entwickelt in Zusammenarbeit
+mit <br />Prof. Dr. Robert Schweizer.</p>
+
+ <div class="clearer"></div>
+  <div class="pad_10"></div>
+  <b><%=link_to "mehr &#187;", how_client_account_reviews_path %> </b>
+  <div class="pad_10"></div>
+          <div class="clearer_10"></div>  
+
+
+
+          <h2></h2>
+          <p>Anwälte haben die Möglichkeit auf eine abgegebene Bewertung mit einem Kommentar zu reagieren, der unterhalb der
+          Bewertung angezeigt wird.
+          </p>
+        </div>

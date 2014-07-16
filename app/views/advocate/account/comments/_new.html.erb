@@ -1,0 +1,32 @@
+<% # advocate/account/comments/_new
+  header_message ||= "Ihre Antwort:"
+  commentable ||= nil
+  kase ||= if commentable.is_a?(Response)
+    commentable.kase
+  end
+  form_url ||= if current_user.person.is_a?(Advocate)
+    if commentable.is_a?(Response)
+      advocate_account_question_response_comments_path(*[kase, commentable])
+    elsif commentable.is_a?(Kase)
+      advocate_account_question_comments_path(commentable)
+    end
+  elsif current_user.person.is_a?(Client)
+    if commentable.is_a?(Response)
+      client_account_question_response_comments_path(*[kase, commentable])
+    elsif commentable.is_a?(Kase)
+      client_account_question_comments_path(commentable)
+    end
+  end
+%>
+<%= error_messages_for :comment %>
+<% remote_form_for :comment, @comment && @comment.new_record? ? @comment : Comment.new, :url => form_url do |f| %>
+  <p><b><%= header_message %></b></p>
+  <p>
+    <%= f.text_area :message %>
+  </p>
+  <div>
+    <%= submit_tag "Antwort absenden", :class => "button_right" %>
+  </div>
+  <div class="button_left"></div>
+  <div class="clearer"></div> 
+<% end %>

@@ -1,0 +1,5 @@
+Lieber kann-ich-klagen.de Administrator,
+
+es wurde mitgeteilt, dass ein Mandat zwischen <%= @client.female? ? "der Rechtsuchenden #{@client.title_and_name}" : "dem Rechtsuchenden #{@client.title_and_name}" %> mit der <%= @client.number %> und <%= @advocate.female? ? "der Anwältin #{@advocate.title_and_name}" : "dem Anwalt #{@advocate.title_and_name}" %> mit der <%= @advocate.number %> bestreffend die Frage <%= @kase.number %> zustande gekommen ist.
+
+<%= render :partial => "notifier/footer" %>

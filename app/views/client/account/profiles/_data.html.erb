@@ -1,0 +1,104 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+%>
+<ul class="profil">
+  <% unless edit %>
+  <li><span class="one"><b>Kundennummer</b></span><span class="two"><b><%= h(@person.number) %></b> (kann nicht geändert werden)</span></li>
+  <li><span class="one"><b>ID</b></span><span class="two"><b><%= h(@person.user.id) %></b> (kann nicht geändert werden)</span></li>
+  <li><span class="one"><b>Benutzername</b></span><span class="two"><b><%= h(@person.user.login) %></b> (kann nicht geändert werden)</span></li>
+  <% end %>
+  <li><span class="one">E-Mail-Adresse</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :email, :class => "field_edit" %>
+    <% else %>
+      <%= h(@person.email) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Anrede</span><span class="two">
+    <% if edit %>
+      <%= f.select :gender, collect_for_gender_select, {}, :class => "option_f_h_edit", 
+        :style => "background-color:#fffef7" %>
+    <% else %>
+      <%= h(@person.salutation) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Titel</span><span class="two">
+    <% if edit %>
+      <%= f.select :academic_title_id, collect_for_academic_title_select("kein Titel", false), {},
+        {:class => "option_f_h_edit", :style => "background-color:#fffef7 "} %>
+    <% else %>
+      <%= h(@person.title.blank? ? "kein Titel" : @person.title) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Vorname</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :first_name, :class => "field_edit"%>
+    <% else %>
+      <%= h(@person.first_name) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Nachname</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :last_name, :class => "field_edit"%>
+    <% else %>
+      <%= h(@person.last_name) %>
+    <% end %>
+  </span></li>
+  <% if kik_realm? %>
+  <% fields_for "person[personal_address_attributes]", @person.personal_address do |a| %>
+  <li><span class="one">Straße / Nr.</span><span class="two">
+    <% if edit %>
+      <%= a.text_field :street, :class => "field_edit" %>
+      <%= a.text_field :street_number, :class => "field_edit_nr" %>
+    <% else %>
+      <%= h("#{@person.personal_address.street} #{@person.personal_address.street_number}")%>
+    <% end %>
+  </span></li>
+    <li><span class="one">PLZ</span>
+    <span class="two">
+      <% if edit %>
+        <%= a.text_field :postal_code, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.personal_address.postal_code) %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Wohnort</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :city, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.personal_address.city) %>
+      <% end %>
+    </span></li>
+    
+    <li><span class="one">Mobilfunk- o. Festnetznr.</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :phone_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.phone_number) %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Faxnummer</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :fax_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.fax_number)%>
+      <% end %>
+    </span></li>
+  <% end %> 
+  <% end %>
+  <% if af_realm? %>
+  <% end %>
+  
+  
+  
+  <li><span class="one">Abonnierter Newsletter</span><span class="two"> 
+    <%= ClientEnrollment.human_name %>&nbsp;
+    <% if @person.enrollment? && @person.enrollment.pending? %>
+      <%= link_to_remote "Aktivierungs-Email erneut anfordern", :url => create_enrollment_client_account_profile_path, :method => :put %>
+    <% elsif !@person.enrollment? %>
+      <%= link_to_remote "Jetzt bestellen", :url => create_enrollment_client_account_profile_path, :method => :put %>
+    <% else %>
+      <%= link_to_remote "Jetzt abbestellen", :url => destroy_enrollment_client_account_profile_path, :method => :put %>
+    <% end %>
+  </span></li>
+</ul>

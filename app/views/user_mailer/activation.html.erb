@@ -1,0 +1,61 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+vielen Dank für die Bestätigung und Aktivierung Ihrer Anmeldung auf kann-ich-klagen.de!
+
+Ihre Anmeldung ist hiermit erfolgreich abgeschlossen.
+
+Als Bonus für die erfolgreiche Aktivierung Ihrer Anmeldung wurde Ihrem persönlichen
+Anwaltsprofil Ihr Startguthaben im Wert von 500,00 € netto (= 595,00 € brutto) gutgeschrieben.
+
+Das Guthaben können Sie ab Start von kann-ich-klagen.de bis einschließlich 31.03.2010 einlösen
+und damit die Vorteile von kann-ich-klagen.de ausführlich testen. Eine Übertragung an Dritte
+oder Auszahlung des Startguthabens ist nicht möglich.
+
+Ihr persönliches Anwaltsprofil steht Ihnen ab dem Start von kann-ich-klagen.de zur Verfügung, 
+indem Sie sich mit Ihren persönlichen Zugangsdaten einloggen.
+
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+Sie können sich auf https://www.kann-ich-klagen.de/anwalt mit Ihrer E-Mail-Adresse und 
+Ihrem Passwort einloggen. Ihre persönlichen Zugangsdaten lauten:
+
+E-Mail-Adresse:	<%= @person.email %>
+
+Passwort:		<%= @person.password %>
+
+Nach dem Login mit oben stehendem Passwort können Sie dieses übernehmen oder
+ein neues Passwort vergeben. Erst dann wird das alte Passwort ungültig.
+
+Sollten Sie einmal Ihr Passwort vergessen, klicken Sie bitte auf folgenden Link oder
+kopieren Sie ihn in die Adresszeile Ihres Internetbrowsers:
+
+https://www.kann-ich-klagen.de/passwort 
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+
+kann-ich-klagen.de unterstützt Anwälte deutschlandweit bei der Akquise von neuen Mandanten.
+Teilnehmende Anwälte erhalten regelmäßig und kostenlos aktuelle Fragen von potentiellen
+Mandanten zur Einsicht. Anwälte sparen Zeit und Akquisekosten - die Suche und Vorstellung
+von potentiellen Mandanten übernimmt www.kann-ich-klagen.de. 
+
+Weiterempfehlen wird belohnt!
+
+Kennen Sie Kolleginnen und Kollegen, für die kann-ich-klagen.de interessant sein könnte?
+Dann empfehlen Sie bitte weiter.
+
+Für jede durch Sie vermittelte, aktivierte Anmeldung, erhalten Sie und der Vermittelte
+zusätzlich zum jeweiligen Startguthaben je ein Guthaben für 10 Kontakte zu potentiellen
+Mandanten im Wert von 50,00 € netto (= 59,50 € brutto) Ihrem persönlichen Anwaltsprofil
+gutgeschrieben. Hier können Sie kann-ich-klagen.de weiter empfehlen:
+
+www.kann-ich-klagen.de/einladen
+
+Falls Sie zukünftig einmal Hilfe benötigen oder Missbrauch vermuten, stehen wir Ihnen
+jederzeit gern per E-Mail unter email@kann-ich-klagen.de zur Verfügung.
+kann-ich-klagen.de gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+Wir bedanken uns für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.
+
+<%= render :partial => "notifier/footer" %>

@@ -1,0 +1,118 @@
+<%
+  edit ||= false
+  show ||= false
+  review ||= false
+  header_message ||= "Bitte überprüfen Sie die von Ihnen eingegebenen Daten"
+  info_message ||= "Durch Klick auf \"Kontakt-Paket kaufen\" wird der Kaufprozess abgeschlossen."
+%>
+<div class="blue_right">
+  <%= form_flash_messages %>
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <%= error_messages_for :order, :billing_address, :header_message => header_message %>
+
+        <% if show && review %>
+          <% unless header_message.blank? %>
+          <h2><%= header_message %></h2> 
+          <% end %>
+          <% unless info_message.blank? %>
+          <p><%= info_message %></p>
+          <% end %>
+        <% end %>
+
+        <%#--- Zurück, um den Kontakt anzuzeigen %>
+        <% if session[:contact_question_location] && !review && !edit %>
+        <div>
+          <%= link_to "Klicken Sie hier, um nun zur gewünschten Frage zurück zu kehren und den Kontakt anzuzeigen &raquo;",
+            session[:contact_question_location] %>
+        </div>
+        <div class="clearer_10"></div>
+        <% end %>
+
+        <div class="two_big_top"> <h2>Aktuelle Auswahl: <b><%= h(@order.line_items.first.sellable.name) %></b></h2></div> 
+        <div class="two_big_content">
+          <% @order.line_items.each do |item| %>
+            <h1>
+              Preis für <%= item.sellable.name %>&nbsp;
+              <b><%= item.gross_amount.format %>&nbsp;</b>
+              (<%= item.net_amount.format %> netto + <%= number_to_percentage(item.tax_rate, :precision => 0) %> MwSt.)
+            </h1>
+            <% if item.product.subscription? && item.product.length_in_issues == 1 %>
+              <p>Bei Laufzeit <b><%= item.product.term_in_days %> Tage</b>:</p>   
+              <p>Laufzeit: <b><%= item.product.term_in_days %> Tage</b> (Verlängerung um weitere <%= item.product.term_in_days %> Tage, sofern nicht 3 Tage vor Ablauf der Laufzeit gekündigt wird.)</p>
+            <% elsif item.product.subscription? && item.product.length_in_issues == 12 %>
+              <p>Bei Laufzeit <b><%= item.product.term_in_days %> Tage</b>:</p>
+              <p>Laufzeit: <b><%= item.product.term_in_days %> Tage</b> (Verlängerung um weitere <%= item.product.term_in_days %> Tage, sofern nicht 30 Tage vor Ablauf der Laufzeit gekündigt wird.)</p>
+            <% end %>
+            
+          <% end %>
+          <h1>
+            <b>Gesamtpreis:</b>&nbsp;
+            <b><%= @order.gross_amount.format %>&nbsp;</b>
+            (<%= @order.net_amount.format %> netto + <%= number_to_percentage(@order.line_items.first.tax_rate, :precision => 0) %> MwSt.) / Monat
+          </h1>
+          
+        </div>
+        <% if show %>
+          <div class="two_big_bottom"></div>
+        <% else %>
+          <div class="two_big_bottom_arrow">
+            <%= link_to content_tag(:b, "Auswahl ändern"), advocate_account_products_path %>
+          </div> 
+        <% end %>
+        <div class="clearer_10"></div>
+
+        <% if show %>
+        
+          <div class="two_big_top"> <h2><b>Zahlungsdaten</b></h2></div>
+
+          <%= render :partial => "order_data", :locals => {:edit => false, :show => true, :review => false} %>
+        
+        <% elsif edit %>
+          <div class="two_big_top"> <h2><b>Zahlungsdaten</b></h2></div>
+
+          <% form_for :order, @order, :url => new_advocate_account_orders_path, :html => {:method => :post} do |f| %>
+            <%= render :partial => "order_data", :locals => {:f => f, :edit => edit, :review => review} %>
+            <%= hidden_field_tag :editing, "1" %>
+          <% end %>
+          
+        <% elsif review %>
+          <div class="two_big_top"> <h2><b>Rechnungsdaten prüfen</b></h2></div>
+
+          <% form_for :order, @order, :url => advocate_account_orders_path, :html => {:method => :post} do |f| %>
+            <%= render :partial => "order_data", :locals => {:f => f, :edit => edit, :review => review} %>
+            <%= hidden_field_tag :reviewing, "1" %>
+          <% end %>
+        <% end %>
+        
+        <%#--- Zurück, um den Kontakt anzuzeigen %>
+        <% if session[:contact_question_location] && !review && !edit %>
+        <div>
+          <%= link_to "Klicken Sie hier, um nun zur gewünschten Frage zurück zu kehren und den Kontakt anzuzeigen &raquo;",
+            session[:contact_question_location] %>
+        </div>
+        <div class="clearer_10"></div>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+            <li>Sollten Sie Hilfe beim Kaufprozess benötigen, stehen wir Ihnen gern per <%= mail_to Notifier.help_email, 'E-Mail', {:class => "white",  :encode => "hex" }%> zur Verfügung.</li>
+            <li>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr Widerspruchsrecht erhalten Sie, als Fortführung zu diesem Hinweis, als Nutzer auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de" ,:class => "white"} %></li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

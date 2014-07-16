@@ -1,0 +1,39 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+     <h2>Rechnungen</h2>  
+    <% unless @invoices.empty? %>
+      <% @invoices.group_by(&:short_number_year).each do |year, anual_invoices| %>
+      <div class="sitemap">
+       
+        <ul>
+          <li>
+            <b><%= "Rechnungen #{year}" %></b>
+            <div>
+              <ul>
+                <% anual_invoices.sort {|a, b| b.created_at >= a.created_at ? -1 : (b.created_at < a.created_at ? 1 : 0)}.group_by(&:short_number_month).each do |month, monthly_invoices| %>
+                <li>
+                  <%= link_to_function("&#187; #{month}", "$('##{l(monthly_invoices.first.created_at, :format => "%m%Y")}').show()") %>
+                  <ul style="display:none;" id="<%= "#{l(monthly_invoices.first.created_at, :format => "%m%Y")}" %>">
+                    <% monthly_invoices.each do |invoice| %>
+                    <li>
+                      <%= link_to "Rechnung_#{invoice.short_number}.pdf",
+                        advocate_account_invoice_path(invoice, :format => :pdf), :popup => true %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <% end %>
+    <% else %>
+      <p>Keine Rechnung vorhanden</p>
+    <% end %>
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+

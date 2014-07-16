@@ -1,0 +1,7 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Ihre Anwaltsbewertung auf <%= project_name %> ist nun freigeschaltet und wird im Profil des Anwalts angezeigt:
+
+<%= client_account_reviews_url %>
+
+<%= render :partial => "notifier/footer_lean" %>

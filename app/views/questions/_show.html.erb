@@ -1,0 +1,307 @@
+<% # questions/_show
+  kase ||= show || @kase
+  open ||= false
+  editable ||= kase.can_edit?(current_user.person)
+  commentable ||= false
+  comments ||= kase.comments.visible
+  can_comment ||= kase.can_comment?(current_user.person)
+  show_contact_if_available ||= true
+  access ||= false
+  client ||= nil
+  question_url_helper ||= nil
+%>
+<div id="<%= dom_id(kase) %>">
+  <div class="quest_top clearer"></div>
+  <div class="quest_content">
+    <div class="left">
+      <% if question_url_helper %>
+      <p><b><a href="<%= send(question_url_helper, kase) %>">Frage <%= kase.number %> vom <%= l(kase.created_at) %></a></b></p>
+      <% else %>
+      <p><b>Frage <%= kase.number %> vom <%= l(kase.created_at) %></b></p>
+      <% end %>
+      <% unless current_user.person == kase.person %>
+      <p>Gestellt von: <%= h(kase.person.user.login) %></p>
+      <% end %>
+      
+      <%#--- show contact %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) && current_user.person.access_to?(kase) %>
+        <% 
+          access = current_user.person.accesses.find(:first, :conditions => ["accesses.accessible_id = ?", kase.id])
+          client = current_user.person.requestee_of(kase) 
+        %>
+        <p>
+          <%= link_to_function "Kontaktdaten ansehen &#187;",
+            "$('##{dom_id(kase, 'contact-info-content')}').show();$('##{dom_id(kase, 'open-contact-info-link')}').hide();$('##{dom_id(kase, 'close-contact-info-link')}').show();", 
+              :id => "#{dom_id(kase, 'open-contact-info-link')}", :style => "#{show_contact_if_available ? 'display:none;' : ''}" %>
+          <%= link_to_function "Kontaktdaten schliessen &#187;",
+            "$('##{dom_id(kase, 'contact-info-content')}').hide();$('##{dom_id(kase, 'open-contact-info-link')}').show();$('##{dom_id(kase, 'close-contact-info-link')}').hide();", 
+              :id => "#{dom_id(kase, "close-contact-info-link")}", :style => "#{show_contact_if_available ? '' : 'display:none;'}" %>
+        </p>
+        <div class="c_daten" id="<%= dom_id(kase, 'contact-info-content') %>" style="<%= show_contact_if_available ? '' : 'display:none;' %>">
+          <%= p_tag client.salutation_and_title_and_name %>
+          <% if address = client.personal_address %>
+            <%= p_tag "#{address.street} #{address.street_number}" %>
+            <%= p_tag "#{address.postal_code} #{address.city}" %>
+          <% end %>
+          <%= p_tag "#{mail_to(client.email)}" %>
+          <%= p_tag_if client.phone_number, "Tel. #{client.phone_number}" %>
+          <%= p_tag_if client.fax_number,  "Fax. #{client.fax_number}" %>
+          <%= p_tag_unless client.remedy_insured,  "keine Rechtschutzversicherung" %>
+          <%= p_tag_if client.remedy_insured,  "Rechtschutzversichert" %>
+        </div>
+        <div class="clearer"></div>
+      <% elsif logged_in? && current_user.person.is_a?(Advocate) && !current_user.person.access_to?(kase) %>
+        <p>
+          <% if false %>
+         <!-- <%= link_to_remote "Kontaktdaten ansehen &#187;", {:url => contact_advocate_account_question_path(kase), 
+              :method => :put, :confirm => "Soll der Kontakt zum Rechtsuchenden jetzt freigestellt werden?"}, 
+                {:href => contact_advocate_account_question_path(kase)} %> -->
+          <% end %>
+      
+            
+              <a href="<%= show_contact_advocate_account_question_path(kase) %>" class="" onclick="$.get('<%= show_contact_advocate_account_question_path(kase, :uses_modal => "1") %>', function(data) { $.facebox(data) });return false;"><%= "Kontaktdaten ansehen &#187;" %></a>    
+          
+        </p>
+      <% end %>
+      
+      <p>Rechtsgebiet(e): <%= topics_list_in_words(kase) %></p>
+
+      <% if kase.not_expired? %>
+      <p>Laufzeit: noch <%= distance_of_time_in_words_to_now kase.expires_at %></p>
+      <% elsif kase.expired? %>
+      <p>Laufzeit: zu Ende </p> 
+      <% end %> 
+       <p>
+          <% if kase.responses.visible.count == 0  %>
+         Kein Anwalt hat sich bisher für Ihre Frage interessiert. 
+          <% else %>
+            <%= I18n.t("{{count}} Anwalt", :count => kase.responses.visible.count, :scope => :pluralizations).titleize %>&nbsp;<%= kase.responses.visible.count > 1 ? "haben bislang den Rechtsuchenden kontaktiert. " : "hat bislang den Rechtsuchenden kontaktiert. " %>
+          <% end %>
+        </p>
+         <% if access %>  
+        <p class="t_red">Sie haben die Kontaktdaten erworben am <%= l(access.created_at) %></p>
+         <% end %>
+     
+    </div>
+
+    <div class="right">
+      <%#--- status open %>
+      <% if kase.open? %>
+        <div class="quest_buttom_open">Frage: <%= kase.human_current_state_name %></div>
+      <% end %>
+
+      <%#--- close %>
+      <% if logged_in? && kase.person == current_user.person && kase.next_state_for_event(:cancel) %>
+      <div>
+        
+        <% if true %>
+          <a href="<%= show_close_client_account_question_url(kase, :open => open) %>" class="quest_buttom_notice" onclick="$.get('<%= show_close_client_account_question_url(kase) %>', function(data) { $.facebox(data) });return false;">Frage schließen</a>
+        <% elsif false %>
+          <a href="<%= show_close_client_account_question_path(kase) %>" rel="facebox" id="foo" class="quest_buttom_notice">Frage schließen</a>
+        <% elsif false %>
+          <%= link_to_remote "Frage schließen", {:url => show_close_client_account_question_path(kase), :method => :get}, 
+            {:class => "quest_buttom_notice", :href => show_close_client_account_question_path(kase)} %>
+          <a title="Frage schließen" style="display:none;" class="show_close_question_modal" href="#show_close_question_modal_content">Frage schließen</a>
+          <div id="show_close_question_modal_content" style="display:none;"></div>
+        <% else %>
+          <%= link_to_remote "Frage schließen", {:url => close_question_path(kase), :method => :put, 
+            :confirm => "Wollen Sie die Frage wirklich schliessen?"}, 
+              {:class => "quest_buttom_notice", :href => close_question_path(kase)} %>
+        <% end %>
+          
+          
+      </div>
+      <% end %>
+      
+      <%#--- reopen %>
+      <% if logged_in? && kase.person == current_user.person && kase.closed? && kase.next_state_for_event(:reopen) == :open %>
+      <div class="quest_buttom_open">Frage: geschlossen</div>
+      <div>
+        <%= link_to_remote "Frage wieder öffnen", {:url => reopen_question_path(kase), :method => :put, :confirm => "Wollen Sie die Frage wieder öffnen?"}, 
+          {:class => "quest_buttom_notice", :href => reopen_question_path(kase)} %>
+      </div>
+      <% end %>
+
+      <%#--- pre-approved %>
+      <% if kase.preapproved? %>
+      <div>
+        <% if true %>
+        <div class="quest_buttom_notice_not">Frage: wird geprüft</div>
+        <% else %>
+        <a class="quest_buttom_notice_not">Frage: wird geprüft</a>
+        <% end %>
+      </div>  
+      <% end %>
+
+      <%#--- created & activation link %>
+      <% if kase.created? %>
+      <div><div class="quest_buttom_notice_not">Frage: nicht aktiviert</div></div>
+      <div class="pad_10_0 t_10">
+        <%= link_to_remote "Aktivierungs-Link anfordern &#187;", 
+          {:url => resend_activate_question_path(:id => kase.activation_code), :method => :get, :confirm => "Jetzt Aktivierungs-Link anfordern?"}, 
+            {:class => "", :href => resend_activate_question_path(:id => kase.activation_code)} %>
+      </div>
+      <% end %>
+
+      <%#--- remember / follow question %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) %>
+        <% if current_user.person.following?(kase) %>
+          <div>
+            <%= link_to_remote "Frage nicht mehr merken", {:url => toggle_follow_question_path(kase), :method => :put}, 
+              {:class => "quest_buttom_notice_not", :href => toggle_follow_question_path(kase)} %>
+          </div>
+        <% else  %>
+          <%= link_to_remote "Frage merken", {:url => toggle_follow_question_path(kase), :method => :put}, 
+            {:class => "quest_buttom_notice", :href => toggle_follow_question_path(kase)} %>
+        <% end %>
+      <% end %>
+    
+      <%#--- contact client #753 (1): not yet contacted, but link to acquire contact %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) && !current_user.person.access_to?(kase) %>
+      <div>
+        <% if false %>
+        <%= link_to_remote "Rechtsuchenden kontaktieren", {:url => contact_advocate_account_question_path(kase), 
+          :method => :put, :confirm => "Soll der Kontakt zum Rechtsuchenden jetzt freigestellt werden?"}, {:class => "quest_buttom_apply", :href => contact_advocate_account_question_path(kase)} %>
+        <% end %>
+        
+        <a href="<%= show_contact_advocate_account_question_path(kase) %>" class="quest_buttom_apply" onclick="$.get('<%= show_contact_advocate_account_question_path(kase, :uses_modal => "1") %>', function(data) { $.facebox(data) });return false;"><%= "Rechtsuchenden kontaktieren" %></a> 
+        
+      </div>
+      <% end %>
+
+      <%#--- contact client #753 (3): got to question/response/comment after contact acquired %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) && current_user.person.access_to?(kase) && (my_response = current_user.person.response_to(kase)) && action_name != "show" %>
+      <div>
+        <%= link_to "Rechtsuchenden kontaktieren", advocate_account_question_response_path(kase, my_response), 
+          {:class => "quest_buttom_apply"} %>
+      </div>
+      <% end %>
+
+      <%#--- new response (bewerbung) %>
+      <% if kase.open? && logged_in? && current_user.person.is_a?(Advocate) && !current_user.person.responded_to?(kase) && current_user.person.access_to?(kase) && !['new', 'create'].include?(action_name) %>
+        <div>
+          <%= link_to "Bewerbung senden", new_advocate_account_question_response_path(kase),
+            :class=>"quest_buttom_apply_show" %>
+        </div>
+      <% end %>
+      
+      <%#--- mandate given? %>
+      <% if kase.open? && logged_in? && kase.person == current_user.person && !kase.accepted? && current_user.person.is_a?(Client) %>
+        <div class="t_10"><%= kase.mandate_given? ? "Mandat nicht erteilt?" : "Haben Sie das Mandat erteilt?" %>&nbsp;
+          
+          <% if true %>
+          
+            <a href="<%= show_mandate_given_client_account_question_path(kase) %>" class="" onclick="$.get('<%= show_mandate_given_client_account_question_path(kase) %>', function(data) { $.facebox(data) });return false;">Bitte hier klicken!</a>
+          
+          <% else %>
+            <%= link_to_remote "Bitte hier klicken!", {:url => mandate_given_question_path(kase), :method => :put, :confirm => "Wollen sie das Mandat jetzt erteilen?"}, 
+            {:class => "", :href => mandate_given_question_path(kase)} %>
+          <% end %>
+          
+        </div>
+        <div class="clearer_5"></div>
+      <% end %>
+
+      <%#--- mandate received? %>
+      <% if kase.open? && logged_in? && current_user.person.is_a?(Advocate) && !kase.accepted? && current_user.person.access_to?(kase) %>
+        <div class="t_10"><%= kase.mandate_received_from?(current_user.person) ? "Haben Sie das Mandat nicht erhalten?" : "Haben Sie das Mandat erhalten?" %>&nbsp;
+           
+           <% if true %>
+           
+           <a href="<%= show_mandate_received_advocate_account_question_path(kase) %>" class="" onclick="$.get('<%= show_mandate_received_advocate_account_question_path(kase) %>', function(data) { $.facebox(data) });return false;">Bitte hier klicken!</a>
+           
+           <% else %>
+
+           <%= link_to_remote "Bitte hier klicken!", {:url => mandate_received_question_path(kase, :person_id => current_user.person.id), :method => :put, :confirm => "Haben Sie das Mandat erhalten?"}, 
+            {:class => "", :href => mandate_received_question_path(kase)} %> 
+
+           <% end %>
+          
+        </div>
+        <div class="clearer_5"></div>
+      <% end %>
+
+    </div>
+    <div class="clearer"></div>
+      
+    
+
+   
+    <p><b>Betreff:&nbsp;<%= h(kase.summary) %></b></p>          
+  </div>
+
+  <div class="quest_content_open" id="<%= dom_id(kase, :content_open) %>" style="<%= open ? '' : 'display:none;' %>"> 
+   
+
+    <p>
+      <%= auto_link_all(markdown(sh(kase.description))) %>
+    </p>
+     <% unless kase.action_description.blank? %>
+      <p><b>Was haben Sie bereits unternommen?</b><br /><%= auto_link_all(markdown(sh(kase.action_description))) %></p>  
+      <% end %>
+
+    <% if comments.blank? && can_comment %>
+      <!-- add comment -->
+      <div id="<%= dom_id(kase, :add_comment_button) %>">
+        <div class="button_white_right_blue">
+          <%= link_to_function "Frage ergänzen", "$('##{dom_id(Comment.new, dom_id(kase))}').show(); $('##{dom_id(kase, :add_comment_button)}').hide();" %>
+        </div>
+        <div class="button_white_left_blue"></div>
+        <div class="clearer"></div> 
+      </div>
+      
+      <!-- new first comment -->
+      <div class="line_answer" id="<%= dom_id(Comment.new, dom_id(kase)) %>" style="display:none;">
+        <%= render :partial => "comments/new", :locals => {:commentable => kase,
+          :header_message => "Ihre Ergänzung zu Ihrer Frage:"} %>
+      </div>
+    <% end %>
+
+    <%= render :partial => "comments/show", :collection => comments %>
+          
+    <div class="clearer_10"></div>
+
+    <% if kase.person == current_user.person || (current_user.person.is_a?(Advocate) && current_user.person.access_to?(kase)) %>
+    
+      <%= render :partial => "shared/assets/attached_images", :locals => {
+        :assetable => kase, :object_name => :kase, :form_url => client_account_question_path(kase),
+          :editable => editable} %>
+
+      <%= render :partial => "shared/assets/attached_documents", :locals => {
+        :assetable => kase, :object_name => :kase, :form_url => client_account_question_path(kase),
+          :editable => editable} %>
+          
+    <% end %>
+    
+  </div>
+
+  <div class="quest_bottom">
+    <%= link_to_open_close_toggle ["Frage minimieren", "Frage maximieren"], 
+      dom_id(kase, :content_open), open %>
+  </div>
+</div>  
+
+
+        
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    <% if controller.is_a?(Client::Account::QuestionsController) && action_name =~ /^show_close/i %>
+      <% if logged_in? && kase.person == current_user.person && kase.next_state_for_event(:cancel) %>
+        $.get('<%= show_close_client_account_question_url(kase, :close_reason => params[:close_reason]) %>', function(data) { $.facebox(data) });
+      <% end %>
+    <% end %>
+  })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <h2>Stichwortsuche</h2>
+    <div class="keywords">
+      <% tag_cloud(@tags, %w(t4 t5 t6 t7 t8 t9 t10 t11 t12)) do |tag, css| %>
+      <%= link_to h(tag.name), tags_service_path(:q => tag.name) %>
+      <% end %>
+    </div>
+
+    <% unless @articles.blank? %>
+      <div class="pad_20"></div>    
+      <h2><%= "#{@articles.size} #{@articles.size > 1 ? "Suchergebnisse" : "Suchergebnis"} für Stichwort " %><b><%= h(@tag) %></b></h2>
+      <%= render :partial => "article", :collection => @articles%>
+    <% end %>
+
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+

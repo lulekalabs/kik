@@ -1,0 +1,106 @@
+
+NOTE: This template is obsolete. The content has moved to /client/account/advocates/index
+
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Meine Bewertungen</h2>
+        <div class="menue_c_2"> 
+          <ul> 
+            <li class="<%= current_page?(client_account_reviews_path) || current_page?(pending_client_account_reviews_path) ? 'select' : ''%>">
+              <%= link_to "noch zu bewertende Anwälte", client_account_reviews_path %>
+            </li>
+            <li class="<%= current_page?(approved_client_account_reviews_path) ? 'select' : ''%>">
+              <%= link_to "bereits bewertete Anwälte", approved_client_account_reviews_path %>
+            </li>
+          </ul>
+        </div>
+
+
+        <%= render :partial => "overview", :object => Advocate.first %>
+        <div class="button_right">
+          <%= link_to "Bewertung abgeben", review_client_account_reviews_path, 
+          {:title => "Bewertungsdetails zeigen"} %>
+        </div>
+        <div class="button_left"></div>
+
+        <div class="clearer_20"></div>       
+
+
+
+        <p style="color:red">für bereits bewertet</p>
+
+        <%= render :partial => "overview", :object => Advocate.first %>
+        <div class="clearer_10"></div>
+        <h2></h2>  
+        <div class="note_small">
+          1,7
+        </div>
+        <div class="block_300_user">
+          <p><b>Note 1,7</b> von <b>USERNAME</b> (ID: 123456)</p>
+          <p>Bewertung vom Sonntag, 23. August 2009, 22:56 Uhr</p>
+        </div>
+        <div class="pad_15"> 
+          <div class="button_white_right_blue">
+            <%= link_to "Bewertung anzeigen", client_account_review_path(:id => 2), 
+            {:title => "Bewertungsdetails zeigen"} %>
+          </div>
+          <div class="button_white_left_blue"></div>
+        </div>	 
+        <div class="clearer"></div>               
+        <h2></h2>
+
+        <div class="note_small">
+          1,7
+        </div>
+        <div class="block_300_user">
+          <p><b>Note 1,7</b> von <b>USERNAME</b> (ID: 123456)</p>
+          <p>Bewertung vom Sonntag, 23. August 2009, 22:56 Uhr</p>
+        </div>
+        <div class="pad_15"> 
+          <div class="button_white_right_blue">
+            <%= link_to "Bewertung anzeigen", client_account_review_path(:id => 2), 
+            {:title => "Bewertungsdetails zeigen"} %>
+          </div>
+          <div class="button_white_left_blue"></div>
+        </div>
+        <div class="clearer"></div>               
+        <h2></h2>
+        <div class="clearer_20"></div>
+
+
+
+
+
+        <%= render :partial => "overview", :object => Advocate.first %>
+        <div class="clearer_10"></div>
+        <h2></h2>  
+        <div class="note_small">
+          1,7
+        </div>
+        <div class="block_300_user">
+          <p><b>Note 1,7</b> von <b>USERNAME</b></p>
+          <p>Bewertung vom Sonntag, 23. August 2009, 22:56 Uhr</p>
+        </div>
+        <div class="pad_15"> 
+          <div class="button_white_right_blue">
+            <%= link_to "Bewertung anzeigen", client_account_review_path(:id => 2), 
+            {:title => "Bewertungsdetails zeigen"} %>
+          </div>
+          <div class="button_white_left_blue"></div>
+        </div>
+        <div class="clearer"></div>               
+        <h2></h2>    
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => "sidebar_grades" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

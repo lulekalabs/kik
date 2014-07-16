@@ -1,0 +1,2 @@
+module Press::ReleasesHelper
+end

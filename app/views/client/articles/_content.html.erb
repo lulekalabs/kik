@@ -1,0 +1,58 @@
+<%
+  details ||= false
+  articles ||= content || @articles
+%>
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2><%= articles_header_in_words %>
+        <!--<%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+          client_articles_path %>--></h2>
+        
+        <%= render :partial => 'article', :collection => articles, :locals => {:details => details,
+          :more_with_link => true} %>
+        
+      </div>
+
+      <div class="col_2">
+        
+        <%= render :partial => 'shared/sidebar_stats' %>
+        
+        <div class="pad_r_l_15">
+          
+         
+          
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+            client_articles_path, :class => "white_none" %>
+           <div class="pad_20"></div>     
+          <%= render :partial => "shared/sidebar_tag_cloud", 
+            :locals => {:collection_method_name => :client_articles_path} %>
+          
+          <div class="pad_20"></div>
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+            client_articles_path, :class => "white_none" %>
+            <div class="pad_20"></div>
+
+          <%= render :partial => "shared/sidebar_topics", 
+            :locals => {:collection_method_name => :client_articles_path} %>
+
+          <div class="pad_20"></div>
+          
+          <%= render :partial => "shared/sidebar_archive", 
+            :locals => {:collection_method_name => :client_articles_path} %>
+
+          <div class="pad_5"></div>
+          <h2></h2>
+          
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"),
+            client_articles_path, :class => "white_none" %> 
+           
+          <div class="pad_10"></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>

@@ -1,0 +1,22 @@
+<%
+  object ||= billing_method_data || @person
+  edit ||= !defined?(:edit) && defined?(:f)
+  hidden_fields ||= false
+%>
+<ul class="profil">
+  
+  <li><span class="one">Versandart</span><span class="two">
+    <% if edit %>
+      <%= f.select :preferred_billing_method, collect_billing_method_for_select, {},
+        {:class => "", :style => "background-color:#fffef7 "} %>
+        <p class="t_9">Für Rechnungen per Post in Papierform wird pro Rechnung ein Zuschlag von 5,00 € zzgl. MwSt. berechnet.</p> 
+    <% else %>
+      <%= h(object.preferred_billing_method_name) %>
+      <% if hidden_fields %>
+        <%= f.hidden_field :preferred_billing_method %>
+      <% end %>
+    <% end %>
+    
+  </span></li>
+  
+</ul>

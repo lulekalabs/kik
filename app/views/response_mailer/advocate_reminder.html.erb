@@ -1,0 +1,19 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+damit das Mandanten-Fragen-System von kann-ich-klagen.de optimal funktioniert, ist es erforderlich, dass eine Bewerbung, die zurückgezogen wurde, oder ein Bewerbung in Folge derer Ihnen ein Mandat vom Rechtsuchenden erteilt wurde, geschlossen wird. So wird verhindert, dass Rechtsuchende weiter auf Ihre Bewerbung antworten und andere Anwälte sich vergebens beim Rechtsuchenden auf eine Frage bewerben, die nicht mehr aktuell ist.
+
+Wir erlauben uns daher in regelmäßigen Abständen bei Ihnen als sich bewerbender Anwalt nachzufragen, ob Ihre Bewerbung vom <%= l(@response.created_at) %>, auf die Frage von <%= h(@kase.person.title_and_name) %>, gestellt am <%= l(@kase.created_at) %>, noch aktuell ist. Bitte nehmen Sie sich kurz Zeit um zu prüfen.
+
+A. Ihre Bewerbung ist noch aktuell? Dann müssen Sie nichts unternehmen und können diese E- Mail ignorieren.
+
+B. Sie möchten Ihre Bewerbung zurückziehen oder haben bereits zurückgezogen? Dann klicken Sie bitte auf folgenden Link:
+
+<%= show_close_advocate_account_question_response_url(@kase, @response, :close_reason => "advocate_cancel") %>
+
+C. Ihnen wurde das Mandat bzw. der Auftrag zur Beantwortung der Frage erteilt? Dann klicken Sie bitte auf folgenden Link:
+
+<%= show_close_advocate_account_question_response_url(@kase, @response, :close_reason => "advocate_mandated") %>
+
+Wir bedanken uns für Ihr Vertrauen und Ihre Mithilfe!
+
+<%= render :partial => "notifier/footer_lean" %>

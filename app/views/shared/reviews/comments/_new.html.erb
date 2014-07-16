@@ -1,0 +1,22 @@
+<%
+  review ||= @review
+  form_url ||= if current_user.person.is_a?(Client)
+    af_realm? ? advofinder_client_review_comments_path(review) : client_account_review_comments_path(review)
+  else
+    af_realm? ? advocate_account_review_comments_path(review) : advocate_account_review_comments_path(review)
+  end
+%>
+<%= error_messages_for :comment %>
+<% remote_form_for :comment, :url => form_url, 
+    :html => {:method => :post} do |f| %>
+  <p>Ihr Kommentar zu dieser Bewertung (maximal 1200 Zeichen):</p>  
+  
+  <%= f.text_area :message, :class => "question_field_2 text" %>
+  <div class="clearer"></div>
+  <div class="pad_10"></div> 
+
+<div>
+  <%= submit_tag "Jetzt Kommentar absenden", :class => "button_right" %>
+</div>
+<div class="button_left"></div> 
+<% end %>

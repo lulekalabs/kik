@@ -1,0 +1,137 @@
+<div class="clearer"></div>
+<%= render :partial => "shared/advocate_search_filter" %>
+<%= render :partial => 'shared/default_fields_js' %>
+<div class="green">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="right"><img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/advofinder/anwaelte.jpg" style="position:relative;"/></div>
+    <div class="left" style="position:absolute;">
+      <ul class="pad_10">
+        <li><span class="headline"><a href="" title="kann-ich-klagen.de">advofinder.de </a> - Der Anwalts-Check im Internet</span></li>
+      </ul>
+      <ul class="haken_blue pad_5 pad_l_16">
+        <li>Anwälten suchen, finden &amp; bewerten deutschlandweit</li>
+        <li>Erfahrungen austauschen und Anwälte weiterempfehlen</li>
+        <li>Infos und News rund um die Themen Recht und Steuern </li>
+
+      </ul>
+    </div>
+    <div class="pad_10"></div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+
+
+
+
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <div class="pad_5"></div>
+        <div class="two_big_top clearer">
+          <h2><b>Neueste Anwaltsbewertungen:</b></h2>
+        </div>
+        <div class="two_big_content">
+          <%
+          @reviews = Review.visible.created_chronological_descending.find(:all, :limit => 5)
+          %>
+          <% @reviews.each do |review| %>
+          <div class="note_small">
+            <%= grade_point_average(review) %>
+          </div>
+          <div class="block_300_user">
+            <p><b>Note <%= grade_point_average(review) %></b> für <b><%= h(review.reviewee.user_id) %></b> (ID:<%= review.reviewee.number %>)</p>
+            <p>Bewertung vom <%= l(review.created_at) %></p>
+          </div>
+          <div class="pad_15">   
+            <div class="button_white_right_blue">
+              <%= link_to "Bewertung anzeigen", advofinder_advocate_profile_review_path(review.reviewee, review), 
+                {:title => "Bewertungsdetails zeigen"} %>
+            </div>
+            <div class="button_white_left_blue"></div> 
+          </div>
+
+          <div class="clearer"></div> 
+          <% unless review == @reviews.last %>
+          <h2></h2>
+          <% end %>
+          <% end %>  
+
+        </div>
+
+        <div class="two_big_bottom"></div>
+        <div class="pad_10"></div>
+        <div class="two_big_top clearer">
+          <h2><b>Neue Anwälte auf advofinder.de stellen sich vor:</b></h2>
+        </div>
+        <div class="two_big_content"> 
+          <%
+          @advocates = Advocate.visible.created_chronological_descending.find(:all, :limit => 5)
+          %>
+          <%= render :partial => "shared/advofinder/advocates/overview", :collection => @advocates %>
+        </div>
+        <div class="two_big_bottom"></div>
+
+
+      </div>
+      <div class="col_2">
+
+        <%= render :partial => 'shared/sidebar_stats' %>
+
+        <div class="pad_r_l_15">
+          <h2>Für Anwälte: <br /> Jetzt kostenlos anmelden!</h2>
+          <p>Sie sind Anwalt und möchten Ihr Profil kostenlos anlegen?</p>
+
+          <div class="button_red_right_2">
+            <a href="<%= benefits_advocate_path %>" title="weiter">Informationen für Anwälte</a>
+          </div>
+          <div class="button_red_left_2"></div>
+
+          <div class="clearer"></div>
+          <div class="pad_10"></div>
+          <h2>Die Vorteile von advofinder.de für Anwälte im Überblick:</h2>
+          <ul>
+            <li>Erhalten Sie kostenlos Feedback von Mandanten zur Optimierung des Serviceangebotes der Kanzlei </li>
+            <li>Renommee der Kanzlei ausbauen und dokumentieren durch Empfehlungen zufriedener Mandanten </li>
+            <li>Gewinnen Sie neue Mandanten überregional oder ganz in der Nähe</li>
+            <li>Mittels Suchfunktionen direkt von potentiellen Mandanten gefunden werden - deutschlandweit </li>
+            <li>Kostenloses Profil Ihrer Kanzlei ohne Einrichtungsgebühren und verpflichtende Mindestlaufzeiten</li>
+          </ul>
+
+          <div class="clearer_20"></div>
+          <h2>Für Mandanten:</h2>
+          <p>Bewerten Sie Ihren Anwalt kostenlos und unverbindlich! </p>
+
+          <div class="button_red_right_2">
+            <a href="<%= advofinder_reviews_path %>" title="weiter">Jetzt bewerten</a>
+          </div>
+          <div class="button_red_left_2"></div>
+
+          <div class="clearer"></div>
+          <div class="pad_10"></div>
+
+
+          <h2>News:</h2>
+
+          <p>Jetzt neu bei advofinder.de: Filtern Sie in der Suche nur nach Fachanwälten</p>
+
+          <div class="button_red_right_2">
+            <a href="<%= advofinder_search_path %>" title="weiter">Jetzt suchen</a>
+          </div>
+          <div class="button_red_left_2"></div>
+
+          <div class="clearer"></div>
+          <div class="pad_10"></div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

@@ -1,0 +1,46 @@
+<% # profile image 
+  form_url ||= if current_user.person.is_a?(Advocate)
+    formatted_advocate_account_profile_path(:format => 'js', :iframe => true, :sidebar_select => "image")
+  else
+    formatted_client_account_profile_path(:format => 'js', :iframe => true, :sidebar_select => "image")
+  end
+
+  destroy_url ||= if current_user.person.is_a?(Advocate)
+    destroy_image_advocate_account_profile_path(:sidebar_select => "image")
+  else
+    destroy_image_client_account_profile_path(:sidebar_select => "image")
+  end
+%>
+<div id="<%= dom_id(@person, :image) %>">  
+  <div class="two_small_top clearer"><h2><b>Mein Profilbild</b></h2></div> 
+  <% form_for(:person, @person, :url => form_url, 
+    :html => {:multipart => true, :target => 'upload_frame', :method => :put}) do |f| %>
+  
+  <div class="two_small_content">
+    <div class="right">
+      <% unless @person.image? %>
+      <p>Bitte laden Sie ein <br />aktuelles Bild<br /> von sich hoch.</p>
+      <% end %>
+    </div>
+    
+    <%= profile_image_tag(@person) %>
+    <div class="clearer"></div>
+    
+    <% if @person.image? %>
+      <%= link_to_remote("Bild entfernen", :url => destroy_url, :method => :put,
+        :confirm => "Wollen Sie das Bild wirklich löschen?") %>
+    <% end %>
+    <div class="clearer_5"></div>
+  
+      <%= f.file_field(:image, :class => "field w126", :maxlength => 18) %>
+      
+        <p class="pad_5 t_10">Das Bild muss als Grafikdatei (z.B. JPG, PNG oder GIF) vorliegen, eine Mindestgröße von 140 x 185 Pixel haben und darf nicht größer als 900 KB sein. </p>
+      </div>
+      <div class="two_small_bottom_arrow_hover">
+        <b><%= submit_tag "Jetzt Profilbild hochladen" %></b>
+      </div>
+    <% end %>
+    <iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+</div>
+
+

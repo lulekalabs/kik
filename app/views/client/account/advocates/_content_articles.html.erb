@@ -1,0 +1,69 @@
+
+<% unless @articles.empty? %>
+  <%= render :partial => "client/articles/article", :collection => @articles, 
+    :locals => {:articles_path_method_name => "", :article_path_method_name => "" }%>
+<% else %>
+  
+  Keine veröffentlichten Artikel.
+  
+<% end %>
+
+
+
+<% if false %>
+  <div class="left"><b>Veröffentlicht am Donnerstag, 07. Oktober 2010, 10:43 Uhr von Titel Vorname Nachname</b> </div>
+  <div class="right"><%= link_to "Artikel minimieren &#187;" ,{:title => "Zum ganzen Artikel"} %></div>
+  <div class="clearer"></div>
+  <div class="pad_5">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis, turpis et interdum blandit, augue ipsum molestie orci, metus vel ornare.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis, turpis et interdum blandit, augue ipsum molestie orci, metus vel ornare.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis, turpis et interdum blandit, augue ipsum molestie orci, metus vel ornare.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis, turpis et interdum blandit, augue ipsum molestie orci, metus vel ornare.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis, turpis et interdum blandit, augue ipsum molestie orci, metus vel ornare.
+
+    <div class="clearer"></div>
+
+    <p class="line">Downloads zum Artikel:</p>
+    <div class="left">
+      <a class="modal_xxx iframe" href="/images/application/imageuploads/articles/images/6/original_Krone.jpg?1261082977">
+        <img alt="Thumb_krone" src="/images/application/imageuploads/articles/images/6/thumb_Krone.jpg?1261082977">
+      </a>
+    </div>
+    <div class="clearer"></div>
+    <p class="line"></p>
+
+    <div class="right">
+      <a href="http://www.seitzeichen.de/bookmark.php" onclick="window.open('http://www.seitzeichen.de/bookmark.php?url='+encodeURIComponent('/presse/mitteilungen/6')+'&amp;title='+encodeURIComponent(document.title)+'&amp;pub=1bb1619030a2f6b835ced8c67a8986d9','Seitzeichen','scrollbars=yes,menubar=no,width=790,height=670,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100');return false" title="Diese Seite bookmarken" target="_top" class="empfehlen" id="bookmark_link">
+        Artikel empfehlen
+      </a>
+
+      <a href="/presse/mitteilungen/6/print" class="drucken" target="_blank">Druckansicht</a>
+
+      <a target="_blank" class="facebook" href="" title="Klicken Sie hier um es auf Facebook zu teilen">Teilen</a>
+
+      <a target="_blank" class="twitter" href="" title="Klicken Sie hier um es auf Twitter zu teilen">Twittern</a>
+
+    </div>
+
+
+
+
+
+  </div>
+
+  <div class="clearer_30"> </div>
+
+  <h2><a title="Zum ganzen Artikel" href="">Lorem ipsum dolor sit amet consectetur adipiscing elit! </a></h2>
+
+  <div class="left"><b>Veröffentlicht am Donnerstag, 07. Oktober 2010, 10:43 Uhr von Titel Vorname Nachname</b> </div>
+  <div class="right"><%= link_to "mehr &#187;" ,{:title => "Zum ganzen Artikel"} %></div>
+  <div class="clearer"></div>
+  <div class="pad_5">
+    Artikel sehen aus wie alle anderen Artikel mit dem Footer facebook print etc.
+  </div>
+<% end %>
+
+
+
+
+

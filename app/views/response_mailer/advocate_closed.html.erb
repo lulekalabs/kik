@@ -1,0 +1,15 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Ihre Bewerbung vom <%= l(@response.created_at) %> auf die Frage <%= @kase.number %> von <%= h(@kase.person.title_and_name) %>, gestellt am <%= l(@kase.created_at) %>, wurde geschlossen und ist damit nicht mehr aktuell.
+
+Als Grund für das Schließen der Bewerbung wurde angegeben: <%= @response.human_close_reason(true) %>
+
+Sie finden die Bewerbung nunmehr in Ihrem persönlichen Mein Bereich unter "Geschlossene Kontakte & Bewerbungen".
+
+Unter folgendem Link können Sie die Bewerbung und den bisherigen Kommunikationsverlauf weiterhin ansehen und auf Wunsch wieder öffnen, sollten Sie erneut in Kontakt treten wollen:
+
+<%= advocate_account_question_response_url(@kase, @response) %>
+
+Wir bedanken uns für Ihr Vertrauen und stehen Ihnen bei Fragen gern per E-Mail zur Verfügung.
+
+<%= render :partial => "notifier/footer_lean" %>

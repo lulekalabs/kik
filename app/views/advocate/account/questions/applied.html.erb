@@ -1,0 +1,141 @@
+
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <h2>Meine Kontakte &amp; Bewerbungen </h2> 
+        <div class="menue_c_2"> 
+          <ul> 
+            <li class="select"><a>Offene Kontakte &amp; Bewerbungen</a></li>
+            <li><a href="">Geschlossene Kontakte &amp; Bewerbungen </a></li>
+          </ul>
+        </div>
+
+        <%= render :partial => "questions/show", :object => Kase.first, :locals => {:open => false} %>
+        
+        <div class="quest_advo_top clearer"></div>
+        <div class="quest_advo_content"> 
+          <div class="left">
+            <b>Bewerbung</b> geschickt am 30.02.2001 um 19:20 Uhr
+            <div class="clearer_10"></div> 
+            <p>Dies ist ein interessanter fall haha Dies ist ein interessanter fall. ich will ihn haben</p> 
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Status: gelesen</div>
+            <div ><%= link_to " Bewerbung ansehen", regard_advocate_account_questions_path , :class=>"quest_buttom_apply_show" %></div>    
+          </div> 
+
+        </div> 
+        <div class="quest_advo_bottom"></div>
+
+        <div class="quest_advo_top clearer"></div>
+        <div class="quest_advo_content"> 
+          <div class="left">
+            <b>Bewerbung</b> geschickt am 30.02.2001 um 19:20 Uhr
+            <div class="clearer_10"></div> 
+            <p>Dies ist ein interessanter fall haha Dies ist ein interessanter fall. ich will ihn haben</p> 
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Status: abgelehnt</div>
+            <div ><%= link_to " Bewerbung ansehen", regard_advocate_account_questions_path , :class=>"quest_buttom_apply_show" %></div>   
+          </div> 
+
+        </div> 
+        <div class="quest_advo_bottom"></div>
+
+        <div class="clearer_10"></div> 
+        <p style="color:red">die drei zeigen nur die jeweiligen Zustände die möglich sind. Beim ansehen der Bewerbung kann er sie dann schliessen. -unten- So sieht es aus wenn die Kontaktdaten offen sind siehe ticket 463</p>
+        <div class="clearer_10"></div> 
+
+
+        <div class="quest_top clearer"></div>
+        <div class="quest_content">
+
+          <img src="/images/person/lay_small.jpg" alt="Lay" /> 
+          <div class="left">       
+            <p><b>Frage 12345678 vom 30.02.2001, 19:20 Uhr</b></p>
+            <p>Gestellt von: USERNAME</p>
+
+            <p><a>Kontaktdaten schließen &#187;</a></p>
+            <div class="c_daten">
+              <p>Michael Meier</p>
+              <p>Meierstr.101</p>
+              <p>80796 Meierhofen</p>
+              <p>meier@meier.de</p>
+              <p>0179/55662233</p>
+              <p>keine Rechtschutzversicherung</p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="quest_buttom_open">Frage: geschlossen</div>
+            <div class="t_10">1 offen von 10 Bewerbungen</div>
+          </div>
+          <div class="clearer"></div>
+          <p>Rechtsgebiet(e): Arbeitsrecht, Strafrecht</p>
+          <p><b>Betreff: Mein Arbeitsunfall am 11.02.2010 in Berlin,  mit dem Dienstwagen meiner Frau</b></p> 
+          <p>10 Anwälte haben den Rechtsuchenden bereits kontaktiert </p> 
+          <p>Laufzeit: noch XY Tage, XY Stunden, XY Minuten </p>
+        </div>
+
+        <div class="quest_bottom"> <a href="">Frage maximieren  <%= image_tag 'quest_open.gif' %></a>  </div>
+
+
+
+
+
+
+
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Ihr aktueller Fragen-Radar</h2>
+          <ul>
+            <li>
+              <p>Rechtsgebiet: Mietrecht</p>
+              <p>PLZ, Ort: 80796 München</p>
+              <p>Umkreis: 20 km </p>
+              <p>Bundesland: Bayern </p>
+            </li>
+          </ul>
+          <div class="clearer"></div>
+          <div class="pad_5"></div>
+          <a class="white_none" href=""><b>&#187; Filter für Fragen-Radar zurücksetzen</b></a>
+          <div class="clearer_20"></div>
+          <div class="pad_20"></div>
+          <h2>Fragen von Rechtsuchenden</h2>
+
+          <div class="pad_10"></div>
+          <a class="white_none" href=""><b>&#187; alle Fragen anzeigen</b></a>
+          <div class="pad_10"></div>
+          <ul>
+            <li><a class="white_none" href=""> Arbeitsrecht</a> (15)</li>
+            <li><a class="white_none" href="">Argrarrecht</a> (2)</li>
+            <li><a class="white_none" href="">Bank-/ Kapitalmarktrecht</a> (11)</li>
+            <li><a class="white_none" href="">Bau-/ Architektenrecht</a> (8)</li>
+            <li><a class="white_none" href="">Erbrecht</a> (19)</li>
+            <li><a class="white_none" href="">Familienrecht</a> (33)</li>
+            <li><a class="white_none" href="">Handels-/ Gesellschaftsrecht</a> (33)</li>
+            <li><a class="white_none" href="">für gewerblichen Rechtsschutz</a> (24)</li>
+            <li><a class="white_none" href="">Informationstechnologierecht</a> (28)</li>
+            <li><a class="white_none" href="">Insolvenzrecht</a> (14)</li>
+            <li><a class="white_none" href="">Medizinrecht</a> (21)</li>
+            <li><a class="white_none" href="">Miet-/ Wohnungseigentumsrecht</a> (201)</li>
+            <li><a class="white_none" href="">Sozialrecht</a> (173)</li>
+            <li><a class="white_none" href="">Strafrecht</a> (123)</li>
+            <li><a class="white_none" href="">Steuerrecht</a> (198)</li>
+          </ul>
+          <div class="clearer_10"></div>
+        
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

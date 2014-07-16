@@ -1,0 +1,17 @@
+      <div class="two_big_top_1 clearer">
+        <div class="menue_c_p"> 
+          <ul> 
+            <%= tab_list_item_link_to "Basisdaten", advocate_account_profile_path, 
+              selected_action == "base" %> 
+            <%= tab_list_item_link_to "Profildaten", details_advocate_account_profile_path,
+              current_page?(details_advocate_account_profile_path) || selected_action == "details" %>
+            <%= tab_list_item_link_to "Kontaktdaten", contact_advocate_account_profile_path,
+              current_page?(contact_advocate_account_profile_path) || selected_action == "contact" %>       
+            <%= tab_list_item_link_to "Zahlungsdaten", payment_advocate_account_profile_path,
+              current_page?(payment_advocate_account_profile_path) || selected_action =~ /^payment/ %>
+
+            <%= tab_list_item_link_to "Guthaben &#38; Paket", package_advocate_account_profile_path, 
+              current_page?(package_advocate_account_profile_path) || !!(selected_action =~ /^package/), {:class => "small"} %>
+          </ul>
+        </div>
+      </div>

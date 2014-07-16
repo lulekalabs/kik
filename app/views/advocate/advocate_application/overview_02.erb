@@ -1,0 +1,110 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        <h2>kann-ich-klagen.de Pakete für Anwälte im Überblick!</h2>
+        <p><b>Keine Einrichtungsgebühren +++ keine verpflichtende Mindestlaufzeiten</b></p>
+        <p>Wählen Sie Ihr Paket!</p>
+         
+        <div class="left">
+					<div class="two_small_top clearer"><h2><b>Flex-Paket</b></h2></div>
+						<div class="two_small_content" style="height:139px">
+						  <p>Anzahl an Kontaktdaten von Rechtsuchenden monatlich abrufbar: <b>1</b></p>
+              <p class="price">Preis je Kontakt - keine Laufzeit:<br /><input type="radio"/> <b>5,00 &#8364;</b></p>
+						</div>
+					<div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen",  {:title => "Flex-Paket"} %></b></div>
+				</div>
+
+				<div class="right">
+					<div class="two_small_top clearer"><h2><b>20er-Paket</b></h2></div>
+						<div class="two_small_content">
+						  <p>Anzahl an Kontaktdaten von Rechtsuchenden monatlich abrufbar: <b>20</b></p>
+              <p class="price">Preis je Kontakt - monatlich kündbar:<br /><input type="radio"/> <b>1,75 &#8364;</b> 34,90 	&#8364;/Mon.</p>
+              <p class="price_2">Preis je Kontakt - Laufzeit 12 Monate:<br /><input type="radio"/> <b>1,25 &#8364;</b> 24,90 	&#8364;/Mon.
+                <em>Sie sparen jeden Monat <b>10 Euro</b>!</em>   
+              </p>
+						</div>
+					<div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen",  {:title => "20er-Paket"} %></b></div>
+
+				</div>
+
+				<div class="clearer_10"></div>
+				
+
+				<div class="left">
+					<div class="two_small_top clearer"><h2><b>40er-Paket</b></h2></div>
+						<div class="two_small_content">
+						     <p>Anzahl an Kontaktdaten von Rechtsuchenden  monatlich abrufbar: <b>40</b></p>
+						     <p class="price">Preis je Kontakt - monatlich kündbar:<br /><input type="radio"/> <b>1,62 &#8364;</b> 64,90 	&#8364;/Mon.</p>
+                 <p class="price_2">Preis je Kontakt - Laufzeit 12 Monate:<br /><input type="radio"/> <b>1,12 &#8364;</b> 44,90 	&#8364;/Mon.
+                   <em>Sie sparen jeden Monat <b>20 Euro</b>!</em>   
+                   </p>
+						</div>
+					<div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen",  {:title => "40er-Paket"} %></b></div>
+				</div>
+				<div class="right">
+					<div class="two_small_top clearer"><h2><b>Flat Paket</b></h2></div>
+						<div class="two_small_content">
+						    <p>Anzahl an Kontaktdaten von Rechtsuchenden monatlich abrufbar: <b>unbegrenzt</b></p>
+						    <p class="price">Preis je Kontakt - monatlich kündbar:<br /><input type="radio"/> <b>inklusive</b> 94,90 &#8364;/Mon.</p>
+                <p class="price_2">Preis je Kontakt - Laufzeit 12 Monate:<br /><input type="radio"/> <b>inklusive</b> 64,90  &#8364;/Mon. 
+                  <em>Sie sparen jeden Monat <b>30 Euro</b>!</em>
+                </p>
+						</div>
+					<div class="two_small_bottom_arrow"><b><%= link_to "Jetzt bestellen",  {:title => "Flat Paket"} %></b></div>
+				</div>
+       <div class="clearer_10"></div>
+  		 
+        <p><b>Alle kann-ich-klagen.de Pakete beinhalten folgende Funktionen:</b></p>   
+        <ul class="info">
+          <li>Persönliches Anwaltsprofil</li>
+          <li>Fragen-Radar</li>
+          <li>Anwaltsmarketing</li>
+         
+        </ul>
+				<div class="clearer_10"></div>
+				
+        
+        
+        
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          
+          
+          <h2>
+          Hier finden Sie alle wichtigen Informationen zu den<br /> kann-ich-klagen.de Paketen</h2>
+          <ul>
+            <li><b>Wie lange dauert ein Paket?</b>
+                <p>Ohne Bindung beträgt die Laufzeit eines Pakets 1 Monat, mit Bindung 12 Monate.
+                Die Paketlaufzeit verlängert sich bei einem Paket ohne Bindung um jeweils 1 Monat,
+                bei Paketen mit Bindung um weitere 12 Monate, sollte nicht 3 Tage vor Ablauf
+                der Laufzeit gekündigt werden. </p>
+             </li>
+            <li><b>Wie lange kann ich Inklusivkontakte einlösen?</b>
+              <p>Nicht eingelöste Inklusivkontakte verfallen nach 30 Tagen nach Buchung eines Pakets.
+              Bei Abschluss eines Pakets: Keine Auszahlung, Gutschrift, Rückerstattung möglich.</p>
+              </li>
+            <li><b>Welche Kosten kommen auf mich zu?</b>
+              <p>Die rechts genannten Paketpreise verstehen sich zzgl. 19% MwSt.. Keine Einrichtungsgebühren.</p>
+            </li>
+            <li><b>Wie erfolgt die Rechnungsstellung?</b>
+                <p>Erfolgt im Voraus. Rechnung werden signiert als pdf per E-Mail versandt und sind steuerlich anerkannt. Für Rechnungen in Papierform wird pro Rechnung ein Zuschlag von 5,00 € zzgl. MwSt. berechnet.</p>
+            </li>
+            <li><b>Sonst noch etwas?</b>
+                <p>Bei Änderung der Konditionen besteht beiderseitig ein Sonderkündigungsrecht</p>
+            </li>
+           
+
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+

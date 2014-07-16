@@ -1,0 +1,156 @@
+<div class="white_site">
+    <div class="top clearer"></div>
+    <div class="content"> 
+      <% if kik_realm? %> 
+      
+        <h2>Herzlich Willkommen im Servicebereich von kann-ich-klagen.de</h2>
+        
+        <p>In unserem Servicebereich haben wir nützliche Dienste und hilfreiche Informationen zusammengestellt.</p>
+
+        <div class="left">
+          <div class="two_small_top clearer"><h2><b>Blog</b></h2></div>
+            <div class="two_small_content">
+              <img title="Blog" alt="Blog" src="images/icons/blog.gif" style="float:right"/>
+              Hier bloggt das <br />kann-ich-klagen.de Team über Themen die uns bewegen.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zum Blog", service_blogs_path, {:title => "Blog von kann-ich-klagen.de lesen"} %></b></div>
+          
+        </div>
+
+        <div class="left pad_l_18">
+          <div class="two_small_top clearer"><h2><b>Newsletter</b></h2></div>
+            <div class="two_small_content">
+              <img title="Newsletter" alt="Newsletter" src="images/icons/newsletter.gif" style="float:right"/>
+              Hier können Sie kostenlos Ihren Newsletter abonnieren. Wir informieren Sie regelmäßig über aktuelle Themen.
+            </div>
+          <div class="two_small_bottom_arrow"><a href="<%= new_service_newsletter_path %>" title="Newsletter abonnieren!"><b>Jetzt abonnieren</b></a></div>
+        </div>
+
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>kann-ich-klagen.de RSS-Feed</b></h2></div>
+          <div class="two_small_content">
+              <img title="Lesezeichen hinzufügen" alt="Lesezeichen hinzufügen" src="images/icons/rss.gif" style="float:right"/>
+              Abonnieren Sie den <br />kann-ich-klagen.de RSS-Feed.
+            </div>
+          <div class="two_small_bottom_arrow">
+            <b> <%= link_to "Jetzt abonnieren", formatted_feed_service_blogs_url(:rss), {:title => "kann-ich-klagen.de feed", :target => "_blank",} %>
+            </b>
+          </div>
+
+        </div>
+
+        
+
+        <div class="clearer"></div>
+        <div class="left ">
+          <div class="two_small_top clearer"><h2><b>Facebook</b></h2></div>
+            <div class="two_small_content">
+              <img title="facebook" alt="facebook" src="images/logos/facebook.gif" style="float:right"/>
+              Freunden Sie sich mit <br />kann-ich-klagen.de an und diskutieren Sie mit.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zu Facebook", "http://www.facebook.com/kannichklagen", {:title => "Folgen Sie kann-ich-klagen.de auf Facebook" , :target=>'blank'} %></b></div>
+        </div>
+        <div class="left pad_l_18">
+          <div class="two_small_top clearer"><h2><b>kann-ich-klagen.de merken </b></h2></div>
+          <div class="two_small_content">
+              <img title="Lesezeichen hinzufügen" alt="Lesezeichen hinzufügen" src="images/icons/lesezeichen.gif" style="float:right"/>
+              Nie mehr suchen:<br /> kann-ich-klagen.de bookmarken, speichern, vorschlagen.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= bookmark_link_to "Jetzt merken", {:title => "kann-ich-klagen.de bookmarken, speichern, vorschlagen" , :target=>'blank'} %></b></div>
+
+        </div>
+
+        <div class="right">
+          <div class="two_small_top clearer"><h2><b>Twitter</b></h2></div>
+            <div class="two_small_content">
+              <img title="twitter" alt="twitter" src="images/logos/twitter.gif" style="float:right"/>
+            Stets aktuell informiert mit unserem Service auf Twitter.
+            </div>
+          <div class="two_small_bottom_arrow"><b><%= link_to "Zu Twitter", "http://www.twitter.com/kannichklagen ", {:title => "Folgen Sie kann-ich-klagen.de auf Twitter", :target=>'blank' } %></b></div>
+        </div>
+      <% end %>
+        <% if af_realm? %>
+            <h2>Herzlich Willkommen im Servicebereich von advofinder.de</h2>
+
+          <p>In unserem Servicebereich haben wir nützliche Dienste und hilfreiche Informationen zusammengestellt.</p>
+
+          <div class="left">
+            <div class="two_small_top clearer"><h2><b>Blog</b></h2></div>
+              <div class="two_small_content">
+                <img title="Blog" alt="Blog" src="images/advofinder/icons/blog.gif" style="float:right"/>
+                Hier bloggt das <br />advofinder.de Team über Themen die uns bewegen.
+              </div>
+            <div class="two_small_bottom_arrow"><b><%= link_to "Zum Blog", service_blogs_path, {:title => "Blog von advofinder.de lesen"} %></b></div>
+
+          </div>
+
+          <div class="left pad_l_18">
+            <div class="two_small_top clearer"><h2><b>Newsletter</b></h2></div>
+              <div class="two_small_content">
+                <img title="Newsletter" alt="Newsletter" src="images/advofinder/icons/newsletter.gif" style="float:right"/>
+                Hier können Sie kostenlos Ihren Newsletter abonnieren. Wir informieren Sie regelmäßig über aktuelle Themen.
+              </div>
+            <div class="two_small_bottom_arrow"><a href="<%= new_service_newsletter_path %>" title="Newsletter abonnieren!"><b>Jetzt abonnieren</b></a></div>
+          </div>
+
+          <div class="right">
+            <div class="two_small_top clearer"><h2><b>advofinder.de RSS-Feed</b></h2></div>
+            <div class="two_small_content">
+                <img title="Lesezeichen hinzufügen" alt="Lesezeichen hinzufügen" src="images/icons/rss.gif" style="float:right"/>
+                Abonnieren Sie den <br />advofinder.de RSS-Feed.
+              </div>
+            <div class="two_small_bottom_arrow">
+              <b> <%= link_to "Jetzt abonnieren", formatted_feed_service_blogs_url(:rss), {:title => "advofinder.de feed", :target => "_blank",} %>
+              </b>
+            </div>
+
+          </div>
+
+
+
+          <div class="clearer"></div>
+          <div class="left ">
+            <div class="two_small_top clearer"><h2><b>Facebook</b></h2></div>
+              <div class="two_small_content">
+                <img title="facebook" alt="facebook" src="images/logos/facebook.gif" style="float:right"/>
+                Freunden Sie sich mit <br />advofinder.de an und diskutieren Sie mit.
+              </div>
+            <div class="two_small_bottom_arrow"><b><%= link_to "Zu Facebook", "http://www.facebook.com/advofinder", {:title => "Folgen Sie advofinder.de auf Facebook" , :target=>'blank'} %></b></div>
+          </div>
+          <div class="left pad_l_18">
+            <div class="two_small_top clearer"><h2><b>advofinder.de merken </b></h2></div>
+            <div class="two_small_content">
+                <img title="Lesezeichen hinzufügen" alt="Lesezeichen hinzufügen" src="images/advofinder/icons/lesezeichen.gif" style="float:right"/>
+                Nie mehr suchen:<br /> advofinder.de bookmarken, speichern, vorschlagen.
+              </div>
+            <div class="two_small_bottom_arrow"><b><%= bookmark_link_to "Jetzt merken", {:title => "advofinder.de bookmarken, speichern, vorschlagen" , :target=>'blank'} %></b></div>
+
+          </div>
+
+          <div class="right">
+            <div class="two_small_top clearer"><h2><b>Twitter</b></h2></div>
+              <div class="two_small_content">
+                <img title="twitter" alt="twitter" src="images/logos/twitter.gif" style="float:right"/>
+              Stets aktuell informiert mit unserem Service auf Twitter.
+              </div>
+            <div class="two_small_bottom_arrow"><b><%= link_to "Zu Twitter", "http://www.twitter.com/advofinder ", {:title => "Folgen Sie advofinder.de auf Twitter", :target=>'blank' } %></b></div>
+          </div>
+        
+        <% end %>
+        
+        
+
+        
+
+        
+
+
+
+
+      </div>
+
+
+
+  <div class="bottom_footer"></div>
+</div>
+  

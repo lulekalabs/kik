@@ -1,0 +1,11 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+Ihre kostenlose Frage ist nun für <%= distance_of_time_in_words_to_now @kase.expires_at %> freigeschaltet.
+
+Die Frage ist jetzt für Anwälte sichtbar, damit Sie schnellstmöglich Nachrichten und Bewerbungen von interessierten Anwälten bekommen – selbstverständlich ohne weitere Verpflichtungen.
+
+Sollten Sie Fragen haben, stehen wir Ihnen per E-Mail gern zur Verfügung.
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.
+
+<%= render :partial => "notifier/footer" %>

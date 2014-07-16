@@ -1,0 +1,179 @@
+<!-- advofinder footer -->     
+<div class="presse">
+  <h4><b>advofinder.de</b> in den Medien:</h4>
+
+<!--  <div class="arrow_left_none">
+     <a href="" title="zurück"></a>
+  </div> -->
+
+
+  <div class="logos">
+    <div class="pad">
+      <a href="http://www.chip.de" title="chip.de" target="_blank" class="chip"> </a>
+    </div>
+    
+ <!--   <div class="pad">
+      <a href="" title="Presse Freizeit Revue">
+        <%= image_tag "logos/freizeit_revue.jpg", :alt => "Logo Freizeit Revue" %>
+      </a>
+    </div>
+    
+    <div class="pad">
+      <a href="" title="Presse Super Illu">
+        <%= image_tag "logos/super_illu.jpg", :alt => "Logo Super Illu" %>
+      </a>
+    </div>
+  </div> 
+ 
+  <div class="arrow_right">
+    <a href="" title="weiter"></a>
+  </div> -->
+   </div> 
+  
+</div> 
+<div class="action">
+  <h4><b>Leseraktion für Leser von "Handwerk &#38; Internet" zum Thema "Online-Recht"</b></h4>
+   <p>Stellen Sie ab sofort Ihre Rechtsfragen und diskutieren Sie mit auf der Facebook-Diskussionsseite von kann-ich-klagen.de!
+    </p>
+    <p>Benutzt ein Konkurrent den Namen Ihrer Webseite, aber mit einer anderen Domain-Endung? Haben Sie unberechtigt von einem Kunden eine schlechten Bewertung im Internet bekommen? Oder haben Sie bei einer Rückwärtsauktion mitgemacht und zahlt der Kunde nicht?</p>
+    <p>Ihre Fragen werden aufgegriffen und – geordnet nach typischen Fallgruppen – von Rechtsanwalt Michael Schweizer allgemein besprochen.</p>
+
+    <div class="pad_10"></div>
+   
+ 
+    <%   link_to(url_for("http://www.facebook.com/kannichklagen?v=app_2373072738" ) , :target=>'blank') do %>
+     <b> zu Facebook &#187; </b>
+  <% end %>
+
+  
+  
+</div>
+<div class="footer">
+  <div class="left">
+    <h6><b>Für Rechtsuchende</b></h6>
+    <h6><%= link_to "Vorteile", client_path, {:title => "Übersicht der Vorteile für Rechtsuchende"} %></h6>
+    <h6><%= link_to "Hilfe 	&#38; FAQ", client_faqs_path, {:title => "Hilfe und häufig gestellte Fragen zu advofinder.de"} %></h6>
+    <h6><%= link_to "Artikel zu Rechtsthemen", client_articles_path, {:title => "Ausführliche Infos zu Rechtsthemen"} %></h6>
+    <h6><%= link_to_expect_pre_launch "Rechtsberatungskosten", legal_advice_cost_client_path, {:title => "Was kostet eine Rechtsberatung?"} %></h6>
+    <h6><%= link_to "Rechtslexikon", client_dictionaries_path, {:title => "Rechtsbegriffe von A bis Z erklärt"} %></h6>
+    <h6><%= link_to_expect_pre_launch "Mein Bereich", client_account_path, {:title => "Geschützter persönlicher Bereich für Rechtsuchende"} %></h6>
+    <h6><%= link_to_expect_pre_launch content_tag(:b, "Jetzt kostenlos Anwalt <br/>suchen &#38; bewerten"), advofinder_search_path, {:title => "Kostenlos Anwälte suchen &#38; bewerten"} %></h6>
+
+  </div>
+  <div class="left pad">
+    <h6><b>Service</b></h6>
+    <h6><%= link_to "Übersicht", service_path, {:title => "Übersicht der Serviceangebote"} %></h6>
+    <h6><%= link_to "Stichwortsuche", tags_service_path, {:title => "Übersicht der Stichworte"} %></h6>
+    <h6><%= link_to "Newsletter", new_service_newsletter_path, {:title => "Newsletter von advofinder.de bestellen und abbestellen"} %></h6>
+    <h6><%= link_to "Blog", service_blogs_path, {:title => "Blog von advofinder.de lesen"} %></h6>
+    <h6><%= link_to "RSS", feed_service_blogs_url(:format => :rss), {:title => "RSS-Feed von advofinder.de abonnieren", :target => "_blank",} %></h6>
+    <h6><%= twitter_link_to "Twitter", "http://www.twitter.com/advofinder" %></h6>
+    <h6><%= facebook_link_to "Facebook", "http://www.facebook.com/advofinder" %></h6>
+    <h6><%= link_to_set_as_startpage "Als Startseite festlegen", {:title => "advofinder.de als persönliche Startseite festlegen"} %></h6>
+  </div>
+
+  <div class="left pad">
+    <h6><b>Für Anwälte</b></h6>
+    <h6><%= link_to "Vorteile", benefits_advocate_path, {:title => "Übersicht der Vorteile für Anwälte"} %></h6>
+    <h6><%= link_to_expect_pre_launch "Produktübersicht", overview_advocate_path, {:title => "Leistungen und Angebote von advofinder.de"} %></h6>
+    <h6><%= link_to "Hilfe &#38; FAQ", advocate_faqs_path, {:title => "Hilfe und häufig gestellte Fragen zu advofinder.de"} %></h6>
+    <h6><%=link_to "Bewertungen", reviews_advocate_account_profile_preview_path %></h6>
+    <h6><%= link_to "Kollegen/-innen einladen", new_advocate_recommendation_path, {:title => "Empfehlen Sie advofinder.de an Kollegen/-innen weiter"} %></h6>
+    <h6><%= link_to_expect_pre_launch "Mein Bereich", advocate_account_path, {:title => "Geschützter persönlicher Bereich für Anwälte"} %></h6>
+    <h6><b><%= link_to "Jetzt kostenlos anmelden und <br/>Anwaltsprofil anlegen", new_advocate_user_path, {:title => "Einmalig anmelden und Anwaltsprofil anlegen"} %></b></h6>
+  </div>
+  
+    <div class="left pad">
+
+      <h6><b>Presse</b></h6>
+      <h6><%= link_to "Übersicht", press_path, {:title => "Übersicht für Journalisten"} %></h6>
+      <h6><%= link_to "Pressekontakt", new_press_contact_path, {:title => "Ansprechpartner für Journalisten"} %></h6>
+      <h6><%= link_to "Presseverteiler", new_press_journalist_path, {:title => "Presseverteiler für Journalisten"} %></h6>
+      <h6><%= link_to "Pressemitteilungen", press_releases_path, {:title => "Pressemitteilungen von advofinder.de"} %></h6>
+      <h6><%= link_to "Pressespiegel", press_reviews_path, {:title => "advofinder.de in der Presse"} %></h6>
+      <h6><%= link_to "Bilder &#38; Logos", resources_press_path, {:title => "Bilder und Logos zum herunterladen"} %></h6>
+      <h6><%= link_to "Firmenprofil", company_profile_press_path, {:title => "Unternehmensbeschreibung in Kurzform"} %></h6>
+    </div>
+    <div class="left pad">
+      <h6><b>Unternehmen</b></h6>
+      <h6><%= link_to "Übersicht", corporate_path, {:title => "Unternehmensseiten von advofinder.de"} %></h6>
+
+      <h6><%= link_to "Kontakt", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von advofinder.de"} %></h6>
+      <h6><%= link_to "Karriere", careers_corporate_path, {:title => "Stellenangebote bei advofinder.de"} %></h6>
+     <!-- <h6><%= link_to "Über uns", about_corporate_path, {:title => "advofinder.de stellt sich vor"} %></h6>-->
+      <h6><%= link_to "Beirat", board_corporate_path, {:title => "Beiratsmitglieder von advofinder.de"} %></h6>
+      <h6><%= link_to "Kooperationspartner", partners_corporate_path, {:title => "Kooperationspartner von advofinder.de"} %></h6>
+      <h6><%= link_to "Mediawerbung", advertising_corporate_path, {:title => "Werben auf advofinder.de"} %></h6>
+
+      <h6><%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von advofinder.de"} %></h6>
+      <h6><%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen von advofinder.de"} %></h6>
+      <h6><%= link_to "Impressum", imprint_corporate_path, :title => "Impressum von advofinder.de" %></h6>
+     <!-- <h6><%= link_to "Seitenübersicht", sitemap_corporate_path, {:title => "Struktur der Seite - Sitemap"} %></h6>-->
+    </div>
+  
+</div>
+<div class="footer_bottom"></div>
+
+<div class="siegel">
+  <!--
+  <a href="" title="SSL Siegel">
+   
+  </a>
+  -->
+  <!-- generiert mit https://www.thawte.com/ssl/secured-seal/installation-agreement/index.html -->
+  <script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=www.kann-ich-klagen.de&amp;size=M&amp;lang=de"></script>
+</div>
+<div class="siegel">
+  <a href="http://www.kaufda.de/umwelt" target="_blank">
+ <%= image_tag "logos/co2.jpg", :alt => "Prospekte und Sonderangebote - CO2 neutral bei kaufDA.de", :title => "Diese Seite ist CO2 neutral. Ihre auch?"%>
+    </a>
+</div>
+<div class="siegel">
+  <a href="http://www.etracker.com/privacy_info?et=CbgmjV" target="_blank"><img alt="etracker Know Now" title="etracker Know Now" border="0" src="http://www.etracker.com/typo3temp/pics/3284c16a17.png" height="80" width="70" /></a>
+</div>
+
+
+
+<div class="siegel">
+  <!--
+  <a href="http://www.etracker.com/privacy_info?et=CbgmjV" target="_blank"><img alt="etracker Know Now" title="etracker Know Now" border="0" src="http://www.etracker.com/typo3temp/pics/3284c16a17.png" height="80" width="70" /></a>
+  -->
+  <%#--- e-tracker %>
+  <% if Rails.env == "production" %>
+  <!-- Copyright (c) 2000-2010 etracker GmbH. All rights reserved. -->
+  <!-- This material may not be reproduced, displayed, modified or distributed -->
+  <!-- without the express prior written permission of the copyright holder. -->
+
+  <!-- BEGIN etracker Tracklet 3.0 -->
+  <script type="text/javascript">document.write(String.fromCharCode(60)+"script type=\"text/javascript\" src=\"http"+("https:"==document.location.protocol?"s":"")+"://code.etracker.com/t.js?et=sJ3Ibx\">"+String.fromCharCode(60)+"/script>");</script>
+  <script type="text/javascript">_etc();</script>
+  <noscript><p><a href="http://www.etracker.com"></a></p></noscript>
+  <!-- etracker CODE END -->
+  <% end %>
+</div>
+
+<div class="feedback_position">
+  <div class="feedback_content">
+    <div class="left block">Schreiben Sie uns Ihre Meinung, Anregungen oder Ideen.</div>
+    <div class="right button_feedback">
+      <%= link_to_feedback_modal({:title => "Schreiben Sie uns Ihre Meinung, Anregungen oder Ideen"}) %>
+    </div>
+  </div>
+  <div class="feedback_bottom"></div>
+</div>
+<div class="clearer"></div>
+<div class="footer_last">
+  <p><b>advofinder.de</b> - der Anwalts-Check im Internet - ermöglicht Anwälten die Teilnahme und den generellen Anschluss an das advofinder-Such-, Feedback- und -Bewertungssystem, um sich professionell im Internet mit einem persönlichen Anwaltsprofil und eigenen Text- und Videoinhalten präsentieren sowie mit Rechtsuchenden in Kontakt treten zu können. Teilnehmende Anwälte können zwischen einem kostenlosen Basis- und kostenpflichtigen Premium-Anwaltsprofil wählen. Anwaltsprofile werden vor Freischaltung auf Verität geprüft. Rechtsuchende haben die Möglichkeit passende Anwälte im advofinder-Suchsystem zu finden und deren Service FÜNF WERTE des advofinder-Bewertungssystems zu bewerten und ihre gemachten Erfahrungen mit anderen Rechtsuchenden zu teilen. Für Rechtsuchende ist advofinder.de ein kostenloser Service. Eine Verpflichtung einen Anwalt zu beauftragen besteht zu keiner Zeit. 
+  </p>
+  <p>Neben dem Zusammenführen von Rechtsuchenden und Anwälten bietet advofinder.de auch Informationen rund um die Themen Steuern und Recht zum Nachlesen.</p>
+  <p><b>advofinder.de</b> erteilt keine Rechtsauskünfte und -beratungen, spricht keine eigenen Wertungen und Empfehlungen aus und vermittelt keine konkreten, einzelnen Mandate oder Aufträge im Sinne von § 49b Absatz 3 Bundesrechtsanwaltsordnung (BRAO). Mandate kommen ausschließlich zwischen Rechtsuchenden und Anwälten zustande. advofinder.de ist ausschließlich technischer Mittler und Plattformbetreiber für den Veröffentlichung von Informationen über und von Anwälten.</p>
+  <p>Eine vertrauliche Behandlung und sichere Übertragung von eingegebenen Informationen mit verschlüsselter SSL-Verbindung wird grundsätzlich gewährleistet.</p>
+  <p></p>
+  <p></p>
+
+  <p>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr(e) Widerspruchsrecht(e) erhalten Sie als Nutzer, als Fortführung zu diesem Hinweis, auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von advofinder.de"} %> </p>
+  <p>Copyright © <%= Time.now.year == 2011 ? '2011' : "2011 - #{Time.now.year}" %> <b>advofinder.de</b> - alle Rechte vorbehalten </p>
+</div>
+<div class="pad_10"></div>
+
+

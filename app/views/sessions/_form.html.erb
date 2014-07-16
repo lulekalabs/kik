@@ -1,0 +1,36 @@
+<%
+  @user.login = "" if @user
+%>
+<% form_for :user, :url => session_path, :method => :post do |f| %>
+    <% draw_not_when_flash_set do %>
+        <h2>Login</h2>
+        <div class="pad_10"></div>
+        <p>Bitte loggen Sie sich mit Ihren Zugangsdaten ein. </p>
+        <div class="pad_10"></div>     
+      <% end -%>
+      <%= error_messages_for :user %>
+
+    <div class="left">
+      <div><%= f.label :login, "<b>Benutzername, Kundennummer oder<br /> E-Mail-Adresse*</b>" %></div>
+      <div class="pad_5"><%= f.text_field :login, :class => 'field w303' %></div>
+    </div>
+    <div class="left pad_l_10">
+      <div><%= f.label :password, "<b>Passwort*</b>" %></div>
+      <div><%= link_to "Passwort vergessen?", forgot_password_users_path %></div> 
+      <div class="clearer"></div>
+      <div class="pad_5">
+        <%= f.password_field :password, :class => "field w303", :id => "password_field", :autocomplete => "off" %>
+        <%= text_field_tag :clear_password, '', :class => "field w303", 
+          :id => "clear_password_field", :style => "display:none;", :autocomplete => "off" %>
+      </div>
+      <div class="pad_5"> <%= check_box_tag :view_password, "0", false %>
+         <%= label_tag :view_password, "Passwort einblenden" %>
+      </div> 
+    </div>
+    <div class="clearer_10"></div>
+    <div>
+      <%= submit_tag "Jetzt einloggen" , :class => "button_right" %>
+    </div> 
+    <div class="button_left"></div> 
+    <div class="clearer_20"></div>
+<% end %>

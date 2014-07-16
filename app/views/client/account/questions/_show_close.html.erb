@@ -1,0 +1,70 @@
+<%
+advocates ||= @kase.participating_advocates
+%>
+<div class="modal_close" style="width:350px;" id="<%= dom_id(@kase, :show_close) %>">
+  <b>Sie möchten Ihre Frage schließen?</b>
+
+  <%= error_messages_for :kase %>
+  <div class="clearer_10"></div>
+  <% remote_form_for :kase, @kase, :url => close_client_account_question_path(@kase), :html => {:method => :put} do |f| %>
+
+  <%= f.radio_button :close_action, "no", :onchange => "$('#kase_close_reason_client_cancel').attr('checked', false);$('input.advocateFound').attr('checked', false)" %>
+  <%= f.label :close_action_no, "Nein" %>
+
+  <div class="clearer_10"></div>
+
+  <%= f.radio_button :close_action, "close", :onchange => "if(!$('#kase_close_reason_client_cancel').attr('checked') && !$('#kase_close_reason_advocate_found').attr('checked')) $('#kase_close_reason_client_cancel').attr('checked', true);", :style => "display:none;" %>
+
+  <b><img src="/images/point_black.png" width="14" height="14" alt="Point Black"/><%= f.label :close_action_close, "Ja, aus folgendem Grund:"%></b>
+
+  <div class="clearer_10"></div>
+
+  <div class="pad_l_22">
+    <%= f.radio_button :close_reason, "client_cancel", :onchange => "$('#kase_close_action_close').attr('checked', true)" %>
+    <%= f.label :close_reason_client_cancel, "Frage hat sich erledigt"%>
+
+    <div class="clearer_10"></div>
+
+    <% if advocates.empty? %>
+    <%= f.radio_button :close_reason, "otherwise_found", 
+      :onchange => "$('#kase_close_action_close').attr('checked', true)", :class => "advocateFound" %>
+    <%= f.label :close_reason_otherwise_found, "Anwalt auf anderem Wege gefunden" %>
+    <div class="clearer_20"></div>
+    <% end %>
+
+    <div style="<%= advocates.empty? ? 'display:none' : '' %>">
+      <%= f.radio_button :close_reason, "advocate_found", :style => "display:none;", :class => "advocateFound" %>
+      <b><img src="/images/point_black.png" width="14" height="14" alt="Point Black"/> <%= f.label :close_reason_advocate_found, "Ich habe einen Anwalt gefunden" %></b>
+      <div class="clearer_10"></div>
+    
+      <div class="pad_l_22">  
+        <% unless advocates.empty? %>
+        <% advocates.each do |advocate| %>
+
+        <%= f.radio_button :mandated_advocate_id, advocate.id, :class => "advocateFound",
+          :onchange => "$('#kase_close_reason_advocate_found').attr('checked', true);$('#kase_close_action_close').attr('checked', true)" %>
+        <label for="<%= "kase_mandated_advocate_id_#{advocate.id}" %>">
+          <%= profile_image_tag advocate, :size => :small %>
+          <%= h(advocate.title_and_name) %>
+        </label>
+        <div class="clearer_10"></div>
+        <% end %>
+
+        <%= f.radio_button :mandated_advocate_id, "unlisted", :class => "advocateFound",
+          :onchange => "$('#kase_close_reason_advocate_found').attr('checked', true);$('#kase_close_action_close').attr('checked', true)" %>
+        <%= f.label :mandated_advocate_id_unlisted, advocates.empty? ? "Anwalt auf anderem Wege gefunden" : "Kein Anwalt aus dieser Liste" %>
+
+        <% else %>  
+        <%#--- no advocates %>
+        <% end %> 
+      </div>  
+    </div>
+  </div>
+  <div class="clearer_20"></div>
+  <div class="button_abort">
+    <%#= link_to_function("Abbrechen", "$('a.show_close_question_modal').fancybox.close()") %>
+    <%= link_to_function("Abbrechen", "jQuery(document).trigger('close.facebox')") %>
+  </div>
+  <%= submit_tag "" , :class => "button_send" %>
+  <% end %> 
+</div>

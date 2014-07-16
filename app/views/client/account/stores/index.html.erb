@@ -1,0 +1,33 @@
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+          <h2>Meine gemerkten Anwaltsprofile</h2>
+          <p>Hier finden Sie die Liste aller Anwälte, deren Anwaltsprofil Sie sich gemerkt haben durch Klick auf Anwalt merken.</p>
+           <div class="clearer_10"></div>
+          <% view_memorizes_advocates do | advocate | %>
+            <%= render :partial => "shared/advocates/overview"  %>
+            <%= render :partial => 'shared/advocates/grade'    %>
+            <div class="clearer"></div> 
+            <div class="button_white_right_blue">
+              <%= link_to 'Anwaltsprofil ansehen', profile_client_account_advocate_path( @advocate ) %>
+             </div>
+             <div class="button_white_left_blue"></div>
+             <div class="clearer_20"></div>  
+          <% end %>
+      </div>
+      <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>  
+          <div class="pad_r_l_15">
+            <h2>Hinweis:</h2>
+            <ul>
+              <li>Sie können gemerkte Anwaltsprofile aus der Liste entfernen, indem Sie auf Anwalt nicht mehr merken klicken. Um das vollständige Anwaltsprofil anzusehen, klicken Sie bitte auf den Link Anwaltsprofil ansehen. </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

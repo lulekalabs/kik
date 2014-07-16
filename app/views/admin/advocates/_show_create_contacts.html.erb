@@ -1,0 +1,18 @@
+<div class="modal" id="<%= dom_id(@advocate, :show_create_contacts) %>">
+  <%= error_messages_for :promotion_contact_booking, :header_message => "Fehler", :message => "" %>
+  <% remote_form_for :promotion_contact_booking, :url => create_contacts_admin_advocate_path(@advocate) do |f| %>
+    <fieldset>
+      <legend>Freikontakte buchen für <%= @advocate.title_and_name %></legend>
+      <%= f.label :amount, "Anzahl" %>
+      <%= f.text_field :amount, :size => 3, :maxlength => 3 %>
+      <br />
+      <%= f.label :expires_at, "Gültig bis" %>
+      <%= f.date_select :expires_at %>
+      <br />
+    </fieldset>
+    <p class="buttonset">
+      <%= submit_tag as_(:create) %>
+      <span>&nbsp;<%= "oder" %>&nbsp;<%= link_to_function(as_(:cancel), "Modalbox.hide()") %></span>
+    </p>
+  <% end %>
+</div>

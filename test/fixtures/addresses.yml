@@ -1,0 +1,31 @@
+aaron_business_address:
+  id: 1
+  first_name: Aaron
+  last_name: Schweizer
+  street: Riverstr.
+  street_number: 34
+  city: Baltimoringen
+  province: Bayern
+  province_code: BY
+  postal_code: 80469
+  country_code: DE
+  country: Germany
+  type: BusinessAddress
+  addressable_id: 2
+  addressable_type: Person
+aaron_billing_address:
+  id: 2
+  first_name: Aaron
+  last_name: Schweizer
+  company_name: Aaron Associates GmbH
+  street: Dreiteufelweg
+  street_number: 16a
+  city: Munchhausen
+  province: Bayern
+  province_code: BY
+  postal_code: 80669
+  country_code: DE
+  country: Germany
+  type: BillingAddress
+  addressable_id: 2
+  addressable_type: Person

@@ -1,0 +1,143 @@
+<% if @record.person %>
+  <% @person = @record.person %>
+  <% @address = @person.business_address %>
+
+  <% fields_for "person", @person do |p| %>
+  
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :gender, "Anrede" %>
+      </dt>
+      <dd>    	
+        <%= p.select :gender, collect_for_gender_select(false) %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :academic_title_id, "Titel" %>
+      </dt>
+      <dd>    	
+        <%= p.select :academic_title_id, collect_for_academic_title_select(true, false) %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :first_name, "Vorname" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :first_name %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :last_name, "Nachname" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :last_name %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :email, "Email" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :email %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :phone_number, "Telefonnummer für Rückfragen" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :phone_number %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :fax_number, "Faxnummer" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :fax_number %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :company_name, "Redaktion/Verlag" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :company_name %>
+      </dd>
+    </dl>
+  </li>
+  <li class="form-element">
+    <dl>
+      <dt>
+        <%= p.label :media, "Medium" %>
+      </dt>
+      <dd>    	
+        <%= p.text_field :media %>
+      </dd>
+    </dl>
+  </li>
+  <% end %>
+  
+  <% if @address %>
+    <% fields_for "person[business_address_attributes]", @address do |a| %>
+    <li class="form-element">
+      <dl>
+        <dt>
+          <%= a.label :street, "Straße" %>
+        </dt>
+        <dd>    	
+          <%= a.text_field :street %>
+        </dd>
+      </dl>
+    </li>
+    <li class="form-element">
+      <dl>
+        <dt>
+          <%= a.label :street_number, "Hausnummer" %>
+        </dt>
+        <dd>    	
+          <%= a.text_field :street_number %>
+        </dd>
+      </dl>
+    </li>
+    <li class="form-element">
+      <dl>
+        <dt>
+          <%= a.label :postal_code, "Postleitzahl" %>
+        </dt>
+        <dd>    	
+          <%= a.text_field :postal_code %>
+        </dd>
+      </dl>
+    </li>
+    <li class="form-element">
+      <dl>
+        <dt>
+          <%= a.label :city, "Ort" %>
+        </dt>
+        <dd>    	
+          <%= a.text_field :city %>
+        </dd>
+      </dl>
+    </li>
+    <% end %>
+  <% end %>
+<% end %>

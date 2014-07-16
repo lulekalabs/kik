@@ -1,0 +1,48 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Anmeldung bestätigen.</h2>
+
+        <p>Bitte bestätigen Sie jetzt die Anmeldung Ihres Anwaltskontos.</p>
+
+        <%= error_messages_for :user %>
+
+        <% form_for :user, :url => advocate_user_path(@user), :html => {:method => :put} do |u| %>
+          <% fields_for :person do |p| %>
+
+            <%= u.hidden_field :activation_code %>
+            <%= u.hidden_field :email %>
+            
+            <div class="clearer_10"></div> 
+
+            <div>
+              <%= submit_tag "Jetzt bestätigen" , :class => "button_right" %>
+            </div>
+            <div class="button_left"></div>
+            <div class="clearer"></div>
+
+          <% end %>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+            <li>Sollten Sie Hilfe bei der Aktivierung benötigen, stehen wir Ihnen gern per <%= mail_to Notifier.help_email, 'E-Mail', {:class => "white",  :encode => "hex" }%> zur Verfügung.</li>
+
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>

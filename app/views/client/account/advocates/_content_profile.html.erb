@@ -1,0 +1,110 @@
+<div class="left_50">
+  <p>Informationen zur Person:</p>
+  <div class="none_form">
+    <%= entry_link_to(auto_link(markdown(sh(@advocate.bio))), @advocate, details_advocate_account_profile_path) %>
+  </div>
+
+  <p>Fachanwalt für:</p>
+  <%= entry_link_to(adovocate_expertises_in_words(@advocate, true), @advocate, advocate_account_profile_path) %>
+
+  <p>Tätig in den Rechtsgebieten:</p>
+  <%= entry_link_to(adovocate_topics_in_words(@advocate, true), @advocate, advocate_account_profile_path) %>
+
+  <p>Sprachen:</p>
+  <%= entry_link_to(adovocate_spoken_languages_in_words(@advocate, true), @advocate, details_advocate_account_profile_path) %>
+
+  <p>Position/Funktion:</p>
+  <%= entry_link_to(h(@advocate.position_name), @advocate, details_advocate_account_profile_path) %>
+
+  <p>Zugelassen seit:</p>
+  <%= entry_link_to(@advocate.accredited_on ? l(@advocate.accredited_on, :format => "%d.%m.%Y") : '',
+  @advocate, details_advocate_account_profile_path) %>
+
+  <p>Berufsbezeichnung nach § 5 I 5b (TMG):</p>
+  <%= entry_link_to(h(@advocate.occupational_title), @advocate, details_advocate_account_profile_path) %>
+
+  <p>Ausländische Berufsbezeichnung:</p>
+  <%= entry_link_to(h(@advocate.anglo_title), @advocate, details_advocate_account_profile_path) %>
+
+  <p>Besondere Vertretungsberechtigungen:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.authorized_representative.blank?) do %>
+  <div class="none_form"><%= auto_link(markdown(sh(@advocate.authorized_representative))) %></div>
+  <% end %>
+
+  <p>Weitere Profile:</p>     
+  <%
+  empty = @advocate.facebook_name.blank? && @advocate.linkedin_name.blank? && @advocate.skype_name.blank? && @advocate.twitter_name.blank? && @advocate.xing_name.blank?
+  %>
+  <% entry_link_to(nil, @advocate, contact_advocate_account_profile_path, empty) do %>
+  <% unless @advocate.facebook_name.blank? %>
+  <img src="/images/icons/facebook.png" width="16" height="16" alt="Facebook"/> <%= link_to("Facebook", "http://facebook.com/#{@advocate.facebook_name}",:target=>"_blank") %><div class="clearer_5"></div> 
+  <% end %>  
+  <% unless @advocate.linkedin_name.blank? %>
+  <img src="/images/icons/linkedin.png" width="16" height="16" alt="Linkedin"/> <%= link_to("LinkedIn", "http://linkedin.com/pub/dir/#{@advocate.linkedin_name}",:target=>"_blank") %><div class="clearer_5"></div> 
+  <% end %>  
+  <% unless @advocate.skype_name.blank? %>
+  <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+  <img src="/images/icons/skype.png" width="16" height="16" alt="Skype"/> <a href="skype:<%= h(@advocate.skype_name) %>?add"><%= "Skype" %></a><div class="clearer_5"></div> 
+  <!--<a callto="<%= h(@advocate.skype_name) %>"><%= "Skype" %></a><br/> -->
+  <% end %>  
+  <% unless @advocate.twitter_name.blank? %>
+  <img src="/images/icons/twitter.png" width="16" height="16" alt="Twitter"/> <%= link_to("Twitter", "http://twitter.com/#{@advocate.twitter_name}",:target=>"_blank") %><div class="clearer_5"></div> 
+  <% end %>  
+  <% unless @advocate.xing_name.blank? %>
+  <img src="/images/icons/xing.png" width="16" height="16" alt="Xing"/> <%= link_to("Xing", "http://xing.de/#{@advocate.xing_name}",:target=>"_blank") %>
+  <% end %>  
+  <% end %>
+</div> 
+
+<div class="right_50">
+  <p>Informationen zur Kanzlei:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.company_information.blank?) do %>
+  <div class="none_form"><%= markdown(sh(@advocate.company_information)) %></div>
+  <% end %>
+
+  <p>Art der Kanzlei:</p>
+  <%= entry_link_to(h(@advocate.company_type), @advocate, details_advocate_account_profile_path) %>
+
+  <p>Kanzleigröße:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.company_size.nil? || @advocate.company_size == 0) do %>
+    <% if @advocate.company_size.nil? %>
+    <% else %>
+      <%= t("{{count}} Anwalt", :count => @advocate.company_size.to_i, :scope => :pluralizations) %>
+    <% end %>
+  <% end %>
+
+  <p>Zuständige Kammer:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.bar_association ? @advocate.bar_association.name.blank? : true) do %>
+    <%= h(@advocate.bar_association.name) if @advocate.bar_association %>
+  <% end %>
+  
+  <p>Zuständige Berufshaftpflichtversicherung:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.professional_indemnity.blank?) do %>
+    <div class="none_form"><%= auto_link(markdown(sh(@advocate.professional_indemnity))) %></div> 
+  <% end %>
+  
+  <p>Hauptsitz:</p>
+  <%= entry_link_to(h(@advocate.company_headquarter), @advocate, details_advocate_account_profile_path) %>
+  
+  <p>Weitere Standorte:</p>
+  <% entry_link_to(nil, @advocate, details_advocate_account_profile_path, @advocate.company_locations.blank?) do %>
+    <div class="none_form"><%= auto_link(markdown(sh(@advocate.company_locations)))%></div>
+  <% end %>
+  
+</div>
+<div class="clearer_10"></div>
+<% @advocate.company_assets.each do |asset| %>
+<div class="left_50"> <p><b>Bilder der Kanzlei:</b></p></div>
+<div class="clearer_5"></div>   
+<div class="<%= cycle("left_50", "right_50") %>">   
+  <%= image_tag(asset.file.url(:normal), :alt => "Kanzleifoto", :title => "Kanzleifoto", :size => "300x200", :alt => "Bildschirmfoto #{l(asset.created_at)}") %>
+</div>
+<% end %>
+<div class="clearer_10"></div>
+
+
+
+
+
+
+

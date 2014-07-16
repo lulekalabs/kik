@@ -1,0 +1,139 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <h2>Seitenübersicht</h2>
+
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Startseite</b>
+          <div>
+            <ul>
+              <li><a href="<%= url_for('/') %>">&#187; Startseite</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clearer"></div>
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Für Anwälte</b>
+          <div>
+            <ul>
+              <li><a href="<%= advocate_faqs_url %>">&#187; Hilfe &#38; FAQ</a></li>
+              <li><a href="<%= new_advocate_user_url %>">&#187; Jetzt kostenlos anmelden</a></li>
+              <% if kik_realm? %>
+               <li><a href="<%= kodex_client_url %>">&#187; kann-ich-klagen.de Kodex</a></li>   
+              <% end %>
+              <li><a href="<%= new_advocate_recommendation_url %>">&#187; Weiterempfehlen</a></li>
+              <li><%= link_to_expect_pre_launch "&#187; Mein Bereich", advocate_account_url, {:title => "Geschützter persönlicher Bereich für Anwälte"} %></li>
+              <% if kik_realm? %>
+               <li><%= link_to_expect_pre_launch "&#187; Offene Fragen ansehen", open_questions_url, {:title => "Übersicht der offenen Fragen im Mandanten-Fragen-System"} %></li>   
+              <% end %>
+              
+              <li><%= link_to_expect_pre_launch "&#187; Produktübersicht", overview_advocate_url, {:title => "Leistungen und Angebote"} %></li>
+             
+              <li><a href="<%= benefits_advocate_url %>">&#187; Vorteile</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Für Rechtsuchende</b>
+          <div>
+            <ul>
+              <li><a href="<%= client_articles_url %>">&#187; Artikel zu Rechtsthemen</a></li>
+              <li><a href="<%= client_faqs_url %>">&#187; Hilfe &#38; FAQ</a></li>
+              <% if kik_realm? %>
+               <li><%= link_to_expect_pre_launch  "&#187; Jetzt kostenlos Frage stellen", new_question_url, {:title => "Kostenlos Frage stellen und Fall schildern"} %></li>
+                <li><a href="<%= kodex_client_url %>">&#187; kann-ich-klagen.de Kodex</a></li> 
+              <% end %>
+              <% if af_realm? %>
+               <li><%= link_to_expect_pre_launch "&#187; Jetzt kostenlos Anwälte suchen", advofinder_search_path, {:title => ""} %></li>   
+               <li><%= link_to_expect_pre_launch "&#187; Jetzt kostenlos Anwälte bewerten", advofinder_reviews_path, {:title => ""} %></li>   
+              <% end %>
+              <li><%= link_to_expect_pre_launch "&#187; Mein Bereich", client_account_url, {:title => "Geschützter persönlicher Bereich für Rechtsuchende"} %></li>
+              <li><%= link_to_expect_pre_launch "&#187; Rechtsberatungskosten", legal_advice_cost_client_url, {:title => "Was kostet eine Rechtsberatung?"} %></li>
+              <li><%= link_to "&#187; Rechtslexikon", client_dictionaries_url, {:title => "Rechtsbegriffe von A bis Z erklärt"} %></li>
+              
+              
+              <li><a href="<%= client_url %>">&#187; Vorteile</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Service</b>
+          <div>
+            <ul>
+              <li><%= bookmark_link_to "&#187; Seite merken",{:title => "bookmarken, speichern, vorschlagen"} %></li>
+              
+              <li><a href="<%= service_blogs_url %>">&#187; Blog</a></li>
+              <li><%= facebook_link_to "&#187; Facebook" %></li>
+              <li><a href="<%= new_service_newsletter_url %>">&#187; Newsletter</a></li>
+              <li><%= link_to "&#187; RSS", formatted_feed_service_blogs_url(:rss), {:title => " feed", :target => "_blank",} %></li>
+              <li><%= link_to "&#187; Stichwortsuche", tags_service_path, {:title => "Übersicht der Stichworte"} %><li>
+              <li><%= twitter_link_to "&#187; Twitter" %></li>
+              <li><a href="<%= service_url %>">&#187; Übersicht</a></li>
+              <li><a href="<%= what_url %>">&#187; Was ist <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clearer"></div>
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Presse</b>
+          <div>
+            <ul>
+              <li><a href="<%= resources_press_url %>">&#187; Bilder &#38;  Logos</a></li>
+              <li><a href="<%= company_profile_press_url %>">&#187; Firmenprofil</a></li>
+              <li><a href="<%= new_press_contact_url %>">&#187; Pressekontakt</a></li>
+              <li><a href="<%= press_releases_url %>">&#187; Pressemitteilungen</a></li>
+              <li><%= link_to "&#187; Pressespiegel", press_reviews_url, {:title => ""} %></li>
+              <li><a href="<%= new_press_journalist_url %>">&#187; Presseverteiler</a></li>
+              <li><a href="<%= press_url %>">&#187; Übersicht</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sitemap">
+      <ul>
+        <li>
+          <b>Unternehmen</b>
+          <div>
+            <ul>
+              <li><%= link_to "&#187; Beirat", board_corporate_url, {:title => "Beirat"} %></li>
+              <li><a href="<%= privacy_corporate_url %>">&#187; Datenschutz</a></li>
+              <li><%= link_to_feedback "&#187; Feedback",          
+                  {:class  => "" , :title => "Schreiben Sie uns Ihre Meinung, Anregungen oder Ideen"}
+              %></li>
+               <li><%= link_to "&#187; Karriere", careers_corporate_url, {:title => "Stellenangebote"} %></li>
+              <li><a href="<%= new_corporate_contact_url %>">&#187; Kontakt</a></li>
+              <li><%= link_to "&#187; Kooperationspartner", partners_corporate_url, {:title => "Kooperationspartner"} %></li>
+              <li><%= link_to "&#187; Mediawerbung", advertising_corporate_url, {:title => "Mediawerbung"} %></li>
+              <li><a href="<%= terms_corporate_url %>">&#187; Nutzungsbedingungen</a></li>
+              <li><a href="<%= corporate_url %>">&#187; Übersicht</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="pad_10"></div>
+
+  </div>
+  <div class="bottom_footer"></div>
+</div>

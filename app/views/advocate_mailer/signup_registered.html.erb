@@ -1,0 +1,43 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+vielen Dank für Ihr Interesse an kann-ich-klagen.de und Ihre Anmeldung!
+
+kann-ich-klagen.de unterstützt Anwälte deutschlandweit bei der Akquise von neuen Mandanten. Teilnehmende Anwälte erhalten regelmäßig und kostenlos aktuelle Fragen von Rechtsuchenden zur Einsicht. Anwälte sparen so Zeit und Akquisekosten - die Suche und Vorstellung von potentiellen Mandanten übernimmt www.kann-ich-klagen.de.
+
+Sie erhalten diese Aktivierungs-E-Mail, weil mit Ihrer Adresse <%= h(@person.email) %> kürzlich auf www.kann-ich-klagen.de eine kostenlose Anmeldung durchgeführt wurde.
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+Bitte klicken Sie einmalig auf folgenden Aktivierungs-Link, um Ihre kostenlose Anmeldung zu bestätigen:
+
+<%= activate_advocate_user_url({:id => @user.activation_code, :protocol => Project.ssl_supported? ? "https://" : "http://"}) %>
+
+Sollten Sie den oben stehenden Aktivierungs-Link nicht anklicken können, dann können Sie den Link auch einfach kopieren und in die Adresszeile Ihres Internetbrowsers einfügen, um Ihre kostenlose Anmeldung zu bestätigen. Bitte achten Sie darauf, den Link vollständig zu kopieren und einzufügen.
+
+Sie haben folgende Einwilligungen und Bestätigungen erteilt:
+
+Ja, ich bestätige, dass ich bei kann-ich-klagen.de als zugelassener Anwalt und Unternehmer im Sinne des § 14 Absatz 1 BGB handle.
+
+Ja, ich habe die Nutzungsbedingungen und Datenschutzerklärung für Anwälte von kann-ich-klagen.de gelesen und akzeptiere diese.
+
+<% if @person.enrollment? -%>
+Ja, ich möchte den kann-ich-klagen.de Newsletter erhalten.
+
+<% end -%>
++++++++++++++++++++++++++++++++++++++++++ 
+
+Die Bestätigung Ihrer kostenlosen Anmeldung ist notwendig, um sicherzustellen, dass Sie diese E-Mail erhalten wollten und nicht gegen Ihren Willen angemeldet wurden.
+
+Ohne Bestätigung kann Ihre kostenlose Anmeldung nicht aktiviert und von kann-ich-klagen.de freigeschaltet werden.
+
+Als Bonus für Ihre Anmeldung wird Ihrem persönlichen Anwaltsprofil nach Freischaltung durch kann-ich-klagen.de ein Startguthaben im Wert von 500,00 € netto (= 595,00 € brutto) gutgeschrieben. Dieses Guthaben können Sie ab Gutschrift ein Jahr lang einlösen und damit die Vorteile von kann-ich-klagen.de ausführlich testen. Eine Übertragung an Dritte oder Auszahlung des Startguthabens ist nicht möglich. Ein Anwalt kann nur einmalig ein Startguthaben beanspruchen. Mehrfache Anmeldungen sind nicht gestattet.
+
+Wir informieren Sie gesondert per E-Mail, sobald freigeschaltet und gutgeschrieben wurde, damit Sie schnellstmöglich beginnen können einzulösen. Einstweilen bitten wir Sie um Ihre Geduld, da jede Anmeldung vor Freischaltung individuell geprüft wird, um Missbrauch zu vermeiden.
+
+Falls Sie Hilfe bei der Aktivierung benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter email@kann-ich-klagen.de zur Verfügung. kann-ich-klagen.de gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+Sie haben keine Anmeldung durchgeführt? Dann müssen Sie nichts unternehmen und können diese E-Mail ignorieren. Eine Anmeldung wird ohne Ihre Bestätigung nicht erfolgen.
+
+Wir bedanken uns für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.
+
+<%= render :partial => "notifier/footer" %>

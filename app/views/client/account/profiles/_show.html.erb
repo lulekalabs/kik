@@ -1,0 +1,77 @@
+<% # client/account/profiles/_show 
+  edit ||= false
+  error_header_message ||= @error_header_message || "Es sind Fehler aufgetreten."
+%>
+<div id="<%= dom_id(@person) %>" class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <%= error_messages_for :user, :person, :header_message => error_header_message %>   
+    <div class="left">
+      <div id="data-show" style="<%= edit ? 'display:none;' : '' %>">
+        <div class="two_big_top clearer">
+          <h2><b>Meine Daten</b></h2>
+        </div>
+        <div class="two_big_content">
+          <div class="left">
+            <%= render :partial => "data" %>
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "Jetzt Daten ändern", 
+            "$('#data-show').hide();$('#data-edit').show();",
+              {:title => "ändern"} %>
+        </b></div>
+      </div>
+
+      <div id="data-edit" style="<%= edit ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => client_account_profile_path, 
+            :html => {:method => :put} do |f| %>
+          <div class="two_big_top clearer">
+            <h2><b>Meine Daten ändern</b></h2>
+          </div>
+          <div class="two_big_content">
+            <div class="left">
+              <%= render :partial => "data", :locals => {:f => f, :edit => true} %>
+            </div>
+          </div>
+          <div class="two_big_bottom_arrow_hover"><b>
+            <%= submit_tag "Jetzt speichern" %>
+          </b></div>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="right">
+      <% if kik_realm? %>
+        <%= render :partial => "shared/profiles/image" %>     
+      <% end %>
+      <% if af_realm? %>
+      <% end %>
+      
+    
+      
+      <div class="clearer_10"></div> 
+
+      <%= render :partial => "shared/profiles/change_password" %>
+      
+      <div class="clearer_10"></div>
+        
+      <div class="two_small_top clearer"><h2><b>Konto deaktivieren</b></h2></div>
+      <div class="two_small_content">
+        <p>Deaktivieren Sie Ihr Konto und sperren Sie alle in Ihrem persönlichen Mein Bereich vorhandenen Daten. </p>
+        
+      </div>
+      <div class="two_small_bottom_arrow"><b>
+        <%= link_to "Jetzt Konto deaktivieren", 
+          client_account_profile_deactivation_path, {:title => ""} %>
+      </b></div>
+     
+    </div>
+  </div>
+
+
+  <div class="bottom_footer"></div>
+
+</div>
+<%#= render :partial => 'shared/default_fields_js' %>
+

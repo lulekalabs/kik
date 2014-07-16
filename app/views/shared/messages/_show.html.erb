@@ -1,0 +1,27 @@
+<% # client/account/messages
+  message ||= show 
+  url ||= client_account_message_path(message)
+  open ||= false
+  read = message.read_by?(current_user.person)
+%>
+<div id="<%= dom_id(message) %>">
+  <p>
+    <b><%= l(message.created_at) %></b>
+    <span id="<%= dom_id(message, :read) %>" class="t_green" style="<%= read ? '' : 'display:none;' %>">&#8226; gelesen</span>
+    <span id="<%= dom_id(message, :unread) %>" class="t_red" style="<%= read ? 'display:none;' : '' %>">&#8226; ungelesen</span>
+    <br />
+    <%= h(message.subject) %><br />
+    
+    <% if !open && !read %>
+      <b><%= link_to_function "ansehen &#187;", "$('##{dom_id(message, :body)}').show();$('##{dom_id(message, :more)}').hide();#{read ? '' : remote_function(:url => url, :method => :get, :loading => "$('##{dom_id(message, :unread)}').hide();$('##{dom_id(message, :read)}').show();$('##{dom_id(message, :less)}').show();$('##{dom_id(message, :ajax_more)}').hide();")}", :id => dom_id(message, :ajax_more) %></b>
+    <% end %>
+    <b><%= link_to_function "öffnen &#187;", "$('##{dom_id(message, :body)}').show();$('##{dom_id(message, :more)}').hide();$('##{dom_id(message, :less)}').show();", :id => dom_id(message, :more),
+      :style => "display:#{!read && !open ? 'none' : ''};" %></b>
+    <b><%= link_to_function "schliessen &#187;", "$('##{dom_id(message, :body)}').hide();$('##{dom_id(message, :more)}').show();$('##{dom_id(message, :less)}').hide();", :id => dom_id(message, :less),
+      :style => "display:#{read && open ? '' : 'none'};" %></b>
+
+    <div id="<%= dom_id(message, :body) %>" style="<%= open ? '' : 'display:none;'%>">
+      <%= line_break(auto_link(sh(message.message))) %>
+    </div>
+  </p>
+</div>

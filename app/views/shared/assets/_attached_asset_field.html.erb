@@ -1,0 +1,16 @@
+<% # shared/assets/_attached_asset_field
+  asset = attached_asset_field
+%>
+<% f.fields_for "attached_assets", asset do |a| %>
+  
+  <% if !asset.nil? && !asset.new_record? %>
+    <%= image_tag(asset.file.url(:thumb), :alt => "Frage Dateianhang", :title => "Dateianhang") %>
+    <%= a.check_box :_delete %>
+    <%= a.label :_delete, 'löschen' %>
+  <% else %>
+    <%= f.file_field(:file, :class => "field w303", :onclick => "$(this).attr('name', 'kase[attached_assets_attributes][' + (typeof(ac) == 'undefined' ? ac = 1000 : ++ac) + '][file]')") %>
+  <% end %>
+  <div class="clearer"></div>
+  <div class="pad_10"></div>
+  
+<% end %>

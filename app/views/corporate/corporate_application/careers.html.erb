@@ -1,0 +1,54 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+        <h2>Karriere</h2>
+        <div class="pad_10"> </div>
+        <div class="two_big_top clearer">
+          <h2><b>Stellenangebote</b></h2>
+        </div>
+        <div class="two_big_content">
+          <h4>Momentan sind wir gut besetzt. Dennoch sind wir stets offen für motivierte und engagierte Persönlichkeiten und freuen uns über Ihre Initiativbewerbungen per E-Mail.</h4>
+        </div>
+        <div class="two_big_bottom"></div>
+        
+        <div class="two_big_top clearer">
+          <h2><b>Abschlussarbeiten</b></h2>
+        </div>
+        <div class="two_big_content">
+          <h4>Sie befinden sich in den letzten Semestern Ihres Studiums? Wir freuen uns auf Ihre Bewerbung per E-Mail, wenn Sie Ihre Abschlussarbeit mit praktischem Bezug bei <% if kik_realm? %>kann-ich-klagen.de<% end %>
+          <% if af_realm? %>advofinder.de<% end %> schreiben möchten.</h4>
+        </div>
+        <div class="two_big_bottom"></div>
+        
+        <div class="two_big_top clearer">
+          <h2><b>Werkstudenten</b></h2>
+        </div>
+        <div class="two_big_content">
+          <h4>Sie suchen eine Stelle als Werkstudent/-in? Wenn Sie Interesse und Lust haben in einem innovativen Unternehmen mitzuarbeiten, freuen wir uns über Ihre Initiativbewerbungen per E-Mail.</h4>
+        </div>
+        <div class="two_big_bottom"></div>
+      </div>
+
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Bitte senden Sie Ihre Bewerbungsunterlagen an:
+              <p>
+              <%= mail_to Notifier.contact_email, 'E-Mail-Adresse', {:class => "white",  :encode => "hex" }%></p>
+            </li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+

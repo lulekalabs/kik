@@ -1,0 +1,28 @@
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+        <%= render :partial => "shared/advocates/overview", :object => @advocate %>
+        <%= render :partial => "shared/advocates/grade", :object => @advocate %>  
+
+        <%= render :partial => "advofinder/advocate/profiles/tabs" %>
+
+        <%= render :partial => "client/account/advocates/content_messages" %> 
+
+
+        <%= render :partial => "client/account/advocates/regulate" %>
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => "shared/advocates/sidebar_location", :locals => {:advocate => @advocate} %>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+
+

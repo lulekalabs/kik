@@ -1,0 +1,7 @@
+Lieber kann-ich-klagen.de Administrator,
+
+<%= h(@customer.salutation_and_title_and_last_name) %> mit der E-Mail <%= h(@customer.email) %> hat gerade bei kann-ich-klagen.de Inklusivkontakte bestellt (Ref.-Nr. <%= h(@order.number) %>).
+
+Bitte gehen Sie jetzt auf http://www.kann-ich-klagen.de/admin, um die Bestellung zu prüfen.
+
+<%= render :partial => "notifier/footer" %>

@@ -1,0 +1,165 @@
+<div class="blue_right">
+  <% draw_flash_message do |type, message| %>
+    <%= content_tag :div, message, :class => type  %>
+  <% end %>
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Presseverteiler bestellen</h2>
+        <h1>Als Journalist können Sie sich hier in den Presseverteiler eintragen oder sich wieder austragen. Die Pressemitteilungen von <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> erhalten Sie per E-Mail, per Fax oder per Post – so wie Sie es wünschen.</h1>
+        <div class="clearer_10"></div>  
+
+        <%= error_messages_for :person, :address %>
+
+        <% form_for :person, :url => press_journalists_path do |p| %>
+
+          <div class="left">
+            <%= p.select :gender, collect_for_gender_select(true), {},
+              {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+          <div class="left pad_l_16">
+            <%= p.select :academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+              {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+
+          <div class="clearer_10"></div>  
+
+          <div class="left">
+            <%= p.text_field :first_name, {:class => "field w303"} %>
+          </div>
+          <div class="right">
+            <%= p.text_field :last_name, {:class => "field w303"} %>
+          </div>
+
+          <div class="clearer_10"></div>  
+
+          <div class="left">
+  <%# telefon %>
+            <%= p.text_field :phone_number, {:class => "field w303"} %>
+          </div>
+          <div class="right">
+  <%# Fax %>
+            <%= p.text_field :fax_number, {:class => "field w303"} %>
+          </div>
+
+          <div class="clearer_10"></div>  
+
+          <div class="left">
+  <%# E-Mail-Adresse* %>
+            <%= p.text_field :email, {:class => "field w303"}%>
+          </div>
+          <div class="right">
+  <%# E-Mail-Adresse wiederholen* %>
+            <%= p.text_field :email_confirmation, {:class => "field w303"}%>
+          </div>
+
+          <div class="clearer_20"></div>  
+
+          <div class="left">
+  <%# Redaktion/ Verlag* %>
+            <%= p.text_field :company_name, {:class => "field w303"} %>
+          </div>
+          <div class="right">
+  <%# medium* %>
+            <%= p.text_field :media, {:class => "field w303"} %>
+          </div>
+
+
+          <% fields_for "person[business_address_attributes]", @address do |a| %>
+            <div class="clearer_10"></div>  
+             <div class="box_303 left">
+                <div class="left">
+      <%#Strasse* %>
+                  <%= a.text_field :street, {:class => "field w126"} %>
+                </div>
+                <div class="right">
+      <%# Nummer* %>
+                  <%= a.text_field :street_number, {:class => "field w126"} %>
+                </div>
+              </div>
+            <div class="box_303 right">
+              <div class="left">
+    <%# PLZ %>
+                <%= a.text_field :postal_code, {:class => "field w126"} %>
+              </div>
+              <div class="right">
+    <%# Ort %>
+                <%= a.text_field :city, {:class => "field w126"} %>
+              </div>
+            </div>
+           
+
+          <% end %>
+
+
+          <div class="clearer_20"></div>  
+          <p><b>Die Pressemitteilungen möchten Sie erhalten per:</b></p>
+          <div class="left">
+            <span class="check">
+              <%= p.check_box :press_release_per_email %>
+            </span>
+            <span class="fliess">
+              <%= p.label :press_release_per_email, "E-Mail " %>
+            </span>
+          </div>
+          <div class="left pad_l_16">
+
+            <span class="check">
+              <%= p.check_box :press_release_per_fax %>
+            </span>
+            <span class="fliess">
+              <%= p.label :press_release_per_fax, "Fax" %>
+            </span>
+          </div>
+          <div class="left pad_l_16">
+
+            <span class="check">
+              <%= p.check_box :press_release_per_mail %>
+            </span>
+            <span class="fliess">
+              <%= p.label :press_release_per_mail, "Post" %>
+            </span>
+          </div>
+          <div class="clearer"></div>
+
+
+          <div>
+            <%= submit_tag "senden" , :class => "button_right" %>
+          </div>
+          <div class="button_left"></div>
+          <div class="clearer"></div>
+
+        <% end %>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+            <li>Ihre Daten werden ausschließlich von <% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %> vertraulich zu Zwecken der Pressearbeit gespeichert und verarbeitet. Eine Weitergabe an unbeteiligte Dritte erfolgt nicht. </li>
+            
+
+          </ul>
+          <h2>Widerrufmöglichkeit:</h2>
+          <ul>
+            <li>Sie können die Einwilligung zur Nutzung Ihrer Daten für den Presseverteiler jederzeit mit Wirkung für die Zukunft widerrufen, sende Sie uns dazu eine <%= mail_to Notifier.press_email, 'E-Mail', {:class => "white",  :encode => "hex" }%>, per Abbestell-Link am Ende jeder Pressemitteilung oder auf der Seite:<a class="white" href="<%= cancel_press_journalists_path %>">Presseverteiler abbestellen</a> </li>
+
+          </ul>
+          <h2>Datenschutz:</h2>
+          <ul>
+            <li>Die Unterrichtung zum Datenschutz finden Sie auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung", :class => "white"} %></li>
+           </ul>
+          <div class="clearer"></div>
+          
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => "shared/default_fields_js" %>

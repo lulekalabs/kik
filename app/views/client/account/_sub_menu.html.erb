@@ -1,0 +1,67 @@
+<!-- account/sub_content-->
+<div class="sub_content">
+
+  <%= link_to "Übersicht", client_account_path, 
+  {:title => "", :class => current_page?(client_account_path) ? "select" : ""} %>
+  <%= image_tag 'bullet_grey.gif' %> 
+  <% if kik_realm? %>
+  
+  <%= link_to "Meine Fragen &#38; Bewerbungen", client_account_questions_path,
+  {:title => "", :class => controller_name == "questions" && (current_page?(client_account_questions_path) || closed_client_account_questions_path) ? "select" : ""} %>
+
+  <%= image_tag 'bullet_grey.gif' %>
+
+  <%= link_to "Meine Bewertungen", client_account_advocates_path, 
+  {:title => "", :class => current_page?(client_account_advocates_path) || current_page?(reviewed_client_account_advocates_path) ? "select" : ""} %> 
+
+  <%= image_tag 'bullet_grey.gif' %>      
+
+  <%= link_to "Meine Benachrichtigungen", client_account_messages_path, 
+  {:title => "", :class => current_page?(client_account_messages_path) ? "select" : ""} %> 
+
+  <%= image_tag 'bullet_grey.gif' %>
+
+  <%= link_to "Meine Daten", client_account_profile_path, 
+  {:title => "", :class => current_page?(client_account_profile_path) ? "select" : ""} %>
+  <%= image_tag 'bullet_grey.gif' %>   
+
+  <%= link_to "Neue Frage stellen", new_question_path, 
+  {:title => "", :class => current_page?(new_question_path) ? "select" : ""} %>
+   <%= image_tag 'bullet_grey.gif' %>  
+  
+  <%= link_to "Meine gemerkten Anwälte", client_account_stores_path, 
+  {:title => "", :class => current_page?(client_account_stores_path) ? "select" : ""} %>
+   
+  <% end %>
+  <% if af_realm? %>
+  
+
+
+
+  <%= link_to "Meine gemerkten Anwälte", client_account_stores_path, 
+  {:title => "", :class => current_page?(client_account_stores_path) ? "select" : ""} %>
+
+  <%= image_tag 'bullet_grey.gif' %>
+
+  <%= link_to "Meine abgegebenen Bewertungen", reviewed_client_account_advocates_path, 
+  {:title => "", :class => current_page?(reviewed_client_account_advocates_path) || current_page?(reviewed_client_account_advocates_path) ? "select" : ""} %> 
+
+  <%= image_tag 'bullet_grey.gif' %>      
+
+    <%= link_to "Mein Benachrichtigungen", client_account_messages_path, {:title => "Mein Benachrichtigungen", :class => current_page?(client_account_messages_path) ? "select" : ""} %>
+    
+  <%= image_tag 'bullet_grey.gif' %>
+
+  <%= link_to "Meine Daten", client_account_profile_path, 
+  {:title => "", :class => current_page?(client_account_profile_path) ? "select" : ""} %>
+  
+  <%= image_tag 'bullet_grey.gif' %>
+
+  <%= link_to "Neue Bewertung abgeben", advofinder_reviews_path, 
+  {:title => "", :class => current_page?(advofinder_reviews_path) ? "select" : ""} %>
+          
+  <% end %> 
+
+</div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>

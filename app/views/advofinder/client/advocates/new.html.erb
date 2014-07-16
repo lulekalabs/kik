@@ -1,0 +1,122 @@
+<div class="clearer"></div>
+
+ 
+<div class="blue_right">
+  <div class="main">
+     <div class="content">
+     <div class="col_1">
+        <h2>Anwalt hinzufügen und bewerten</h2>
+        <p>Sie möchten einen Anwalt bewerten, der nicht in unserer Datenbank enthalten ist?</p>
+        <p>Als Rechtsuchender haben Sie hier die Möglichkeit kostenlos einen Anwalt hinzuzufügen. Um einen neuen Eintrag zu veranlassen, füllen Sie bitte das nachfolgende Formular mit den Ihnen bekannten Daten des Anwalts aus und klicken Sie dann auf Anwalt hinzufügen und bewerten unterhalb des Formulars.</p>
+       <div class="clearer_10"></div>   
+        <h2>Daten des einzutragenden Anwalts</h2>
+         <%= error_messages_for :user, :advocate, :address, 
+            :header_message => "Ihre Anmeldung konnte leider nicht gesendet werden.",
+            :message => "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Anmeldung absenden zu können." %>
+
+          <% form_for :user, :url => advofinder_client_advocates_path do |u| %>
+            <% fields_for :advocate do |p| %>
+
+              <div class="left">
+                <%= p.select :gender, collect_for_gender_select(true), {},
+                  {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+              </div>
+              <div class="left pad_l_16">
+                <%= p.select :academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+                  {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+            </div>
+
+              <div class="clearer_10"></div> 
+
+              <div class="left">
+                <%= p.text_field :first_name, {:class => "field w303"} %>
+              </div>
+              <div class="right">
+                <%= p.text_field :last_name, {:class => "field w303"} %>
+              </div>
+
+              <div class="clearer_10"></div> 
+
+              <div class="left">
+      <%# Kanzleiname %>
+                <%= p.text_field :company_name, {:class => "field w303"} %>
+              </div>
+             
+
+              <div class="clearer_10"></div> 
+              <% fields_for "advocate[business_address_attributes]", @address do |a| %>
+
+
+                <div class="box_303 left">
+                  <div class="left">
+        <%# Strasse der Kanzlei %>
+                    <%= a.text_field :street, {:class => "field w126"} %>
+                  </div>
+                  <div class="right">
+        <%# Hausnr. der Kanzlei %>
+                    <%= a.text_field :street_number, {:class => "field w126"} %>
+                  </div>
+                </div>
+                <div class="box_303 right">
+                  <div class="left">
+        <%# PLZ der Kanzlei %>
+                    <%= a.text_field :postal_code, {:class => "field w126"} %>
+                  </div>
+                  <div class="right">
+        <%# Ort der Kanzlei %>
+                    <%= a.text_field :city, {:class => "field w126"} %>
+                  </div>
+                </div>
+                
+                 <div class="clearer_10"></div> 
+                  <div class="left">
+          <%# Telefon der Kanzlei %>
+                    <%= p.text_field :phone_number, {:class => "field w303"} %>
+                  </div>
+                  <div class="right">
+          <%# Internet-Adresse (URL) der Kanzlei-Website %>
+                    <%= p.text_field :company_url, {:class => "field w303"} %>
+                  </div>
+
+                  <div class="clearer_10"></div> 
+                  <div class="left">
+          <%# E-Mail-Adresse %>
+                    <%= p.text_field :email, {:class => "field w303"}%>
+                  </div>
+
+                <div class="clearer_20"></div> 
+
+          
+              
+        <div>
+          <%= link_to "Anwalt hinzufügen und bewerten", "#", :class => "button_right" %>   
+          <%#= submit_tag "Anwalt hinzufügen und bewerten", :class => "button_right" %>   
+        </div>
+        <div class="button_left"></div>
+          <% end %>  
+      
+      
+      
+
+    <% end %>
+  <% end %>
+   </div>
+   
+   <div class="col_2">
+     <%= render :partial => 'shared/sidebar_stats' %>
+     <div class="pad_r_l_15">
+       <h2>Hinweise:</h2>
+       <ul>
+         <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+         <li>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr Widerspruchsrecht erhalten Sie, als Fortführung zu diesem Hinweis, als Nutzer auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von advofinder.de" ,:class => "white"} %></li> 
+       </ul>
+       <div class="clearer"></div>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>
+  

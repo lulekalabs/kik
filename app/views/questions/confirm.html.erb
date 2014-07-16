@@ -1,0 +1,52 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="right"><img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/gruen_brief_rs.jpg" style="position:relative;"/></div>
+    <div class="left pad_10" style="position:absolute;">
+      <ul class="confirm">
+        <% unless logged_in? %>
+
+          <li><span class="headline">Vielen Dank für Ihre Frage und Anmeldung auf kann-ich-klagen.de!</span></li>
+          <li><span class="fliess"><b>Sie erhalten in Kürze eine Aktivierungs-E-Mail mit der Bitte um Bestätigung Ihrer Frage und Anmeldung.</b></span></li>
+          <li><span class="fliess">Bitte klicken Sie einmalig auf den in der E-Mail enthaltenen Aktivierungs-Link oder kopieren Sie den Aktivierungs-Link in die Adresszeile Ihres Internetbrowsers, um Ihre kostenlose Frage und Anmeldung zu bestätigen. </span></li>
+          <li><span class="fliess">Ohne Bestätigung kann Ihre kostenlose Anmeldung nicht aktiviert und Ihre Frage für Anwälte anonym freigeschaltet werden. </span></li>
+        
+          <li><span class="fliess">Sie können die von uns gesendete Aktivierungs-E-Mail nicht finden? 
+          Schauen Sie bitte zur Sicherheit auch in Ihrem Junk-E-Mail- bzw. Spam-Ordner nach.
+          Wir können Ihnen die Aktivierungs-E-Mail auch erneut senden, damit Sie Ihre Anmeldung bestätigen können. Klicken Sie bitte auf 
+          <% if @kase %>
+            <%= link_to("E-Mail erneut senden", 
+              resend_activate_question_path(:id => @kase.activation_code)) + "." -%>
+          <% end %>
+          Schauen Sie dann in Ihrem E-Mail-Posteingang nach. </span></li>
+          
+        <% else %>
+
+          <li><span class="headline">Vielen Dank für Ihre Frage auf kann-ich-klagen.de!</span></li>
+          <li><span class="fliess"><b>Sie erhalten in Kürze eine Aktivierungs-E-Mail mit der Bitte um Bestätigung Ihrer Frage.</b></span></li>
+          <li><span class="fliess">Bitte klicken Sie einmalig auf den in der E-Mail enthaltenen Aktivierungs-Link oder kopieren Sie den Aktivierungs-Link in die Adresszeile Ihres Internetbrowsers, um Ihre kostenlose Frage zu bestätigen. </span></li>
+          <li><span class="fliess">Ohne Bestätigung kann Ihre Frage nicht für Anwälte anonym freigeschaltet werden.</span></li>
+      
+          <li><span class="fliess">Sie können die von uns gesendete Aktivierungs-E-Mail nicht finden? 
+          Schauen Sie bitte zur Sicherheit auch in Ihrem Junk-E-Mail- bzw. Spam-Ordner nach.
+          Wir können Ihnen die Aktivierungs-E-Mail auch erneut senden, damit Sie Ihre Frage aktivieren können. Klicken Sie bitte auf 
+
+          <% if @kase %>
+            <%= link_to("E-Mail erneut senden", 
+              resend_activate_question_path(:id => @kase.activation_code)) + "." -%>
+          <% end %>
+          Schauen Sie dann in Ihrem E-Mail-Posteingang nach. </span></li>
+
+        <% end %>
+
+      </ul>
+      <ul>
+
+        <li><span class="fliess"><b>Wichtiger Hinweis zu Spamfiltern: </b>
+       Wenn Sie oder Ihr Provider einen Spam- bzw. Junk-E-Mail-Filter einsetzen, übernehmen Sie bitte die E-Mail-Adresse <%= Notifier.unprettify(Notifier.admin_email) %> oder die Domäne kann-ich-klagen.de in Ihre Liste sicherer Absender bzw. Liste bekannter Personen. </span></li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="bottom_footer"></div>
+</div>

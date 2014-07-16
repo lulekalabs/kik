@@ -1,0 +1,60 @@
+<% # client/account/responses
+  response ||= show || @response
+  commentable = response
+  can_comment ||= response.can_comment?(current_user.person)
+  comments ||= response.comments.visible.find(:all, :order => "comments.created_at DESC") # created_chronological_descending
+  open ||= true
+%>
+<div id="<%= dom_id(response) %>">
+  <div class="quest_advo_top clearer"></div>
+  <div class="quest_advo_content"> 
+    <%= profile_image_tag(response.person) %>
+    <div class="left_block">         
+      <p ><b>Bewerbung</b> von Rechtsanwalt</p>
+      <p ><b><%= link_to response.person.salutation_and_title_and_last_name, profile_client_account_advocate_path(response.person) %></b></p>
+      <p ><%= I18n.l(response.created_at) %></p>
+    </div>
+    <div class="right">
+      <div class="quest_buttom_open">Status: <%= response.human_current_state_name %></div>
+    </div>
+    <div class="clearer"></div>  
+
+    <p><%= auto_link_all(markdown(sh(response.description))) %></p>
+
+    <div id="<%= dom_id(response, :content_open) %>" style="<%= open ? '' : 'display:none;' %>">
+      <% if comments.blank? && can_comment %>
+      
+        <!-- add comment -->
+        <div id="<%= dom_id(commentable, :add_comment_button) %>">
+          <div class="button_white_right_blue">
+            <%= link_to_function "Auf Bewerbung antworten", "$('##{dom_id(Comment.new, dom_id(response))}').show(); $('##{dom_id(commentable, :add_comment_button)}').hide();" %>
+          </div>
+          <div class="button_white_left_blue"></div>
+          <div class="clearer"></div> 
+        </div>
+      
+        <div class="line_answer" id="<%= dom_id(Comment.new, dom_id(response)) %>" style="display:none;">
+          <%= render :partial => "client/account/comments/new", :locals => {:commentable => response,
+            :header_message => "Ihre Antwort auf die Bewerbung:", :decline_response => true} %>
+        </div>
+      <% elsif !comments.blank? && can_comment %>
+        <div class="line_answer" id="<%= dom_id(Comment.new, dom_id(response)) %>" style="display:;">
+          <%= render :partial => "client/account/comments/new", :locals => {:commentable => response,
+            :header_message => "Ihre Antwort auf die Bewerbung:", :decline_response => true} %>
+        </div>
+      <% end %>
+    
+      <%= render :partial => "client/account/comments/show", :collection => comments %>
+    </div>  
+  
+  </div> 
+  <% if true %>
+    <div class="quest_bottom_advo">
+      <%= link_to_open_close_toggle ["Gesprächsverlauf minimieren", "Gesprächsverlauf maximieren"], 
+        dom_id(response, :content_open), open %>
+    </div>
+  <% else %>
+    <div class="quest_advo_bottom"></div>
+  <% end %>
+</div>
+

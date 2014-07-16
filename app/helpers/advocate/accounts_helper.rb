@@ -1,0 +1,2 @@
+module Advocate::AccountsHelper
+end

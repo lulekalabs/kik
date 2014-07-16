@@ -1,0 +1,15 @@
+<div class="border">
+  <%= "Veröffentlicht am #{I18n.l(article.published_at, :format => :short)} von #{h(article.author_name)}" %>
+  <div class="clearer"></div>
+  <div class="pad_10"></div>
+  <b><%= link_to h(article.title), polymorphic_article_path(article) %></b>
+  <div class="clearer_10"></div>  
+  <div class="markdown"><%= truncate_html(markdown(article.body), :length => 60) %></div>
+  <div class="clearer_20"></div>  
+
+  <div class="right">
+    <%#= bookmark_link_to "Artikel empfehlen", service_blog_path(post), {:class => "empfehlen"} %>
+    <%#= link_to "Druckansicht", print_service_blog_path(post), {:class => "drucken"} %>
+    <%= render :partial => '/shared/add_this' %>    
+  </div>
+</div>

@@ -1,0 +1,400 @@
+ <% if logged_in? && current_user.person.is_a?(Advocate) %>   
+ 
+ <% else %> 
+ <% if kik_realm? %>
+ <div class="blue">
+   <div class="top clearer"></div>
+   <div class="content">
+    <p class="headline"> Diese Produktübersicht richtet sich nur an Anwälte! Für Rechtsuchende ist kann-ich-klagen.de stets ein kostenloser Service!</p>
+    <p>Anwälte kaufen bei kann-ich-klagen.de nicht „die Katze nicht im Sack“. Vielmehr können sich auch Anwälte kostenlos und ohne weitere Verpflichtungen von kann-ich-klagen.de überzeugen. </p>
+    <p><b>Profitieren Sie  vom aktuellen Vorteilsangebot für Anwälte:</b> <br /> 
+       Anwälte erhalten als Bonus für ihre unverbindliche Anmeldung ein Startguthaben für 100 Kontakte zu potentiellen Mandanten (Einzelpreis ohne Paketbuchung: 5,00 € netto = 5,95 € brutto pro Kontakt) im Wert von 500,00 € netto (= 595,00 € brutto).*
+    </p>
+    <p>Das Guthaben können Anwälte ab Gutschrift ein Jahr lang einlösen und damit die Vorteile von kann-ich-klagen.de ausführlich testen. Erst wenn das kostenlose Startguthaben aufgebraucht ist, können sich Anwälte entscheiden, mit welchem Paket sie kann-ich-klagen.de weiter nutzen möchten. </p>
+     <%= link_to image_tag("anmelden.png", {:title => "anmelden", :style => "padding-left:220px"}), new_advocate_user_path, {:title => "Jetzt anmelden und Guthaben sichern"} %>  
+    <p class="t_10">*Eine Übertragung an Dritte oder Auszahlung des Startguthabens ist nicht möglich.<br /> Das Angebot
+     gilt für alle Anmeldungen während der Voranmeldephase für Anwälte. Ein Anwalt kann nur einmalig ein Startguthaben beanspruchen. Mehrfache Anmeldungen sind nicht gestattet.
+    </p>
+    </div>
+   <div class="bottom"></div>
+ </div>
+ <% end %>
+<% end %> 
+
+
+
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <% if kik_realm? %> 
+        <h2>Produktübersicht - die kann-ich-klagen.de Pakete für Anwälte im Überblick</h2>
+        <div class="produkt_head">
+          <em>Keine Einrichtungsgebühren! Kostenloses Startguthaben!</em>
+        </div>
+        <table class="product">
+            <tr>
+              <th><h2><span class="one">Kontakte zu Rechtsuchenden</span> <span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+                <div class="clearer_5"></div>
+                  <p>Freikontakte als Startguthaben (einmaliges Kontingent) </p>
+                  <p>Inklusivkontakte  (Kontingent pro Monat) </p>
+                  <p>Preis für über Kontingent hinausgehende, weitere Kontakte</p>
+              </th>
+              <td>
+                <p>&#160;</p>
+               <p>100</p>
+               <p>0</p>
+               <p>5,00 &#8364;</p>
+              </td>
+              <td>
+                <p>&#160;</p>  
+               <p>100</p>
+               <p>20</p>
+               <p>5,00 &#8364;</p>
+             </td>
+              <td>
+                <p>&#160;</p>  
+               <p>100</p>
+               <p>40</p>
+               <p>5,00 &#8364;</p>
+              </td>
+              <td>
+                <p>&#160;</p>  
+               <p>100</p>
+               <p>unbegrenzt</p>
+               <p>inklusive</p>
+              </td>
+            </tr>
+            <tr>
+              <th><h2><span class="one">Persönliches Anwaltsprofil</span><span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+                <div class="clearer_5"></div>
+                  <p>Anzeige Ihrer Kontaktdaten, Bürozeiten, Lageplan, Anfahrtsskizze, etc.</p>
+                  <p>Umfangreiche Darstellung Ihres Leistungs- und Serviceangebots</p>
+                  <p>Eigener Kommunikationsbereich zur Korrespondenz mit Rechtsuchenden und Mandanten</p>
+              </th>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            </tr>
+            <tr>
+              <th>
+                <h2><span class="one">Fragen-Radar</span> <span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+                  <div class="clearer_5"></div>
+                  <p>Einfach und schnell neue Mandate finden</p>
+                  <p>Regelmäßig Fragen von potenziellen Mandanten bequem per E-Mail</p>
+                  <p>Fragen individuell gefiltert nach Ihren Rechtsgebieten und regionalen Wünschen</p>
+              </th>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            </tr>
+            <tr>
+              <th><h2><span class="one">Anwaltsmarketing </span><span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+                  <div class="clearer_5"></div>
+                  <p>Einbindung von Bildern und Videos</p>
+                  <p>Veröffentlichung von Kanzleimitteilungen</p>
+                  <p>Veröffentlichung Ihrer Artikel zu Rechtsthemen</p>
+                  <p>kann-ich-klagen.de Qualitätssiegel für Ihre Internetseite</p>
+              </th>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            </tr>
+             <tr>
+                <th style="background-image:none; border:0">
+                </th>
+                <td><b><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></b></td>
+                <td><b><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></b></td>
+                <td><b><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></b></td>
+                <td><b><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></b></td>
+              </tr>
+            <tr>
+              <th><h2>Laufzeit: 30 Tage</h2>
+                  <p>Monatliche Verlängerung, sofern nicht 3 Tage vor Ablauf der Laufzeit gekündigt wird.</p>
+              </th>
+              <td rowspan="2">
+                <b>keine Fixkosten<br />
+              keine Laufzeit</b><br /> <br />
+              <b><%= link_to "Jetzt anmelden und Startguthaben sichern!", new_advocate_user_path, {:title => "Einmalig anmelden und Vorteile sichern"} %></b>
+              </td>
+              <td><b>34,90 &#8364;/Mon.</b></td>
+              <td><b>64,90 &#8364;/Mon.</b></td>
+              <td><b>94,90 &#8364;/Mon.</b></td>
+            </tr>
+            <tr> 
+              <th><h2>Laufzeit: 365 Tage</h2>
+                  <p>Jährliche Verlängerung, sofern nicht 30 Tage vor Ablauf der Laufzeit gekündigt wird.</p>
+              </th>
+              <td><b>24,90 &#8364;/Mon.</b><br /><br /><img src="/images/produkt_10.png" width="108" height="53" alt="Produkt 10"/></td>
+              <td><b>44,90 &#8364;/Mon.</b><br /><br /><img src="/images/produkt_20.png" width="108" height="53" alt="Produkt 20"/></td>
+              <td><b>64,90 &#8364;/Mon.</b><br /><br /><img src="/images/produkt_30.png" width="108" height="53" alt="Produkt 30"/></td>
+            </tr>
+          </table>
+          
+          <div class="clearer_10"></div>
+          
+          <h2>Ergänzende Informationen zu den kann-ich-klagen.de Paketen</h2>
+          <p><b>1) Welchen Laufzeiten haben die kann-ich-klagen.de Pakete?</b></p>
+          <p>Das kostenlose Flex-Paket hat keine feste Laufzeit. Es ist jederzeit kündbar. Das 20er-Paket, das 40er-Paket und das Flat-Paket haben wahlweise eine Laufzeit von 30 Tagen oder 365 Tagen. Die Laufzeit verlängert sich bei Paketen mit einer Laufzeit von 30 Tages um weitere 30 Tage, bei Paketen mit einer Laufzeit von 365 Tagen um weitere 365 Tage, sofern nicht 3 Tage (bei Paketen mit einer Laufzeit von 30 Tagen) bzw. 30 Tage (bei Paketen mit einer Laufzeit von 365 Tagen) vor Ablauf der Laufzeit gekündigt wird. Es gelten die <%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen von kann-ich-klagen.de"} %> von kann-ich-klagen.de.</p>
+          <p><b>2) Wie lange können Inklusivkontakte bzw. Freikontakte eingelöst werden?</b></p>
+          <p>Nicht eingelöste monatliche Inklusivkontakte im Rahmen eines 20er-Pakets oder 40er-Pakets verfallen mit Ablauf des Zeitraums von 30 Tagen für den sie systemseitig nach Buchung bzw. Verlängerung eines jeweiligen Pakets gutgeschrieben wurden. Eine Auszahlung, Gutschrift oder Rückerstattung nicht genutzter Inklusivkontakte ist nicht möglich.
+          Freikontakte, sprich Kontakte, die Ihnen im Rahmen des Startguthabens bzw. für die erfolgreiche Weiterempfehlung an einen Kollegen gutgeschrieben werden, können Sie ab Gutschrift ein Jahr lang einlösen, sofern kein anderer Zeitraum explizit genannt wurde.
+          Eine Übertragung an Dritte oder Auszahlung des Startguthabens ist nicht möglich.</p>
+          <p><b>3) Welche Kosten kommen auf mich zu?</b></p>
+          <p>kann-ich-klagen.de erhebt keine Einrichtungsgebühren. Im Rahmen des Flex-Pakets gibt es auch keine laufenden Kosten. Es entstehen nur dann Kosten, wenn ein Kontakt zu einem potentiellen Mandanten tatsächlich erworben wird. Im Rahmen des 20er-Pakets, des 40er-Pakets und des Flat-Pakets fallen die ausgewiesen monatlichen Kosten an sowie Kosten für etwaige Kontakt, die über die inkludierten Inklusivkontakte hinaus erworben werden. Alle angegebenen Preise verstehen sich zzgl. 19% MwSt.</p>
+          <p><b>4) Wie erfolgt die Rechnungstellung?</b></p>
+          <p>
+         Die Rechnungsstellung erfolgt gewöhnlich zum Ende eines Monats. Rechnungen werden signiert als PDF-Datei per E-Mail versandt und sind mit Signatur steuerlich anerkannt. Für zusätzliche Rechnungen in Papierform wird pro Rechnung ein Zuschlag von 5,00 € zzgl. 19 % MwSt. berechnet.
+</p>
+          <p><b>5) Welche Zahlungsarten gibt es?</b></p>
+          <p>
+          Zahlungen können per Rechnung oder per Lastschrift erfolgen.</p>
+          <p><b>6) Wie kann in ein anderes Paket gewechselt werden? </b></p>
+          <p>
+            Der Wechsel in ein höherwertiges Paket ist jederzeit möglich und wird wirksam mit Beginn der nächsten 30-Tage-Periode. Der Wechsel in ein geringwertigeres Paket ist mit Ende der Mindestlaufzeit möglich. <%= link_to "Hier wechseln &#187;",  package_advocate_account_profile_path, {:title => "Paketwechsel von kann-ich-klagen.de "} %>
+           </p>
+           <p><b>7)</b>
+           
+              Das Angebot betreffend die auf dieser Seite dargestellten <b>kann-ich-klagen.de Pakete richtet sich ausschließlich an in Deutschland zugelassene Anwälte</b>.
+             </p>
+           <p><b>8) Sonst noch etwas?</b></p>
+           <p>
+             Für weitere Details beachten Sie bitte die <%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen von kann-ich-klagen.de"} %> und <%= link_to "Datenschutzerklärung", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de"} %> von kann-ich-klagen.de in ihrer jeweils geltenden Fassung.
+            </p>
+            
+            
+     </div>
+     <div class="bottom_footer"></div>
+   </div>
+
+    <div style="display:none">
+       <div id="product_1">
+         <div class="clearer_10"></div>   
+         <p>Das Flex-Paket eignet sich für Anwälte, die keine Verpflichtungen eingehen wollen. Es entstehen keine Fixkosten. Vielmehr können Kontakte zu potentiellen Mandanten je nach Bedarf einzeln gekauft werden zu einem Preis von je 5,00 € netto zzgl. 19% MwSt. Dieser großen Flexibilität steht gegenüber, dass der einzelne Kauf von Kontakten in der Summe teurer sein kann als der Kauf eines Pakets mit Inklusivkontakten. Bei 8 und weniger Kontakten pro Monat zu potentiellen Mandanten empfiehlt sich des Flex-Paket. </p>
+
+        <p> Das 20er-Paket und das 40er-Paket eignet sich für Anwälte, die genau wissen, wie viele Kontakte sie pro Monat zu potentiellen Mandanten aufnehmen wollen. Anwälte haben durch den Kauf dieser Kontingente von Kontakten (20 bzw. 40 Inklusivkontakte pro Monat) einen Sparvorteil gegenüber dem Einzelkauf im Rahmen des Flex-Paket.  </p>
+
+        <p> Das Flat-Paket eignet sich für Anwälte, die monatlich zu einer Vielzahl von potentiellen Mandanten Kontakt aufnehmen wollen. Anwälte können unbegrenzt Kontakte zu Rechtsuchenden abrufen, ohne auf die Kosten achten zu müssen; quasi all-inclusive. </p>
+
+       <p>  Hinweis: Solange Sie sich nicht aktiv für ein Paket entscheiden, gilt das kostenlose Flex-Paket für Sie. Das heißt: Nur wenn Sie als Anwalt tatsächlich Kontakt zu einem Rechtsuchenden aufnehmen werden Ihnen 5,00 € netto zzgl. 19% MwSt. für den Kontakt in Rechnung gestellt. </p>
+       </div>
+
+     </div>
+     
+     
+     
+     
+     
+     <% end %>
+     <% if af_realm? %>
+     <h2>Produktübersicht - die advofinder.de Pakete für Anwälte im Überblick</h2>
+     <div class="produkt_head">
+       <em>Keine Einrichtungsgebühren!</em>
+     </div>
+     <table class="product">
+         <tr>
+           <th><h2><span class="one">Persönliches Anwaltsprofil</span> <span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+             <div class="clearer_5"></div>
+               <p>Selbstdarstellung Ihrer Person und Ihrer Kanzlei mit individuellen Texten</p>
+               <p>Darstellung Ihres Leistungs- und Serviceangebots</p>
+               <p>Anzeige Ihrer Tätigkeitsbereiche</p>
+               <p>Anzeige gesprochener Fremdsprachen</p>
+               <p>Anzeige Ihrer Kanzlei- und Kontaktdaten, Bürozeiten und Haltestellen öffentlicher Verkehrsmittel</p>
+               <p>Nennung weiterer Standorte Ihrer Kanzlei</p>
+               <p>Lageplan und Routenberechnung zur Kanzlei mit Google Maps</p>
+               <p>Profilfoto, Logo und Bilder von Ihrer Kanzlei anzeigen</p>
+               <p>Verlinkung auf eigene Kanzlei-Webseite</p>
+               <p>Verlinkung auf andere vorhandene Web-Profile (Xing, Facebook, LinkedIn, Twitter, Skype)</p>
+               
+           </th>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+         </tr>
+          <tr>
+            <td class="t_left">
+              <div class="clearer_5"></div>
+                <p>Aktuelle Mitteilungen Ihrer Kanzlei in Textform veröffentlichen</p>
+                <p>Aktuelle Mitteilungen Ihrer Kanzlei als Video veröffentlichen</p>
+                <p></p>
+            </td>
+            <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+          </tr>
+          
+         <tr>
+           <th><h2><span class="one">Bewertungen &#38; Feedback</span><span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+             <div class="clearer_5"></div>
+               <p>Bewertungen und Feedback erhalten von Mandanten</p>
+               <p>Teilen- und Weiterempfehlungsfunktion für Ihr Bewertungsprofil im Social Web</p>
+               <p>Automatische Benachrichtigung über neue Bewertungen im persönlichen Mein Bereich auf advofinder.de</p>
+           </th>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+         </tr>
+         <tr>
+           <td class="t_left">
+             <div class="clearer_5"></div>
+               <p>Automatische Benachrichtigung über neue Bewertungen per E-Mail</p>
+               <p>Anzeige Ihres Bewertungsprofils auf Ihrer Website mit dem advofinder.de Widget</p>
+               <p></p>
+           </td>
+           <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+         </tr>
+         
+         <tr>
+           <th>
+             <h2><span class="one">Anwaltsmarketing</span> <span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+               <div class="clearer_5"></div>
+               <p>Artikel zu Rechtsthemen verfassen und veröffentlichen mit Autorenberechtigung</p>
+               <p>Erweiterung der Suchmaschine um Ihre Rechtsgebiete</p>
+               <p>Suchmaschinenoptimierung</p>
+           </th>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+           <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+         </tr>
+         <tr>
+            <td class="t_left">
+              <div class="clearer_5"></div>
+                <p>advofinder.de Teilnahmesiegel für Ihre Internetseite</p>
+            </td>
+            <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+             <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+          </tr>
+          
+          <tr>
+              <td class="t_left">
+                <div class="clearer_5"></div>
+                  <p>Aufnahme Ihrer Artikel im den advofinder.de Newsletter</p>
+                  <p>Bewerbung Ihrer Artikel im Social Web</p>
+                  <p>Aufnahme in den Interview-Verteiler für Journalistenanfragen</p>
+                  <p>Eigene Web-Visitenkarte mit Vanity-URL und eigener Domain<br />(.de, .com, .net oder .org)</p>
+                  <p>Kostenloses Marketingmaterial und Servicepaket mit Flyern</p>
+                  <p>Teilnahme am "Rechtstipp-Service" für Nachrichten- und Servicewebseiten</p>
+                  <p>Einladungen zu besonderen Events und Roundtables mit Medienpartnern</p>
+                 
+              </td>
+              <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+               <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+               <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+               <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+            </tr>
+                <tr>
+                <td class="t_left">
+                  <div class="clearer_5"></div>
+                    <p>Produktion eines professionellen Imagevideos für Ihre Kanzlei<br /> (bis zu 60 Sekunden)</p>
+                </td>
+                <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                 <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                 <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                 <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+              </tr>
+              
+              
+              <tr>
+                 <th>
+                   <h2><span class="one">Service</span> <span><a class="pre_launch_chip_modal" href="#product_1">mehr Infos &#187;</a></span></h2>
+                     <div class="clearer_5"></div>
+                     <p>Persönliche Beratung per E-Mail</p>
+                 </th>
+                 <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                 <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                 <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                 <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+               </tr>
+               <tr>
+                  <td class="t_left">
+                    <div class="clearer_5"></div>
+                      <p>Persönliche Beratung per Telefon</p>
+                  </td>
+                  <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                   <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                   <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                   <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                </tr>
+                <tr>
+                    <td class="t_left">
+                      <div class="clearer_5"></div>
+                        <p>Persönlicher Profileinrichtungs- und Updateservice durch das advofinder.de Team</p>
+                    </td>
+                    <td>25,00 € / Auftrag</td>
+                     <td>25,00 € / Auftrag</td>
+                     <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                     <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                  </tr>
+                      <tr>
+                      <td class="t_left">
+                        <div class="clearer_5"></div>
+                          <p>Exklusive Vorteilsangebote bei unseren Partnern</p>
+                      </td>
+                      <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                       <td><img src="/images/icons/minus.png" width="20" height="20" alt="minus"/></td>
+                       <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                       <td><img src="/images/icons/haken.png" width="20" height="20" alt="Haken"/></td>
+                    </tr>
+         
+         <tr> 
+           <th><h2>Mindestlaufzeit: 365 Tage </h2>
+               <p>Jährliche Verlängerung, sofern nicht 30 Tage vor Ablauf der Laufzeit gekündigt wird.</p>
+           </th>
+           <td>Kostenlos<br /> Keine Laufzeit</td>
+           <td><b>14,90 &#8364;/Mon.</b><br />zzgl. 19 % MwSt.</td>
+           <td><b>44,90 &#8364;/Mon.</b><br />zzgl. 19 % MwSt.</td>
+           <td><b>124,90 &#8364;/Mon.</b><br />zzgl. 19 % MwSt.</td>
+         </tr>
+       </table>
+       
+       <div class="clearer_10"></div>
+       
+       <p><b>Aktion bis 31.12.2011:</b> 90 weitere Tage gratis im Anschluss an die Mindestlaufzeit</p>
+       <p><b>Unser Versprechen:</b> Keine versteckten Einrichtungs- und Aufnahmegebühren!</p>
+       <p><b>Sparvorteil für Junganwälte:</b> Erhalten Sie zusätzlich einen Rabatt von 20% auf alle kostenpflichtigen advofinder.de Pakete, wenn Sie zum Zeitpunkt Ihrer Anmeldung weniger als 5 Jahre zugelassen sind.</p>
+       <p>Möchten Sie für mehrere Anwälte Ihrer Kanzlei buchen? Sprechen Sie uns auf Sonderkonditionen an! <%= link_to "Kontakt", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von advofinder.de"} %></p>
+       <div class="clearer_10"></div>   
+       <h2>Ergänzende Informationen zu den advofinder.de Paketen</h2>
+       <p><b>1) Welchen Laufzeiten haben die advofinder.de Pakete?</b></p>
+       <p>Das kostenlose Basis-Paket hat keine feste Laufzeit. Es ist jederzeit kündbar. Das Business-Paket, das Premium-Paket und das Premium XL-Paket haben eine Laufzeit von 365 Tagen. Die Laufzeit verlängert um weitere 365 Tage, sofern nicht 30 Tag vor Ablauf der Laufzeit gekündigt wird. Es gelten die <%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen von kann-ich-klagen.de"} %> von kann-ich-klagen.de.</p>
+       
+       <p><b>2) Welche Kosten kommen auf mich zu?</b></p>
+       <p>advofinder.de erhebt keine Einrichtungs- oder Aufnahmegebühren. Im Rahmen des Basis-Pakets gibt es auch keine laufenden Kosten.. Im Rahmen des Business-Pakets, des Premium-Pakets und des Premium XL-Pakets fallen die ausgewiesen monatlichen Kosten an. Alle angegebenen Preise verstehen sich zzgl. 19% MwSt.</p>
+       <p><b>3) Wie erfolgt die Rechnungstellung?</b></p>
+       <p>
+      Die Rechnungsstellung erfolgt gewöhnlich zum Ende eines Monats. Rechnungen werden signiert als PDF-Datei per E-Mail versandt und sind mit Signatur steuerlich anerkannt. Für zusätzliche Rechnungen in Papierform wird pro Rechnung ein Zuschlag von 5,00 € zzgl. 19 % MwSt. berechnet.
+</p>
+       <p><b>4) Welche Zahlungsarten gibt es?</b></p>
+       <p>
+       Zahlungen können per Rechnung oder per Lastschrift geleistet werden.</p>
+       <p><b>5) Wie kann in ein anderes Paket gewechselt werden? </b></p>
+       <p>
+        Der Wechsel in ein höherwertiges Paket ist jederzeit möglich und wird wirksam mit Beginn des auf den Wechsel folgenden Werktages. Das bisherige Paket wird zum Zeitpunkt des Wechselns beendet. Die Laufzeit des bisherigen Pakets wird nicht auf das neue Paket angerechnet. Für das neue Paket beginnt die Laufzeit von Neuem. Überzahlungen und Guthaben betreffend das bisherige Paket werden auf die Kosten des neuen Pakets zu Ihren Gunsten angerechnet. Der Wechsel in ein geringwertigeres Paket ist mit Ende der vereinbarten Mindestlaufzeit möglich. <%= link_to "Hier wechseln &#187;",  package_advocate_account_profile_path, {:title => "Paketwechsel von advofinder.de "} %>
+        </p>
+        <p><b>6) Zielgruppe des Angebots</b></p>
+         <p>
+           Das Angebot betreffend die auf dieser Seite dargestellten <b>advofinder.de Pakete richtet sich ausschließlich an in Deutschland zugelassene Anwälte</b>.
+          </p>
+        <p><b>7) Sonst noch etwas?</b></p>
+        <p>
+          Für weitere Details beachten Sie bitte die <%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen von advofinder.de"} %> und <%= link_to "Datenschutzerklärung", privacy_corporate_path, {:title => "Datenschutzerklärung von advofinder.de"} %> von advofinder.de in ihrer jeweils geltenden Fassung.
+         </p>
+         
+         
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+     <% end %>
+
+         

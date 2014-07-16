@@ -1,0 +1,78 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        	<h2>Firmenprofil</h2>
+        	<% if kik_realm? %>
+        	       <p>kann-ich-klagen.de - das Mandanten-Fragen-Portal im Internet - stellt sich vor: </p>
+       <p><b>Rechtsuchenden</b> bietet kann-ich-klagen.de die schnelle und bequeme Möglichkeit, passende Anwälte unverbindlich und vor allem kostenfrei über das Internet zu finden. Sie müssen nur einmal Ihre Frage stellen und erhalten Bewerbungen von interessierten Anwälten zur Auswahl. </p>
+       <p><b>Anwälte</b> unterstützt kann-ich-klagen.de deutschlandweit bei der Akquise von neuen Mandanten. Teilnehmende Anwälte erhalten regelmäßig und kostenlos aktuelle Fragen von potentiellen Mandanten, gefiltert nach individuellen Vorgaben, zur Einsicht und können sich bei Interesse bei den Rechtsuchenden vorstellen. </p>
+       <p>Neben dem Zusammenführen von Rechtsuchenden und Anwälten bietet kann-ich-klagen.de auch Informationen rund um die Themen Steuern und Recht zum Nachlesen. </p>
+
+       </div>
+       <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>
+         <div class="pad_r_l_15">
+  <h2>Hinweise:</h2>
+
+           <ul>
+            <li>Anschrift:
+               <p>kann-ich-klagen.de </p>
+
+               <p>Friedrichstr. 148</p>
+               <p>10117 Berlin</p>
+                </li>
+
+             <li>Bei Fragen stehen wir Ihnen jederzeit gern zur Verfügung:
+                <p>Telefon: (030) 577 085 760</p>
+                <p>Telefax: (030) 577 085 769 </p>
+               <p> <%= mail_to  Notifier.press_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+
+             </li>
+          <% end %>
+          <% if af_realm? %>
+               <p>advofinder.de – Anwalts-Check im Internet - stellt sich vor: </p>
+        <p><b>Rechtsuchenden</b>unterstützt advofinder.de kostenfrei bei der Suche nach dem passenden Anwalt und schafft Transparenz. Mit praktischen Suchfunktionen und umfangreichen Anwaltsprofilen erhalten Rechtsuchende schnell einen Überblick über potentielle Anwälte, die konkret in Frage kommen. Das advofinder.de Bewertungssystem ermöglicht Rechtsuchenden zusätzlich die unkomplizierte Bewertung eines Anwalts in nur wenigen Minuten. Bewertet werden fünf Bereiche: Verständlichkeit, Zuverlässigkeit, Menschlichkeit, Erreichbarkeit und Auftreten des Anwalts. So erhalten andere Rechtsuchende wichtige Anhaltspunkte bei der eigenen Anwaltssuche.</p>
+        <p><b>Anwälte</b> ermöglicht advofinder.de sich professionell im Internet zu präsentieren mit einem persönlichen Anwaltsprofil zur Darstellung Ihrer Person, Ihrer Kanzlei und Ihrer Arbeit. Darüber hinaus können Artikel und Videos veröffentlicht sowie Bewertungen gesammelt werden zum Ausbau des eigenen Online-Renommees. Die in das persönliche Anwaltsprofil integrierte Bewertungsfunktion ermöglicht es wertvolles Feedback von Mandanten zu erhalten, um das eigene Serviceangebot zu optimieren. advofinder.de unterstützt Anwälte dabei Empfehlungsmarketing zur Neukundengewinnung umzusetzen und das Potential im Web 2.0 auszuschöpfen; mit integrierter Social Media Anbindung und Suchmaschinenoptimierung.
+       </p>
+        <p> Neben dem Zusammenführen von Rechtsuchenden und Anwälten bietet advofinder.de auch Informationen rund um die Themen Steuern und Recht zum Nachlesen.</p>
+
+        </div>
+        <div class="col_2">
+           <%= render :partial => 'shared/sidebar_stats' %>
+          <div class="pad_r_l_15">
+   <h2>Hinweise:</h2>
+
+            <ul>
+             <li>Anschrift:
+                <p>advofinder.de </p>
+
+                <p>Friedrichstr. 148</p>
+                <p>10117 Berlin</p>
+                 </li>
+
+              <li>Bei Fragen stehen wir Ihnen jederzeit gern zur Verfügung:
+                 <p>Telefon: (030) 609 895 090</p>
+                 <p>Telefax: (030) 609 895 099 </p>
+                <p> <%= mail_to  Notifier.press_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+
+              </li>
+          <% end %>
+         
+
+
+
+          </ul>
+          
+
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+

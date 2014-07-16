@@ -1,0 +1,16 @@
+<!-- questions/sub_content -->
+
+ <div class="sub_content">
+  <%= link_to "Offene Fragen", open_questions_path, {:title => "Offene Fragen", :class => current_page?(open_questions_path) ? "select" : ""} %>
+  <%= image_tag 'bullet_grey.gif' %>
+   <%= link_to "Ihre beworbenen Fragen", applied_questions_path, {:title => "Ihre beworbenen Fragen", :class => current_page?(applied_questions_path) ? "select" : ""} %>
+ 
+ 
+   <%= image_tag 'bullet_grey.gif' %>
+  <%= link_to "Ihre gemerkten Fragen", memorized_questions_path, {:title => "Ihre gemerkten Fragen", :class => current_page?(memorized_questions_path) ? "select" : ""} %>
+  
+  
+</div>
+
+<div class="sub_bottom"></div>
+<div class="clearer"></div>

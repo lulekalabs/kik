@@ -1,0 +1,146 @@
+<!-- home page index -->
+<% draw_flash_message do | b_class , b_message| %>
+  <div class="<%= b_class %>">
+    <%= b_message %>
+  </div>
+<% end %>
+
+<div class="blue">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="right"><img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="images/start.jpg" style="position:relative;"/></div>
+    <div class="left" style="position:absolute;">
+      <ul>
+        <li><span class="headline">Das Mandanten-Fragen-Portal im Internet</span></li>
+        <li><span class="nr">1.</span>
+          <span class="fliess"><b>Frage stellen</b><br />Beschreiben Sie kostenlos und unverbindlich Ihren Fall und Ihr Rechtsproblem.</span>
+        </li>
+        
+        <li><span class="nr">2.</span>
+          <span class="fliess"><b>Zurücklehnen und Feedback erhalten</b><br />Erhalten Sie kostenlos Bewerbungen von interessierten und sofort <br />verfügbaren Anwälten - ohne weiter Verpflichtungen.</span>
+        </li>
+        <li><span class="nr">3.</span>
+          <span class="fliess"><b>Vergleichen und auswählen</b><br />Vergleichen Sie in Ruhe die Bewerbungen, wählen Sie einen passenden<br /> Anwalt aus und kontaktieren Sie ihn unverbindlich.</span>
+        </li>
+      </ul>
+
+     
+    </div>
+    <div class="pad_10"></div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+
+
+
+
+<div class="green_left">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <div class="pad_10"></div>
+
+        <% form_for :kase, @kase, :url => new_questions_path do |f| %>
+
+        <h2>Stellen Sie hier kostenlos Ihre Frage an interessierte Anwälte:</h2>
+        <div class="left">
+          <%= f.text_area :description, {:class => "text question_field_index"} %>
+        </div>
+        <div class="right">
+          <%= submit_tag "", :class => "senden" %>
+        </div>
+        
+        <% end %>
+        
+        <div class="clearer_45"></div>
+       
+     
+      <div class="left box_start">
+        <div><img alt="Kostenlos" src="images/icons/start_kostenlos.jpg" /></div>
+        <p><b>Kostenlos</b></p>
+        <div>Keine Verpflichtungen</div>
+        <div>Keine Mitgliedschaft</div>
+        <div>Keine Gebührenfallen</div>
+        <div>Keine Kostentragung </div>
+      </div>
+      
+      <div class="left pad_l_16 box_start">
+         <div><img alt="Datenschutz" src="images/icons/start_datenschutz.jpg" /></div>
+        <p><b>Datenschutz</b></p>
+       <div>Keine Weitergabe Ihrer Daten an unbeteiligte Dritte.</div>
+      </div>
+
+      <div class="left pad_l_16 box_start">
+         <div><img alt="Sicherheit" src="images/icons/start_ssl.jpg" /></div>
+        <p><b>Sicherheit</b></p>
+        <div>Sichere Datenübertragung mit verschlüsselter 128-Bit SSL-Verbindung und geschützter persönlicher Bereich.</div>
+      </div>
+
+      <div class="right box_start">
+         <div><img alt="Service" src="images/icons/start_service.jpg" /></div>
+        <p><b>Service</b></p>
+        <div>Teilnehmende Anwälte haben ein persönliches Profil mit Kontaktinformationen und Bewertungsmöglichkeit. </div>
+      </div>
+
+
+</div>
+     
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Tipp:</h2>
+         <p class="black">Je genauer Sie Ihre Frage formulieren, desto besser können Ihnen die teilnehmenden Anwälte Feedback geben.</p>
+         <p class="black">Wir empfehlen Ihnen bei Ihrer Schilderung die "W-Fragen" zu berücksichtigen: </p>
+          <p class="black">Was ist passiert? - Wer ist beteiligt?</p>
+          
+          <p class="black">Wo ist es passiert? - Wann ist es passiert?</p>
+         
+          <p class="black">Wie ist es passiert? - Warum ist es passiert?</p>
+          <p class="black">Welches Ziel verfolgen Sie?</p>
+          <p class="black">Welche Zeugen haben Sie?</p>
+          <p class="black">Welche Unterlagen besitzen Sie? </p>
+          <p class="black">Vor einer Beratung empfiehlt es sich alle vorhandenen Unterlagen zu sammlen und zu ordnen. Unterlagen sind z.B. Verträge, Briefe, Mahnungen, aber auch Umschläge wegen der Zugangsdaten. </p>
+          <p class="black">Zusätzlich kann eine chronologische Aufstellung der Ereignisse und der jeweils anwesenden Zeugen und Beteiligten helfen.</p> 
+          
+          <div class="black pad_10"></div>
+          <div class="button_right_2">
+             <a href="/tipps_infos.html" onClick="window.open('/tipps_infos.html','weitere Tipps und Infos','width=1010,height=600,scrollbars=yes'); return false;">Weitere Tipps und Infos</a> 
+            <!-- <a class="ajax" href="<%= tips_and_infos_path %>" title="weitere Tipps und Infos">Weitere Tipps und Infos</a> -->
+          </div>
+          <div class="button_left_2"></div>
+          
+        </div>
+        
+        <!-- <div class="holder">
+          <div class="pad_banner"><img alt="" src="images/logos/video_lay.jpg" /></div>
+        </div>
+        <div class="pad_3"></div> --> 
+        
+
+        <div class="clearer_20"></div>
+        <div class="pad_r_l_15">
+          <h2>Aktion für Anwälte:</h2>
+           <p class="black">Jetzt kostenlos und ohne weitere Verpflichtungen persönliches Profil anlegen und Spartguthaben zum ausführlichen testen sichern.
+           </p>
+
+          
+          
+         <div class="clearer_10"></div>  
+           <div class="button_right_2">
+             <%= link_to "Weitere Infos", advocate_path, {:title => "Startseite für Anwälte"} %> 
+            
+          </div>
+          <div class="button_left_2"></div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>

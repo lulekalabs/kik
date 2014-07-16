@@ -1,0 +1,123 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <div class="two_big_top"> <h2>Aktuelle Auswahl: <b><%= h(@order.line_items.first.sellable.name) %></b></h2></div> 
+        <div class="two_big_content">
+          <h1>Preis: <b><%= @order.gross_amount.format %>&nbsp;</b>(<%= @order.net_amount.format %> netto + <%= number_to_percentage(@order.line_items.first.tax_rate, :precision => 0) %> MwSt.)</h1>
+          <!---
+          <p>Laufzeit: <b>30 Tage</b> (Monatliche Verlängerung, sofern nicht 3 Tage vor Ablauf der Laufzeit gekündigt wird)</p>
+          -->
+        </div>
+        <div class="two_big_bottom_arrow">
+          <%= link_to content_tag(:b, "Auswahl ändern"), advocate_account_products_path %>
+        </div> 
+        <div class="clearer_10"></div>
+
+        <div class="two_big_top"> <h2><b>Zahlungsdaten</b></h2></div>
+        <% form_for :order, @order, :url => advocate_account_orders_path, :html => {:method => :post} do |f| %>
+        
+          <%= render :partial => "order_data", :locals => {:f => f, :edit => true} %>
+        
+        <% end %>
+
+        <p style="color:red">Unterer Teil erscheint nach Jetzt senden</p>     
+
+        <h2>Bitte überprüfen Sie die von Ihnen eingegebenen Daten</h2> 
+        <p>Durch Klick auf "Kontakt-Paket kaufen" wird der Kaufprozess abgeschlossen. </p>
+        <div class="two_big_top"> <h2>Aktuelle Auswahl: <b>Flat-Paket</b></h2></div> 
+        <div class="two_big_content">
+          <h1>Monatlich Kosten: <b>112,93 &#8364;</b>  (94,90 &#8364; netto + 19% MwSt.)</h1>
+          <p>Laufzeit: <b>30 Tage</b> (Monatliche Verlängerung, sofern nicht 3 Tage vor Ablauf der Laufzeit gekündigt wird)</p>
+        </div>
+        <div class="two_big_bottom_arrow"><a><b>Auswahl ändern</b></a></div> 
+        <div class="clearer_10"></div>
+
+        <div class="two_big_top"> <h2><b>Rechnungsdaten prüfen</b></h2></div>
+        <div class="two_big_content"> 
+          <h2>Rechnungsanschrift:</h2>
+          <div class="left">
+            <ul class="profil">
+              <li><span class="one">Kanzleiname</span>
+                <span class="two"></span> <span class="two">Kanzlei Schweizer</span>
+              </li>
+              <li><span class="one">Anrede / Titel</span>
+                <span class="two">Frau Prof.</span> 
+              </li>
+
+              <li><span class="one">Vorname /Nachname</span>
+                <span class="two">Lisa Maninkari</span>
+              </li>
+              <li><span class="one">PLZ / Ort</span>
+                <span class="two">80796 München</span>
+              </li>
+
+              <li><span class="one">Straße / Nr.</span>
+                <span class="two">Gentzstr. 123</span>
+              </li>
+              <li><span class="one">Zusatz</span>
+                <span class="two">RG</span>
+              </li>
+              <li><span class="one">E-Mail-Adresse</span>
+                <span class="two">g.koenig@schweizer.de</span>
+              </li>
+              <li><span class="one">USt-IdNr.</span>
+                <span class="two">DE 11225588</span>
+              </li>
+            </ul>   
+
+            <div class="clearer_20"></div>
+            <h2>Versandart:</h2>  
+            <ul class="profil">
+
+              <li><span class="one">Versandart</span><span class="two">Versand als signierte PDF Datei per E-Mail</li>
+              </ul>   
+
+              <div class="clearer_20"></div>
+              <h2>Zahlungart:</h2>  
+              <ul class="profil">     
+                <li><span class="one">Zahlungart</span><span class="two">Lastschrift</li>
+
+                  <li><span class="one">Kontoinhaber</span><span class="two">Lisa könig</span></li>
+                  <li><span class="one">Kontonummer</span><span class="two">12546987</span></li>
+                  <li><span class="one">BLZ</span><span class="two">70122556699</span></li>
+                  <li><span class="one">Kreditinstitut + Ort</span><span class="two">STD München</span></li>
+                </ul>
+
+                <div class="clearer_20"></div>
+
+                Hiermit ermächtige ich kann-ich-klagen.de, Friedrichstr. 148, 10117 Berlin, widerruflich, fällige Zahlungen per Lastschrift von meinem oben angegebenen, näher bezeichneten Konto einzuziehen. Sollte keine ausreichende Deckung vorhanden sein oder im Falle des unberechtigten Widerspruchs bzw. Widerrufs der Lastschrift, werden mir zusätzlich 9,80 € für den durch die Rücklastschrift entstandenen Schaden belastet.
+
+
+
+
+                <div class="clearer"></div>
+              </div>
+            </div>
+            <div class="two_big_bottom_arrow"><a>Daten ändern</a></div> 
+            <div class="clearer_10"></div>  
+            <div>
+              <%= submit_tag "Kontakt-Paket kaufen", :class => "button_right" %>
+            </div>
+            <div class="button_left"></div>
+
+          </div>
+          <div class="col_2">
+            <%= render :partial => 'shared/sidebar_stats' %>
+            <div class="pad_r_l_15">
+              <h2>Hinweise:</h2>
+              <ul>
+                <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+                <li>Sollten Sie Hilfe beim Kaufprozess benötigen, stehen wir Ihnen gern per <%= mail_to Notifier.help_email, 'E-Mail', {:class => "white",  :encode => "hex" }%> zur Verfügung.</li>
+                <li>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr Widerspruchsrecht erhalten Sie, als Fortführung zu diesem Hinweis, als Nutzer auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de" ,:class => "white"} %></li>
+              </ul>
+              <div class="clearer"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="bottom"></div>
+    </div>

@@ -1,0 +1,651 @@
+# German translations for Ruby on Rails 
+# by Clemens Kofler (clemens@railway.at)
+# http://guides.rubyonrails.org/i18n.html
+
+de:
+  
+  pluralizations:
+    "{{count}} Anwalt": 
+      zero: "kein Anwalt"
+      one: "{{count}} Anwalt"
+      other: "{{count}} Anwälte"
+    "{{count}} Frage": 
+      zero: "keine Frage"
+      one: "{{count}} Frage"
+      other: "{{count}} Fragen"
+    "{{count}} neue Benachrichtigung":
+      zero: ""
+      one: ""
+      other: ""
+    "{{count}} neue Benachrichtigung":
+      zero: "keine neuen Benachrichtigungen"
+      one: "1 neue Benachrichtigung"
+      other: "{{count}} neue Benachrichtigungen"
+    "{{count}} Kontakt":    
+      zero: "keine Kontakte"
+      one: "1 Kontakt"
+      other: "{{count}} Kontakte"
+    "{{count}} Freikontakt":    
+      zero: "keine Freikontakte"
+      one: "1 Freikontakt"
+      other: "{{count}} Freikontakte"
+    "{{count}} Inklusivkontakt":    
+      zero: "keine Inklusivkontakte"
+      one: "1 Inklusivkontakt"
+      other: "{{count}} Inklusivkontakte"
+    "{{count}} day":
+      zero: "0 Tage"
+      one: "1 Tag"
+      other: "{{count}} Tage"
+    "{{count}} month":    
+      zero: "0 Monate"
+      one: "1 Monat"
+      other: "{{count}} Monate"
+    "Ist Ihre Bewerbung noch aktuell?":
+      zero: "Keine aktuellen Bewerbungen!"
+      one: "Ist Ihre Bewerbung noch aktuell?"
+      other: "Sind Ihre Bewerbungen noch aktuell?"
+    "Ist Ihre Frage noch aktuell?":
+      zero: "Keine aktuellen Fragen!"
+      one: "Ist Ihre Frage noch aktuell?"
+      other: "Sind Ihre Fragen noch aktuell?"
+    "Rechtsgebiet":
+      zero: "Rechtsgebiet"
+      one: "Rechtsgebiet"
+      other: "Rechtsgebiete"
+      
+  active_scaffold:
+    name: "Name"
+    description: "Beschreibung"
+    cents: "Cents"
+    currency: "Währung"
+    subscription: "Abo"
+    active: "Aktiv"
+    
+  defaults:
+  views:
+    title:
+      home:
+        seo_advocat: "kann-ich-klagen.de Startseite für Rechtsuchende"
+        seo_what_is_kik: Was ist kann-ich-klagen.de
+    navigation:
+      home: "Startseite"
+      what_is_kik: Was ist kann-ich-klagen.de
+    user:
+
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%e. %b"
+      long: "%e. %B %Y"
+      only_day: "%e"
+
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+    order: [ :day, :month, :year ]
+  
+  time:
+    formats:
+      default: "%d.%m.%Y, %H:%M Uhr"
+      default_restore: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      short_long: "%A, %d. %b. %Y, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
+
+    am: "vormittags"
+    pm: "nachmittags"
+      
+  datetime:
+    distance_in_words:
+      half_a_minute: 'eine halbe Minute'
+      less_than_x_seconds:
+        zero: 'weniger als 1 Sekunde'
+        one: 'weniger als 1 Sekunde'
+        other: 'weniger als {{count}} Sekunden'
+      x_seconds:
+        one: '1 Sekunde'
+        other: '{{count}} Sekunden'
+      less_than_x_minutes:
+        zero: 'weniger als 1 Minute'
+        one: 'weniger als eine Minute'
+        other: 'weniger als {{count}} Minuten'
+      x_minutes:
+        one: '1 Minute'
+        other: '{{count}} Minuten'
+      about_x_hours:
+        one: 'etwa 1 Stunde'
+        other: 'etwa {{count}} Stunden'
+      x_days:
+        one: '1 Tag'
+        other: '{{count}} Tage'
+      about_x_months:
+        one: 'etwa 1 Monat'
+        other: 'etwa {{count}} Monate'
+      x_months:
+        one: '1 Monat'
+        other: '{{count}} Monate'
+      about_x_years:
+        one: 'etwa 1 Jahr'
+        other: 'etwa {{count}} Jahre'
+      over_x_years:
+        one: 'mehr als 1 Jahr'
+        other: 'mehr als {{count}} Jahre'
+    prompts:
+      second: "Sekunden"
+      minute: "Minuten"
+      hour: "Stunden"
+      day: "Tag"
+      month: "Monat"
+      year: "Jahr"
+
+  number:
+    format:
+      precision: 2
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: '€'
+        format: '%n%u'
+        separator: 
+        delimiter: 
+        precision: 
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " und "
+      last_word_connector: " und "
+
+  activerecord:
+    models:
+      user: "Benutzer"
+      person: "Person"
+      advocate: "Rechtsanwalt"
+      client: "Rechtsuchender"
+      journalist: "Journalist"
+      enrollment: "Abonnement"
+      client_enrollment: "Newsletter für Rechtsuchende "
+      advocate_enrollment: "Newsletter für Anwälte"
+      recommendation: "Empfehlung"
+      contact: "Kontakt"
+      press_contact: "Pressekontakt"
+      question: "Frage"
+      kase: "Frage"
+      response: "Bewerbung"
+      comment: "Antwort"
+      review_comment: "Bewertungskommentar"
+      topic: "Rechtsgebiet"
+      expertise: "Fachanwaltschaft"
+      search_filter: "Fragen-Radar"
+      review: "Bewertung"
+      advomessage: "Mitteilung"
+      article: "Artikel"
+      message: "Nachricht"
+      voucher: "Gutschein"
+      order: Bestellung
+      invoice: Rechnung
+      payment: Zahlung
+      debit_bank_payment: Zahlung per Lastschrift
+      invoice_payment: Zahlung per Rechnung
+      paypal_payment: Zahlung per Paypal
+      billing_address: Rechnungsanschrift
+      mandate: Mandat
+      client_mandate: "Rechtsuchender hat Mandat an Anwalt vergeben"
+      advocate_mandate: "Anwalt gibt an das Mandat erhalten zu haben"
+      promotion_contact_booking: Freikontakte Buchen
+      promotion_voucher_booking: Freikontakt-Gutscheine Buchen
+      voucher_redemptions: Einlösung
+    attributes:
+      promotion_contact_booking:
+        person: Anwalt
+        amount: Anzahl
+        expires_at: Gültigkeit
+      promotion_voucher_booking:
+        amount: Freikontakt-Menge
+        number: Anzahl Gutscheine
+        expires_at: Gültigkeit
+        multiple_redeemable: Mehrfacheinlösbar
+      voucher_redemption:
+        voucher: Gutschein
+        voucher_id: Gutschein
+        person: Eingelöst von
+        person_id: Eingelöst von
+        redeemed_at: Eingelöst am
+      user:
+        current_password: Altes Passwort
+        password: Passwort
+        password_confirmation: Bestätigung des Passworts
+        email: E-Mail-Adresse
+        email_confirmation: E-Mail-Adresse wiederholen
+        login: Benutzername
+        concession: "Ja, ich bestätige, dass ich bei kann-ich-klagen.de als zugelassener Anwalt und Unternehmer im Sinne des § 14 Absatz 1 BGB handle"
+        terms_of_service: "Ja, ich habe die Nutzungsbedingungen und Datenschutzerklärung für Anwälte von kann-ich-klagen.de gelesen und akzeptiere diese."
+        person: "Mitglied"
+        status_passive: erstellt
+        status_pending: vorangemeldet
+        status_preapproved: voraktiv
+        status_inactive: inaktiv
+        status_active: aktiv
+        status_suspended: suspendiert
+        status_deleted: gelöscht
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        activated_at: Aktiviert am
+        state: Status
+        new_password: Neues Passwort
+      person:
+        business_address: Anschrift der Kanzlei
+        phone_number: Telefonnummer
+        fax_number: Faxnummer
+        gender: Anrede
+        first_name: Vorname
+        last_name: Nachname
+        bar_association: Zuständige Rechtsanwaltskammer
+        bar_association_id: Zuständige Rechtsanwaltskammer
+        email: E-Mail-Adresse
+        email_confirmation: E-Mail-Adresse wiederholen
+        company_name: Firmenname
+        profession_advocate: Anwalt
+        profession_mediator: Mediator
+        profession_notary: Notar
+        profession_tax_accountant: Steuerberater
+        profession_patent_attorney: Patentanwalt
+        profession_cpa: Wirtschaftsprüfer
+        profession_affiant_accountant: Vereidigter Buchprüfer
+        desired_product_sku: Paket
+        state: Status
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        activated_at: Aktiviert am
+        image: Profilbild
+      advocate:
+        company_name: "Kanzlei"
+        phone_number: Telefonnummer für Rückfragen
+        fax_number: Faxnummer der Kanzlei
+        tax_number: USt-IdNr.
+        bank_account_owner_name: Kontoinhaber
+        bank_account_number: Kontonummer
+        bank_routing_number: BLZ
+        bank_name: Name des Kreditinstituts
+        bank_location: Ort des Kreditinstituts 
+        concession: "Bestätigung, zugelassener Anwalt und Unternehmer im Sinne des § 14 Absatz 1 BGB"
+        terms_of_service: "Bestätigung, Nutzungsbedingungen und Datenschutzerklärung für Anwälte von kann-ich-klagen.de gelesen und akzeptiert"
+        total_contacts_count: Gesamtkontakte
+        premium_contacts_count: Inklusivkontakte
+        promotion_contacts_count: Freikontakte
+        overdrawn_contacts_count: Überhangkontakte
+      journalist:
+        company_name: "Redaktion/Verlag"
+        address: Anschrift
+      business_address:
+        city: Ort der Kanzlei
+        postal_code: Postleitzahl der Kanzlei
+        street: Straße der Kanzlei
+        street_number: Hausnummer der Kanzlei
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      address:
+        city: Ort
+        postal_code: Postleitzahl
+        street: Straße
+        street_number: Hausnummer
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      recommendation:
+        sender_gender: Anrede des Absenders
+        sender_first_name: Vorname des Absenders
+        sender_last_name: Nachname des Absenders
+        sender_email: E-Mail-Adresse des Absenders
+        receiver_gender: Anrede des Empfängers
+        receiver_first_name: Vorname des Empfängers
+        receiver_last_name: Nachname des Empfängers
+        receiver_email: E-Mail-Adresse des Empfängers
+        message: Nachricht
+        friend_confirm: "Ja, ich bestätige, dass ich den Empfänger der Empfehlung persönlich kenne und diesem in meinem Namen eine Empfehlungs-E-Mail als freundschaftlichen Hinweis schicken möchte"
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      contact:
+        sender_gender: Anrede des Absenders
+        sender_first_name: Vorname des Absenders
+        sender_last_name: Nachname des Absenders
+        sender_email: E-Mail-Adresse des Absenders
+        receiver_first_name: Vorname des Empfängers
+        receiver_last_name: Nachname des Empfängers
+        receiver_email: E-Mail-Adresse des Empfängers
+        message: Nachricht
+        subject: Betreff
+        gender: Anrede
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      dictionary_suggestion:
+        subject: Rechtsbegriff
+      feedback:
+        sender_first_name: Vorname des Absenders
+        sender_last_name: Nachname des Absenders
+        sender_email: E-Mail-Adresse des Absenders
+        receiver_first_name: Vorname des Empfängers
+        receiver_last_name: Nachname des Empfängers
+        receiver_email: E-MailAdresse des Empfängers
+        message: Nachricht
+        subject: Betreff
+        gender: Anrede
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      enrollment:
+        gender: Anrede
+        email: E-Mail
+        email_confirmation: E-Mail Bestätigung
+        first_name: Vorname
+        last_name: Nachname
+        type: Newsletter-Zielgruppe
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        activated_at: Aktiviert am
+        state: Status
+      question:
+        description: Beschreibung
+        summary: Kurzbeschreibung
+        action_description: Angelegenheit unternommen
+        terms_of_service: Allgemeine Geschäftsbedingungen
+        contract_period: Laufzeit
+        status_created: nicht aktiviert
+        status_preapproved: wird geprüft
+        status_open: offen
+        status_closed: geschlossen
+        attached_assets: Dateianhang
+        postal_code: Postleitzahl
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        mandated: Mandat vergeben
+        mandated_advocate: Anwalt
+        close_reason: Als Begründung die Frage zu schließen
+        comments: Nachträge
+        accessors_count: Kontakte
+        referrer: Partnerseite
+        province_code: Kürzel für Bundesland
+        opened_at: Freigeschaltet am
+        person: Fragesteller
+      response:
+        status_created: erstellt
+        status_open: offen
+        status_accepted: angenommen
+        status_declined: abgelehnt
+        description: Bewerbungstext
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        status_created: erstellt
+        status_open: offen
+        status_accepted: akzeptiert
+        status_declined: abgelehnt
+        status_closed: geschlossen
+        status_unread: ungelesen
+        status_read: gelesen
+      comment: 
+        message: Antwort  
+        commentable: Gehört zu
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        person: Erstellt von
+      search_filter:
+        postal_code: Postleitzahl
+        province_code: Bundesland
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      order:
+        auto_debit: Zahlungsermächtigung
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        status_created: erstellt
+        status_pending: schwebend
+        status_approved: genehmigt
+        status_canceled: storniert
+        bank_account_owner_name: Kontoinhaber
+        bank_account_number: Kontonummer
+        bank_routing_number: Bankleitzahl
+        bank_name: Name des Kreditinstitut
+        bank_location: Ort des Kreditinstitut
+        paypal_account: Paypal Konto
+        service_period_start_on: Leistungzeitraum
+        service_period_end_on: Leistungzeitraum-Ende
+        tax_rate: Steuersatz
+        net_amount: Nettobetrag
+        tax_amount: Umsatzstr.-Betrag
+        gross_amount: Bruttogesamt
+        buyer: Käufer
+      invoice:
+        buyer: Käufer
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        status_created: erstellt
+        status_pending: schwebend
+        status_authorized: authorisiert
+        status_paid: bezahlt
+        status_voided: ungültig
+        status_refunded: erstattet
+        status_payment_declined: Zahlung abgelehnt
+        service_period_start_on: Leistungzeitraum
+        service_period_end_on: Leistungzeitraum-Ende
+        tax_rate: Steuersatz
+        net_amount: Nettobetrag
+        tax_amount: Umsatzstr.-Betrag
+        gross_amount: Bruttogesamt
+        paper_bill: Versand auch per Post
+        billing_date_on: Rechnungsdatum
+      payment:
+        position: Position
+        success: Status
+        reference: Transaktions-ID
+        message: Gateway Nachricht
+        test: Test
+        action: Vorgang
+        amount: Betrag
+        interval_length: Zahlungsintervall
+        interval_unit: Zahlungsintervall-Einheit
+        duration_start_date: Abo-Start
+        duration_occurrences: Abo-Ereignisse
+      line_item:
+        sellable: Artikel
+        tax_rate: Steuersatz
+        net_amount: Nettobetrag
+        tax_amount: Umsatzstr.-Betrag
+        gross_amount: Bruttogesamt
+      admin_user:
+        login: Login
+        email: E-Mail
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        activated_at: Aktiviert am
+      enrollment:
+        state: Status
+        status_passive: erstellt
+        status_pending: nicht aktiviert
+        status_active: aktiv
+        status_deleted: abbestellt
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        activated_at: Aktiviert am
+        deleted_at: Deaktiviert am
+        email: E-Mail
+        type: Art
+      review:
+        v: Frage zur Verständlichkeit des Anwalts
+        v1: Wie bewerten Sie die Fähigkeit Ihres Anwalts juristische Fachbegriffe und Sachverhalte verständlich zu erklären?
+        v2: Wie bewerten Sie die Aufklärung über Kosten und Gebühren durch Ihren Anwalt?
+        v3: Wie fühlten Sie sich über die Chancen und Risiken durch Ihren Anwalt informiert?
+        v4: Wie bewerten Sie die Aufklärung über mögliche Lösungswege und Alternativen?
+        v5: Haben Ihnen die Informationen Ihres Anwalts weiter geholfen?
+        z: Frage zur Zuverlässigkeit des Anwalts
+        z1: Wie bewerten Sie die Gründlichkeit und Sorgfalt Ihres Anwalts?
+        z2: Wie beurteilen Sie die Einhaltung von Absprachen und Vereinbarungen mit Ihrem Anwalt?
+        z3: Wie bewerten Sie die Termintreue Ihres Anwalts?
+        z4: Wie bewerten Sie das Arbeitstempo Ihres Anwalts?
+        z5: Wie bewerten Sie die Prognosefähigkeit Ihres Anwalts?
+        m: Frage zur Menschlichkeit des Anwalts
+        m1: Wie bewerten Sie Ihr Vertrauensverhältnis zu Ihrem Anwalt?
+        m2: Hat sich Ihr Anwalt ausreichend Zeit für Ihre Belange genommen?
+        m3: Wie fühlten Sie sich in den Ablauf und die Entscheidungen einbezogen?
+        m4: Haben Sie sich bei Ihrem Anwalt aufgehoben und verstanden gefühlt?
+        m5: Wie beurteilen Sie das Einfühlungsvermögen und den Zuspruch Ihres Anwalts?
+        e: Frage zur Erreichbarkeit des Anwalts
+        e1: Wie bewerten Sie die Schnelligkeit der Rückmeldungen Ihres Anwalts?
+        e2: Wie bewerten Sie die telefonische Erreichbarkeit?
+        e3: Wie bewerten Sie die Wartezeiten bis Sie einen (Beratungs-)termin erhalten haben?
+        e4: Wie bewerten Sie die Parkmöglichkeiten?
+        e5: Wie bewerten Sie die Erreichbarkeit mit öffentlichen Verkehrsmitteln?
+        a: Frage zum Auftreten des Anwalts
+        a1: Wie bewerten Sie das Auftreten Ihres Anwalts?
+        a2: Wie bewerten Sie die Atmosphäre und Betreuung in der Anwaltskanzlei?
+        a3: Wie bewerten Sie das Auftreten des Kanzleipersonals?
+        a4: Wie bewerten Sie die Sauberkeit und Ordnung der Anwaltskanzlei?
+        a5: Wie bewerten Sie die Einrichtung der Anwaltskanzlei?
+        disqualification: "Ja, ich versichere, dass ich nicht der/die angebene Anwalt/Anwältin bin."
+        search_reason: Anlass der Anwaltsuche
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        opened_at: Freigestellt am
+        status_created: nicht aktiviert
+        status_preapproved: wird geprüft
+        status_open: offen
+        status_closed: geschlossen
+        gpa: Note
+      advomessage: 
+        subject: Betreff
+        message: Nachricht
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      article:
+        title: Artikel Titel
+        body: Artikel
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        person: Herausgeber
+        view: Sichtbarkeit
+        primary_attachment: "Erster Anhang"
+        primary_attachment_file_name: "Erster Anhang Dateiname"
+        primary_attachment_content_type: "Erster Anhang Dateityp"
+        primary_attachment_file_size: "Erster Anhang Dateigröße"
+        secondary_attachment: "Zweiter Anhang"
+        secondary_attachment_file_name: "Zweiter Anhang Dateiname"
+        secondary_attachment_content_type: "Zweiter Anhang Dateityp"
+        secondary_attachment_file_size: "Zweiter Anhang Dateigröße"
+        image: "Bild-Anhang"
+        image_file_name: "Bild-Anhang Dateiname"
+        image_content_type: "Bild-Anhang Dateityp"
+        image_file_size: "Bild-Anhang Dateigröße"
+      message: 
+        subject: Betreff
+        message: Inhalt der Nachricht
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        status_queued: wartend
+        status_delivered: versandt
+        status_done: fertig
+      voucher:
+        code_confirmation: Gutscheincode
+        code: Gutscheincode
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        redeemed_at: Eingelöst am
+        expires_at: Verfällt am
+        amount: Freikontakte
+        multiple_redeemable: Mehrfacheinlösbar
+      promotion_contact_voucher:
+        code_confirmation: Gutscheincode
+        code: Gutscheincode
+      access:
+        requestor: Rechtsanwalt
+      topic:
+        name: Name
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      bar_association:
+        name: Name
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+      product:
+        name: Name
+        cents: Betrag
+        contacts: Kontakte
+        subscription: Abonnement
+        active: Aktiv    
+        term_in_days: Mindestlaufzeit in Tagen
+        tax_rate: Umsatzstr.-Satz
+      mandate:
+        kase: Frage
+        kase_id: Frage
+        advocate: Anwalt
+        client: Rechtsuchender
+        type: Art des Mandats
+        action: Aktion
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        accepted_at: Erteilt am
+        declined_at: Abgelehnt am
+        status: Status
+        status_created: nicht bestätigt
+        status_accepted: erteilt
+        status_declined: abgelehnt
+    errors:
+      template:
+        header:
+          one:    "{{model}} kann nicht gespeichert werden: 1 Fehler."
+          other:  "{{model}} kann nicht gespeichert werden: {{count}} Fehler."
+        body: "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Information absenden zu können."
+
+      messages:
+        inclusion: "ist kein gültiger Wert"
+        exclusion: "bereits im System vorhanden"
+        invalid: "ist nicht gültig"
+        confirmation: "stimmt nicht mit der Bestätigung überein"
+        accepted: "bitte akzeptieren"
+        empty: "bitte wählen"
+        blank: "bitte ausfüllen"
+        too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
+        too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
+        wrong_length: "hat die falsche Länge (muss genau {{count}} Zeichen haben)"
+        taken: "ist bereits vergeben"
+        enrollment_email_taken:  "existiert bereits. Keine erneute Bestellung möglich. Bitte erst abbestellen oder andere E-Mail-Adresse eingeben"
+        not_a_number: "ist keine Zahl"
+        greater_than: "muss größer als {{count}} sein"
+        greater_than_or_equal_to: "muss größer oder gleich {{count}} sein"
+        equal_to: "muss genau {{count}} sein"
+        less_than: "muss kleiner als {{count}} sein"
+        less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
+        odd: "muss ungerade sein"
+        even: "muss gerade sein"
+        email_format: "ist ungültig – es liegen Formatfehler vor"
+        postal_code_format: "ist ungültig – es liegen Formatfehler vor"
+        expired: ist bereits verfallen
+        redeemed: ist bereits eingelöst
+        unknown_voucher: ist nicht bekannt
+        paperclip_content_type: ist keine gültige Datei
+        paperclip_file_size: muss zwischen :min und :max Bytes sein
+        bank_account_number_format: darf nur aus Ziffern bestehen
+        bank_routing_number_format: muss aus 8 Ziffern ohne Leerzeichen bestehen
+        

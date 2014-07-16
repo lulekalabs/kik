@@ -1,0 +1,13 @@
+Lieber kann-ich-klagen.de Administrator,
+
+<%= h(@message.sender.user_id) %> (ID: <%= h(@message.sender.user.id) %>) mit der E-Mail <%= h(@message.sender.email) %> hat gerade sein Konto bei kann-ich-klagen.de deaktiviert. 
+
+<%- unless @message.message_text.blank? -%>
+Folgender Grund für die Deaktivierung wurde hinterlassen:
+
+<%= h(@message.message_text) %>
+<%-end-%>
+
+Bitte gehen Sie jetzt auf http://www.kann-ich-klagen.de/admin, um den Benutzer entgültig zu löschen.
+
+<%= render :partial => "notifier/footer" %>

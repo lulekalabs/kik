@@ -1,0 +1,10 @@
+<!-- advocate/sub_content--> 
+<div class="sub_content">
+   <% if logged_in? && current_user.person.is_a?(Advocate) %> 
+  <% else %>
+  <%= link_to "Anwalt hinzufügen und bewerten", new_advofinder_client_advocate_path, 
+    {:title => "Anwalt hinzufügen und bewerten", :class => current_page?(new_advofinder_client_advocate_path) ? "select" : ""} %> 
+  <% end %>     
+</div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>

@@ -1,0 +1,2 @@
+module Client::FaqsHelper
+end

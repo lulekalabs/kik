@@ -1,0 +1,129 @@
+<% if logged_in? && current_user.person.is_a?(Advocate) %> 
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <p>Der Bereich Anwalt suchen richtet sich ausschließlich an Mandanten. Nur diese können einen Anwalt suchen.</p> 
+    <p>Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg.</p> 
+    <p>Gern stehen wir Ihnen jederzeit zur Verfügung, falls Sie Fragen haben oder einmal Hilfe benötigen.</p> 
+    <p>Ihr advofinder.de Team</p> 
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+<% else %>
+
+
+
+
+
+
+
+
+<div class="clearer"></div>
+<%= render :partial => "shared/advocate_search_filter" %>
+<%= render :partial => 'shared/default_fields_js' %>
+<div class="green">
+  <div class="top clearer"></div>
+  <div class="content">
+    <p>Als Rechtsuchender haben Sie hier die Möglichkeit kostenlos den passenden Anwalt für Ihren individuellen Fall zu finden. Nutzen Sie dazu obenstehendes Suchformular.</p>
+    <p>Es reicht grundsätzlich aus, wenn Sie ein Suchfeld ausfüllen. Sie können aber auch mehrere oder alle Suchfelder mit Daten ausfüllen. Je mehr Suchfelder Sie ausfüllen, desto stärker können Sie die Anzahl der Suchtreffer einschränken.</p>
+    <p>Sollten Sie sich bei manchen von mehreren Ihnen bekannten Daten nicht sicher sein, dann suchen vorerst nur mit den Suchbegriffen, deren Sie sich sicher sind. Sie haben auch die Möglichkeit mehrfach mit verschiedenen Suchbegriffen zu suchen.</p>
+    <p>Alternativ können Sie in der rechten Spalte auch alle angemeldeten Anwälte eines Bundeslandes oder eines Ortes anzeigen lassen, indem Sie auf das gewünschte Bundesland bzw. den gewünschten Ort klicken.</p>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <% unless @advocates.empty? %>
+        <div class="clearer_10"></div> 
+
+        <div class="left ">
+          Anwälte sortieren:
+        </div>
+        <div class="left pad_l_10">
+          <% fields_for :search_filter, @search_filter do |f| %>
+          <%= f.select :sort_order, collect_for_advocates_search_order_select, {},
+          {:class => "quest w210", :style => "background-color:#fffef7",
+            :id => "search-filter-sort-order-fake",
+            :onchange => "$('#search-filter-sort-order').attr('value', $('#search-filter-sort-order-fake').attr('value'));$('#search-submit').trigger('click');"} %>
+            <% end %>
+          </div>
+
+          <div class="right w210">
+            <% unless @messages.blank? %>
+            Seiten: <b><%= @messages.total_pages %></b>
+            <p>
+              <%= will_paginate @messages, :previous_label => "&#171;", :next_label => "&#187;" %>
+            </p>
+            <% end %> 
+          </div>
+          <div class="clearer_10"></div>
+
+          <div class="abc">
+            <% AdvocateSearchFilter::ALPHABET.each do |letter| %>
+            <%= link_to_function letter, "$('#search-filter-alphabetic-filter').attr('value', '#{letter}');$('#search-submit').trigger('click');", 
+            :class => @search_filter.alphabetic_filter.to_s == letter ? "select" : "" %>
+            <% end %>
+          </div>
+          <div class="two_big_top clearer">
+            <h2><b>Suchergebnis:</b></h2>
+          </div>
+
+          <div class="two_big_content">
+            <%= render :partial => "shared/advofinder/advocates/overview_search", :collection => @advocates,
+            :locals => {:advocates => @advocates} %>  
+          </div>
+          <div class="two_big_bottom"></div>
+          <% else %>
+          <div class="clearer_10"></div>
+
+          <p>Es wurde kein Eintrag gefunden, der mit den von Ihnen eingegebenen Daten „Suchbegriff“ „Suchbegriff“ „Suchbegriff“ übereinstimmt. Haben Sie sich vielleicht vertippt oder gibt es mögliche alternative Schreibweisen? Falls ja, führen Sie bitte erneut oben eine Suche durch oder verwenden Sie andere Suchbegriffe.</p>
+          <div class="clearer_5"></div>   
+          <p> Falls Sie keine Schreibfehler entdecken konnten, ist der von Ihnen gesuchte Anwalt vermutlich noch nicht in unserer Datenbank enthalten. Sie haben hier die Möglichkeit kostenlos einen Anwalt neu hinzuzufügen und sodann eine Bewertung abzugeben. Klicken Sie bitte auf Anwalt hinzufügen und bewerten, um kostenlos einen neuen Eintrag zu veranlassen. Schon jetzt herzlichen Dank für Ihre Mühe!</p>
+          <div class="clearer_10"></div>      
+          <div class="button_white_right_blue">
+            <%= link_to "Anwalt neu hinzufügen ", new_advofinder_client_advocate_path %>  
+          </div>
+          <div class="button_white_left_blue"></div>
+          <% end %>
+
+        </div>
+
+        <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>      
+          <div class="pad_r_l_15">
+            <%= render :partial => "shared/sidebar_advocate_search_filter" %>
+            <b><%= link_to("&#187; Aktuellen Filter zurücksetzen", advofinder_search_path, :class => "white_none") %></b>
+            <div class="clearer_20"></div> 
+
+            <h2>Anwaltssuche nach Bundesländern</h2>
+            <div class="search_b_land">
+              <% I18n.t("provinces.DE").to_a.sort {|a,b| a.first.to_s <=> b.first.to_s}.each do |code, name| %>
+              <%= link_to name, url_for(:province_code => code) %>
+              <% end %>
+            </div>
+
+
+            <div class="clearer_20"></div>
+            <h2>Anwaltssuche nach Orten</h2>
+            <div class="search_b_land">
+              <% @sidebar_cities.each do |name| %>
+              <%= link_to h(name), url_for(:city_name => h(name)) %>
+              <% end %>
+            </div>
+
+            <div class="clearer"></div>
+            <div class="pad_10"></div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom"></div>
+  </div>
+  <% end %>   

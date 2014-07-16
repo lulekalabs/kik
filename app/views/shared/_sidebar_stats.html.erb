@@ -1,0 +1,20 @@
+<% if kik_realm? %>
+<div class="info">
+ <div class="left black"><%#= t("{{count}} Anwalt", :count => Advocate.active_count, :scope => :pluralizations) %></div>
+  <div class="right black"><%#= t("{{count}} Frage", :count => Question.active_count, :scope => :pluralizations) %></div>
+</div> 
+<% end %>
+<% if af_realm? %>
+<div class="info">
+ <div class="left black"><%= t("{{count}} Anwalt", :count => Advocate.active_count, :scope => :pluralizations) %></div>
+  <div class="right black"><%= link_to "Anwalt neu hinzufügen", new_advofinder_client_advocate_path, 
+    {:title => "Anwalt hinzufügen und bewerten"} %></div>
+</div>
+<% end %>
+
+
+
+
+
+
+

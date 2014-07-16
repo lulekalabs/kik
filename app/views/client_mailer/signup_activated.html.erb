@@ -1,0 +1,18 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+vielen Dank für die Bestätigung und Aktivierung Ihrer kostenlosen Frage auf kann-ich-klagen.de!
+
+Ihr persönlicher Bereich auf kann-ich-klagen.de steht Ihnen ab sofort zur Verfügung. Ihre Zugangsdaten lauten:
+
+Benutzername: <%= @user.login %>
+Passwort: <%= @user.password %>
+
+<%= client_account_url(:protocol => Project.ssl_supported? ? "https://" : "http://") %>
+
+Wir informieren Sie gesondert per E-Mail, sobald Ihre Frage freigeschaltet wurde, damit Sie schnellstmöglich Nachrichten und Bewerbungen von interessierten Anwälten bekommen – selbstverständlich ohne weitere Verpflichtungen.
+
+Sollten Sie Fragen haben, stehen wir Ihnen per E-Mail gern zur Verfügung.
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.
+
+<%= render :partial => "notifier/footer" %>

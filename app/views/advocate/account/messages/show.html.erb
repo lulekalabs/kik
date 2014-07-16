@@ -1,0 +1,22 @@
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2><%= h(@message.subject) %></h2>
+
+         <div class="clearer_20"></div>  
+
+         <%= render :partial => "shared/messages/show", :object => @message, 
+          :locals => {:open => true} %>
+         
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+         <%= render :partial => 'shared/sidebar_messages' %> 
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

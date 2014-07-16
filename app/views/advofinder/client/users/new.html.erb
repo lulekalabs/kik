@@ -1,0 +1,120 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>Melden Sie sich hier kostenlos als Rechtsuchender an:</h2>
+        <div class="pad_10"></div>
+        <% if logged_in? %>
+
+        <% else %>
+        <div class="left pad_5">   
+          <b>Sie sind bereits bei advofinder.de angemeldet?</b> Dann loggen Sie sich hier ein.
+        </div>
+
+        <div class="button_right">
+          <%= link_to content_tag(:b, "Login"), new_session_url, {:title => "Login"}%> 
+        </div>
+        <div class="button_left"></div>
+        <div class="clearer_10"></div>  
+        <% end %>
+
+        <%= error_messages_for :user, :person, :address %>
+        <% form_for :person, @person, :url => advofinder_client_users_path, :html => {:multipart => true} do |p| %>
+          <% fields_for :user, @user do |u| %>
+            <% fields_for "person[personal_address_attributes]", @address do |a| %>
+              <p>Sie möchten sich als Rechtsuchender <b>kostenlos und unverbindlich</b> anmelden, um alle Funktionen von advofinder.de in vollem Umfang nutzen zu können? Melden Sie sich hier an und erhalten Sie umgehend Ihre persönlichen Zugangsdaten per E-Mail. Als angemeldeter Nutzer von andvofinder.de können Sie Bewertungen abgeben, bereits abgegebene Bewertungen jederzeit nochmals ansehen und sich interessante Anwaltsprofile in Ihrem persönlichen Mein Bereich merken.</p>
+              <div class="clearer_10"></div>
+              <h2>Pflichtangaben:</h2>
+              <div class="clearer_10"></div>  
+
+              <div class="left"> 
+                <%= u.text_field :login, {:class => "field w303", :id => "user_login"} %>
+              </div> 
+              <div class="left t_9">
+                Der Benutzername schützt Ihre Anonymität und wird anstatt Ihres richtigen Namen angezeigt.
+              </div>
+
+              <div class="clearer_10"></div>  
+              <div class="left">
+                <%= u.text_field :email, {:class => "field w303"} %>
+              </div>
+              <div class="right">
+                <%= u.text_field :email_confirmation, {:class => "field w303"} %>
+              </div>
+              <div class="clearer_20"></div>
+              <h2>Freiwillige Angaben:</h2>
+              <div class="clearer_10"></div> 
+              
+                <div class="left ">
+                  <%= p.select :gender, collect_for_gender_select(true, false), {},
+                  {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+                </div>
+                <div class="left ">
+                  <%= p.select :academic_title_id, collect_for_academic_title_select(true, false), {},
+                  {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+                </div>
+                
+               <div class="clearer_10"></div>
+
+                <div class="left">
+                  <%= p.text_field :first_name, {:class => "field w303"} %>
+                </div>
+                <div class="right">
+                  <%= p.text_field :last_name, {:class => "field w303"} %>
+                </div>
+              <div class="clearer_20"></div>
+              
+              <div class="check">
+                <ul>
+
+                  <li>
+                    <span class="check">
+                      <%= u.check_box :terms_of_service %>
+                    </span>
+                    <span class="fliess">
+                      <%= u.label :terms_of_service, confirm_terms_of_service_in_words %>.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="check">
+                      <%= p.check_box :newsletter %>
+                    </span>
+                    <span class="fliess">
+                      <%= p.label :newsletter, "Ja, ich möchte den advofinder.de Newsletter erhalten." %>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                 <%= submit_tag "Jetzt kostenlos anmelden ", :class => "button_right" %>   
+              </div>
+              <div class="button_left"></div>
+               
+             
+
+              <div class="clearer"></div>
+
+
+            <% end %>
+          <% end %>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+            <li>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr Widerspruchsrecht erhalten Sie, als Fortführung zu diesem Hinweis, als Nutzer auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von advofinder.de" ,:class => "white"} %></li> 
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>

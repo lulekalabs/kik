@@ -1,0 +1,11 @@
+<%= @enrollment.mailer_salutation_and_title_and_last_name %>,
+
+Sie haben den <%= project_name %> <%= @enrollment.to_s %> erfolgreich abbestellt und werden keinen Newsletter mehr an die Adresse <%= @enrollment.email %> erhalten.
+
+Sie haben keinen Newsletter abbestellt? Dann wurde Ihre E-Mail-Adresse vermutlich aus Versehen eingegeben. Aus rechtlichen Gründen müssen wir leider jede Abbestellung ernst nehmen und beachten. Sie können Ihren <%= project_name %> Newsletter hier jederzeit wieder kostenlos bestellen:
+
+<%= new_service_newsletter_url %>
+
+Falls Sie Hilfe benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter <%= Notifier.unprettify(Notifier.newsletter_email) %> zur Verfügung. <%= project_name %> gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+<%= render :partial => "notifier/footer" %>

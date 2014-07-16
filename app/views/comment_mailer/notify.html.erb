@@ -1,0 +1,7 @@
+Lieber kann-ich-klagen.de Administrator,
+
+<%= h(@comment.person.title_and_name) %> mit der E-Mail <%= h(@comment.person.email) %> hat gerade einen <%= @comment.human_name %> vom <%= l(@commentable.created_at) %> hinterlassen.
+
+Bitte gehen Sie jetzt auf <%= polymorphic_url([:edit, :admin, @comment.commentable]) %>, um den Nachtrag zur Frage zu prüfen und schalten Sie diesen ggf. frei.
+
+<%= render :partial => "notifier/footer" %>

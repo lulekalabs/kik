@@ -1,0 +1,12 @@
+= LocalizedCountrySelect
+
+Rails plugin to provide support for localized <tt><select></tt> province names. Plugin adapted from 
+localized_country_select
+
+== Other resources
+
+* http://github.com/rails/country_select (Default Rails plugin)
+* http://github.com/russ/country_code_select (Stores country code, not name)
+
+
+Copyright (c) 2010 Juergen Fesslmeier (@chinshr), released under the MIT license.

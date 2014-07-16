@@ -1,0 +1,16 @@
+<div class="pad_10_all">
+  <% @messages.each do |message| %>
+    <h2><%= h(message.subject) %></h2>
+    <div><i>Veröffentlicht am <%= l(message.created_at) %> von <%= h(message.sender.profession_and_salutation_and_title_and_last_name(true)) %></i></div>
+    <div class="pad_10">
+      <%= auto_link(markdown(message.message)) %>
+    </div> 
+      
+    <div class="pad_10"> </div>
+  <% end %>
+</div>
+<div class="clearer"></div>
+
+
+
+ 

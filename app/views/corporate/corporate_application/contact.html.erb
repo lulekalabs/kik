@@ -1,0 +1,38 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        <h2>Kontakt</h2>
+        <p>Wir stehen bei Fragen zu kann-ich-klagen.de gerne zu Verfügung.
+        </p>
+        <div class="pad_10"></div>
+          kontakt renderer einbauen??????????
+
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <div class="pad_10"></div>
+          <img title="twitter" alt="twitter" src="/images/person/goehler.jpg" style="float:right"/>
+          <h2><b>Angelika Göhler</b></h2>
+          <p>Kontaktperson</p>
+          <div class="pad_10"></div>
+          <p>Telefon: 030- 000 000 -170</p>
+          <p>Telefax: 030- 000 000 -180</p>
+          <p><%= mail_to  Notifier.press_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+          <div class="pad_20"></div>
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+

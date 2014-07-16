@@ -1,0 +1,59 @@
+<% # client/account/questions/_show
+  kase ||= show || @kase
+  open ||= false
+  open_responses ||= false
+  show_responses ||= false
+  question_url_helper ||= nil
+%>
+
+<!-- question -->
+<%= render :partial => "questions/show", :object => kase, :locals => {:open => open, :question_url_helper => question_url_helper} %>
+
+<!-- responses -->
+<% if show_responses %>
+
+<%= render :partial => "client/account/responses/show", :collection => kase.responses.visible %>
+
+<% end %>
+
+<% if false %>
+<div class="quest_advo_top clearer"></div>
+<div class="quest_advo_content"> 
+
+  <a class="blink"><%= kase.responses_count %></a> <%= kase.responses_count == 0 || kase.responses_count > 1 ? " Anwälte haben" : " Anwalt hat" %>  sich bislang für Ihre Frage interessiert und eine Bewerbung abgegeben.
+
+
+  <div id="<%= dom_id(kase, :responses_open) %>" style="<%= open_responses ? '' : 'display:none;' %>"> 
+
+    <% kase.responses.visible.each_with_index do |response, index| %> 
+      <div class="line_advo"></div>    
+      <div class="left">
+        <%= profile_image_tag response.person %>
+        <b>Bewerbung</b> von Rechtsanwalt
+        <p><%= link_to response.person.title_and_name, profile_client_account_advocate_path(response.person) %></p> 
+        <p>am <%= l(response.created_at) %></p>
+      </div>
+      <div class="right">
+        <div class="quest_buttom_open">Status: <%= response.human_current_state_name %></div>
+        <div>
+          <%= link_to "Bewerbung ansehen", 
+          client_account_question_response_path(kase, response), 
+          :class => "quest_buttom_apply_show" %>
+        </div>    
+      </div>
+      <div class="clearer"></div>  
+      <b><%= markdown(sh(response.description)) %></b>
+      <% if kase.responses_count - 1 == index %>
+
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+<div class="quest_bottom_advo"> 
+  <%= link_to_open_close_toggle ["Bewerbungen ausblenden", "Bewerbungen anzeigen"], 
+    dom_id(kase, :responses_open), open_responses %>
+</div>  
+<% end %>
+
+

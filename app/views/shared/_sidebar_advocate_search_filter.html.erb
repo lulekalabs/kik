@@ -1,0 +1,30 @@
+<% if @search_filter %>
+  <h2>Ihr aktueller Filter</h2>
+
+  <% unless @search_filter.person_name.blank? || @search_filter.person_name == @search_filter.default_fields[:person_name] %>
+  <p>Name: <%= @search_filter.tag_list(@search_filter.person_name).join(", ") %></p>
+  <% end %>
+
+  <% if !@search_filter.city_and_postal_code.blank? %>
+  <p>Ort: <%= @search_filter.city_and_postal_code %></p>
+  <% elsif !@search_filter.province_code.blank? %>
+  <p>Ort: <%= @search_filter.province %></p>
+  <% else %>
+  <p>Ort: deutschlandweit</p>
+  <% end %>
+
+  <% unless @search_filter.radius.blank? %>
+  <p>Umkreis: <%= @search_filter.radius %> km</p>
+  <% end %>
+
+  <% unless @search_filter.topics_count == 0 %>
+  <p><%= t("Rechtsgebiet", :count => @search_filter.topics_count, :scope => "pluralizations") %>: <%= h(@search_filter.topics.map(&:name).join(", ")) %></p>
+  <% else %>
+    <p><%= t("Rechtsgebiet", :count => 2, :scope => "pluralizations") %>: alle</p>
+  <% end %>
+
+  <% unless @search_filter.tag_list.blank?  || @search_filter.tags == @search_filter.default_fields[:tags] %>
+  <p>Suchbegriff: <%= @search_filter.tag_list.join(", ") %></p>
+  <% end %>
+  <div class="clearer_10"></div>
+<% end %>

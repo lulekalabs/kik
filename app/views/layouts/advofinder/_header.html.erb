@@ -1,0 +1,80 @@
+<!-- advofinder header -->
+<div class="left pad_5">
+  <%= render :partial => '/shared/add_this' %>   
+  <div class="rubrik">
+
+    <%= link_to "RSS", feed_service_blogs_url(:format => :rss), {:title => "RSS-Feed von advofinder.de abonnieren", :target => "_blank",} %>
+    <%= link_to "Blog", service_blogs_path, {:title => "Blog von advofinder.de lesen"} %>
+    <%= link_to "Benutzerhinweise", how_path, {:title => "Hinweise zur Benutzung der Website "} %>
+    <%= link_to "Seitenübersicht", sitemap_corporate_path, {:title => "Struktur der Seite - Sitemap"} %>
+    <%= link_to "Hilfe &#38; FAQ", faqs_path, {:title => "Hilfe und häufig gestellte Fragen zu advofinder.de "} %>
+    <%= link_to "Kontakt", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von advofinder.de "} %>
+    
+  </div>
+</div>
+<div class="right">
+  <% unless pre_launch? %>
+  <div class="login">
+    <% if logged_in? %>
+    <div class="logout"> <!-- class="login" -->
+      <%= link_to content_tag(:b, "Logout"), session_url(:protocol => ssl_supported? ? "https://" : "http://"), 
+        {:method => :delete, :title => "Jetzt ausloggen auf advofinder.de"}%>
+    </div>
+    <% else %>
+    <div class="login"> <!-- class="login" -->
+      <%= link_to content_tag(:b, "Login"), new_session_url, {:title => "Jetzt einloggen auf advofinder.de"}%>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<div class="clearer"></div>
+<div class="logo">
+  <a href="">
+    <%= image_tag "advofinder/logos/advofinder.de.png", :alt => "Logo advofinder.de", :title => "advofinder.de Startseite" %>
+  </a>
+</div>
+<div class="left">
+  <img  alt="Kostenlos" src="/images/advofinder/kostenlos.gif" style="position:absolute; margin:70px 0 0 270px"/>
+
+</div>
+<div class="charta_pos">
+  <div class="charta_left"></div>
+  <div class="charta_right">
+    <a href="<%= new_advocate_user_path %>" title="advofinder.de Charta der Mandantenrechte"><b>Sie sind Anwalt? Jetzt kostenlos anmelden!</b></a>
+  </div>
+</div>
+
+<%= render :partial => "shared/header_welcome" %>
+<div class="clearer"></div>
+
+<div id="menue" class="<%= main_menu_class_name %>">
+  <ul id="nav">
+    <li id="mn_start">
+      <%= link_to_expect_pre_launch t('views.navigation.home'), homepage_path, {:title => t('views.title.home.seo_advocat')}%>
+    </li>
+    <li id="mn_what">
+      <%= link_to "Was ist advofinder.de", what_path, {:title => "Was ist advofinder.de"}%>
+    </li>
+    <li id="mn_searchadv">
+      <a href="<%= advofinder_search_path %>" title="Hier Anwälte suchen">Anwalt suchen</a>
+    </li>
+        <li id="mn_evaluate">
+      <a href="<%= advofinder_reviews_path %>" title="Hier Anwälte bewerten">Anwalt bewerten</a>
+    </li>
+    <li id="mn_my_site">
+      <% if logged_in? && current_user.person.is_a?(Client) %>
+        <%= link_to_expect_pre_launch "Mein Bereich", client_account_path, {:title => "Mein Bereich"} %>
+      <% elsif logged_in? && current_user.person.is_a?(Advocate) %>
+        <%= link_to_expect_pre_launch "Mein Bereich", advocate_account_path, {:title => "Mein Bereich"} %>
+      <% else %>
+        <%= link_to_expect_pre_launch "Mein Bereich", account_path, {:title => "Mein Bereich"} %>
+      <% end %>
+    </li>
+    <li id="mn_advocate">
+      <%= link_to "Für Anwälte", advocate_path, {:title => "advofinder.de Startseite für Anwälte"}%>
+    </li>
+  </ul>
+</div> 
+
+<%= render :partial => sub_menu_partial_name unless sub_menu_partial_name.blank? %>

@@ -1,0 +1,105 @@
+<%
+  f ||= nil
+  edit ||= !defined?(:edit) && defined?(:f)
+  object_name ||= "person"
+  address ||= billing_address_data || @person.billing_address
+  hidden_fields ||= false
+%>
+<ul class="profil">
+  <% fields_for "#{object_name}[billing_address_attributes]", address do |a| %>
+    <li><span class="one">Kanzleiname</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :company_name, :class => "field_edit_270" %>
+      <% else %>
+        <%= h(address.company_name) %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :company_name %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Anrede Titel</span><span class="two">
+      <% if edit %>
+        <%= a.select :gender, collect_for_gender_select, {}, :class => "option_f_h_edit", 
+          :style => "background-color:#fffef7" %>
+        <%= a.select :academic_title_id, collect_for_academic_title_select("kein Titel", false), {},
+          {:class => "option_f_h_edit", :style => "background-color:#fffef7 "} %>
+      <% else %>
+        <%= h(address.salutation_and_title) %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :gender %>
+          <%= a.hidden_field :academic_title_id %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Vorname Nachname</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :first_name, :class => "field_edit" %>
+        <%= a.text_field :last_name, :class => "field_edit" %>
+      <% else %>
+        <%= h(address.name) %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :first_name %>
+          <%= a.hidden_field :last_name %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Straße Hausnummer</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :street, :class => "field_edit" %>
+        <%= a.text_field :street_number, :class => "field_edit_nr" %>
+      <% else %>
+        <%= h("#{address.street} #{address.street_number}")%>
+        <% if hidden_fields %>
+          <%= a.hidden_field :street %>
+          <%= a.hidden_field :street_number %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Zusatz</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :note, :class => "field_edit_270" %>
+      <% else %>
+        <%= h(address.note) %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :note %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">PLZ Ort</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :postal_code, :class => "field_edit" %>
+        <%= a.text_field :city, :class => "field_edit" %>
+      <% else %>
+        <%= h("#{address.postal_code} #{address.city}") %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :postal_code %>
+          <%= a.hidden_field :city %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Land</span>
+    <span class="two">
+      <% if edit %>
+        <%= a.localized_country_select :country_code, ["de", "at", "ch"], :class => "field_edit" %>
+      <% else %>
+        <%= h("#{address.country}") %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :country_code %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <% if false %>
+    <li><span class="one">E-Mail-Adresse</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :email, :class => "field_edit_270" %>
+      <% else %>
+        <%= h(address.email) %>
+        <% if hidden_fields %>
+          <%= a.hidden_field :email %>
+        <% end %>
+      <% end %>
+    </span></li>
+    <% end %>
+  <% end %>
+</ul>
+<div class="clearer"></div>

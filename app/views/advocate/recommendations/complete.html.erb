@@ -1,0 +1,25 @@
+<div class="white_site">
+		<div class="top clearer"></div>
+		<div class="content">
+			<h2>Vielen Dank für Ihre Weiterempfehlung!</h2>
+
+
+		<div class="pad_10"></div>
+		<p><b>Ihre Empfehlung wurde soeben an die von Ihnen angegebene E-Mail-Adresse gesendet. </b></p>
+		<div class="pad_10"></div>
+		<p>Wir danken Ihnen für Ihr Interesse an kann-ich-klagen.de und stehen Ihnen jederzeit gern bei Fragen, Anregungen oder Ideen zur Verfügung. <br />
+      Bitte senden Sie uns eine <%= mail_to Notifier.contact_email, 'E-Mail', { :encode => "hex" }%>! </p>
+
+    <div class="pad_20"></div>
+		<p>Ihr kann-ich-klagen.de Team </p>
+		
+	
+			<div class="pad_20"></div>
+          <div class="button_right">
+             <%= link_to "Weitere Empfehlung versenden", new_advocate_recommendation_path, {:title => "Empfehlen Sie kann-ich-klagen.de an Kollegen/-innen weiter"} %>
+           
+          </div>
+          <div class="button_left"></div>
+		</div>
+	<div class="bottom_footer"></div>
+	</div>

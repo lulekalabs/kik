@@ -1,0 +1,23 @@
+<% # advocate/account/advomessages/_show
+message ||= show || @advomessage
+%>
+<div id="<%= dom_id(message) %>" class="pad_10_all_grey">
+  <h2><%= h(message.subject) %></h2>
+  <div>Veröffentlicht am <%= l(message.created_at) %> von <%= h(message.sender.profession_and_salutation_and_title_and_last_name(true)) %></div>
+  <div class="pad_5">
+    <%= auto_link(markdown(sh(message.message))) %>
+  </div>
+<div class="pad_10_all right">  
+  <%= link_to_function("Mitteilung löschen", nil, {}) do |page| 
+    page << "if(confirm('Wollen Sie die Mitteilung wirklich löschen?')) {"
+    page.replace dom_id(message), ""
+    page << remote_function(:url => advocate_account_advomessage_path(message), :method => :delete)
+    page << "}"
+  end %>
+  &nbsp;|&nbsp;
+  <%= link_to_remote("Mitteilung ändern", :url => edit_advocate_account_advomessage_path(message), 
+    :method => :get, :update => dom_id(message)) %>
+</div> 
+</div> 
+<div class="clearer_10"> </div>
+

@@ -1,0 +1,69 @@
+<%
+  details ||= false
+%>
+<div class="two_big_top">
+  <h2>
+    <% unless details %>
+      <%= link_to content_tag(:b, h(release.title)), press_release_path(release), {:title => "Zum ganzen Artikel"} %>
+    <% else %>
+      <%= content_tag(:b, h(release.title)) %>
+    <% end %>
+  </h2>
+</div>
+<div class="two_big_content">
+
+  <div class="left">
+    Veröffentlicht am <%= l(release.published_at) %> von <%= release.author_name %>
+  </div>
+  
+  
+
+  <div class="clearer"></div>
+
+  <div class="pad_5"></div>
+  <%= content_tag(:b, h(release.summary)) %>
+   <div class="clearer"></div> 
+  <% unless details %>
+    <div class="right">
+      <% if true %>
+        <%= link_to("mehr &#187;", press_release_path(release), {:title => "Zum ganzen Artikel"}) %>
+      <% else %>
+        <%= link_to_function("mehr &#187;", update_page do |page|
+            page[dom_id(release, :details)].show
+          end, {:title => "Zum ganzen Artikel"}) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if details %>
+  <div class="pad_5"></div>
+
+  <div id="<%= dom_id(release, :details) %>" style="<%= details ? '' : 'display:none;' %>">
+    
+    <div class="markdown"><%= markdown(release.body) %></div>
+    
+    <div class="clearer_10"></div>  
+
+    <%= render :partial => "shared/article_image_and_attachments", :object => release %>
+
+    <div class="clearer"></div>
+    
+    <div class="left">
+      <%= link_to "&#171; Zurück zur Übersicht", press_releases_path %>
+    </div>
+    <div class="right">
+     
+      <%= link_to "Druckansicht", print_press_release_path(release), {:class => "drucken", :target=>"_blank"} %>
+      <%= render :partial => '/shared/add_this' %>    
+     
+      
+    </div>
+   
+  </div>
+  <% end %>
+
+</div>
+<div class="two_big_bottom"></div>
+
+
+

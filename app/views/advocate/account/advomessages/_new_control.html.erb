@@ -1,0 +1,17 @@
+<%
+  advomessage ||= new_control || @advomessage
+%>
+<% unless advomessage.assigned? %>
+<div id="new-more">
+  <div class="button_white_right_blue">
+    <%= link_to_function("Mitteilung veröffentlichen", 
+    "$('##{dom_id(advomessage, :new)}').show();$('#new-more').hide();$('#advomessage-assigned').attr('value', '1')")%>
+  </div>
+  <div class="button_white_left_blue"></div>
+</div>
+<% end %>
+
+<div id="<%= dom_id(advomessage, :new) %>" style="<%= !advomessage.assigned? ? "display:none;" : "" %>">
+  <%= render :partial => "new", :object => advomessage %>
+</div>  
+<div class="clearer_20"> </div>

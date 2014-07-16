@@ -1,0 +1,21 @@
+<div class="modal_close" style="width:350px;" id="<%= dom_id(@kase, :show_mandate_received) %>">
+  <b>Haben Sie das Mandat erhalten?</b> 
+  <%= error_messages_for :kase %>
+  <div class="clearer_10"></div>
+  
+  <% remote_form_for :kase, @kase, :url => mandate_received_advocate_account_question_path(@kase), :html => {:method => :put} do |f| %>
+    <%= f.radio_button :mandate_received, "no" %>
+    <%= f.label :mandate_received_no, "Nein, ich habe das Mandat nicht erhalten" %>
+    <div class="clearer_10"></div>
+    
+    <%= f.radio_button :mandate_received, "yes" %>
+    <%= f.label :mandate_received_yes, "Ja, ich habe das Mandat erhalten" %>
+    <div class="clearer_20"></div> 
+    
+    <div class="button_abort">
+      <%= link_to_function("Abbrechen", "jQuery(document).trigger('close.facebox')") %>
+    </div>  
+    <%= submit_tag "" , :class => "button_send" %>
+    
+  <% end %>
+</div>

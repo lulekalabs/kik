@@ -1,0 +1,51 @@
+<% #advocate/account/articles 
+%>
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+
+        <h2>Meine Artikel</h2>
+        <p>Publizieren Sie hier Ihre juristische Beiträge. Egal ob Urteilsbesprechung, Hinweis auf Gesetzesänderungen, Kommentar, Ratgeber-Artikel oder Leitfaden. Stellen Sie Ihr vorhandenes Spezialwissen und Ihre Kompetenz rund um die für Sie relevanten Rechtsgebiete dar. Punkten Sie mit Inhalten und überzeugen Sie potentielle Mandanten mit interessanten Themen aus den Bereichen Recht und Steuern.</p>
+        <p>Sie haben die Möglichkeit Artikel zu verfassen und Dokumente hochzuladen. </p>
+        <p>
+          <b>Nehmen Sie sich ein paar Minuten Zeit, um ab und an eine Mittteilung zu veröffentlichen – Sie werden feststellen, es lohnt sich! </b>
+        </p>
+
+        <% unless @article.assigned? %>
+        <div id="new-more">
+          <div class="button_white_right_blue">
+            <%= link_to_function("Neuen Artikel verfassen", 
+            "$('##{dom_id(@article, :new)}').show();$('#new-more').hide();$('#article-assigned').attr('value', '1')")%>
+          </div>
+          <div class="button_white_left_blue"></div>
+        </div>
+        <% end %>
+
+        <div id="<%= dom_id(@article, :new) %>" style="<%= !@article.assigned? ? "display:none;" : "" %>">
+          <%= render :partial => "new" %>
+        </div>  
+
+        <div class="clearer_20"> </div>
+        
+          <%= render :partial => "show", :collection => @articles %>
+        
+
+
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Bilder (gif, png, jpg) bis 1MB</li>
+            <li>Dokumente (gif, png, jpg, xlsx, docx, pdf) bis 3MB</li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>

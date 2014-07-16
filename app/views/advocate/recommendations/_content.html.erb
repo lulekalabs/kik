@@ -1,0 +1,275 @@
+ <% if kik_realm? %> 
+<div class="blue">
+  <div class="top clearer"></div>
+  <div class="content">
+
+    <div class="right"><img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/blau_kontakt.jpg" style="position:relative;"/></div>
+    <div class="left" style="position:absolute;">
+      <ul class="pad_10">
+        <li><span class="headline">Weiterempfehlen wird belohnt! </span></li>
+        <li><span class="fliess">Kennen Sie Kolleginnen und Kollegen, für die kann-ich-klagen.de interessant sein könnte?<br /> Dann empfehlen Sie bitte weiter und schenken Sie ihnen und sich ein zusätzliches Guthaben. </span></li>
+        <li><span class="fliess">Für jede durch Sie empfohlene, aktivierte Anmeldung, erhalten Sie beide zusätzlich zum jeweiligen Startguthaben je ein Guthaben für 10 Kontakte zu potentiellen Mandanten im Wert von 50,00 € netto (= 59,50 € brutto) Ihrem persönlichen Anwaltsprofil gutgeschrieben. </span></li>
+      </ul>
+    </div>
+    <div class="pad_20"></div>
+  </div>
+  <div class="bottom"></div>
+</div> 
+<% end %>
+ <% if af_realm? %> 
+<div class="green">
+  <div class="top clearer"></div>
+  <div class="content">
+
+    <div class="right"><img title="Anwalt kann-ich-klagen.de" alt="Anwalt kann-ich-klagen.de" src="/images/advofinder/kontakt.jpg" style="position:relative;"/></div>
+    <div class="left" style="position:absolute;">
+      <ul class="pad_10">
+        <li><span class="headline">Weiterempfehlen wird belohnt! </span></li>
+        <li><span class="fliess">Kennen Sie Kolleginnen und Kollegen, für die advofinder.de interessant sein könnte?<br /> Dann empfehlen Sie bitte weiter und schenken Sie ihnen und sich einen Gutschein, der mit einem kostenpflichtigen Paket von advofinder.de verrechnet werden kann. </span></li>
+        <li><span class="fliess">Für jede durch Sie empfohlene, aktivierte Anmeldung, erhalten Sie beide je einen Gutschein im Wert von 20,00 € netto (= 23,80 € brutto), der mit einem kostenpflichtigen Paket von advofinder.de verrechnet werden kann. </span></li>
+      </ul>
+    </div>
+    <div class="clearer_20"></div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<% end %> 
+<% form_for :recommendation, :url => advocate_recommendations_path do |f| %>
+  <div class="blue_right">
+    <div class="main">
+      <div class="content">
+
+        <div class="col_1">
+
+          <div class="pad_10"></div>
+          <%= error_messages_for :recommendation,
+            :header_message => "Ihre Empfehlung konnte leider nicht gesendet werden.",
+            :message => "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Empfehlung absenden zu können." %>
+            <% if kik_realm? %>
+            <h2>kann-ich-klagen.de weiterempfehlen</h2> 
+            <% end %>
+            <% if af_realm? %>
+            <h2>advofinder.de weiterempfehlen</h2>
+            <% end %> 
+              
+            
+            
+          <p><b>Ihre Daten:</b></p>
+
+          <% if @recommendation && @recommendation.sender %>
+            <p>
+              <%= @recommendation.sender.title_and_name %>
+            </p>
+            <p>
+              <%= @recommendation.sender.email %>
+            </p>
+            
+            <%= f.hidden_field :sender_gender, :value => @recommendation.sender.gender %>
+            <%= f.hidden_field :sender_academic_title_id, :value => @recommendation.sender.academic_title_id %>
+            <%= f.hidden_field :sender_first_name, :value => @recommendation.sender.first_name %>
+            <%= f.hidden_field :sender_last_name, :value => @recommendation.sender.last_name %>
+            <%= f.hidden_field :sender_email, :value => @recommendation.sender.email %>
+            
+          <div class="clearer_10"></div>
+          
+          <% else %>
+          <div style="<%= @recommendation && @recommendation.sender ? 'display:none;' : '' %>">
+            <div class="left">
+              <%= f.select :sender_gender, collect_for_gender_select(true, true), {},
+                {:disabled => @recommendation && @recommendation.sender,
+                  :class => "option_f_h", :style => "background-color:#fffef7 "} %>
+            </div>
+            <div class="left pad_l_16">
+              <%= f.select :sender_academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+                {:disabled => @recommendation && @recommendation.sender,
+                  :class => "option_f_h", :style => "background-color:#fffef7 "} %>
+            </div>
+            <div class="clearer_10"></div> 
+
+            <div class="left">
+              <%= f.text_field :sender_first_name, :class => "field w303",
+                :disabled => @recommendation && @recommendation.sender %>
+            </div>
+            <div class="right ">
+              <%= f.text_field :sender_last_name, :class => "field w303",
+                :disabled => @recommendation && @recommendation.sender %>
+            </div>
+            <div class="clearer_10"></div> 
+            <div class="left">
+              <%= f.text_field :sender_email, :class => "field w303",
+                :disabled => @recommendation && @recommendation.sender %>
+            </div>
+            <div class="clearer_10"></div> 
+          </div>
+          <% end %>
+          <p><b>Daten des Empfängers:</b></p>
+
+           <div class="left">
+             <%= f.select :receiver_gender, collect_for_gender_select(true, true), {},
+               {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+          <div class="left pad_l_16">
+            <%= f.select :receiver_academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+              {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+          <div class="clearer_10"></div> 
+          <div class="left">
+            <%= f.text_field :receiver_first_name, :class => "field w303" %>
+          </div>
+          <div class="right">
+            <%= f.text_field :receiver_last_name, :class => "field w303" %>
+          </div>
+          <div class="clearer_10"></div> 
+          <div class="left">
+            <%= f.text_field :receiver_email, :class => "field w303" %>
+          </div>
+
+          <div class="clearer_20"></div> 
+            
+           <h2>Nachricht an Ihre Kollegin/Ihren Kollegen</h2>  
+           
+            <p><b>Betreff: </b> </p>
+            <p><span id="receiver_subject_title_and_name"><%= preview_receiver_title_and_name %></span>, Sie haben eine Empfehlung von <span id="sender_subject_title_and_name"><%= preview_sender_title_and_name %></span> erhalten</p>
+            <p><b>Anrede: </b> </p>
+            <p>Guten Tag <span id="receiver_body_title_and_name"><%= preview_receiver_salutation_and_title_and_name %></span>!</p>
+            <p><b>Standardtext der Nachricht:</b> </p>
+            
+            <% if kik_realm? %>
+            <p>Ich nutze gerade die Weiterempfehlungsfunktion von www.kann-ich-klagen.de mit der ich Kolleginnen und Kollegen, die ich persönlich kenne, eine Empfehlungs-E-Mail als freundschaftlichen Hinweis schicken kann.</p>
+            <p>Folgende Seite könnte für Sie/Dich interessant sein:</p>
+            <p>www.kann-ich-klagen.de/anwalt</p>
+            <p>Man kann sich dort unverbindlich anmelden und erhält ein kostenloses Startguthaben. Die Anmeldung dauert nur wenige Minuten.</p>
+            <p>Zusätzlich zu einem Startguthaben schenkt man uns beiden als Empfehlender und
+            Empfehlungsempfänger für den Fall einer erfolgreichen, aktivierten Anmeldung ein extra
+            Guthaben. Weitere Informationen und Erklärungen sind auf der oben genannten Seite zu finden.
+            </p>   
+            <% end %>
+            <% if af_realm? %>
+            <p>Ich nutze gerade die Weiterempfehlungsfunktion von www.advofinder.de mit der ich Kolleginnen und Kollegen, die ich persönlich kenne, eine Empfehlungs-E-Mail als freundschaftlichen Hinweis schicken kann.</p>
+            <p>Folgende Seite könnte für Sie/Dich interessant sein:</p>
+            <p>www.advofinder.de/anwalt </p>
+            <p>Man kann sich dort kostenlos anmelden und ein Anwaltsprofil anlegen zur Darstellung der eigenen Person, Kanzlei und Arbeit. Damit können Mandanten überregional oder ganz in Ihrer Nähe gewonnen werden durch Aussschöpfen des Potentials von Online-Marketing im Web 2.0; mit integrierter Social Media Anbindung und Suchmaschinenoptimierung. </p>
+            <p>Zusätzlich schenkt man uns beiden als Empfehlender und Empfehlungsempfänger für den Fall einer erfolgreichen, aktivierten Anmeldung je einen Gutschein im Wert von 20,00 € netto (= 23,80 € brutto), der mit einem kostenpflichtigen Paket von advofinder.de verrechnet werden kann. 
+            </p>  
+            <% end %>
+            
+            
+            
+
+            
+            <% if false %>
+            <p>Wenn Sie/Du keine Empfehlungen mehr erhalten möchtest, bitte einmalig auf folgenden Link klicken:</p>
+            <p><a href="http://www.">www.?????</a></p>
+            <% end %>
+            
+            <div class="check pad_10">
+              <ul>
+                <li>
+                  <span class="check">
+                    <%= check_box_tag :with_private_message, "1", !@recommendation.message.blank?, {:id => "with_private_message"} %>
+                    
+                  </span>
+                  <span class="fliess">
+                    <%= label_tag :with_private_message, "Persönliche Nachricht hinzufügen" %>
+                  </span>
+                </li>
+
+              </ul>
+            </div> 
+            
+              
+            <div id="message_field" style="<%= @recommendation.message.blank? ? 'display:none;' : '' %>">
+              <p><b>Ferner möchte ich Ihnen/Dir mitteilen:</b></p> 
+              <div class="left">
+                <%= f.text_area :message, :class => "text auto" %>
+              </div> 
+            </div>
+            
+            
+             <div class="clearer_10"></div> 
+             <p>Mit besten Grüßen</p>
+            <p><span id="sender_salutation_title_and_name"><%= preview_sender_title_and_name %></span></p>
+            <div class="clearer_20"></div> 
+            <div class="left"> 
+              <p>IP-Adresse des Empfehlenden:</p>
+            </div>
+            <div class="left pad_l_16">
+              <p><%= request.remote_ip %></p>
+            </div>
+            
+            
+             <div class="clearer_20"></div> 
+
+          <div class="check">
+            <ul>
+              <li>
+                <span class="check">
+                  <%= f.check_box :friend_confirm %>
+                </span>
+                <span class="fliess">
+                  <%= f.label :friend_confirm, "*Ja, ich bestätige, dass ich den Empfänger der Empfehlung persönlich kenne und diesem in meinem Namen eine Empfehlungs-E-Mail als freundschaftlichen Hinweis schicken möchte. Ich willige dazu ein, dass meine angegebenen Daten, E-Mail- sowie IP-Adresse und ggf. Host in der Empfehlungs-E-Mail genannt und gespeichert werden, um dem Empfänger eine Überprüfung zu gestatten und um eine Gutschrift bei aktivierter Anmeldung zu ermöglichen. Diese Einwilligung kann ich jederzeit widerrufen. " %>
+                </span>
+              </li>
+              <li>
+                <span class="check">
+                  <%= f.check_box :copy_sender %>
+                </span>
+                <span class="fliess">
+                  <%= f.label :copy_sender, "Ja, mir eine Kopie dieser Nachricht senden." %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="clearer"></div>
+          
+          <%= recaptcha_tags :display => {:lang => "de"}%>
+            
+          <div>
+            <%= submit_tag "Jetzt empfehlen" , :class => "button_right" %>
+          </div>
+          <div class="button_left"></div>
+
+
+          <div class="clearer"></div>
+        </div>
+        <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>
+          <div class="pad_r_l_15">
+            <h2>Hinweise:</h2>
+            <ul>
+              <li>Mit * versehene Felder sind Pflichtfelder.</li>
+             <!-- <li>
+                <p><b>Standardmäßig wird folgende Nachricht an Ihre Kollegin/Ihren Kollegen geschickt:</b></p>
+                <div class="pad_10"></div>
+                <p>Hallo Titel Vorname Nachname, </p>
+                <div class="pad_5"></div>
+                <p>ich habe hier eine Seite entdeckt, die für Sie/Dich interessant sein könnte:</p>
+                <p><a class="white" href="">www.kann-ich-klagen.de</a></p>
+                <p>Dort habe ich mich gerade angemeldet und ein kostenloses Startguthaben erhalten.</p>
+                <p>Zusätzlich zum Startguthaben schenkt man uns beiden als Empfehlender und Empfehlungsempfänger für den Fall einer erfolgreichen, aktivierten Anmeldung ein zusätzliches Guthaben. Detaillierte Informationen stehen auf  den verlinkten Seiten. </p>
+               <div class="pad_5"></div>
+                <p>Mit besten Grüßen </p>
+                <div class="pad_5"></div>
+                <p>Titel Vorname Nachname </p>
+              </li> -->
+            </ul>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+<% end %>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+
+RecommendationPreview.initialize();
+
+$("#with_private_message").change(function(sender) {
+  $("#with_private_message").is(':checked') ? $("#message_field").show() : $("#message_field").hide();
+});
+
+//]]>
+</script>
+<%= render :partial => 'shared/default_fields_js', :locals => {:default_field => @default_field} %>

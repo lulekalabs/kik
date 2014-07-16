@@ -1,0 +1,11 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Ihre Bewerbung vom <%= l(@response.created_at) %> auf die Frage von <%= @kase.person.title_and_name %> wurde gelesen.
+
+Möchten Sie die Frage und Ihre Bewerbung ansehen, dann klicken Sie bitte auf folgenden Link:
+
+<%= advocate_account_question_response_url(@kase, @response) %>
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Mandantensuche.
+
+<%= render :partial => "notifier/footer" %>

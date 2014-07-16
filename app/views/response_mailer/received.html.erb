@@ -1,0 +1,15 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+Sie haben eine neue Bewerbung auf Ihre Frage vom <%= l(@kase.created_at) %> von Rechtsanwalt <%= h(@response.person.title_and_name) %> erhalten.
+
+Möchten Sie die vollständigen Kontaktdaten ansehen und auf die Bewerbung antworten, dann klicken Sie bitte auf folgenden Link:
+
+<%= client_account_question_response_url(@kase, @response) %>
+
+-------------------------------------------------------------------------------
+<%= h(@response.description) %>
+-------------------------------------------------------------------------------
+
+Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.
+
+<%= render :partial => "notifier/footer_lean" %>

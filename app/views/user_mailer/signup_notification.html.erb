@@ -1,0 +1,47 @@
+Guten Tag <%= @person.salutation_and_title_and_last_name %>,
+
+vielen Dank für Ihr Interesse an kann-ich-klagen.de und Ihre kostenlose Anmeldung!
+
+kann-ich-klagen.de unterstützt Anwälte deutschlandweit bei der Akquise von neuen Mandanten.
+Teilnehmende Anwälte erhalten regelmäßig und kostenlos aktuelle Fragen von potentiellen
+Mandanten zur Einsicht. Anwälte sparen Zeit und Akquisekosten - die Suche und Vorstellung
+von potentiellen Mandanten übernimmt www.kann-ich-klagen.de. 
+
+Sie erhalten diese Aktivierungs-E-Mail, weil mit Ihrer Adresse <%= @user.email %> 
+kürzlich auf www.kann-ich-klagen.de eine kostenlose Anmeldung durchgeführt wurde.
+
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+Bitte klicken Sie einmalig auf folgenden Aktivierungs-Link, um Ihre kostenlose Anmeldung
+zu bestätigen und abzuschließen:
+
+<%= activate_advocate_user_url(:id => @user.activation_code) %>
+
+Sollten Sie den oben stehenden Aktivierung-Link nicht anklicken können, dann können Sie
+den Link auch einfach kopieren und in die Adresszeile Ihres Internetbrowsers einfügen, um
+Ihre kostenlose Anmeldung zu bestätigen.
+
++++++++++++++++++++++++++++++++++++++++++ 
+
+
+Die Bestätigung Ihrer kostenlosen Anmeldung ist notwendig, um sicherzustellen, dass Sie
+diese E-Mail erhalten wollten und nicht gegen Ihren Willen angemeldet wurden.
+
+Ohne Bestätigung können wir Ihre kostenlose Anmeldung nicht aktivieren.
+
+Als Bonus für die erfolgreiche Aktivierung Ihrer Anmeldung wird Ihrem persönlichen
+Anwaltsprofil ein Startguthaben im Wert von 500,00 € netto (= 595,00 € brutto) gutgeschrieben.
+Dieses Guthaben können Sie ab Start bis einschließlich 31.03.2010 einlösen und damit
+die Vorteile von kann-ich-klagen.de ausführlich testen. Eine Übertragung an Dritte oder
+Auszahlung des Startguthabens ist nicht möglich.
+
+Wir informieren Sie detailliert per E-Mail, sobald kann-ich-klagen.de startet.
+
+Falls Sie Hilfe bei der Aktivierung benötigen oder Missbrauch vermuten, stehen wir Ihnen
+jederzeit gern per E-Mail unter email@kann-ich-klagen.de zur Verfügung.
+kann-ich-klagen.de gibt Ihre E-Mail-Adresse in keinem Fall an Dritte weiter.
+
+Wir bedanken uns für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.
+
+<%= render :partial => "notifier/footer" %>

@@ -1,0 +1,7 @@
+page['feedback'].replace_html :partial => "corporate/feedbacks/new"
+
+# page << $("#feedback").css({'width': '500px', 'height': '500px'});
+
+page << "$('a.feedback_modal_hidden').trigger('click');"
+page['feedback'].children.remove
+page << "window.defaultFields(#{default_fields.to_json});"

@@ -1,0 +1,7 @@
+<%
+  review_path_helper ||= nil
+%>
+<% @reviews.each do |review| %>
+  <%= render :partial => "client/account/reviews/item", :object => review, 
+    :locals => {:last => review == @reviews.last, :review_path_helper => review_path_helper} %>
+<% end %>

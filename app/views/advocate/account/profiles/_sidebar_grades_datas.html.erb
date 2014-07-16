@@ -1,0 +1,37 @@
+<%# the shitty name for this partial comes from Gabi, sorry %>
+<div class="right">
+  <%= render :partial => "shared/profiles/image" %>
+
+  <div class="clearer_10"></div>  
+
+
+  <div class="two_small_top clearer"><h2><b>Meine aktuellsten Rechnungen</b></h2></div>
+  <div class="two_small_content">
+    <% current_user.person.purchase_invoices.paid.find(:all, :limit => 5, :order => "invoices.paid_at DESC").each do |invoice| %>
+    <p>
+      <%= link_to invoice.human_pdf_filename,
+      advocate_account_invoice_path(invoice, :format => :pdf), :popup => true %>
+    </p>
+    <% end %>
+  </div>
+  <div class="two_small_bottom_arrow"><b><%= link_to "Alle Rechnungen zeigen", bills_advocate_account_path %>    </b></div>
+
+  <div class="clearer_10"></div>
+
+  <%= render :partial => "shared/profiles/change_password" %>
+
+  <div class="clearer_10"></div>
+
+  <div class="two_small_top clearer"><h2><b>Konto deaktivieren</b></h2></div>
+  <div class="two_small_content">
+    <p>Deaktivieren Sie Ihr Konto nur, wenn Sie kann-ich-klagen.de endgültig nicht mehr nutzen möchten.<br />
+      Geht es Ihnen stattdessen darum, keine laufenden monatlichen Kosten zu haben? Dann wechseln
+      Sie  <%= link_to "hier in das Flex-Paket", package_advocate_account_profile_path %> und zahlen Sie nur noch, wenn Sie tatsächlich einen Kontakt zu einem potentiellen Mandanten erwerben.</p>
+
+    </div>
+    <div class="two_small_bottom_arrow"><b>
+      <%= link_to "Jetzt Konto deaktivieren", 
+      advocate_account_profile_deactivation_path, {:title => ""} %>
+    </b></div>
+
+  </div>

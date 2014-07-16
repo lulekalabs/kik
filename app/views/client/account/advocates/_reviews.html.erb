@@ -1,0 +1,31 @@
+<%#= render :partial => "search" %> 
+
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+        <%= render :partial => "shared/advocates/overview" %>
+        <%= render :partial => 'shared/advocates/grade' %>
+
+
+        <% if current_user.person.is_a?(Client) %>
+          <%= render :partial => "client/account/advocates/tabs" %>
+        <% end %>
+        
+        <% if current_user.person.is_a?(Advocate) %>
+          <%= render :partial => "advocate/account/previews/tabs" %>
+        <% end %>
+
+        <%= render :partial => "client/account/reviews/list" %> 
+        <%= render :partial => "client/account/advocates/regulate" %> 
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => "shared/reviews/sidebar_grades" %>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

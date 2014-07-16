@@ -1,0 +1,51 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        <h2>Kontakt</h2>
+        <p>Der Kontakt mit unseren Besuchern ist uns sehr wichtig. Gern stehen wir Ihnen jederzeit bei Fragen, Anregungen oder Ideen zur Verfügung. Bitte senden Sie uns eine Nachricht.
+        </p>
+        <div class="pad_10"></div>
+        <%= error_messages_for :contact,
+          :header_message => "Ihre Nachricht konnte leider nicht gesendet werden.",
+          :message => "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Nachricht absenden zu können."
+         %>
+        <% form_for :contact, :url => corporate_contacts_path do |f| %>
+          <%= render :partial => 'form', :locals => {:f => f} %>
+        <% end %>
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <div class="pad_10"></div>
+          <img  alt="Angelika Göhler" src="/images/person/goehler.jpg" style="float:right"/>
+          <h2><b>Kontaktieren Sie uns: </b></h2>
+          <p>Wir freuen uns auf Sie!</p>
+          <div class="pad_10"></div>
+          <% if kik_realm? %>
+          <p>Telefon: (030) 609 895 090</p>
+          <p>Telefax: (030) 609 895 099 </p> 
+          <% end %>
+          <% if af_realm? %>
+          <p>Telefon: (030) 577 085 760</p>
+          <p>Telefax: (030) 577 085 760 </p>
+          <% end %>
+          
+          
+          <p><%= mail_to Notifier.contact_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+          <div class="pad_20"></div>
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>
+

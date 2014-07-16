@@ -1,0 +1,51 @@
+<div class="two_big_top">
+  <h2>
+    <% unless details %>
+      <%= link_to content_tag(:b, h(truncate(post.title, :length => 75))), 
+        service_blog_path(post), {:title => "Zum ganzen Artikel"} %>
+    <% else %>
+      <%= content_tag(:b, h(truncate(post.title, :length => 75))) %>
+    <% end %>
+  </h2>
+</div>
+<div class="two_big_content">
+  <div class="left">
+    Veröffentlicht am <%= l(post.published_at) %> von <%= link_to post.author_name ,{:title => "Zum Profil"} %>
+  </div>
+
+  <% unless post.summary.blank? %>
+    <div class="clearer_10"></div>  
+    
+    <b><%= h(post.summary) %></b>
+   
+  <% end %>
+
+  <div class="clearer_10"></div>  
+  <div class="markdown"><%= markdown(post.body) %></div>
+  <div class="clearer_10"></div>  
+
+  <%= render :partial => "shared/article_image_and_attachments", :object => post %>
+  
+  <div class="clearer_10"></div>  
+
+  <div class="left">
+    <% if details %>
+      <%= link_to "&#171; Zurück zur Übersicht", service_blogs_path %>
+    <% end %>
+  </div>
+  <div class="right">
+    
+    <%= link_to "Druckansicht", print_service_blog_path(post), {:class => "drucken"} %>
+     <%= render :partial => '/shared/add_this' %>    
+      
+  </div>
+  <div class="pad_10"></div>
+  
+</div>
+<div class="two_big_bottom"></div>
+<div class="clearer"></div>
+  <div class="pad_10"></div>
+
+
+
+

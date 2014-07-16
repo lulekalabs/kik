@@ -1,0 +1,88 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <h2>kann-ich-klagen.de Kodex</h2>
+    <p> Der kann-ich-klagen.de Kodex greift, aufbauend auf dem Standes- und Berufsrecht der Anwaltschaft, zu Gunsten von Rechtsuchenden die Themen auf, zu denen im Zuge der Realisierung von kann-ich-klagen.de bei Rechtsuchenden ein erhöhtes Interesse festgestellt wurde. Sodann wurden die nachfolgenden Grundsätze des Kodex formuliert.</p>
+<p> Leider sind Rechtsuchende nicht immer umfassend über das Standes- und Berufsrecht der Anwaltschaft informiert, so dass kann-ich-klagen.de versucht mit dem kann-ich-klagen.de Kodex zusätzliche Transparenz, Übersicht und Sicherheit zu schaffen sowie das Verständnis für einander fortzuentwickeln.</p>
+<p> Der kann-ich-klagen.de Kodex ist insoweit keine Gängelung oder Bevormundung der in Deutschland zugelassenen Rechtsanwälte und Rechtsanwältinnen, sondern soll aus Sicht der Rechtsuchenden zusätzlich klarstellen, bestätigen und Rechtsuchenden die Sicherheit geben, einen bestmöglichen Service durch die teilnehmenden Anwälten und Anwältinnen beanspruchen zu können.</p>
+<p> Anwälte und Anwältinnen werden um Verständnis dafür gebeten, dass mit dem kann-ich-klagen.de Kodex für Rechtsuchende das unterstrichen wird, was  für alle Anwälte und Anwältinnen in Deutschland eine Selbstverständlichkeit ist. Schicken Sie uns bitte gern jederzeit Ihre Meinung, Anregungen oder Ideen zum Kodex, um diesen im Diskurs immer weiter zu verbessern.</p>
+<p> Weitere Ausführungen und Information zum Standes- und Berufsrecht, der Charta der Mandantenrechte, den Rechtsanwaltskammern, der Haftpflichtversicherung eines jedes Rechtsanwalts und weiteren Themen, die für Rechtsuchtsuchende von Interesse sind, können hier angezeigt werden. </p>
+
+<p>
+  <%= link_to_function("» Informationen anzeigen", update_page do |page| 
+    page << "if ($('#details').is(':visible')) {"
+      page[:details].visual_effect :blind_up
+      page[:more_link].replace_html "» Informationen anzeigen"
+    page << "} else {"
+      page[:details].visual_effect :blind_down
+      page[:more_link].replace_html "» Informationen ausblenden"
+    page << "}"
+  end, :id => "more_link") %>
+</p>
+ <div id="details" style="display: none">
+   <p class="line"></p>
+   <p>Für Rechtsuchende ist bestmöglich vorgesorgt: Jeder in Deutschland zugelassene Anwalt achtet das deutschlandweit für Anwälte geltende <a href="http://www.brak.de/seiten/06.php" target="_blank">Standesrecht und die berufsrechtlichen Regelungen</a> sowie die <a href="http://www.brak.de/seiten/04_01_32.php" target="_blank">Charta der Mandantenrechte</a>, welche die Bundesrechtsanwaltskammer anlässlich ihrer 90. Hauptversammlung in München verabschiedet hat. Als Standesrecht werden das Recht eines Berufsstandes, der Rechtsanwälte und Rechtsanwältinnen, bezeichnet, dem von Seiten des Staates seine Selbstverwaltung in eigener Verantwortung übertragen wurde.</p>
+<p>Zu den Mandantenrechten gehören insbesondere auch das Recht auf einen der absoluten Verschwiegenheit – auch gegenüber Gerichten und Behörden – verpflichteten Anwalt, dessen Vertraulichkeit im persönlichen, telefonischen und schriftlichen Verkehr gewährleistet ist; das Recht auf einen Anwalt, der sorgfältig und ausschließlich die Interessen des Mandanten und keine widerstreitenden Interessen vertritt; das Recht auf einen qualifizierten und fachlich geprüften Anwalt, der für fehlerhafte Dienstleistungen haftet, sowie das Recht auf eine prüfbare Abrechnung der anwaltlichen Dienstleistung.</p>
+<p>Überwacht werden die Einhaltung des Standesrechts und der berufsrechtlichen Regelungen sowie die Mandantenrechte durch die <a href="http://www.brak.de" target="_blank">Bundesrechtanwaltskammer</a> und die regionalen <a href="http://www.brak.de/seiten/01_03.php" target="_blank">Rechtsanwaltskammern</a>. Die Bundesrechtsanwaltskammer (BRAK)ist dabei die Dachorganisation der 27 regionalen Rechtsanwaltskammern (RAK) und der Rechtsanwaltskammer beim Bundesgerichtshof (BGH) und vertritt über diese die berufspolitischen Interessen von ca. 150.000 Rechtsanwältinnen und Rechtsanwälten in ganz Deutschland. Die regionalen Kammern sind die Aufsichtsbehörden über die in ihrer Region zugelassenen Rechtsanwälte und Rechtsanwältinnen. Die Rechtsanwaltskammern nehmen auch die ihnen durch Gesetz zugeschriebenen Aufgaben wahr. Dies sind unter anderem: das Zulassungswesen; die Verleihung von Fachanwaltstiteln; die Erstellung von Gebührengutachten und Gutachten in berufsrechtlichen Angelegenheiten für Gerichte und Behörden und die Verleihung von Fachanwaltstiteln. Daneben sind die Rechtsanwaltskammerm in einzelnen Bereichen auch für Anliegen der Bürger zuständig. Ist der Mandant des Rechtsanwaltes der Ansicht, dass dieser gegen seine Berufspflichten verstoßen hat, so kann sich der Mandant schriftlich bei den Rechtsanwaltskammern beschweren.</p>
+<p>Rechtsuchende sind zudem durch eine Berufshaftpflichtversicherung eines jeden Rechtsanwalts abgesichert. Der Rechtsanwalt ist verpflichtet, eine Berufshaftpflichtversicherung zur Deckung der sich aus seiner Berufstätigkeit ergebenden Haftpflichtgefahren für Vermögensschäden abzuschließen und die Versicherung während der Dauer seiner Zulassung aufrechtzuerhalten. Die Versicherung muss bei einem im Inland zum Geschäftsbetrieb befugten Versicherungsunternehmen zu den nach Maßgabe des Versicherungsaufsichtsgesetzes eingereichten Allgemeinen Versicherungsbedingungen genommen werden und sich auch auf solche Vermögensschäden erstrecken, für die der Rechtsanwalt nach § 278 oder § 831 des Bürgerlichen Gesetzbuchs einzustehen hat. Die Mindestversicherungssumme beträgt 250.000,00 Euro für jeden Versicherungsfall. Die Leistungen des Versicherers für alle innerhalb eines Versicherungsjahres verursachten Schäden können dabei auf den vierfachen Betrag der Mindestversicherungssumme begrenzt werden.</p>
+<p>Diese Ausführungen berücksichtigend wurde für Rechtsuchende der kann-ich-klagen.de Kodex formuliert, um weiter zu unterstreichen und Verständnis zu schaffen.</p>
+<p class="line"></p>
+ </div>
+   
+ <div class="pad_10"></div>
+<p>Jeder Anwalt hat durch seine Teilnahme den kann-ich-klagen.de Kodex zum Wohle der anfragenden Rechtsuchenden bestätigt. <br />Seine Grundsätze lauten:
+</p>
+<ol>
+  <li>
+    <p><b>Termintreue</b></p>
+    <p>Der Anwalt wird Termine, die er mit dem Rechtsuchenden vereinbart, stets einhalten, solange und soweit keine triftigen Gründe dagegen sprechen. Terminverschiebungen wird er schnellstmöglich unaufgefordert mitteilen.</p>
+  </li>
+  <li>
+    <p><b>Gebührensicherheit</b></p>
+    <p>Der Anwalt wird den Rechtsuchenden jeweils vor Mandatsübernahme, respektive vor der Vornahme einer Handlung, von sich aus darüber informieren, ob und wenn ja, welche Kosten für den Rechtsuchenden entstehen und welche Gebührenoptionen bestehen.</p>
+  </li>
+  <li>
+    <p><b>Verständlichkeit</b></p>
+    <p>Der Anwalt wird stets darauf achten umfassend zu informieren, sich verständlich auszudrücken und den Rechtsuchenden regelmäßig von sich aus fragen, ob er noch weitere Erklärungen wünscht.</p>
+  </li>
+  <li>
+    <p><b>Kontaktwünsche respektieren</b></p>
+    <p>Der Anwalt wird den Rechtsuchenden bei der Kontaktanbahnung nur über die von diesem angegebene Kommunikationswege (bspw. E-Mail) kontaktieren.</p>
+  </li>
+  <li>
+    <p><b>Kontaktsperre</b></p>
+    <p>Der Anwalt wird den Rechtsuchenden nicht weiter kontaktieren, wenn der Rechtsuchende eine Bewerbung bzw. einen vom Anwalt initiierten Kontakt über das Mandanten-Fragen-System von kann-ich-klagen.de nicht erwidern oder fortführen will.</p>
+  </li>
+  <li>
+    <p><b>Aufklärung über Risiken</b></p>
+    <p>Der Anwalt wird den Rechtsuchenden vor der Vornahme einer Handlung von sich aus darüber informieren, welche Risiken damit verbunden sind und welche Handlungsalternativen bestehen.</p>
+  </li>
+  <li>
+    <p><b>Erreichbarkeit</b></p>
+    <p>Der Anwalt wird Nachrichten des Rechtsuchenden stets schnellstmöglich, ohne schuldhaftes zögern, beantworten und seine Erreichbarkeit zu üblichen Bürozeiten sicherstellen.</p>
+  </li>
+
+ <li>
+    <p><b>Individuelle Ansprache</b></p>
+    <p>Der Anwalt wird auf Fragen, die der Rechtsuchende auf kann-ich-klagen.de einstellt, stets mit individuellen Bewerbungen und Nachrichten antworten. Reine Standardschreiben ohne individuellen Gehalt oder mit Ausschließlich allgemein werblichem Charakter sind nicht gestattet.</p>
+  </li>
+  <li>
+    <p><b>Keine Werbung</b></p>
+    <p>Der Anwalt wir die vom Rechtsuchenden erhaltenen Kontaktdaten und sonstige Daten nur zum Zwecke der Bewerbung bzw. der Antwort auf gestellte Fragen des Rechtsuchenden nutzen und nicht für (nachgelagerte) allgemeine Werbemaßnahmen des Anwalts. Der Anwalt wird erhaltene personenbezogene Daten und sonstige Daten ohne ausdrückliche Einwilligung des Rechtsuchenden keinesfalls an Dritte weiter geben und seine Mitarbeiter ebenfalls entsprechend verpflichten diese Grundsätze einzuhalten.</p>
+  </li>
+  <li>
+    <p><b>Wahrhafte Angabe von Fachgebieten</b></p>
+    <p>Der Anwalt wird dem Rechtsuchenden nur solche Fachgebiete und Spezialisierungen nennen, auf denen er tatsächlich versiert ist und über ausreichende Erfahrung verfügt. Eine Übertreibung oder Verwechslungsgefahr mit den Fachanwaltschaften wird er stets vermeiden.</p>
+  </li>
+
+
+
+
+
+  
+</ol>
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+
+

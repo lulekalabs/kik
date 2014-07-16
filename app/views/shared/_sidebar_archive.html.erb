@@ -1,0 +1,24 @@
+<%
+  collection_method_name ||= :press_release_path
+  archive_range ||= @archive_range
+%>
+<% unless archive_range.blank? %>
+  <h2>Archiv:</h2>
+  <ul>
+    <% archive_range.keys.sort.each do |year| %>
+      <li>
+        <p><b><%= year %></b></p>
+        <% archive_range[year].each do |month| %>
+  
+        <p>
+          <%= link_to I18n::t("date.month_names")[month.to_i],
+            send(collection_method_name, {:year => year, :month => month}),
+              {:class => "white"} %>
+        </p>
+    
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="clearer"></div>
+<% end %>

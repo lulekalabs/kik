@@ -1,0 +1,14 @@
+<%
+  dom_id ||= dom_id(@article, :new)
+%>
+<div id="<%= dom_id %>">
+  <h2>Neuen Artikel verfassen</h2> 
+  <%= error_messages_for :article %>
+  <% form_for(:article, @article, :url =>formatted_advocate_account_articles_path(:format => 'js'), 
+    :html => {:multipart => true, :target => 'upload_frame'}) do |f| %>
+    <%= render :partial => "form", :locals => {:f =>f, 
+      :cancel_js => "$('##{dom_id}').hide(); $('#new-more').show();"} %>
+  <% end %>
+  <iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+  <%= render :partial => 'shared/default_fields_js' %>
+</div>

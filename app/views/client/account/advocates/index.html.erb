@@ -1,0 +1,182 @@
+<%
+  search_url ||= @select == :reviewed_advocates ? reviewed_client_account_advocates_url : unreviewed_client_account_advocates_url 
+%>
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <% if kik_realm? %> 
+        
+        
+        <h2>Meine Bewertungen (<%= @reviewed_advocates_count %>)</h2>
+        
+        <div class="clearer_10"></div>  
+        <% form_for :search_filter, @search_filter, :url => search_url, 
+          :html => {:method => :get, :id => "search-form"} do |f| %>  
+
+          <div class="left w400">
+            <div class="left w150">
+              Bewertungen sortieren:
+            </div>
+            <div class="left">
+              <% if @select == :unreviewed_advocates %>
+                <%= f.select :sort_order, [["Note (aufsteigend)", "people.grade_point_average ASC"], ["Note (absteigend)", "people.grade_point_average DESC"]], {},
+                  {:class => "quest w210", :style => "background-color:#fffef7", :onchange => "$('#search-form').trigger('submit');"} %>
+              <% else %>
+                <%= f.select :sort_order, [["Aktualität (neueste zuerst)", "reviews.created_at DESC"], ["Aktualität (älteste zuerst)", "reviews.created_at ASC"], ["Note (aufsteigend)", "people.grade_point_average ASC"], ["Note (absteigend)", "people.grade_point_average DESC"]], {},
+                {:class => "quest w210", :style => "background-color:#fffef7", :onchange => "$('#search-form').trigger('submit');"} %>
+              <% end %>
+            </div>
+
+            <div class="clearer"></div>
+            <div class="pad_5"></div>
+            <div class="left w150">
+              Bewertungen anzeigen:
+            </div>
+            <div class="left">
+              <%= f.select :per_page, collect_for_per_page_select, {},
+                {:class => "quest w210", :style => "background-color:#fffef7", :onchange => "$('#search-form').trigger('submit');"} %>
+            </div>
+          </div>
+          <div class="right w210">
+            <% unless @advocates.blank? %>
+              Seiten: <b><%= @advocates.total_pages %></b>
+              <p>
+                <%= will_paginate @advocates, :previous_label => "&#171;", :next_label => "&#187;" %>
+              </p>
+            <% end %>
+          </div>
+          <%= submit_tag "Suchen", :id => "search-submit", :style => "position:absolute;left:-1000px;top:-1000px;" %>
+        <% end %>
+        <div class="clearer_20"></div>  
+        
+        <div class="menue_c_2"> 
+          <ul> 
+            <li class="<%= current_page?(client_account_advocates_path) || current_page?(unreviewed_client_account_advocates_path) ? 'select' : ''%>">
+              <%= link_to "noch zu bewertende Anwälte (#{@unreviewed_advocates_count})", client_account_advocates_path %>
+            </li>
+            <li class="<%= current_page?(reviewed_client_account_advocates_path) || current_page?(client_account_reviews_path) ? 'select' : ''%>">
+              <%= link_to "bereits bewertete Anwälte (#{@reviewed_advocates_count})", reviewed_client_account_advocates_path %>
+            </li>
+          </ul>
+        </div>
+        <div class="clearer"></div>
+
+        <% if @advocates.empty? %>
+          <div class="clearer"></div>
+          <% if action_name == "index" || action_name == "unreviewed" %>
+            <div class="clearer_20"></div>
+            Keine zu bewertenden Anwälte
+          <% else %>
+            Keine bewertete Anwälte
+          <% end %>
+        <% else %>
+          <% @advocates.each do |advocate| %>
+        
+            <%= render :partial => "shared/advocates/overview", :object => advocate,
+              :locals => {:header => "Bewertungen zu %s"} %>
+            <%= render :partial => "shared/advocates/grade", :object => advocate %>
+
+            <% if current_user.person.has_reviewed?(advocate) %>
+              <div class="clearer_10"></div>
+              <% advocate.reviews.visible.each do |review| %>
+              <h2></h2>  
+              <div class="note_small">
+                <%= grade_point_average(review.reviewee) %>
+              </div>
+
+              <div class="block_300_user">
+                <p><b><%= grade_point_average(review.reviewee) %></b> von <b><%= h(review.reviewer.user_id)%></b> (ID: <%= review.reviewer.user.id %>)</p>
+                <p>Bewertung vom <%= l(review.created_at) %></p>
+              </div>
+              <div class="pad_15"> 
+                <div class="button_white_right_blue">
+                  <%= link_to "Bewertung anzeigen", client_account_advocate_review_path(advocate, review), 
+                  {:title => "Bewertungsdetails zeigen"} %>
+                </div>
+                <div class="button_white_left_blue"></div>
+              </div>	 
+              <div class="clearer"></div>               
+            <% end %>
+
+            <% else %>
+
+              <div class="button_right">
+                <%= link_to "Bewertung abgeben", new_client_account_advocate_review_path(advocate), 
+                {:title => "Bewertungsdetails zeigen"} %>
+              </div>
+              <div class="button_left"></div>
+              <div class="clearer_10"></div>   
+
+            <% end %>
+          <% end %>
+        <% end%>
+        
+        <% end %>
+        <% if af_realm? %>
+        <h2>Meine abgegebenen Bewertungen</h2>
+        
+
+        <% if @advocates.empty? %>
+          <div class="clearer"></div>
+          <% if action_name == "index" || action_name == "unreviewed" %>
+           
+          <% else %>
+            Keine bewertete Anwälte
+          <% end %>
+        <% else %>
+
+          <% @advocates.each do |advocate| %>
+        
+            <%= render :partial => "shared/advocates/overview", :object => advocate %>
+            <%= render :partial => "shared/advocates/grade", :object => advocate %>
+
+            <% if logged_in? && current_user.person.has_reviewed?(advocate) %>
+              <div class="clearer_10"></div>
+              <% advocate.reviews.visible.reviewed_by(current_user.person).each do |review| %>
+              <h2></h2>  
+              <div class="note_small">
+                <%= grade_point_average(review.reviewee) %>
+              </div>
+
+              <div class="block_300_user">
+                <p><b><%= grade_point_average(review.reviewee) %></b> von <b><%= h(review.reviewer.user_id)%></b> (ID: <%= review.reviewer.number %>)</p>
+                <p>Bewertung vom <%= l(review.created_at) %></p>
+              </div>
+              <div class="pad_15"> 
+                <div class="button_white_right_blue">
+                  <%= link_to "Bewertung anzeigen", client_account_advocate_review_path(advocate, review), 
+                  {:title => "Bewertungsdetails zeigen"} %>
+                </div>
+                <div class="button_white_left_blue"></div>
+              </div>	 
+              <div class="clearer"></div>               
+            <% end %>
+
+            <% else %>
+
+              <div class="button_right">
+                <%= link_to "Bewertung abgeben", new_client_account_advocate_review_path(advocate), 
+                {:title => "Bewertungsdetails zeigen"} %>
+              </div>
+              <div class="button_left"></div>
+              <div class="clearer_10"></div>   
+
+            <% end %>
+          <% end %>
+        <% end%>
+        <% end %>
+        
+        
+        
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => "shared/reviews/sidebar_grades" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

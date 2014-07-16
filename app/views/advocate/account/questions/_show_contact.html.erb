@@ -1,0 +1,19 @@
+<div class="modal_close" style="width:350px;" id="<%= dom_id(@kase, :show_contact) %>">
+  <b><%= "Möchten Sie die Kontaktdaten jetzt erwerben, ansehen und den Rechtsuchenden  zur Frage #{@kase.number} kontaktieren?" %></b> 
+  <div class="clearer_10"></div>
+  
+  <div class="left">
+    <%= link_to_function("Abbrechen", "jQuery(document).trigger('close.facebox')") %>
+  </div>
+    
+  <div class="button_right">
+    <%= link_to_remote "Ja, ich will", {:url => contact_advocate_account_question_path(@kase), 
+      :method => :put}, 
+        {:href => contact_advocate_account_question_path(@kase)} %>
+  </div>
+  <div class="button_left"></div>
+  <div class="clearer_10"></div>
+  <p><b>Hinweis:</b></p>
+  <p></p>Kontaktdaten können Sie erwerben, indem Sie Freikontakte oder Inklusivkontakte aus Ihrem Guthaben einlösen. Ihr aktuelles Guthaben wird Ihnen oben rechts angezeigt. Die Einlösung erfolgt automatisch in der Reihenfolge: erst vorhandene Inklusivkontakte, dann vorhandene Freikontakte. Haben Sie Ihre Freikontakte und Inklusivkontakte bereits aufgebraucht, können Sie zu einem Preis von je 5,00 € zzgl. 19 % MwSt. erwerben. Die Anzahl Ihrer Inklusivkontakte hängt von dem von Ihnen gewählten kann-ich-klagen.de Paket ab: Im Flex-Paket sind keine Inklusivkontakte enthalten, im 20er-Paket sind 20 Inklusivkontakte enthalten, im 40er-Paket sind 40 Inklusivkontakte enthalten und im Flat-Paket sind unbegrenzt Inklusivkontakte enthalten. Weitere Informationen finden Sie in unserer Produktübersicht.   
+    
+</div>

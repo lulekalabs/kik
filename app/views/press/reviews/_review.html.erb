@@ -1,0 +1,26 @@
+
+	<div class="two_big_top"><h2><b><%= truncate(h(review.title), :length => 1000) %></b></h2></div>
+
+	<div class="two_big_content">
+	 <!--<h4><%= l(review.published_at) %></h4> -->
+		<% if review.image.file? %>
+		  <%= image_tag review.image.url(:profile), :style => "float:left;padding:0 10px 5px 0" %>
+		<% end %>
+		<%= auto_link_all(markdown(sh(review.body))) %>
+	</div>
+
+	<div class="two_big_bottom_arrow">
+	  <% if !review.url.blank? %>
+	    <%= link_to content_tag(:b, "Zum Artikel"), review.url, :popup => true %>
+    <% elsif review.primary_attachment.file? && Asset.image?(review.primary_attachment.content_type) %>
+      <a class="iframe" href="<%= review.primary_attachment.url %>">
+        <%= content_tag(:b, "Zum Artikel") %>
+      </a>
+    <% elsif review.primary_attachment.file? && Asset.none_image?(review.primary_attachment.content_type) %>
+      <%= link_to(content_tag(:b, "Zum Artikel"),
+       review.primary_attachment.url, {
+         :popup => true
+      }) %>
+    <% end %>
+	</div>
+

@@ -1,0 +1,74 @@
+<div class="blue_right">
+
+  <%= form_flash_messages %>
+
+  <div class="main">
+    <div class="content">
+      <% form_for :user, :url => admin_session_path, :method => :post do |f| %>
+
+        <div class="col_1">
+          <h2>Melden Sie sich als Admin  an!</h2>
+
+          <div class="clearer"></div>
+          <div class="pad_10"></div>
+
+
+          <%= error_messages_for :user %>
+
+          <div class="left">
+            <p><%= f.label :login, "<b>Benutzername </b>" %></p>
+            <p><%= f.text_field :login, :class => 'field w303' %></p>
+          </div>
+          <div class="left pad_l_10">
+            <p>
+              <%= f.label :password, "<b>Passwort</b>" %>
+            </p>
+            <p>
+              <%= f.password_field :password, :class => "field w303", 
+                :id => "password_field", :style => "display:none;", :autocomplete => "off" %>
+              <%= text_field_tag :clear_password, '', :class => "field w303", 
+                :id => "clear_password_field", :style => "display:block;", :autocomplete => "off" %>
+              <div><%= link_to "Passwort vergessen?", forgot_password_admin_users_path %></div> 
+            </p>
+          </div>
+          <div class="clearer"></div>
+          <%= check_box_tag :view_password, "0", false %>
+          <%= label_tag :view_password, "Passwort einblenden" %>
+          <div>
+            <%= submit_tag "Anmelden" , :class => "button_right" %>
+          </div>
+          <div class="button_left"></div>
+          <div class="clearer"></div>
+
+        </div>
+      <% end %>
+
+
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+            <li>Bitte verwenden Sie Ihre Konto Informationen.</li>
+            <li>Sollten Sie Hilfe bei der Aktivierung benötigen, stehen wir Ihnen gern per E-Mail unter <a class="white" href="mailto:email@kann-ich-klagen.de">email@kann-ich-klagen.de</a> zur Verfügung.</li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+
+
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+var passwordField = new VisiblePasswordField('password_field', 'clear_password_field', 'view_password');
+
+//]]>
+</script>

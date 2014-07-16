@@ -1,0 +1,22 @@
+<% # comments/_new 
+  header_message ||= "Ihre Ergänzung zu Ihrer Frage:"
+  commentable ||= nil
+%>
+<%= error_messages_for :comment %>
+<% remote_form_for :comment, Comment.new, :url => question_comments_path(commentable) do |f| %>
+  <p><b><%= header_message %></b></p>
+  <p><%= f.text_area :message %></p>
+
+  <div>
+    <%= submit_tag "Ergänzung absenden", :class => "button_right" %>
+  </div>
+  <div class="button_left"></div>
+  <div class="right_button">
+    <%= link_to_function 'abbrechen', nil do |page|
+      page[dom_id(commentable, :add_comment_button)].show
+      page[dom_id(Comment.new, dom_id(commentable))].hide
+    end %>
+  </div>
+  <div class="clearer"></div> 
+<% end %>
+

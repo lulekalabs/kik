@@ -1,0 +1,546 @@
+<%
+  review ||= @review
+  reviewee ||= review.reviewee
+  reviewer ||= review.reviewer
+  rating_form_url ||= if logged_in? && current_user.person.is_a?(Client)
+    af_realm? ? rate_advofinder_client_review_path(review) : rate_client_account_review_path(review)
+  elsif logged_in? && current_user.person.is_a?(Advocate)
+    af_realm? ? rate_advocate_account_review_path(review) : rate_advocate_account_review_path(review)
+  end
+%>
+<div id="<%= dom_id(review) %>">
+  <% if logged_in? && current_user.person.is_a?(Client) %>
+    <h2>Bewertung zu <%= h(reviewee.salutation_and_title_and_last_name(true)) %>:</h2> 
+  <% else %>
+    <h2>Bewertung von <%= h(reviewer.user_id) %>:</h2> 
+  <% end %>
+  <div class="pad_10"></div>
+  <div class="note_small">
+    <%= grade_point_average(review) %>
+  </div>
+  <div class="block_300_user">
+    <p><b>Note <%= grade_point_average(review) %></b> von <b><%= h(reviewer.user_id) %></b> (ID: <%= reviewer.user.id %>)</p>
+    <p>Bewertung vom <%= l(review.created_at , :format => :short_long) %></p>
+  </div>
+  <div class="pad_15">   
+    <% if kik_realm? %>
+    <div class="button_white_right_blue">
+      <% if controller_name == "reviews" %>
+        <%= link_to "Zurück zur Übersicht", url_for(:action => "index"),
+          {:title => "Bewertungsdetails zeigen"} %>
+      <% elsif controller_name == "previews" %>
+        <%= link_to "Zurück zur Übersicht", url_for(:action => "reviews"),
+          {:title => "Bewertungsdetails zeigen"} %>
+      <% else controller_name == "previews" %>
+        <%= link_to "Zurück zur Übersicht", :back,
+          {:title => "Bewertungsdetails zeigen"} %>
+      <% end %>
+    </div>
+    <div class="button_white_left_blue"></div> 
+    <% end %>
+  </div>
+
+  <div class="clearer"></div> 
+  <h2></h2> 
+
+
+  <div class="clearer_5"></div>
+
+  <table class="bewerten_show">
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die rechtliche Beratung durch Ihren Anwalt?
+        </p>
+        <p class="pad_l_10">
+          <% unless review.sub_section_empty?(:v) %>
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "v-more", !review.sub_section_empty?(:v) %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ohne" ><%= grade_image_and_human_name_tag(review, :v) %></td>
+
+    </tr>
+
+    <tbody id="v-more" style="<%= review.sub_section_empty?(:v) ? 'display:none;' : '' %>">
+      <% if review.send(:v1) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Fähigkeit Ihres Anwalts juristische Fachbegriffe und Sachverhalte verständlich zu erklären?
+        </td>
+        <td class="ohne"><%= grade_image_and_human_name_tag(review, :v1) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:v2) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Aufklärung über Kosten und Gebühren durch Ihren Anwalt?
+        </td>
+        <td class="ohne"><%= grade_image_and_human_name_tag(review, :v2) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:v3) %>
+      <tr>
+        <td class="c">
+          Wie fühlten Sie sich über die Chancen und Risiken durch Ihren Anwalt informiert?
+        </td>
+        <td class="ohne"><%= grade_image_and_human_name_tag(review, :v3) %></td> 
+      </tr>
+      <% end %>
+      <% if review.send(:v4) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Aufklärung über mögliche Lösungswege und Alternativen?
+        </td>
+        <td class="ohne"><%= grade_image_and_human_name_tag(review, :v4) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:v5) %>
+      <tr>
+        <td class="c">
+          Haben Ihnen die Informationen Ihres Anwalts weiter geholfen?
+        </td>
+        <td class="ohne"><%= grade_image_and_human_name_tag(review, :v5) %></td> 
+      </tr>
+      <% end %>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die Zuverlässigkeit Ihres Anwalts?
+        </p>
+        <p class="pad_l_10">
+          <% unless review.sub_section_empty?(:z) %>
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "z-more", !review.sub_section_empty?(:z) %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z) %></td> 
+    </tr>
+
+    <tbody id="z-more" style="<%= review.sub_section_empty?(:z) ? 'display:none;' : '' %>">
+      <% if review.send(:z1) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Gründlichkeit und Sorgfalt Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z1) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:z2) %>
+      <tr> 
+        <td class="c">
+          Wie beurteilen Sie die Einhaltung von Absprachen und Vereinbarungen mit Ihrem Anwalt?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z2) %></td> 
+      </tr>
+      <% end %>
+      <% if review.send(:z3) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Termintreue Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z3) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:z4) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie das Arbeitstempo Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z4) %></td> 
+      </tr>
+      <% end %>
+      <% if review.send(:z5) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Prognosefähigkeit Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :z5) %></td> 
+      </tr>
+      <% end %>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die Betreuung durch Ihren Anwalt?
+        </p>
+        <p class="pad_l_10">
+          <% unless review.sub_section_empty?(:m) %>
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "m-more", !review.sub_section_empty?(:m) %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m) %></td>   
+    </tr>
+
+    <tbody id="m-more" style="<%= review.sub_section_empty?(:m) ? 'display:none;' : '' %>">
+      <% if review.send(:m1) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie Ihr Vertrauensverhältnis zu Ihrem Anwalt?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m1) %></td> 
+      </tr>
+      <% end %>
+      <% if review.send(:m2) %>
+      <tr> 
+        <td class="c">
+          Hat sich Ihr Anwalt ausreichend Zeit für Ihre Belange genommen?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m2) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:m3) %>
+      <tr>
+        <td class="c">
+          Wie fühlten Sie sich in den Ablauf und die Entscheidungen einbezogen?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m3) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:m4) %>
+      <tr> 
+        <td class="c">
+          Haben Sie sich bei Ihrem Anwalt aufgehoben und verstanden gefühlt?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m4) %></td> 
+      </tr>
+      <% end %>
+      <% if review.send(:m5) %>
+      <tr>
+        <td class="c">
+          Wie beurteilen Sie das Einfühlungsvermögen und den Zuspruch Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :m5) %></td>
+      </tr>
+      <% end %>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>Wie bewerten Sie insgesamt die der Erreichbarkeit Ihres Anwalts?
+        </p>
+        <p class="pad_l_10">
+          <% unless review.sub_section_empty?(:e) %>
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "e-more", !review.sub_section_empty?(:e) %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e) %></td>   
+    </tr>
+
+    <tbody id="e-more" style="<%= review.sub_section_empty?(:e) ? 'display:none;' : '' %>">
+      <% if review.send(:e1) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Schnelligkeit der Rückmeldungen Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e1) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:e2) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die telefonische Erreichbarkeit?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e2) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:e3) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Wartezeiten bis Sie einen (Beratungs-)termin erhalten haben?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e3) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:e4) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Parkmöglichkeiten?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e4) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:e5) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Erreichbarkeit mit öffentlichen Verkehrsmitteln?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :e5) %></td>
+      </tr>
+      <% end %>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt das Erscheinungsbild Ihres Anwalts und seiner Kanzlei?
+        </p>
+        <p class="pad_l_10">
+          <% unless review.sub_section_empty?(:a) %>
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "a-more", !review.sub_section_empty?(:a) %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a) %></td>    
+    </tr>
+
+    <tbody id="a-more" style="<%= review.sub_section_empty?(:a) ? 'display:none;' : '' %>">
+      <% if review.send(:a1) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie das Auftreten Ihres Anwalts?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a1) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:a2) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Atmosphäre und Betreuung in der Anwaltskanzlei?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a2) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:a3) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie das Auftreten des Kanzleipersonals?
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a3) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:a4) %>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Sauberkeit und Ordnung der Anwaltskanzlei?
+
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a4) %></td>
+      </tr>
+      <% end %>
+      <% if review.send(:a5) %>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Einrichtung der Anwaltskanzlei?
+
+        </td>
+        <td class="ohne" ><%= grade_image_and_human_name_tag(review, :a5) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table> 
+  <div class="note_small">
+    <%= grade_point_average(review) %>
+  </div>
+  <div class="block_300_user">
+    <p><b>Note <%= grade_point_average(review) %></b> von <b><%= reviewer.user_id %></b></p>
+    <p>Bewertung vom <%= l(review.created_at , :format => :short_long) %></p>
+  </div>
+  <div class="clearer_5_line"></div>
+
+  <!-- nur anzeigen bei  Advofinder>
+
+<div class="clearer_20"></div>  
+<b>Was fanden Sie bei Ihrem Anwalt besonders gut?</b> 
+<div class="pad_10_all">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+</div> 
+
+<div class="pad_10"></div>
+<b>Was hat Ihnen bei Ihrem Anwalt nicht so gut gefallen?</b> 
+<div class="pad_10_all">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+</div>
+-->
+
+<div class="clearer_5"></div>
+<h2>Weitere Angaben</h2>
+<div class="clearer_5"></div>
+
+<div class="block_430">Aus welchem Anlass haben Sie Ihren Anwalt aufgesucht? </div>
+<div class="block_190">
+  <div class="left ">
+    <b><%= review_search_reason_in_words(review) %></b> 
+  </div>
+</div>
+
+<div class="clearer_5_line"></div>  
+<div class="block_430">Würden Sie Ihren Anwalt einem Freund empfehlen?</div>
+<div class="block_190"><b><%= boolean_in_words(review.friend_recommend) %></b></div>
+<div class="clearer_5_line"></div>
+<div class="block_430">Haben Sie eine Rechtsschutzversicherung?  </div>
+<div class="block_190"><b><%= boolean_in_words(review.remedy_insured) %></b></div>
+<div class="clearer_5_line"></div>
+<div class="block_430">Wann standen Sie zum letzten Mal mit Ihrem Anwalt im Kontakt? </div>
+<div class="block_190"><b><%= review.last_advocate_contact ? l(review.last_advocate_contact, :format => "%B %Y") : "k.A." %></b></div>
+<div class="clearer_5_line"></div>   
+<div class="block_430">Mit wie vielen Anwälten hatten Sie in der Vergangenheit Kontakt?</div>
+<div class="block_190"><b><%= review_advocate_contact_count_in_words(review) %></b></div>
+<div class="clearer_5_line"></div>
+<div class="block_430">Im Fall eines Rechtsstreits - haben Sie gewonnen?  </div>
+<div class="block_190"><b><%= review_lawsuit_won_in_words(review) %></b></div> 
+
+<div class="clearer_5_line"></div>
+<div class="pad_20"></div>
+<% if false %>
+<!--<h2>Kommentar von <%= current_user.person.profession_and_salutation_and_title_and_last_name(true) %> zu dieser Bewertung:</h2>
+<div class="pad_5"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div> -->
+<% end %>
+
+<div id="review-rating">
+  <% if logged_in? && review.can_rate?(current_user.person) %>
+    <% remote_form_for :rating, Rating.new, :url => rating_form_url do |f| %>
+      <table class="bewerten">
+        <tr>
+          <td class="first_ohne"></td>
+          <td class="first_white"><img title="sehr gut" alt="Note eins" src="/images/z_1.jpg" /></td>
+          <td class="first_white"><img title="gut" alt="Note zwei" src="/images/z_2.jpg" /></td>
+          <td class="first_white"><img title="befriedigend" alt="Note drei" src="/images/z_3.jpg" /></td>
+          <td class="first_white"><img title="ausreichend" alt="Note vier" src="/images/z_4.jpg" /></td>
+          <td class="first_white"><img title="mangelhaft" alt="Note fuenf" src="/images/z_5.jpg" /></td>
+          <td class="first_white"><img title="ungenügend" alt="Note sechs" src="/images/z_6.jpg" /></td>
+        </tr>
+        <tr>
+          <td class="c">
+            Wie hilfreich fanden Sie diese Bewertung?
+          </td>
+          <td>
+            <%= f.radio_button :rating, 1, :title => "sehr gut", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+          <td>
+            <%= f.radio_button :rating, 2, :title => "gut", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+          <td>
+            <%= f.radio_button :rating, 3, :title => "befriedigend", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+          <td>
+            <%= f.radio_button :rating, 4, :title => "ausreichend", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+          <td>
+            <%= f.radio_button :rating, 5, :title => "mangelhaft", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+          <td>
+            <%= f.radio_button :rating, 6, :title => "ungenügend", 
+              :onclick => "$('#review-rating-submit').trigger('click');" %>
+          </td>
+        </tr>
+      </table> 
+    
+      <%= submit_tag "Feedback", :id => "review-rating-submit", :style => "position:absolute;top:-1000px;left:-1000px;" %> 
+    <% end%>
+
+  <% else %>
+    <% if logged_in? && review.rated_by?(current_user.person) %>
+      <div class="clearer"></div>
+      <br />
+      <b>Ihre Feedback wurde gewertet. Wir bedanken uns für Ihre Teilnahme!</b>
+      <br />
+      <br />
+    <% end %>
+  <% end %>
+  <div class="block_430"></div>
+  <div class="block_190">
+    <div class="left ">
+      <b><%= percent(review.ratings_average - 1, 5) %> hilfreich </b>(<%= review.ratings_count %> <%= review.ratings_count == 1 ? "Stimme" : "Stimmen" %>)  
+    </div>
+  </div>
+</div>
+
+<div class="clearer_5_line"></div>
+<div class="pad_15">   
+  <% if kik_realm? %>
+  <div class="button_white_right_blue">
+    <% if controller_name == "reviews" %>
+      <%= link_to "Zurück zur Übersicht", url_for(:action => "index"),
+        {:title => "Bewertungsdetails zeigen"} %>
+    <% elsif controller_name == "previews" %>
+      <%= link_to "Zurück zur Übersicht", url_for(:action => "reviews"),
+        {:title => "Bewertungsdetails zeigen"} %>
+    <% else controller_name == "previews" %>
+      <%= link_to "Zurück zur Übersicht", :back,
+        {:title => "Bewertungsdetails zeigen"} %>
+    <% end %>
+  </div>
+  <div class="button_white_left_blue"></div> 
+  <% end %>
+</div>
+
+<div class="clearer_20"></div>  
+
+<% if logged_in? && review.can_flag?(current_user.person)%>
+<div class="button_right"> 
+  <%= link_to_feedback_modal("Bewertung fragwürdig?", {:title => "Schreiben Sie uns Ihre Meinung, Anregungen oder Ideen"}) %>  
+</div>
+<div class="button_left"></div>
+<div class="clearer_20"></div>
+<% end %>
+<%= render :partial => "client/account/advocates/regulate" %>
+
+  
+<% if false %>
+<p class="t_red">nur für Advofinder</p>  
+<h2></h2>
+<p>Frau Dr. Maria Indastein betrifft dieser Profil-Eintrag Ihre Kanzlei?</p>
+<p><a href="">Aktivieren Sie jetzt kostenlos Ihren Anwalts-Zugang und vervollständigen Sie Ihr Profil!</a></p> 
+<div class="clearer"></div> 
+<div class="pad_20"></div>
+
+
+
+<h2></h2>
+<p>Als angemeldeter Anwalt haben Sie die Möglichkeit auf eine abgegebene Bewertung mit einem Kommentar zu reagieren, der unterhalb der Bewertung angezeigt wird.</p>
+<div class="clearer_10"></div>  
+
+<div class="left"><input type="text"class="field w303" value="E-Mail-Adresse*"/></div>
+<div class="right"><input type="text"class="field w303" value="Passwort* "/></div>
+
+<div class="clearer_10"></div>  
+
+<div>
+  <%= submit_tag "Login und Kommentar schreiben", :class => "button_right" %>
+</div>
+<div class="button_left"></div>
+
+<div class="clearer"></div>  
+<p class="t_red">bis hier für Advofinder</p>
+<p class="t_red">Kommentar zur Bewertung:  für Kik beim Anwalt anzeigen </p>
+
+<div class="clearer_20"></div>  
+<% end %>
+
+<% if !review.comments.empty? || (logged_in? && review.can_comment?(current_user.person)) %>
+  <% if logged_in? && review.can_comment?(current_user.person) %>
+    <div class="pad_5"> </div>
+    <div id="<%= dom_id(@comment, dom_id(review)) %>"> 
+      <h2>Kommentarfunktion für <%= h(current_user.person.salutation_and_title_and_last_name(true)) %></h2>  
+      <%= render :partial => "shared/reviews/comments/new" %>
+    </div>
+  <% end %>
+  
+  <% review.comments.visible.each do |comment| %>
+    <%= render :partial => "shared/reviews/comments/show", :object => comment, :locals => {:last => comment == review.comments.last} %>
+  <% end %>
+<% end %>  
+
+</div>
+<%= render :partial => 'shared/default_fields_js' %>

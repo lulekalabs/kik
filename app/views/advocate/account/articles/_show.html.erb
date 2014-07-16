@@ -1,0 +1,48 @@
+<% # advocate/account/articles/_show
+  article ||= show || @article
+%>
+<div id="<%= dom_id(article) %>" class="pad_10_all_grey">
+  <h2><%= h(article.title) %></h2>
+  <% if article.published_at %>
+    <div>Veröffentlicht am <%= l(article.published_at) %> von <%= h(article.person.profession_and_salutation_and_title_and_last_name(true)) %></div>
+  <% else %>
+    <div>erstellt am <%= l(article.created_at) %> von <%= h(article.person.profession_and_salutation_and_title_and_last_name(true)) %></div>
+  <% end %>
+  <div class="pad_5">
+    <%= auto_link_all(markdown(sh(article.body))) %>
+  </div>
+
+  <%= render :partial => "shared/article_image_and_attachments", :object => article,
+    :locals => {:headline => "Downloads zum Artikel:"}%>
+
+  <% if :published == article.next_state_for_event(:publish) || :published == article.next_state_for_event(:unsuspend) %>
+  <div class="pad_10_all right">  
+    <%= link_to_remote "Artikel im Profil veröffentlichen", :url => publish_advocate_account_article_path(article),
+      :method => :put, :confirm => "Jetzt Artikel im Profil veröffentlichen?" %>
+  </div>
+  <% end %>
+
+  <% if !article.created? && :suspended == article.next_state_for_event(:suspend) %>
+  <div class="pad_10_all right">  
+    <%= link_to_remote "Artikel im Profil deaktivieren", :url => suspend_advocate_account_article_path(article),
+      :method => :put, :confirm => "Jetzt Artikel im Profil deaktivieren?" %>
+  </div>
+  <% end %>
+  
+  <div class="pad_10_all right">  
+    <%= link_to_remote("Artikel bearbeiten", :url => edit_advocate_account_article_path(article), 
+      :method => :get, :update => dom_id(article), :position => :after, :complete => "$('##{dom_id(article)}').hide();") %>
+  </div>
+  
+  <div class="pad_10_all right">  
+    <%= link_to_function("Artikel löschen", nil, {}) do |page| 
+      page << "if(confirm('Wollen Sie den Artikel wirklich löschen?')) {"
+        page.replace dom_id(article), ""
+        page << remote_function(:url => advocate_account_article_path(article), :method => :delete)
+      page << "}"
+    end %>
+  </div>
+  
+  
+</div>
+<div class="clearer_10"></div> 

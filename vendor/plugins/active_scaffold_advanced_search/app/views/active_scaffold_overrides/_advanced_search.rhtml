@@ -1,0 +1,42 @@
+<% href = url_for(params_for(:action => :update_table, :escape => false).delete_if{|k,v| k == 'advanced_search'}) -%>
+<% form_remote_tag :url => href,
+                    :method => :get,
+                    :before => "addActiveScaffoldPageToHistory('#{href}', '#{params[:controller]}')",
+                    :after => "$('#{loading_indicator_id(:action => :advanced_search, :id => params[:id])}').style.visibility = 'visible'; Form.disable('#{advanced_search_form_id}');",
+                    :complete => "$('#{loading_indicator_id(:action => :advanced_search, :id => params[:id])}').style.visibility = 'hidden'; Form.enable('#{advanced_search_form_id}');",
+                    :failure => "ActiveScaffold.report_500_response('#{active_scaffold_id}')",
+                    :update => active_scaffold_content_id,
+                    :html => { :href => href, :id => advanced_search_form_id, :class => 'advanced_search' } do %>
+  <br/>
+  <div class="as_label"><%= as_(:normal_search) -%>:</div>
+  <div class="as_inputs"><input type="text" name="advanced_search" size="50" value="<%= params[:advanced_search] -%>" class="text-input" id="<%= advanced_search_input_id %>" autocompleted="off" /></div>
+  <div class="as_label"><%= as_(:advanced_search) -%>:</div>
+  <div class="as_inputs">
+    <%= link_to_function as_(:add_search_criterion), "asAddCriterion(this, #{type_map}); " %>
+  </div>
+  <%= submit_tag as_(:search), :class => "submit" %>
+  <a href="javascript:void(0)" class="cancel" onclick="f = this.up('form') ; var e ; while (f.down('.as_criterion')) { f.down('.as_criterion').remove(); }; f.reset(); f.onsubmit();"><%= as_(:reset) -%></a>
+  <%= loading_indicator_tag(:action => :advanced_search) %>
+<% end %>
+<div style="display: none; " id="as_template" class="as_criterion">
+	
+	<div style="display: none;" >
+	  <%= select_tag "as_group_boolean[]", "<option value=\"AND\">#{as_(:as_and)}</option><option value=\"OR\">#{as_(:as_or)}</option>"%>
+	</div>
+	
+  <%= select_tag "as_field[]", options, :class => "as_field" %>
+  <%= select_tag "as_negator[]", "<option value=\"does\">#{as_(:as_does)}</option><option value=\"not\">#{as_(:as_does_not)}</option>", :class => 'as_negator'%>
+  <%= select_tag "as_matcher[]", "<option value=\"equals\">#{as_(:as_equal)}</option><option value=\"contains\">#{as_(:as_contains)}</option><option value=\"starts\">#{as_(:as_starts_with)}</option><option value=\"ends\">#{as_(:as_ends_with)}</option><option value=\"matches\">#{as_(:as_match)}</option>", :class => "as_matcher" %>
+  <%= text_field_tag "as_search[]", nil, :class => "text-input as_search" %>
+  <%= select_tag "as_b_matcher[]", "<option value=\"true\">#{as_(:as_is_true)}</option><option value=\"false\">#{as_(:as_is_false)}</option>", :class => "as_b_matcher" %>
+  <%= select_tag "as_i_matcher[]", "<option value=\"equals\">#{as_(:as_equals)}</option><option value=\"lt\">#{as_(:as_lt)}</option><option value=\"gt\">#{as_(:as_gt)}</option><option value=\"le\">#{as_(:as_le)}</option><option value=\"ge\">#{as_(:as_ge)}</option>", :class => "as_i_matcher" %>
+  <%= text_field_tag "as_i_search[]", nil, :class => "text-input as_i_search" %>
+  <%= link_to_function as_(:remove), "asRemoveCriterion(this); " %>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+  new TextFieldWithExample('<%= advanced_search_input_id %>', '<%= as_(:search_terms) %>');
+  Form.focusFirstElement('<%= advanced_search_form_id -%>');
+//]]>
+</script>

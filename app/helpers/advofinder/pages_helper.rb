@@ -1,0 +1,2 @@
+module Advofinder::PagesHelper
+end

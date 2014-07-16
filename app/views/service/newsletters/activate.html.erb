@@ -1,0 +1,63 @@
+ <div class="blue_right">
+ 
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+       
+          <h2>Sie haben den kostenlosen kann-ich-klagen.de <%= @enrollment.to_s %> erfolgreich bestellt! </h2>
+
+          <div class="pad_10"></div>
+            Der Newsletter wird an die Adresse <%= h(@enrollment.email) %> geschickt. 
+           <div class="clearer_10"></div>  
+
+        </div>
+      
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          
+          <h2>Widerrufmöglichkeit:</h2>
+          <ul>
+            <li>
+            Sie können die Einwilligung zur Nutzung Ihrer Daten für den Newsletterversand jederzeit mit Wirkung für die Zukunft widerrufen per <%= mail_to Notifier.newsletter_email, 'E-Mail', {:class => "white",  :encode => "hex" }%>, per Abbestell-Link am Ende jedes Newsletters oder auf der Seite: <a class="white" href="<%= cancel_service_newsletters_path %>">Newsletter abbestellen</a>  
+             </li>
+            
+          </ul>
+          <h2>Datenschutz:</h2>
+          <ul>
+            <li>Die Unterrichtung zum Datenschutz finden Sie auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de", :class => "white"} %></li>
+           </ul> 
+           <h2>Presseverteiler:</h2>
+           <ul>
+             <li>Als Journalist können Sie sich auf der Seite <%= link_to "Presseverteiler", new_press_journalist_path, {:title => "Presseverteiler für Journalisten", :class => "white"} %> auch in den kann-ich-klagen.de Presseverteiler eintragen oder sich wieder austragen. Die Pressemitteilungen von kann-ich-klagen.de erhalten Sie dann per E-Mail, per Fax oder per Post – so wie Sie es wünschen.
+
+
+             </li>
+            </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

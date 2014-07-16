@@ -1,0 +1,18 @@
+<h2>Aktuelle Pressemitteilungen: </h2>
+<% @releases.each do |release| %>
+<ul>
+	<li>
+	<b><% release.title %></b>
+	<p>Berlin, <%= l(release.created_at, {:format => :short}) %></p>
+	<%= release.summary ? h(release.summary) : truncate(h(release.body)) %>
+	</li>
+</ul>
+
+<div class="button_right_2">
+   <a href="<%= press_release_path(release)%>" title="Alles zeigen">mehr</a>
+</div>
+<div class="button_left_2"></div>
+
+<div class="clearer"></div>
+<div class="pad_5"></div>
+<% end %>

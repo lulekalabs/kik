@@ -1,0 +1,83 @@
+<%
+  details ||= false
+  more_with_link ||= false
+  articles_path_method_name ||= "client_articles_path"
+  article_path_method_name ||= "client_article_path"
+%>
+<div class="two_big_top">
+  <h2>
+    <% if !details && !article_path_method_name.blank? %>
+      <%= link_to content_tag(:b, h(article.title)), send(article_path_method_name, article),
+        {:title => "Zum ganzen Artikel"} %>
+    <% else %>
+      <%= content_tag(:b, h(article.title)) %>
+    <% end %>
+  </h2>
+</div>
+<div class="two_big_content">
+
+  <div class="left">
+    Veröffentlicht am <%= l(article.published_at) %> von <%= link_to article.author_name, 
+      profile_client_account_advocate_path(article.person), {:title => "Zum Profil"} %>
+  </div>
+  <div class="clearer"></div>
+
+  <div class="pad_5"></div>
+  <%= content_tag(:b, h(article.summary)) %>  
+  <div class="clearer"></div>   
+  
+  <div class="right" id="<%= dom_id(article, :more_link) %>" style="display:<%= details ? 'none' : '' %>;">
+    <% if more_with_link %>
+      <%= link_to("mehr &#187;", send(article_path_method_name, article), {:title => "Zum ganzen Artikel"}) %>
+    <% else %>
+      <%= link_to_function("mehr &#187;", nil, {:title => "Zum ganzen Artikel", :href => send(article_path_method_name, article)}) do |page|
+        page[dom_id(article, :details)].show
+        page[dom_id(article, :more_link)].hide
+      end %>
+    <% end %>
+  </div>
+
+  
+    <div class="pad_5"></div>
+
+    <div id="<%= dom_id(article, :details) %>" style="<%= details ? '' : 'display:none;' %>">
+    
+      <div class="markdown" >
+      <%= markdown(sh(article.body)) %>
+      </div>
+    
+      <div class="clearer_10"></div>  
+
+      <%= render :partial => "shared/article_image_and_attachments", :object => article %>
+
+      <div class="clearer_10"></div>  
+
+      <div class="right" id="<%= dom_id(article, :less_link) %>" style="display:;">
+        <%= link_to_function("&#171; weniger", nil, {:title => "Artikel minimieren"}) do |page|
+          page[dom_id(article, :details)].hide
+          page[dom_id(article, :more_link)].show
+        end %>
+      </div>
+      <div class="clearer_10"></div>  
+
+      <% unless articles_path_method_name.blank? %>
+      <div class="left">
+        <%= link_to "&#171; Zurück zur Übersicht", send(articles_path_method_name) %>
+      </div>
+      <% end %>
+      <div class="right">
+    
+      
+        <%= link_to "Druckansicht", print_client_article_path(article), {:popup => true, :class => "drucken"} %>
+      
+       <%= render :partial => '/shared/add_this' %>    
+      
+      
+      </div>
+      <div class="pad_10"></div>
+    </div>
+
+  
+  
+</div>
+<div class="two_big_bottom"></div>

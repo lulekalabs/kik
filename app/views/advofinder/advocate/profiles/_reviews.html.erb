@@ -1,0 +1,21 @@
+<div class="light">
+  <div class="main">
+    <div class="content">
+      <div class="col_1"> 
+        <%= render :partial => "shared/advocates/overview" %>
+        <%= render :partial => 'shared/advocates/grade' %>
+
+        <%= render :partial => "advofinder/advocate/profiles/tabs" %>
+
+        <%= render :partial => "client/account/reviews/list", 
+          :locals => {:review_path_helper => :advofinder_advocate_profile_review_path} %> 
+        <%= render :partial => "client/account/advocates/regulate" %> 
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => "shared/reviews/sidebar_grades" %>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>

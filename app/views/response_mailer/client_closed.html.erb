@@ -1,0 +1,11 @@
+Guten Tag <%= @receiver.salutation_and_title_and_last_name %>,
+
+die Bewerbung von <%= h(@response.person.title_and_name) %> auf Ihre Frage vom <%= l(@response.kase.created_at) %> wurde geschlossen und ist damit nicht mehr aktuell.
+
+Unter folgendem Link können Sie die geschlossene Bewerbung auf Ihre Frage ansehen:
+
+<%= client_account_question_response_url(@kase, @response) %>
+
+Wir bedanken uns für Ihr Vertrauen.
+
+<%= render :partial => "notifier/footer_lean" %>

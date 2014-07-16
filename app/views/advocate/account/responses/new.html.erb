@@ -1,0 +1,55 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <h2>Meine Bewerbung und Antworten auf die Frage</h2> 
+        <div class="left">
+          <%= link_to "&#171; Zurück zur Übersicht", :back %>
+        </div>
+
+        <%= render :partial => "questions/show", :object => @kase %>
+
+
+        <div class="quest_advo_top clearer"></div>
+        <div class="quest_advo_content"> 
+          <div class="left">
+            <b>Rechtsuchenden kontaktieren und bewerben:</b>
+          </div>
+          <div class="clearer"></div>
+          <div class="line_answer">   
+            <%= error_messages_for :response %>
+            
+            <% form_for :response, @response, :url => advocate_account_question_responses_path do |f| %>
+              <p>
+                <%= f.text_area :description %>
+              </p>
+              <div>
+                <%= submit_tag "Bewerbung absenden", :class => "button_right" %>
+              </div>
+              <div class="button_left"></div>
+              <div class="clearer"></div> 
+            <% end %>
+          </div>
+        </div>
+        <div class="quest_advo_bottom"></div>
+
+
+        <div class="left">
+          <%= link_to "&#171; Zurück zur Übersicht", :back %>
+        </div>
+
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>

@@ -1,0 +1,51 @@
+<!-- search field -->
+<% form_for :search_filter, @search_filter, :url => open_questions_path, 
+  :html => {:method => :get, :id => "search-form"} do |f| %>  
+<div class="grey">
+  <div class="top clearer"></div>
+  <div class="content">
+    <div class="left w800">
+      <div class="left t_14"><b>Fragen suchen, finden &amp; bewerben:</b></div>
+      <% if current_user.person.is_a?(Advocate) %>
+      <div class="right pad_r_13">
+        <%= link_to_function "Filter für Fragen-Radar speichern &#187;", "$('#search-form').attr('action', '#{new_advocate_account_search_filter_path}');$('#search-submit').trigger('click');" %>
+      </div>
+      <% end %>
+      <div class="clearer"></div>
+
+
+      <div class="left pad_5">
+        <%= f.text_field :tags, :class => "field w100" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= select_tag "search_filter[topic_ids][]", options_for_select(collect_for_topic_select("Alle Rechtsgebiete"), @search_filter.topics.blank? ? nil : @search_filter.topics.last.id), :class => "w140", :name => "search_filter[topic_ids][]" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.text_field :city, :class => "field w100" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.text_field :postal_code, :class => "field w50" %>
+      </div>
+      <div class="left pad_5 pad_l_10">
+        <%= f.select :radius, collect_for_search_radius_select(true, true), {},
+          :class => "quest w100 ", :style => "background-color:#fffef7 " %>
+      </div>
+
+      <div class="left pad_5 pad_l_10">
+        <%= f.select :province_code, collect_for_provinces_select(true), {}, {:class => "quest w210"} %>
+      </div>
+
+      <%= f.hidden_field :sort_order, :id => "search-filter-sort-order" %>
+      <%= f.hidden_field :per_page, :id => "search-filter-per-page" %>
+
+    </div>
+    <div class="right">
+      <%= submit_tag "", :class => "suchen", :id => "search-submit" %>
+    </div>
+    <div class="info">*Umkreissuche zur eingegebenen PLZ nur m&#246;glich mit 5-stelliger PLZ.</div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+<% end %>
+<!-- search field -->

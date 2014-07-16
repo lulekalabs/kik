@@ -1,0 +1,83 @@
+<% # advocate/account/responses/_show
+  response ||= show || @response
+  kase ||= response ? response.kase : nil
+  comments ||= response.comments.visible.find(:all, :order => "comments.created_at DESC")
+  can_comment ||= response.can_comment?(current_user.person)
+  open ||= false
+  question_response_url_helper ||= nil
+%>
+<div id="<%= dom_id(response) %>">
+  <div class="quest_advo_top clearer"></div>
+    <div class="quest_advo_content"> 
+    <div class="left">
+        <b>Bewerbung</b> vom <%= I18n.l(response.created_at) %>
+    </div>
+    <div class="right">
+      <div class="quest_buttom_open">Status:&nbsp;<%= response.human_current_state_name(current_user.person) %></div>    
+      <% if question_response_url_helper %>
+      <div>
+        <%= link_to "Bewerbung ansehen", 
+          send(question_response_url_helper, response.kase, response),
+            :class => "quest_buttom_apply_show" %>
+      </div>    
+      <% end %>
+      
+      <%#--- close response %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) && response.person == current_user.person &&
+          response.next_state_for_event(:cancel) %>
+      <div>
+        <% if true %>
+        <div class="t_10">Ist Ihre Bewerbung noch aktuell?<br />
+        Falls nicht, bitte Bewerbung<br /> schließen! 
+          <div class="clearer_5"></div>
+        </div>
+        <a href="<%= show_close_advocate_account_question_response_path(kase, response) %>" class="quest_buttom_notice" onclick="$.get('<%= show_close_advocate_account_question_response_path(kase, response) %>', function(data) { $.facebox(data) });return false;">Bewerbung schliessen</a>
+        <% else %>
+        <a href="#response" rel="facebox">Bewerbung schliessen</a> <br />
+        <%= link_to_remote "Bewerbung schliessen", {:url => close_advocate_account_question_response_path(kase, response), 
+          :method => :put, 
+            :confirm => "Wollen Sie Ihre Bewerbung jetzt schliessen?"}, 
+              {:class => "quest_buttom_notice", :href => close_advocate_account_question_response_path(kase, response)} %>
+        <% end %>
+          
+        </div>
+      <% end %>
+    </div>
+    <div class="clearer"></div>
+
+    <p><%= auto_link_all(markdown(sh(response.description))) %></p>
+
+    <div id="<%= dom_id(response, :content_open) %>" style="<%= open ? '' : 'display:none;' %>">
+
+      <% if can_comment %>
+        <div class="line_answer" id="<%= dom_id(Comment.new, dom_id(response)) %>">
+          <%= render :partial => "advocate/account/comments/new", :locals => {:commentable => response} %>
+        </div>
+      <% end %>
+      
+      <%= render :partial => "advocate/account/comments/show", :collection => comments %>
+    
+    </div>
+  </div> 
+  <% unless comments.blank? %>
+    <div class="quest_bottom_advo">
+      <%= link_to_open_close_toggle ["Gesprächsverlauf minimieren", "Gesprächsverlauf maximieren"], 
+        dom_id(response, :content_open), open %>
+    </div>
+  <% else %>
+    <div class="quest_advo_bottom"></div>
+  <% end %>
+  
+</div>  
+  
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    <% if controller.is_a?(Advocate::Account::ResponsesController) && action_name =~ /^show_close/i %>
+      <% if logged_in? && current_user.person.is_a?(Advocate) && response.person == current_user.person &&
+          response.next_state_for_event(:cancel) %>
+        $.get('<%= show_close_advocate_account_question_response_path(kase, response, :close_reason => params[:close_reason]) %>', function(data) { $.facebox(data) });
+      <% end %>
+    <% end %>
+  })
+</script>

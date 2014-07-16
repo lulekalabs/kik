@@ -1,0 +1,180 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+%>
+<ul class="profil">
+  <% unless edit %>
+  <li><span class="one"><b>Kundennummer</b></span><span class="two"><b><%= h(@person.number) %></b> (kann nicht geändert werden)</span></li>
+  <li><span class="one"><b>Benutzername</b></span><span class="two"><b><%= h(@person.user.login) %></b> (kann nicht geändert werden)</span></li>
+  <% end %>
+
+  <li><span class="one">E-Mail-Adresse</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :email, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.email) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Anrede Titel</span><span class="two">
+    <% if edit %>
+      <%= f.select :gender, collect_for_gender_select, {}, :class => "option_f_h_edit", 
+        :style => "background-color:#fffef7" %>
+        <%= f.select :academic_title_id, collect_for_academic_title_select("kein Titel", false), {},
+          {:class => "option_f_h_edit", :style => "background-color:#fffef7 "} %>
+    <% else %>
+      <%= h(@person.salutation) %>
+      <%= h(@person.title.blank? ? "kein Titel" : @person.title) %>   
+    <% end %>
+  </span></li>
+  
+  <li><span class="one">Vorname Nachname</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :first_name, :class => "field_edit"%>
+      
+       <%= f.text_field :last_name, :class => "field_edit"%>  
+    <% else %>
+      <%= h(@person.first_name) %>
+      <%= h(@person.last_name) %> 
+    <% end %>
+  </span></li>
+  
+
+  <li><span class="one">Kanzleiname</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_name, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.company_name) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Zuständige Kammer</span><span class="two">
+    <% if edit %>
+      <%= f.select :bar_association_id, collect_for_bar_association_select(false), {:prompt => "Zuständige Rechtsanwaltskammer*" },
+        {:class => "option", :style => "background-color:#fffef7 "} %>
+    <% else %>
+      <%= h(@person.bar_association.name) %>
+    <% end %>
+  </span></li>
+
+  <% fields_for "person[business_address_attributes]", @person.business_address do |a| %>
+    
+    
+    <li><span class="one">Straße Hausnummer</span><span class="two">
+      <% if edit %>
+        <%= a.text_field :street, :class => "field_edit" %>
+        <%= a.text_field :street_number, :class => "field_edit_nr" %>
+      <% else %>
+        <%= h("#{@person.business_address.street} #{@person.business_address.street_number}")%>
+      <% end %>
+    </span></li>
+    
+    
+    <li><span class="one">PLZ Ort</span>
+    <span class="two">
+      <% if edit %>
+        <%= a.text_field :postal_code, :class => "field_edit_nr" %>
+        <%= a.text_field :city, :class => "field_edit" %>
+        
+      <% else %>
+        <%= h(@person.business_address.postal_code) %>
+        <%= h(@person.business_address.city) %>
+      <% end %>
+    </span></li>
+    <li><span class="one">Telefonnr. für Rückfragen</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :phone_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.phone_number) %>
+      <% end %>
+    </span></li>
+    
+  <% end %>
+  
+  <li><span class="one">Fachanwalt</span><span class="two">
+    <% if edit %>
+
+      <%= f.select :primary_expertise_id, collect_for_expertise_select(true), {},
+        {:class => "option", :style => "background-color:#fffef7 "} %>
+       <div class="clearer_5"></div> 
+      <%= f.select :secondary_expertise_id, collect_for_expertise_select(true), {},
+        {:class => "option s308", :style => "background-color:#fffef7 "} %>
+       <div class="clearer_5"></div> 
+      <%= f.select :tertiary_expertise_id, collect_for_expertise_select(true), {},
+        {:class => "option", :style => "background-color:#fffef7 "} %>
+      
+    <% else %>
+      <%= h(adovocate_expertises_in_words(@person))%>
+    <% end %>
+  </span></li>
+
+  <li><span class="one">Rechtsgebiete</span><span class="two">
+    <% if edit %>
+
+      <% Topic.visible.alphabetical.reject {|t| t.name.blank?}.each do |topic| %>
+      <div>
+        <%= check_box_tag("person[topic_ids][]", topic.id,
+          @person.topics.include?(topic)) %>&nbsp;
+        <%= label :a, :b, h(topic.name), :for => dom_id(topic) %>
+      </div>
+      <% end %>
+      
+    <% else %>
+      <%= h(@person.topics.map(&:name).join(", "))%>
+    <% end %>
+  </span></li>
+   
+   <li><span class="one">auch</span><span class="two">
+     <% if edit %>
+       <% fields_for :person do |p| %>
+             <%= p.check_box :profession_mediator %>
+             <%= p.label :profession_mediator, "Mediator" %>
+             <div class="clearer"></div> 
+             <%= p.check_box :profession_tax_accountant %>
+             <%= p.label :profession_tax_accountant, "Steuerberater" %>
+             <div class="clearer"></div>
+             <%= p.check_box :profession_patent_attorney %>
+             <%= p.label :profession_patent_attorney, "Patentanwalt" %>
+             <div class="clearer"></div>  
+             <%= p.check_box :profession_notary %>
+             <%= p.label :profession_notary, "Notar" %> 
+             <div class="clearer"></div>  
+             <%= p.check_box :profession_affiant_accountant %>
+             <%= p.label :profession_affiant_accountant, "vereidigter Buchprüfer" %> 
+             <div class="clearer"></div>  
+             <%= p.check_box :profession_cpa %>
+             <%= p.label :profession_cpa, "Wirtschaftsprüfer" %> 
+             <div class="clearer"></div>  
+          
+        <% end -%>
+
+       <% else %>
+         <%= adovocate_professions_in_words(@person) %>   
+       <% end %>
+     </span></li>
+  
+   
+   
+   
+   
+   
+   
+  <li><span class="one">Internetauftritt der Kanzlei</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_url, :class => "field_edit_270" %>
+    <% else %>
+      <%= auto_link(h(@person.company_url), :href_options => {:target => '_blank'}) %>
+    <% end %>
+  </span></li>
+ 
+
+
+  <li><span class="one">Abonnierter Newsletter</span><span class="two"> 
+      <%= AdvocateEnrollment.human_name %>&nbsp;
+      <% if @person.enrollment? && @person.enrollment.pending? %>
+        <%= link_to_remote "Aktivierungs-Email erneut anfordern", :url => create_enrollment_advocate_account_profile_path, :method => :put %>
+      <% elsif !@person.enrollment? %>
+        <%= link_to_remote "Jetzt bestellen", :url => create_enrollment_advocate_account_profile_path, :method => :put %>
+      <% else %>
+        <%= link_to_remote "Jetzt abbestellen", :url => destroy_enrollment_advocate_account_profile_path, :method => :put %>
+      <% end %>
+  </span></li>
+  
+</ul>

@@ -1,0 +1,91 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <h2>Impressum</h2>
+    <p>Anbieterkennzeichnung gemäß § 5 Telemediengesetz (TMG):</p>
+    <div class="pad_10"></div>
+    <div><b class="t_blue t_14"><% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %></b></div>
+    <dl class="left">
+      <dt><b>Geschäftsanschrift: </b></dt>
+      <dd>Friedrichstr. 148</dd>
+      <dd>10117 Berlin</dd>
+      <dd>&#160;</dd>
+      <% if kik_realm? %>
+       <dd><span>Telefon:</span>(030) 609 895 090</dd>
+        <dd><span>Telefax:</span>(030) 609 895 099</dd> 
+      <% end %>
+      <% if af_realm? %>
+       <dd><span>Telefon:</span>(030) 577 085 760</dd>
+        <dd><span>Telefax:</span>(030) 577 085 769</dd>
+      <% end %>
+      <dd><span>E-Mail:</span><%= mail_to Notifier.contact_email, 'E-Mail senden', { :encode => "hex" }%> oder <%= link_to "Kontaktformular", new_corporate_contact_path, {:title => "Kontakt"} %> verwenden.</dd>
+      <dd><span>URL:</span>www.<% if kik_realm? %>kann-ich-klagen.de<% end %><% if af_realm? %>advofinder.de<% end %></dd>
+    </dl>
+    <dl class="left">
+      <dt><b>Geschäftsführung:</b></dt>
+      <dd>Michael Schweizer	</dd>
+    </dl>
+
+    <div class="clearer"></div>
+
+    <dl>
+      <dt><b>Umsatzsteuer-Identifikationsnummer (USt-IdNr.) gemäß §27a Umsatzsteuergesetz:</b></dt>
+      <dd>DE 244 422 725</dd>
+      <dt><b>Verantwortlich für den Inhalt gemäß § 55 Absatz 2 Rundfunkstaatsvertrag(RStV):</b></dt>
+      <dd>Michael Schweizer</dd>
+    </dl>
+
+    <div class="clearer"></div>
+
+    <dl class="left">
+      <dt><b>Datenschutzbeauftragter:</b></dt>
+      <dd>Ulrich Schäfer-Newiger</dd>
+      <dd>&#160;</dd>
+      <dd>Kanzlei Prof. Schweizer</dd>
+      <dd>Arabellastrasse 21</dd>
+      <dd>81925 München</dd>
+      <dd>&#160;</dd>
+      <dd><span>Telefon:</span>(089) 92 808 50</dd>
+      <dd><span>E-Mail:</span><%= mail_to 'mail@schweizer.eu', 'E-Mail senden', { :encode => "hex" }%></dd>
+      <dd><span>URL:</span><a target="blank" href="http://www.schweizer.eu">www.schweizer.eu</a></dd>
+    </dl>
+    <dl class="left pad_l_30">
+      <dt><b>Grafik-Konzept:</b></dt>
+      <dd>Gabriele König</dd>
+      <dd>&#160;</dd>
+      <dd>KÖNIG grafics &#38; consulting</dd>
+      <dd>Gentzstrasse 5</dd>
+      <dd>80796 München</dd>
+      <dd>&#160;</dd>
+      <dd><span>Telefon:</span>(089) 95 44 51 66</dd>
+      <dd><span>E-Mail:</span><%= mail_to 'g.koenig@mgok.de', 'E-Mail senden', { :encode => "hex" }%></dd>
+      <dd><span>URL:</span><a target="blank" href="http://www.mgok.de">www.mgok.de</a></dd>
+    </dl>
+    <dl class="left pad_l_30">
+      <dt><b>Technische Koordination-Entwicklung:</b></dt>
+      <dd>&nbsp;</dd>
+      <dd>&#160;</dd>
+      <dd>codecuisine Ltd.</dd>
+      <dd>Seitzstrasse 19</dd>
+      <dd>80538 München</dd>
+      <dd>&#160;</dd>
+      <dd><span>Telefon:</span>(089) 96 290 639</dd>
+      <dd><span>E-Mail:</span><%= mail_to 'gruban@codecuisine.de', 'E-Mail senden', { :encode => "hex" }%></dd>
+      <dd><span>URL:</span><a target="blank" href="http://www.codecuisine.de ">www.codecuisine.de</a></dd>
+    </dl>
+
+    <div class="clearer"></div>
+
+    <dl>
+      <dt><b>Datenschutzerklärung: </b></dt>
+      <dd>Siehe die Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung"} %></dd>
+    </dl>
+    <dl>
+      <dt><b>Haftungsausschluss:</b></dt> 
+      <dd>Siehe die Seite: <%= link_to "Nutzungsbedingungen", terms_corporate_path, {:title => "Nutzungsbedingungen"} %></dd>
+      <dd>&#160;</dd>
+      
+    </dl>
+  </div>
+  <div class="bottom_footer"></div>
+</div>

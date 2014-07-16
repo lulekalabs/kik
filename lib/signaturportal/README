@@ -1,0 +1,26 @@
+German tax law requires you to sign an invoice with a valid digital signature, if you want to send it via email instead of snailmail. I wrote a script which connects to signaturportal.de and signs a given pdf.
+
+Here are the steps to to sign your own invoices:
+
+1. Sign up for an account at signaturportal.de
+2. You have to wait for the PostIdent letter in your mailbox. This might take a few days.
+3. After you confirmed your identity sign into the page and go to Einstellungen -> Webservices -> Gatewayeinstellungen
+   Here you find your credentials for the service
+4. Change Servie to 'WS-Soap'
+5. Change Client to 'anderen wie nebenstehend'
+6. Get the script from github.com either by running 
+   git clone git@github.com:bigcurl/signaturportal-sign-script.git 
+   or by downloading a zipped version from here.
+6. Open up the script and change username, password and kontonr to your provided 
+values.
+
+You should have ruby and ruby gems installed. See your operating system manual how to install these two.
+
+7. Install soap4r with sudo gem install soap4r
+
+Then run ruby sign-script.rb /path_to_pdf_file
+
+You should see a file in the same directory like your original pdf file with a '-signed' prepended to the filename.
+This is your signed pdf. You can check the signature either by using Adobes Acrobat Reader which is free or use the free service provided by signaturportal.de.
+
+Happy invoicing!

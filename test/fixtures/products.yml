@@ -1,0 +1,92 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+contact:
+  id: 1
+  name: Kontakt
+  description: Ein Kontakt
+  cents: 500
+  currency: EUR
+  sku: K001
+  contacts: 1
+  position: 1
+  active: 1
+  subscription: 0
+  length_in_issues: 0
+  flat: 0
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+flex_abo:
+  id: 2
+  name: Flex-Paket
+  description: 
+  cents: 0
+  currency: EUR
+  sku: P001
+  contacts: 
+  position: 2
+  active: 1
+  subscription: 1
+  length_in_issues: 1
+  flat: 0
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+monthly_20_abo:
+  id: 3
+  name: 20er-Paket Monatsabo
+  description: 
+  cents: 3490
+  currency: EUR
+  sku: P020
+  contacts: 20
+  position: 3
+  active: 1
+  subscription: 1
+  length_in_issues: 1
+  flat: 0
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+anual_40_abo:
+  id: 4
+  name: 40er-Paket Jahresabo
+  description: 
+  cents: 4490
+  currency: EUR
+  sku: S040
+  contacts: 40
+  position: 4
+  active: 1
+  subscription: 1
+  length_in_issues: 12
+  flat: 0
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+anual_flat_abo:
+  id: 5
+  name: Flat-Paket Jahresabo
+  description: 
+  cents: 6490
+  currency: EUR
+  sku: S999
+  contacts: 
+  position: 5
+  active: 1
+  subscription: 1
+  length_in_issues: 12
+  flat: 1
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+paper_invoice:
+  id: 6
+  name: Rechnung in Papierform
+  description: 
+  cents: 500
+  currency: EUR
+  sku: X001
+  contacts: 
+  position: 6
+  active: 1
+  subscription: 0
+  length_in_issues: 0
+  flat: 0
+  created_at: <%= 180.days.ago.to_s :db %>
+  updated_at: <%= 178.days.ago.to_s :db %>
+    

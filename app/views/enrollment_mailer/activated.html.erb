@@ -1,0 +1,30 @@
+<%= @enrollment.mailer_salutation_and_title_and_last_name %>,
+
+Sie haben den kostenlosen <%= project_name %> <%= @enrollment.to_s %> erfolgreich bestellt!
+
+Für Ihre Unterlagen senden wir Ihnen nachfolgend die Informationen, die Sie angegeben haben:
+
+E-Mail-Adresse: <%= @person.email %>
+
+Anrede: <%= @person.salutation %>
+
+<% unless @person.title.blank? -%>
+Titel: <%= @person.title %>
+
+<% end -%>
+Vorname: <%= @person.first_name %>
+
+Nachname: <%= @person.last_name %>
+
+Newsletter: <%= @enrollment.to_s %>
+
+Sollten Sie den Newsletter nicht mehr erhalten wollen, können Sie unter folgendem Link jederzeit abbestellen mit den von Ihnen angegebenen Daten:
+
+<%= deactivate_service_newsletter_url(@enrollment.activation_code) %>
+
+Falls Sie einmal Hilfe benötigen oder Missbrauch vermuten, stehen wir Ihnen jederzeit gern per E-Mail unter <%= Notifier.unprettify(Notifier.newsletter_email) %> zur Verfügung. <%= project_name %> gibt Ihre E-Mail-Adresse in keinem Fall an unbeteiligte Dritte weiter.
+
+<%= render :partial => "notifier/footer_lean" %>
+                                                  
+
+

@@ -1,0 +1,47 @@
+<div class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <% if @advocate_mandate %>
+      <h2>Frage wurde nicht geschlossen</h2>
+
+      <div class="pad_10"></div>
+      <p>Ihre Frage wird NICHT geschlossen! Sie können weiter Bewerbungen von Anwälten erhalten.</p>
+      
+      <div class="pad_20"></div>
+  		<p>Ihr kann-ich-klagen.de Team</p>
+  		
+  		<div class="pad_20"></div>
+      <div class="button_right">
+        <%= link_to "Zurück zur Frage", client_account_question_url(@kase), 
+          {:title => "Zurück zur Frage"} %>
+      </div>
+      <div class="button_left"></div>
+    <% else %>
+      <h2>Frage wurde geschlossen</h2>
+
+      <div class="pad_10"></div>
+      <p>Ihre Frage wurde zwischenzeitlich automatisch geschlossen.</p>
+      <div class="pad_10"></div>
+
+      <% if false %>
+      <div class="pad_10"></div>
+      <p>Unter folgendem Link können Sie Ihre Frage ansehen und auf Wunsch wieder öffnen, sollten Sie weiter einen Anwalt suchen wollen:</p>
+      <div class="pad_10"></div>
+      <%= link_to "#{closed_client_account_questions_url}", closed_client_account_questions_url %>
+      <% end %>
+
+      <div class="pad_20"></div>
+  		<p>Ihr kann-ich-klagen.de Team</p>
+
+      <% unless @kase.expired? %>
+      <div class="pad_20"></div>
+      <div class="button_right">
+        <%= link_to "Frage wieder öffnen", client_account_question_url(@kase), 
+          {:title => "Frage wieder öffnen"} %>
+      </div>
+      <div class="button_left"></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="bottom_footer"></div>
+</div>

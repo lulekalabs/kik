@@ -1,0 +1,13 @@
+<div class="sub_content">
+
+  <%= link_to "Presseverteiler bestellen", new_press_journalist_path,
+    {:title => "Presseverteiler von kann-ich-klagen.de bestellen ", 
+    :class => current_page?(new_press_journalist_path) ? "select" : ""} %>
+    
+  <%= image_tag 'bullet_grey.gif' %>
+  
+  <%= link_to "Presseverteiler abbestellen", cancel_press_journalists_path, {:title => "Presseverteiler von kann-ich-klagen.de abbestellen ", :class => current_page?(cancel_press_journalists_path) ? "select" : ""} %>
+  
+ </div>
+<div class="sub_bottom"></div>
+<div class="clearer"></div>

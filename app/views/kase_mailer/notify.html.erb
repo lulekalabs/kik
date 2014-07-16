@@ -1,0 +1,7 @@
+Lieber kann-ich-klagen.de Administrator,
+
+<%= h(@kase.person.salutation_and_title_and_last_name) %> mit der E-Mail <%= h(@kase.person.email) %> hat gerade bei kann-ich-klagen.de eine Frage gestellt.
+
+Bitte gehen Sie jetzt auf <%= admin_questions_url %>, um die Frage zu prüfen, einem oder mehreren Rechtsgebieten zuzuordnen und freizuschalten.
+
+<%= render :partial => "notifier/footer" %>

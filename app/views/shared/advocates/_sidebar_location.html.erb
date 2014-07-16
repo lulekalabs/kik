@@ -1,0 +1,60 @@
+<%
+  advocate ||= sidebar_location || current_user.person
+%>
+<%= render :partial => 'shared/sidebar_stats' %>  
+<div class="pad_r_l_15">
+     <img src="http://maps.google.com/maps/api/staticmap?center=<%= CGI::escape(advocate.location_s) %>&zoom=14&size=285x238&maptype=roadmap&markers=size:mid|color:red|label:A|<%= CGI::escape(advocate.location_s) %>&sensor=false" width="285" height="238" alt="Lay Google">
+          
+     <div class="pad_10"></div>
+           
+     <div><b>So erreichen Sie uns:</b></div>
+     <div>
+       <a href="http://maps.google.com/maps?f=q&source=s_q&hl=de&geocode=&q=<%= false ? CGI::escape(advocate.location_s) : advocate.location_s %>&ie=UTF8&hq=&hnear=<%= false ? CGI::escape(advocate.location_s) : advocate.location_s %>&z=12" target="_blank">Größere Karte anzeigen &#187;</a>
+    </div>
+     
+     <div class="pad_10">
+       <p><b>Route berechnen:</b></p>
+       <form action="http://maps.google.de/maps" method="get">
+         <input type="text" class="w200" name="saddr" id="saddr" value="Ihre Adresse" onclick="target='_blank'" onfocus="if(this.value=='Ihre Adresse') this.value='';" onblur="if(this.value=='') this.value='Ihre Adresse';" />
+         <input type="submit" value="Los" />
+         <input type="hidden" name="daddr" value="<%= false ? CGI::escape(advocate.location_s) : advocate.location_s %>" />
+         <input type="hidden" name="hl" value="de" /></p>
+       </form>
+     </div>
+     <p class="t_9">Beispiel: Friedrichstr. 148, 10117 Berlin</p>        
+     <div class="pad_10"></div>
+     
+     <div><b>Haltestellen Bus, Tram, U- und S-Bahn:</b></div>
+     <%= entry_link_to(auto_link(markdown(sh(advocate.company_public_transportation))), advocate, contact_advocate_account_profile_path) %>
+     <div class="pad_10"></div>
+     
+     <div><b>Parkplätze:</b></div>
+     <%= entry_link_to(auto_link(markdown(sh(advocate.company_parking_lots))), advocate, contact_advocate_account_profile_path) %>
+     <div class="pad_10"></div>
+      
+     <div><b>Taxistand in der Nähe:</b></div> 
+     <%= entry_link_to(auto_link(markdown(sh(advocate.company_taxi_stands))), advocate, contact_advocate_account_profile_path) %>
+     <div class="pad_10"></div>
+     
+     <div><b>Bürozeiten:</b></div>
+     <%= entry_link_to(auto_link(markdown(sh(advocate.company_office_hours))), advocate, contact_advocate_account_profile_path) %>
+     <div class="pad_10"></div>
+     
+     <div><b>Zusatzinformation zum Standort:</b></div>
+     <% entry_link_to(nil, advocate, contact_advocate_account_profile_path, advocate.company_additional_location_information.blank?) do %>
+     <div><%= h(advocate.company_additional_location_information) %></div>
+     <% end %>
+     <div class="pad_10"></div>
+     
+     <div><b>Logo der Kanzlei:</b></div>
+     <% entry_link_to(nil, advocate, details_advocate_account_profile_path, !advocate.logo.file?) do %>
+      <%= profile_logo_tag(@person, :empty => "") %>
+    <% end %>
+     
+     <div class="pad_10"></div>
+     
+     
+       
+</div>
+
+ 

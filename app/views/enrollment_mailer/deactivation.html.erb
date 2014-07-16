@@ -1,0 +1,13 @@
+<%= @enrollment.mailer_salutation_and_title_and_last_name %>,
+
++++++++++++++++++++++++++++++++++++++++++
+
+Bitte klicken Sie einmalig auf folgenden Link, um Ihren <%= @enrollment.to_s %> zu stornieren:
+
+<%= deactivate_service_newsletter_url(@enrollment.activation_code) %>
+
+Sollten Sie den oben stehenden Aktivierungs-Link nicht anklicken können, dann können Sie den Link auch einfach kopieren und in die Adresszeile Ihres Internetbrowsers einfügen, um Ihre kostenlose Anmeldung zu bestätigen.
+
++++++++++++++++++++++++++++++++++++++++++
+
+<%= render :partial => "notifier/footer" %>

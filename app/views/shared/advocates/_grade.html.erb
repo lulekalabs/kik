@@ -1,0 +1,60 @@
+<%
+  profile ||= grade || @advocate
+  reviews_count ||= profile.reviews.visible.count
+  recommendations_count ||= profile.reviews.recommended.visible.count
+%>
+
+
+    
+<div class="note">
+  <div class="left_1"><%= grade_point_average(profile) %></div>
+  <% if logged_in? && current_user.person.is_a?(Client) %>
+    <div class="right">
+      <% if current_user.person.memorizes.find_by_advocate_id( profile.id ) %>
+        <%= link_to_remote 'Anwalt nicht mehr merken', {:url => url_for( remove_client_account_store_path( profile.id , :hid => profile.id ) )}, {:id => "store_advo_#{profile.id}"} %>      
+      <% else -%>
+        <%= link_to_remote 'Anwalt merken', {:url => url_for( add_client_account_store_path( profile.id , :hid => profile.id ) )}, {:id => "store_advo_#{profile.id}"} %>
+      <% end -%>
+    </div>
+
+  <% else %>
+  
+  
+  <% end %>
+   <div class="pad_20"></div>   
+  <div class="right_1">
+    <p>Bewertungen: <b><%= reviews_count %></b></p>
+    <p>Empfehlungen: <b><%= recommendations_count %></b></p>
+    <p>Empfehlungsquote: <b><%= percent(recommendations_count, reviews_count) %></b></p>
+    <p>Aufrufe: <b><%= profile.page_views_count %></b></p>
+    <% if profile.user.activated_at %>
+    <p>Angemeldet seit: <b><%= l(profile.user.activated_at, :format => "%d.%m.%y")%></b></p>
+    <% end %>
+    <p>ID: <b><%= profile.user.id %></b></p>
+    <div class="clearer_10"></div>
+    <p><b>Teilen &#38; weiterempfehlen:</b></p>
+  </div>
+  
+  <% if kik_realm? %>
+  <div class="addthis_toolbox addthis_default_style right" >
+    <a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=kannichklagen" class="addthis_button_compact"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_email"></a>
+    <span class="addthis_separator"></span>
+    <a class="addthis_button_facebook_like"></a>
+  </div>
+  <% end %>
+  <% if af_realm? %>
+  <div class="addthis_toolbox addthis_default_style right" >
+    <a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4d94699d0bc6f382" class="addthis_button_compact"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_email"></a>
+    <span class="addthis_separator"></span>
+    <a class="addthis_button_facebook_like"></a>
+  </div>
+  <% end %>
+  
+</div>
+

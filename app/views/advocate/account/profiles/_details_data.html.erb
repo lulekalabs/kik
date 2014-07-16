@@ -1,0 +1,212 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+%>
+<ul class="profil">
+  <li><span class="one">Informationen zu meiner Person</span><span class="two">
+    <% if edit %>
+    <p class="t_10">Max. 500 Zeichen </p>
+      <%= f.text_area :bio, :class => ""  %>
+    <% else %>
+      <%= auto_link(markdown(@person.bio)) %>
+    <% end %>
+  </span></li>
+ 
+  <li><span class="one">Anglo Titel</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :anglo_title_type, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.anglo_title_type) %>
+    <% end %>
+  </span></li>
+  
+  
+  <li><span class="one">Ausländische Berufsbezeichnungen</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :anglo_title, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.anglo_title) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Position/Funktion</span><span class="two">
+     
+    <% if edit %>
+      <%= f.select :position_name, %w[Inhaber Partner Angestellter\ Anwalt in\ Bürogemeinschaft],:class => "field_edit" %>
+    <% else %>
+      <%= h(@person.position_name) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Zugelassen seit</span><span class="two">
+    <% if edit %>
+      <%= f.date_select :accredited_on, :prompt => {:day => "Tag", :month => "Monat:", :year => "Jahr:"}, 
+        :order => [:day, :month, :year], :discard_day => false, 
+          :start_year => Time.now.year - 80, :end_year => Time.now.year %>
+    <% else %>
+      <%= @person.accredited_on ? l(@person.accredited_on, :format => "%d %B %Y") : "k.A." %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Zuständige Rechtsanwaltskammer</span><span class="two">
+    <% if edit %>
+      <%= f.select :bar_association_id, collect_for_bar_association_select(true), 
+        {:prompt => "Zuständige Rechtsanwaltskammer*" },
+          {:class => "option", :style => "background-color:#fffef7 "} %>
+    <% else %>
+      <%= h(@person.bar_association ? @person.bar_association.name : "k.A.") %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Berufsbezeichnung <br /> nach § 5 I 5b (TMG)</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :occupational_title, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.occupational_title) %>
+    <% end %>
+  </span></li>
+
+    <% fields_for "person[business_address_attributes]", @person.business_address do |a| %>    
+   <li><span class="one">Land der Verleihung</span>
+   <span class="two">
+     <% if edit %>
+       <%= a.localized_country_select :country_code, ["de", "at", "ch"] %>
+     <% else %>
+       <%= h("#{@person.business_address.country}") %>
+     <% end %>
+   </span></li>
+     <% end %>
+ 
+ 
+  
+  <li><span class="one">Besondere Vertretungsberechtigungen</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :authorized_representative, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.authorized_representative) %>
+    <% end %>
+  </span></li>
+  
+  <li><span class="one">Zuständige Berufshaftpflichtversicherung</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :professional_indemnity, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.professional_indemnity) %>
+    <% end %>
+  </span></li>
+  
+  
+  <li><span class="one">Informationen zur Kanzlei</span><span class="two"> 
+    <% if edit %>
+    <p class="t_10">Max. 500 Zeichen </p> 
+      <%= f.text_area :company_information, :class => "", :style => "height:100px, width:280px"  %>
+    <% else %>
+      <%= auto_link(markdown(@person.company_information)) %>
+    <% end %>
+  </span></li>
+  
+    <%# todo %>  
+  <li><span class="one">Tätig in den Rechtsgebieten</span><span class="two"> 
+    <% if edit %>
+    <p class="t_10">Eine Mehrfachauswahl mit der (Strg)-Taste ist möglich.</p> 
+      <%= f.select :company_type, %w[Rechtsgebiete], :class => "field_edit_270" %> 
+    <% else %>
+      <%= auto_link(markdown(@person.company_information)) %>
+    <% end %>
+  </span></li>
+    <%# todo %>      
+
+  <li><span class="one">Kanzleigröße (Anzahl Anwälte)</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_size, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.company_size) %>
+    <% end %>
+  </span></li>
+
+  <li><span class="one">Art der Kanzlei</span><span class="two">
+    <% if edit %>
+      <%= f.select :company_type, %w[AG GmbH GbR LLP Partnerschaftsgesellschaft Bürogemeinschaft Einzelkanzlei ], :class => "field_edit" %>
+    <% else %>
+      <%= h(@person.company_type) %>
+    <% end %>
+  </span></li>
+  
+
+
+   <li><span class="one">Registergericht- und Nummer</span>
+     <span class="two">
+     <% if edit %>
+       <%= f.text_field :register_name,  :class => "field_edit" %> <%= f.text_field :register_number ,:class => "field_edit"%>
+     <% else %>
+       <%= h(@person.register_name) %>
+       <%= h(@person.register_number) %>
+     <% end %>
+   </span></li> 
+
+  
+
+  <li><span class="one">Hauptsitz der Kanzlei</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_headquarter, :class => "field_edit_270" %>
+    <% else %>
+      <%= h(@person.company_headquarter) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Weitere Standorte der Kanzlei</span><span class="two">
+    <% if edit %>
+      <%= f.text_area :company_locations, :class => "", :style => "height:150px"  %>
+    <% else %>
+      <%= auto_link(markdown(@person.company_locations)) %>
+    <% end %>
+  </span></li>
+  
+  <li><span class="one">Logo</span><span class="two">
+    <% if edit %>
+      <%= profile_logo_tag(@person, :empty => "Logo hinzufügen") %><br/>
+      <div class="clearer"></div>
+      <%= f.file_field(:logo, :maxlength =>30) %>
+      <p class="pad_5 t_10">Das Bild muss als Grafikdatei (z.B. JPG, PNG oder GIF) vorliegen, eine Mindestgröße von 150 x 19 Pixel haben und darf nicht größer als 900 KB sein. </p>
+    <% else %>
+      <%= profile_logo_tag(@person, :empty => "kein Logo") %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Bilder der Kanzlei</span><span class="two">
+    <% if edit %>
+    
+      <div class="left w303" id="company-assets">
+        <% if @person.company_assets.reject(&:new_record?).empty? %>
+          <%= render :partial => "shared/assets/company_asset_field", :object => @person.company_assets.build, 
+            :locals => {:f => f} %>
+        <% else %>
+          <%= render :partial => "shared/assets/company_asset_field", :collection => @person.company_assets.reject(&:new_record?), 
+            :locals => {:f => f} %>
+        <% end %>
+      </div>
+      <div class="clearer"></div>
+      
+      <div class="left w303">
+        <%= link_to_function("Weiteres Bild der Kanzlei hinzufügen >>", nil, {:title => "Fotos hochladen"}) do |page| 
+          page.insert_html(:bottom, "company-assets", :partial => "shared/assets/company_asset_field", 
+            :object => @person.company_assets.build, :locals => {:f => f})
+        end %>
+      </div>
+      
+    <% else %>
+      <% unless @person.company_assets.reject(&:new_record?).empty? %>
+        <% @person.company_assets.reject(&:new_record?).each do |asset| %>
+          <%= image_tag(asset.file.url(:normal), :alt => "Kanzleifoto", :title => "Kanzleifoto", :size => "300x200") %>
+        <% end %>
+      <% else %>
+        Keine Bilder
+      <% end %>
+    <% end %>
+  </span></li>
+  
+  
+  <li><span class="one">Sprachen</span><span class="two">
+      <% if edit %>
+        <p class="t_10">Sie können mehrere Sprachen auswählen indem die die Taste <b>Strg</b> gedrückt halten und dann mit der Maus die von Ihnen gesprochenen Sprachen anklicken. </p>
+        <%= f.collection_select :spoken_language_ids, SpokenLanguage.find(:all, :order => "priority = '1' DESC, name ASC"), :id, :name, 
+          {:selected => @person.spoken_language_ids}, {:multiple => true, :name => 'person[spoken_language_ids][]'} -%>
+      <% else %>
+        <%= h(spoken_languages_in_words(@person, "noch nicht gewählt")) %>
+      <% end %>
+    </span></li>
+    
+</ul>

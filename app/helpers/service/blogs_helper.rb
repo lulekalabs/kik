@@ -1,0 +1,2 @@
+module Service::BlogsHelper
+end

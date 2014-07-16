@@ -1,0 +1,59 @@
+<% # advofinder/advocates/overview <- used in index advofinder
+  profile ||= overview_search || @advocate
+  advocates ||= nil
+  last ||= advocates ? advocates.last == profile : false
+  #profile ||= grade || @advocate
+  reviews_count ||= profile.reviews.visible.count
+  recommendations_count ||= profile.reviews.recommended.visible.count
+  title = []
+  title << content_tag(:b, link_to(h(profile.title_and_name), profile_advofinder_advocate_profile_path(profile)))
+  title << h(profile.anglo_title_type) unless profile.anglo_title_type.blank?
+  title = title.join(", ")
+%>
+<div class="left">
+  <%= profile_image_tag profile %>
+  <% if profile.respond_to?(:distance)%>
+  <p><%= number_with_precision(@profile.distance, :precision => 1) %> km</p>
+  <% end %>
+</div>
+<div class="left pad_l_10 w350">
+  <%= title %>
+  <div><%= adovocate_professions_in_words(profile) %> </div>
+  <div class="clearer_5"></div> 
+  <% if profile.has_expertise? %>
+    <div>Auch Fachanwalt für:</div>
+    <%= adovocate_expertises_in_words(profile, true) %>
+    <div class="clearer_5"></div>
+  <% end %>
+  <% if profile.has_topics? %>
+    <div>Rechtsgebiete:</div>
+    <%= adovocate_topics_in_words(profile, true) %>
+    <div class="clearer_5"></div>
+  <% end %>
+  <div><b><%= h(profile.company_name.blank? ? profile.title_and_name : profile.company_name) %></b></div>
+  <%= address_in_overview(profile.business_address) %>
+  <%= h("#{profile.business_address.country}") %>
+  <div class="clearer_5"></div> 
+  <em>Telefon</em>  <%= h(profile.phone_number) %>
+  <div class="clearer"></div>
+  <em>Telefax</em> <%= h(profile.fax_number) %>
+</div>
+<% if !logged_in? || (logged_in? && current_user.person.can_review?(profile)) %>
+<div class="button_white_right_blue">
+    <%= link_to "&#160;Jetzt bewerten&#160;&#160;", new_advofinder_client_advocate_review_path(profile) %>
+</div>
+<div class="button_white_left_blue"></div>
+<% end %>
+
+<div class="right pad_10 w125">
+  <p>Note: <b><%= grade_point_average(profile) %></b></p>
+  <p>Bewertungen: <b><%= reviews_count %></b></p>
+  <p>Empfehlungen: <b><%= recommendations_count %></b></p>
+  <p>Empfehlungsquote: <b><%= percent(recommendations_count, reviews_count) %></b></p>
+  <p>Aufrufe: <b><%= profile.page_views_count %></b></p> 
+</div>
+
+<div class="clearer_20"></div>
+<% unless last %>
+<h2></h2>
+<% end %>

@@ -1,0 +1,299 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <% if kik_realm? %>  
+        <h2>Jetzt anmelden und Startguthaben sichern!</h2>
+        <h1>Überzeugen Sie sich von kann-ich-klagen.de <b>kostenlos</b> und <b>ohne weitere Verpflichtungen</b>.</h1>
+        <% end %>
+         <% if af_realm? %>
+           <h2>Jetzt anmelden und Anwaltsprofil anlegen!</h2>
+           <h1>Überzeugen Sie sich von advofinder.de, auch ohne finanzielle Verpflichtungen: Sie haben die Wahl zwischen kostenlosen und kostenpflichtigen advofinder.de-Paketen; ganz nach Ihren Bedürfnissen. Ihre Basis-Daten können Sie unabhängig von der Wahl des Pakets <b>kostenlos</b> in Ihrem Anwaltsprofil hinterlegen und sodann die kostenlosen Funktionen von advofinder.de uneingeschränkt nutzen.</h1>
+         <% end %>
+        
+        <div class="clearer_10"></div> 
+
+        <%= error_messages_for :user, :person, :address, 
+          :header_message => "Ihre Anmeldung konnte leider nicht gesendet werden.",
+          :message => "Bitte überprüfen Sie die rot markierten Felder und korrigieren bzw. vervollständigen Sie, um Ihre Anmeldung absenden zu können." %>
+
+        <% form_for :user, :url => advocate_users_path, :method => :post do |u| %>
+          <% fields_for :person do |p| %>
+
+            <div class="left">
+              <%= p.select :gender, collect_for_gender_select(true), {},
+                {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+            </div>
+            <div class="left pad_l_16">
+              <%= p.select :academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+                {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+
+            <div class="clearer_10"></div> 
+
+            <div class="left">
+              <%= p.text_field :first_name, {:class => "field w303"} %>
+            </div>
+            <div class="right">
+              <%= p.text_field :last_name, {:class => "field w303"} %>
+            </div>
+
+            <div class="clearer_10"></div> 
+
+            <div class="left">
+    <%# Kanzleiname %>
+              <%= p.text_field :company_name, {:class => "field w303"} %>
+            </div>
+            <div class="right">
+              <%= p.select :bar_association_id, collect_for_bar_association_select(true), {:prompt => "Zuständige Rechtsanwaltskammer*" },
+                {:class => "option", :style => "background-color:#fffef7 "} %>
+            </div>
+
+            <div class="clearer_10"></div> 
+            <% fields_for "person[business_address_attributes]", @address do |a| %>
+
+
+              <div class="box_303 left">
+                <div class="left">
+      <%# Strasse der Kanzlei %>
+                  <%= a.text_field :street, {:class => "field w126"} %>
+                </div>
+                <div class="right">
+      <%# Hausnr. der Kanzlei* %>
+                  <%= a.text_field :street_number, {:class => "field w126"} %>
+                </div>
+              </div>
+              <div class="box_303 right">
+                <div class="left">
+      <%# PLZ der Kanzlei* %>
+                  <%= a.text_field :postal_code, {:class => "field w126"} %>
+                </div>
+                <div class="right">
+      <%# Ort der Kanzlei* %>
+                  <%= a.text_field :city, {:class => "field w126"} %>
+                </div>
+              </div>
+
+              <div class="clearer_10"></div> 
+
+            <% end %>
+
+            <div class="left">
+              <%= p.select :primary_expertise_id, collect_for_expertise_select(true), {},
+                {:class => "option", :style => "background-color:#fffef7 "} %>
+            </div>
+            <div class="right">
+              <%= p.select :secondary_expertise_id, collect_for_expertise_select(true), {},
+                {:class => "option s308", :style => "background-color:#fffef7 "} %>
+            </div>
+              <div class="clearer_10"></div> 
+            <div class="left">
+              <%= p.select :tertiary_expertise_id, collect_for_expertise_select(true), {},
+                {:class => "option", :style => "background-color:#fffef7 "} %>
+            </div>
+
+             <div class="clearer_10"></div> 
+
+            <div class="check_all">
+              <div class="left block_140">
+                <span class="check">
+                  <%= p.check_box :profession_advocate, {:disabled => true} %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_advocate, "Rechtsanwalt*" %>
+                </span>
+
+                <div class="clearer"></div>
+
+                <span class="check">
+                  <%= p.check_box :profession_mediator %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_mediator, "auch Mediator" %>
+                </span>
+              </div>
+
+              <div class="left block_200">
+                <span class="check">
+                  <%= p.check_box :profession_tax_accountant %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_tax_accountant, "auch Steuerberater" %>
+                </span>
+
+                <div class="clearer"></div>
+
+                <span class="check">
+                  <%= p.check_box :profession_patent_attorney %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_patent_attorney, "auch Patentanwalt" %>
+                </span>
+              </div>
+              <div class="right">
+                <span class="check">
+                  <%= p.check_box :profession_notary %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_notary, "auch Notar" %>
+                </span>
+
+                <span class="check">
+                  <%= p.check_box :profession_affiant_accountant %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_affiant_accountant, "auch vereidigter Buchprüfer" %>
+                </span>
+
+                <div class="clearer"></div>
+
+                <span class="check">
+                  <%= p.check_box :profession_cpa %>
+                </span>
+                <span class="fliess">
+                  <%= p.label :profession_cpa, "auch Wirtschaftsprüfer" %>
+                </span>
+
+                <div class="clearer"></div>
+              </div>
+            </div>
+            <div class="clearer_10"></div> 
+            <div class="left">
+    <%# Telefonnummer für Rückfragen* %>
+              <%= p.text_field :phone_number, {:class => "field w303"} %>
+            </div>
+            <div class="right">
+    <%# Internet-Adresse (URL) der Kanzlei-Website %>
+              <%= p.text_field :company_url, {:class => "field w303"} %>
+            </div>
+
+            <div class="clearer_10"></div> 
+            <div class="left">
+    <%# E-Mail-Adresse* %>
+              <%= u.text_field :email, {:class => "field w303"}%>
+            </div>
+            <div class="right">
+    <%# E-Mail-Adresse wiederholen* %>
+              <%= u.text_field :email_confirmation, {:class => "field w303"}%>
+            </div>
+
+            <div class="clearer_10"></div> 
+        
+     <% if kik_realm? %> 
+
+            <div class="left">
+    <%# Wie haben Sie von kann-ich-klagen.de erfahren? %>
+              <%= p.text_field :referral_source, {:class => "field w600"}%>
+            </div>
+
+            <div class="clearer_20"></div> 
+      
+            <div class="check">
+              <ul>
+                <li>
+                  <span class="check">
+                    <%= u.check_box :concession %>
+                  </span>
+                  <span class="fliess">
+                    <%= u.label :concession, "Ja, ich bestätige, dass ich bei kann-ich-klagen.de als zugelassener Anwalt und Unternehmer im Sinne des § 14 Absatz 1 BGB handle." %>
+                  </span>
+                </li>
+                <li>
+                  <span class="check">
+                    <%= u.check_box :terms_of_service %>
+                  </span>
+                  <span class="fliess">
+                    <%= u.label :terms_of_service, confirm_advocate_terms_of_service_in_words %>
+                  </span>
+                </li>
+                <li>
+                  <span class="check">
+                    <%= p.check_box :newsletter %>
+                  </span>
+                  <span class="fliess">
+                    <%= p.label :newsletter, "Ja, ich möchte den kann-ich-klagen.de Newsletter erhalten." %>
+                  </span>
+                </li>
+
+              </ul>
+            </div>
+            <div class="clearer"></div>
+
+            <div>
+              <%= submit_tag "Jetzt absenden" , :class => "button_right" %>
+            </div>
+            <div class="button_left"></div>
+            <div class="clearer"></div> 
+          <% end %>
+          
+          
+           <% if af_realm? %> 
+                  <div class="left">
+          <%# Wie haben Sie von kann-ich-klagen.de erfahren? %>
+                    <%= p.text_field :referral_source, {:class => "field w600"}%>
+                  </div>
+
+                  <div class="clearer_20"></div> 
+
+                  <div class="check">
+                    <ul>
+                      <li>
+                        <span class="check">
+                          <%= u.check_box :terms_of_service %>
+                        </span>
+                        <span class="fliess">
+                          <%= u.label :terms_of_service, confirm_advocate_terms_of_service_in_words %>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="check">
+                          <%= p.check_box :newsletter %>
+                        </span>
+                        <span class="fliess">
+                          <%= p.label :newsletter, "Ja, ich möchte den advofinder.de Newsletter erhalten." %>
+                        </span>
+                      </li>
+
+                    </ul>
+                  </div>
+                  <div class="clearer"></div>
+
+                  <div>
+                    <%= submit_tag "Jetzt Paket wählen" , :class => "button_right" %>
+                  </div>
+                  <div class="button_left"></div>
+                  <div class="clearer"></div> 
+                <% end %>  
+            
+            
+            
+
+          <% end %>
+        <% end %>
+
+      </div>
+      <div class="col_2">
+         <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+            <li>Nach dem Absenden dieser Anmeldung erhalten Sie eine Aktivierungs-E-Mail mit der Bitte um Bestätigung Ihrer Anmeldung.</li>
+            <li>Bitte klicken Sie einmalig auf den in der E-Mail enthaltenen Aktivierungs-Link oder kopieren Sie den Aktivierungs-Link in die Adresszeile Ihres Internetbrowsers, um Ihre kostenlose Anmeldung zu bestätigen.</li>
+            <% if kik_realm? %> 
+            
+            <li>Ihr Startguthaben im Wert von 500,00 € netto (= 595,00 € brutto) wird nach erfolgreicher Aktivierung durch Sie und Freischaltung Ihrer Anmeldung durch kann-ich-klagen.de Ihrem persönlichen Anwaltsprofil gutgeschrieben. Wir informieren Sie gesondert per E-Mail, sobald freigeschaltet und gutgeschrieben wurde, damit Sie schnellstmöglich beginnen können einzulösen. Einstweilen bitten wir Sie um Ihre Geduld, da jede Anmeldung vor Freischaltung individuell geprüft wird, um Missbrauch zu vermeiden. </li>
+             <% end %> 
+            <li>Sollten Sie Hilfe bei der Aktivierung benötigen, stehen wir Ihnen gern per <%= mail_to Notifier.help_email, 'E-Mail', {:class => "white",  :encode => "hex" }%> zur Verfügung.</li>
+            <li>Eine ausführliche Unterrichtung zu Beginn des Nutzungsvorgangs über Art, Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten sowie über Ihr Widerspruchsrecht erhalten Sie, als Fortführung zu diesem Hinweis, als Nutzer auf der Seite: <%= link_to "Datenschutz", privacy_corporate_path, {:title => "Datenschutzerklärung von kann-ich-klagen.de" ,:class => "white"} %></li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>

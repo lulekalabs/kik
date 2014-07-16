@@ -1,0 +1,11 @@
+<%= @sender.notifier_salutation_and_title_and_last_name %>,
+
+Vielen Dank, dass Sie <%= h(@receiver.title_and_name) %> eingeladen haben.
+
+Bei erfolgreicher Registrierung von <%= h(@receiver.name) %> erhalten Sie eine Gutschrift auf Ihr Konto.
+
+Folgende Nachricht wurde versandt:
+
+---
+<%= h(@message) %> 
+---

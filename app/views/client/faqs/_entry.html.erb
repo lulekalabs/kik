@@ -1,0 +1,34 @@
+<%
+  details ||= false
+%>
+<p>
+  <%= link_to_function(h(entry.title)) do |page|
+    page[dom_id(entry)].show
+  end
+%>
+</p>
+<div class="lexica" style="<%= details ? '' : 'display:none;' %>" id="<%= dom_id(entry) %>">
+  <%= h(entry.body) %>
+  <div class="pad_20"></div>
+     <div class="left">
+    <% unless details %>
+      <%= link_to_function("&#171; Schließen") do |page|
+        page[dom_id(entry)].hide
+      end %>
+    <% end %>
+  </div>
+  <div class="right">
+    <% if controller.class.name == "Client::FaqsController" %>
+      <%= link_to "Druckansicht", print_client_faq_path(entry), {:popup => true, :class => "drucken"} %>
+    <% elsif controller.class.name === "Advocate::FaqsController" %>
+      <%= link_to "Druckansicht", print_advocate_faq_path(entry), {:popup => true, :class => "drucken"} %>
+    <% else %>
+      <%= link_to "Druckansicht", print_faq_path(entry), {:popup => true, :class => "drucken"} %>
+    <% end %>
+    <%= render :partial => '/shared/add_this' %>    
+  </div>
+  
+
+  <div class="clearer"></div>
+  <div class="pad_5"></div>
+</div>

@@ -1,0 +1,3 @@
+<%= render :partial => "order", :locals => {:show => true, 
+  :header_message => "Ihre Bestellung Nr. #{@order.number} vom #{l(@order.created_at)}", 
+    :info_message => ""} %>

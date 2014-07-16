@@ -1,0 +1,40 @@
+<div class="blue_right">  
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        
+        <h2>Meine Fragen  &#38; Bewerbungen:</h2>
+        <div class="menue_c_2"> 
+          <ul> 
+            <%= tab_list_item_link_to("Offene Fragen &#38; Bewerbungen", client_account_questions_path) %>
+            <%= tab_list_item_link_to("Geschlossene Fragen &#38; Bewerbungen", closed_client_account_questions_path) %>
+          </ul>
+        </div>
+      
+        <% unless @kases.empty? %>
+          <%= render :partial => "show", :collection => @kases, :locals => {:open => false, 
+            :question_url_helper => :client_account_question_path} %>
+        <% else %>
+          <div class="clearer_20"></div>
+          <p>Anwalt gesucht? <%= link_to "Hier kostenlos Frage stellen &raquo;", new_question_path %></p>
+        <% end %>
+           
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Sind Ihre Fragen noch aktuell?
+            Falls nicht, bitte Fragen schließen!</li>
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>

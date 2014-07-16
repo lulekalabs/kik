@@ -1,0 +1,54 @@
+<div id="feedback_content">
+  <%= error_messages_for :contact %>
+  <% remote_form_for :contact, :url => corporate_feedback_path do |f| %>
+
+      <h2>Schreiben Sie uns Ihre Meinung, Anregungen oder Ideen.</h2>
+
+      <div class="left">
+    <%# Betreff: %>
+        <%= f.text_field :subject, {:class => "field w303"} %>
+      </div>
+      <div class="clearer_10"></div>  
+      <div class="left">
+        <%= f.text_area :message, {:class => "text question_field"} %>
+      </div>
+      <div class="clearer"></div>
+      <div class="pad_20"></div>
+      <p>
+        <b>Ihre Daten: </b>
+      </p>
+      <div class="left">
+        <%= f.select :sender_gender, collect_for_gender_select(true, false), {},
+          {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+      </div>
+
+          <div class="left pad_l_16">
+            <%= f.select :sender_academic_title_id, collect_for_academic_title_select("Kein Titel", false), {},
+              {:class => "option_f_h", :style => "background-color:#fffef7 "} %>
+          </div>
+          <div class="clearer_10"></div>  
+
+      <div class="left">
+        <%= f.text_field :sender_first_name, {:class => "field w303"} %>
+      </div>
+      <div class="right">
+        <%= f.text_field :sender_last_name, {:class => "field w303"} %>
+      </div>
+
+      <div class="clearer_10"></div>  
+
+      <div class="left">
+    <%# E-Mail-Adresse* %>
+        <%= f.text_field :sender_email, {:class => "field w303"}%>
+      </div>
+
+      <div class="clearer_10"></div>  
+
+      <div>
+        <%= submit_tag "absenden" , :class => "button_right" %>
+      </div>
+      <div class="button_left"></div>
+
+      <div class="clearer_20"></div>  
+  <% end %>
+</div>

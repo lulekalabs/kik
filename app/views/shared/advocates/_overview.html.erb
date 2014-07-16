@@ -1,0 +1,66 @@
+<%  
+  profile ||= overview || @advocate
+  header ||= "%s"
+%>
+<h2><%= header % "#{h(profile.title_and_name)} #{h(profile.anglo_title_type)}" %></h2>
+<div class="left"> 
+  <%= profile_image_tag profile %>
+</div>
+<div class="left pad_l_10 w250">
+  <div><%= adovocate_professions_in_words(profile) %> </div>
+  <div class="clearer_5"></div>     
+  <% if profile.has_expertise? %>
+    <div><b>Auch Fachanwalt für:</b></div>
+    <%= adovocate_expertises_in_words(profile, true) %>
+    <div class="clearer_5"></div> 
+  <% end %>
+  <div><b><%= h(profile.company_name.blank? ? profile.title_and_name : profile.company_name) %></b></div> 
+  <%= address_in_overview(profile.business_address) %>
+  <%= h("#{profile.business_address ? profile.business_address.country : 'Deutschland'}") %>   
+  <div class="clearer_5"></div> 
+  <em>Telefon</em>  <%= h(profile.phone_number) %>
+  <div class="clearer"></div>
+  <em>Telefax</em> <%= h(profile.fax_number) %>
+  <div class="clearer"></div>
+  <em>Mobil/Notfall</em> <%= h(profile.rescue_phone_number) %>
+ <div class="clearer"></div>
+  <div><%= mail_to profile.email, "E-Mail senden" %></div>
+  
+  <% if profile.company_url %>
+  <div><%= link_to profile.company_url, profile.company_url %></div>
+  <% end %>
+  
+  
+  <div class="clearer_5"></div>
+  
+    <% unless profile.facebook_name.blank? %>
+       <% link_to("http://facebook.com/#{profile.facebook_name}",:target=>"_blank") do %> 
+       <img src="/images/icons/facebook.png" width="24" height="24" alt="Facebook"/>
+       <% end %>
+     <% end %>
+
+     <% unless profile.linkedin_name.blank? %>
+       <% link_to("http://linkedin.com/pub/dir/#{profile.linkedin_name}",:target=>"_blank") do %> 
+           <img src="/images/icons/linkedin.png" width="24" height="24" alt="Linkedin"/>
+        <% end %> 
+     <% end %>
+
+     <% unless profile.skype_name.blank? %>
+     <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+     <a href="skype:<%= h(profile.skype_name) %>?add"><img src="/images/icons/skype.png" width="24" height="24" alt="Skype"/></a>
+
+     <% end %>
+
+     <% unless profile.twitter_name.blank? %>
+       <% link_to( "http://twitter.com/#{profile.twitter_name}",:target=>"_blank") do %>
+          <img src="/images/icons/twitter.png" width="24" height="24" alt="Twitter"/>
+        <% end %> 
+     <% end %>
+
+     <% unless profile.xing_name.blank? %>
+       <% link_to("http://xing.de/#{profile.xing_name}",:target=>"_blank") do %>
+          <img src="/images/icons/xing.png" width="24" height="24" alt="Xing"/>
+        <% end %> 
+     <% end %>
+  
+</div>

@@ -1,0 +1,66 @@
+<%= form_flash_messages %>
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+
+        <%= error_messages_for :user, :message, :header_message => "Benutzer kann nicht deaktiviert werden." %>
+        <% form_for :user, @user, :url => client_account_profile_deactivation_path do |f| %>
+
+        <h2>Konto deaktivieren</h2>
+        <div class="pad_10"></div>
+        <p>
+          Hier können Sie Ihr Konto deaktivieren und dadurch alle Ihre in Ihrem persönlichen Mein Bereich vorhandenen Daten sperren. Geben Sie dazu bitte Ihr Passwort ein und klicken Sie dann auf "Jetzt Konto deaktivieren".</p>
+          <p>Wir würden uns freuen, wenn Sie uns einen Grund für die Deaktivierung nennen würden, damit wir uns verbessern können, sollten Sie mit kann-ich-klagen.de unzufrieden gewesen sein.</p>
+
+          <div class="clearer_10"></div> 
+
+          <div class="left">
+            <p><b><%= f.label :password, "Passwort*"%></b></p>
+            <%= f.password_field :password, :class => "field w303" %>
+          </div> 
+          <div class="clearer_10"></div>
+
+          <div class="left">
+            <p><b><%= f.label :password_confirmation, "Passwort wiederholen*"%></b></p>
+            <%= f.password_field :password_confirmation, :class => "field w303" %>
+          </div>
+          <div class="clearer_10"></div> 
+
+          <% fields_for :deactivation_message, @message do |m| %>
+          <div class="left">
+            <%= m.text_area :message, :class => "text question_field_2" %>
+          </div>
+          <% end %>
+          <div class="clearer_10"></div> 
+
+          <div>
+            <%= submit_tag "Jetzt Konto deaktivieren", :class => "button_right" %>
+          </div>
+          <div class="button_left"></div>
+          <div class="clearer"></div>
+
+        </div>
+        <% end %>
+        <div class="col_2">
+          <%= render :partial => 'shared/sidebar_stats' %>
+          <div class="pad_r_l_15">
+            <h2>Hinweise:</h2>
+            <ul>
+              <li>Mit * versehene Felder sind Pflichtfelder.</li>
+            </ul>
+
+            <div class="clearer"></div> 
+            <h2>Achtung!</h2>
+            <ul>
+              <li>Die Deaktivierung Ihres Kontos hat zur Folge, dass Ihre persönlichen Zugangsdaten verfallen und Sie keinen Zugriff mehr auf Ihren persönlichen Mein Bereich haben. Teilnehmende Anwälte können sodann ebenfalls nicht mehr über das Mandanten-Fragen-System mit Ihnen in Kontakt treten. Nach der Deaktivierung können Sie somit auch auf mit Anwälten etwaig über das Mandanten-Fragen-System geführte Unterhaltungen und ausgetauschte Informationen und Dateien nicht mehr zugreifen. Sichern Sie deswegen bitte alle von Ihnen noch benötigten Informationen und Dateien, bevor Sie Ihr Konto deaktivieren. Sobald ein deaktiviertes Konto der datenschutzrechtlich gebotenen Löschung zugeführt wurde, ist eine Widerherstellung Ihrer Daten nicht möglich. </li>
+            </ul>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+<%= render :partial => 'shared/default_fields_js' %>

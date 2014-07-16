@@ -1,0 +1,174 @@
+<% # advocate/account/profiles/_show 
+  edit ||= false
+%>
+<div id="<%= dom_id(@person) %>" class="white_site">
+  <div class="top clearer"></div>
+  <div class="content">
+    <%= error_messages_for :user, :person %>  
+    <div class="left">
+
+      <%= render :partial => 'tabs' %>
+
+      
+      
+      <!-- billing address -->
+      <div id="billing-address-show" style="<%= edit && selected_action =~ /payment_billing_address/ ? 'display:none;' : '' %>">
+        <div class="two_big_content"> 
+          <b class="t_14">Rechnungsanschrift</b>
+          <div class="clearer_10"></div>
+          <div class="left">
+          
+            <%= render :partial => "billing_address_data" %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "Rechnungsanschrift ändern", 
+            "$('#billing-address-show').hide();$('#billing-address-edit').show();",
+              {:title => "ändern"} %>
+        </b></div>
+        <div class="clearer_10"></div>
+      </div>
+
+      <div id="billing-address-edit" style="<%= edit && selected_action =~ /payment_billing_address/ ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => advocate_account_profile_path(:select => :payment_billing_address), 
+            :html => {:method => :put} do |f| %>
+        <div class="two_big_content"> 
+          <b class="t_14">Rechnungsanschrift</b>
+          <div class="clearer_10"></div>
+          <div class="left">
+          
+            <%= render :partial => "billing_address_data", :locals => {:f => f, :edit => true} %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%#= link_to "Rechnungsanschrift ändern", {:title => "ändern"} %>
+          <%= submit_tag "Rechnungsanschrift speichern" %>
+        </b></div>
+        <div class="clearer_10"></div>
+        <% end %>
+      </div>
+
+      
+      <!-- payment method -->
+      <div id="payment-method-show" style="<%= edit && selected_action =~ /payment_payment_method/ ? 'display:none;' : '' %>">
+        <div class="two_big_top"> <h2><b>Zahlungsart</b></h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+          
+            <%= render :partial => "payment_method_data" %>
+
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "Zahlungsart ändern", 
+            "$('#payment-method-show').hide();$('#payment-method-edit').show();",
+              {:title => "ändern"} %>
+        </b></div> 
+        <div class="clearer_10"></div>
+      </div>
+
+      <div id="payment-method-edit" style="<%= edit && selected_action =~ /payment_payment_method/ ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => advocate_account_profile_path(:select => :payment_payment_method), 
+            :html => {:method => :put} do |f| %>
+        <div class="two_big_top"> <h2><b>Zahlungsart</b></h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+          
+            <%= render :partial => "payment_method_data", :locals => {:f => f, :edit => true} %>
+
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= submit_tag "Zahlungsart speichern" %>
+        </b></div> 
+        <div class="clearer_10"></div>
+        <% end %>
+      </div>
+
+
+
+      
+      <!-- billing method -->
+      <div id="billing-method-show" style="<%= edit && selected_action =~ /payment_billing_method/ ? 'display:none;' : '' %>">
+        <div class="two_big_top"> <h2><b>Rechnungsversand</b></h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+
+            <%= render :partial => "billing_method_data" %>
+
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "Versandart ändern ", 
+            "$('#billing-method-show').hide();$('#billing-method-edit').show();",
+              {:title => "ändern"} %>
+        </b></div>
+        <div class="clearer_10"></div>
+      </div>
+
+      <div id="billing-method-edit" style="<%= edit && selected_action =~ /payment_billing_method/ ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => advocate_account_profile_path(:select => :payment_billing_method), 
+            :html => {:method => :put} do |f| %>
+        <div class="two_big_top"> <h2><b>Rechnungsversand</b></h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+
+            <%= render :partial => "billing_method_data", :locals => {:f => f, :edit => true} %>
+
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= submit_tag "Versandart ändern" %>
+        </b></div>
+        <div class="clearer_10"></div>
+        <% end %>
+      </div>
+
+
+      
+      <!-- tax method -->
+      <div id="tax-show" style="<%= edit && selected_action =~ /payment_tax/ ? 'display:none;' : '' %>">
+        <div class="two_big_top"> <h2><b>Umsatzsteuer-Identifikationsnummer</b> </h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+          
+            <%= render :partial => "tax_data" %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= link_to_function "USt-IdNr. ändern ", 
+            "$('#tax-show').hide();$('#tax-edit').show();",
+              {:title => "ändern"} %>
+        </b></div>
+        <div class="clearer_10"></div>
+      </div>
+
+      <div id="tax-edit" style="<%= edit && selected_action =~ /payment_tax/ ? '' : 'display:none;' %>">
+        <% remote_form_for :person, @person, :url => advocate_account_profile_path(:select => :payment_tax), 
+            :html => {:method => :put} do |f| %>
+        <div class="two_big_top"> <h2><b>Umsatzsteuer-Identifikationsnummer</b> </h2></div>   
+        <div class="two_big_content"> 
+          <div class="left">
+          
+            <%= render :partial => "tax_data", :locals => {:f => f, :edit => true} %>
+          
+          </div>
+        </div>
+        <div class="two_big_bottom_arrow"><b>
+          <%= submit_tag "USt-IdNr. ändern" %>
+        </b></div>
+        <div class="clearer_10"></div>
+        <% end %>
+      </div>
+     
+    </div>
+    
+    <%= render :partial => 'sidebar_grades_datas' %>
+
+  </div>
+  <div class="bottom_footer"></div>
+</div>
+

@@ -1,0 +1,144 @@
+
+ <% if logged_in? && current_user.person.is_a?(Client) %> 
+ 
+   <div class="white_site">
+   <div class="top clearer"></div>
+   <div class="content">
+     <p>Der Bereich Offene Fragen richtet sich ausschließlich an teilnehmende Anwälte. Nur diese sollen die Fragen von Rechtsuchenden einsehen können.</p>
+
+  <p>Dadurch wird sichergestellt, dass Fragen nicht öffentlich sichtbar sind und nur von bei kann-ich-klagen.de angemeldeten Anwälten beantwortet werden.</p>
+  <p>
+  Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen viel Erfolg bei der Anwaltssuche.</p>
+
+  <p>Ihr kann-ich-klagen.de Team</p>
+  </div>
+   <div class="bottom_footer"></div>
+ </div>
+ 
+ 
+    
+ 
+ 
+ 
+<% else %>
+<%= render :partial => "shared/search_filter" %>         
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2><%= @topic ? "Fragen von Rechtsuchenden: #{h(@topic.name)} (#{@kases_count})" : "Fragen von Rechtsuchenden (#{@kases_count})" %></h2>
+        <div class="left w400">
+          <div class="left w150">
+            Fragen sortieren:
+          </div>
+          <div class="left">
+            <% fields_for :search_filter do |f| %>
+              <%= f.select :sort_order, collect_for_questions_search_order_select, {},
+                {:class => "quest w210", :style => "background-color:#fffef7",
+                  :id => "search-filter-sort-order-fake"} %>
+              <%= observe_field("search-filter-sort-order-fake", :frequency => 0.1, 
+                :function => "$('#search-filter-sort-order').attr('value', $('#search-filter-sort-order-fake').attr('value'));$('#search-submit').trigger('click');") %>
+            <% end %>
+          </div>
+
+          <div class="clearer"></div>
+          <div class="pad_5"></div>
+          <div class="left w150">
+            Fragen anzeigen:
+          </div>
+          <div class="left">
+            <% fields_for :search_filter do |f| %>
+              <%= f.select :per_page, collect_for_per_page_select, {},
+                {:class => "quest w210", :style => "background-color:#fffef7",
+                  :id => "search-filter-per-page-fake"} %>
+              <%= observe_field("search-filter-per-page-fake", :frequency => 0.1, 
+                :function => "$('#search-filter-per-page').attr('value', $('#search-filter-per-page-fake').attr('value'));$('#search-submit').trigger('click');") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="right w210">
+          <% unless @kases.blank? %>
+            Seiten: <b><%= @kases.total_pages %></b>
+            <p>
+              <%= will_paginate @kases, :previous_label => "&#171;", :next_label => "&#187;" %>
+            </p>
+          <% end %>
+        </div>
+
+        <div class="clearer_20"></div>
+        
+        <div class="menue_c"> 
+            <ul> 
+             <li class="<%= current_page?(questions_url) || current_page?(open_questions_url) ? "select" : "" %>"><%= link_to("Offene Fragen", open_questions_path) %></li>
+             
+             <% if logged_in? && current_user.person.search_filters? %>
+             <li class="long <%= current_page?(search_filter_questions_url) ? "select" : "" %>"><%= link_to("Frage-Radar Ergebnisse", search_filter_questions_path) %></li>
+             <% end %>
+             
+             <% if logged_in? %>
+             <li class="<%= current_page?(follows_questions_url) ? "select" : "" %>"><%= link_to("Gemerkte Fragen", follows_questions_path) %></li>
+             <% end %>
+             
+             <% if logged_in? && current_user.person.is_a?(Advocate) %>
+             <li class="long <%= current_page?(accessible_questions_url) ? "select" : "" %>"><%= link_to("Kontaktierte Fragen", accessible_questions_path) %></li>
+             <% end %>
+             
+            </ul>
+          </div>
+         <div class="clearer"></div> 
+         
+         <% if false %>
+         <a href="">Alle angezeigten Fragen maximieren  <%= image_tag 'quest_open.gif',:style=>"margin-top:3px" %> </a>      
+         <a href="">Alle angezeigten Fragen minimieren  <%= image_tag 'quest_close.gif',:style=>"margin-top:3px" %> </a>      
+         <% end %>
+         <div class="clearer_5"></div>    
+      
+          <% unless @kases.blank? %>
+            <%= render :partial => "questions/show", :collection => @kases, :locals => {:editable => false} %>
+          <% else %>
+          
+            Keine Fragen gefunden.
+            
+          <% end %>
+      
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <%= render :partial => "advocate/account/search_filters/sidebar_search_filter" %>
+          <%= link_to("&#187; Aktuellen Filter zurücksetzen", current_questions_path, :class => "white_none") %>
+          <div class="clearer_20"></div>  
+          
+          <h2>Fragen von Rechtsuchenden</h2>
+          
+          <div class="pad_10"></div>
+          <a class="white_none" href="<%= url_for(:topic_id => nil) %>"><b>&#187; alle Fragen anzeigen</b></a>
+          <div class="pad_10"></div>
+          <ul>
+            <% Topic.visible.each do |topic| %>
+            <li>
+              <%= link_to(topic.name, url_for(:topic_id => topic.to_param), 
+                :class => "white_none") %>&nbsp;(<%= topic.kases.count %>)
+            </li>
+            <% end %>
+          </ul>
+          <div class="clearer_10"></div>  
+          <a class="white_none" href=""><b>&#187; alle Fragen anzeigen</b></a>
+          <div class="pad_10"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</div>
+
+<%= render :partial => 'shared/default_fields_js' %>
+
+
+
+
+
+  <% end %>

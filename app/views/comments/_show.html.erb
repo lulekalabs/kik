@@ -1,0 +1,15 @@
+<% # comments/_show
+  comment ||= show || @comment
+  editable ||= false
+  new ||= false
+%>
+<div id="<%= dom_id(comment) %>" class="line_answer">
+  <p><b>Ergänzung der Frage</b> vom <%#= h(comment.person.user_id) %><%= l(comment.created_at) %></p>
+  <p><%= h(comment.message) %></p>
+
+  <% if false # comment.commentable.can_comment?(current_user.person) && comment == comment.commentable.comments.last %>
+    <div class="" id="<%= dom_id(Comment.new, dom_id(comment.commentable)) %>">
+      <%= render :partial => "comments/new", :locals => {:commentable => comment.commentable} %>
+    </div>
+  <% end %>
+</div>

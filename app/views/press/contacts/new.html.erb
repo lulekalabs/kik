@@ -1,0 +1,43 @@
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+
+      <div class="col_1">
+        <h2>Pressekontakt</h2>
+        <p>Wir stehen allen Journalisten bei Fragen zu <% if kik_realm? %>kann-ich-klagen.de 
+        <% end %>
+        <% if af_realm? %>advofinder.de
+        <% end %> gern zur Verfügung. 
+        </p>
+        <div class="pad_10"></div>
+        <%= error_messages_for :contact %>
+        <% form_for :contact, :url => press_contacts_path do |f| %>
+          <%= render :partial => 'press/contacts/form', :locals => {:f => f} %>
+        <% end %>
+      </div>
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+        <div class="pad_r_l_15">
+          <div class="pad_10"></div>
+         <!-- <img alt="Florian Widmann " src="/images/person/florian_widmann_sw.jpg" style="float:right"/>  -->
+          <h2><b>Pressekontakt</b></h2>
+          <p>Florian Widmann</p>
+          <div class="pad_10"></div>
+          <p>Telefon: (030) 609 895 092</p>
+          
+          <p><%= mail_to  Notifier.press_email, 'E-Mail senden', {:class => "white",  :encode => "hex" }%></p>
+          <div class="pad_20"></div>
+          <h2>Hinweise:</h2>
+          <ul>
+            <li>Mit * versehene Felder sind Pflichtfelder.</li>
+
+          </ul>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+<%= render :partial => 'shared/default_fields_js' %>
+

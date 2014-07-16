@@ -1,0 +1,114 @@
+#
+# Copyright (c) 2007-2011 Juergen Fesslmeier
+# 
+# Permission is hereby granted, to kann-ich-klagen.de, for this software and associated 
+# documentation files (the "Software"). The Software is restricted, including the rights 
+# to copy, modify, merge, publish, distribute, sublicense, and/or sell or resell copies
+# of the Software, and is not permitted to persons to whom the Software is not furnished 
+# to do so.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+module Merchant #:nodoc:
+  module Sidekick #:nodoc:
+    module Sellable #:nodoc:
+      def self.included(mod)
+        mod.extend(ClassMethods)
+      end
+
+      module ClassMethods
+        
+        # Declares a model as sellable
+        #
+        # A sellable model must have a field that stores the price in cents.
+        #
+        # === Options:
+        # * <tt>:cents</tt>: name of cents field (default :cents).
+        # * <tt>:currency</tt>: name of currency field (default :currency). Set to <tt>false</tt>
+        #   diable storing the currency, causing it to default to USD
+        #
+        # === Example:
+        #
+        #   class Product < ActiveRecord::Base
+        #     acts_as_sellable :cents => :price_in_cents, :currency => false
+        #   end
+        #
+        def acts_as_sellable(options = {})
+          include Merchant::Sidekick::Sellable::InstanceMethods
+          extend Merchant::Sidekick::Sellable::SingletonMethods
+          
+          class_eval do
+            money :price, options
+            has_many :line_items, :as => :sellable
+            has_many :orders, :through => :line_items
+          end
+        end
+      end
+      
+      module SingletonMethods
+        def sellable?
+          true
+        end
+      end
+      
+      module InstanceMethods
+        
+        def sellable?
+          true
+        end
+        
+        # Funny name, but it returns true if the :price represents
+        # a gross price including taxes. For that there must be a 
+        # method called price_is_gross or price_is_gross! as it is
+        # in Issue model
+        # price_is_net? and/or price_is_gross? should be overwritten
+        def price_is_gross?
+          false
+        end
+        
+        # Opposite of price_is_gross?
+        def price_is_net?
+          true
+        end
+        
+        # This is a product, where the gross and net prices are equal, or in other words
+        # a tax for this product is not applicable, e.g. for $10 purchasing credit
+        # should be overwritten if otherwise
+        def taxable?
+          true
+        end
+        
+        # There can only be one authorized order per sellable,
+        # so the first authorziation is it!
+        #
+        # Usage:
+        #   order = issue.settle
+        #   order.capture unless order.nil?
+        # Options:
+        #   issue.settle :merchant => person
+        #
+        def settle(options={})
+          self.orders.each do |order|
+            if order.kind == 'authorization' && current_line_item = order.line_items_find(
+              :first, :condition => ["sellable_id => ? AND sellable_type = ?", self.id, self.class.name]
+            )
+              if adjusted_line_item=order.line_items.build( :order => order, :sellable => self )
+                current_line_items.destroy
+                order.build_addresses
+                order.update
+                order.save!
+                return order
+              end
+            end
+          end
+          nil
+        end
+      end
+    end
+  end
+end

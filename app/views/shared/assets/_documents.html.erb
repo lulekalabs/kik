@@ -1,0 +1,38 @@
+<!-- documents -->
+<% # shared/assets/_documents
+  assetable ||= nil
+  form_url ||= client_account_question_path(assetable)
+  object_name ||= :kase
+  editable ||= false
+%>
+<p class="line">Dokumente zur Frage:</p>
+<% assetable.assets.reject {|a| a.image?}.each do |doc| %>
+  <%= link_to(doc.file_name, doc.file.url, {
+    :class => content_type_to_css_class(doc.content_type),
+      :popup => true}) %>
+<% end %>
+
+<% if editable %>
+  <div id="<%= dom_id(assetable, :add_doc_button) %>">
+    <div class="button_white_right_blue">
+      <%= link_to_function "Neues Dokument hochladen", 
+      "$('##{dom_id(assetable, :doc)}').show(); $('##{dom_id(assetable, :add_doc_button)}').hide();" %>
+    </div>
+    <div class="button_white_left_blue"></div>
+  </div>
+  
+  <div id="<%= dom_id(assetable, :doc) %>" class="line_answer" style="display:none">
+    <% form_for object_name, assetable, :url => form_url, 
+    :html => {:method => :put, :multipart => true} do |f| %>
+      <p><b>Ihre Dokument:</b></p>
+      <p>
+        <%= render :partial => "shared/assets/field", :locals => {:f => f} %>
+      </p>
+      <div>
+        <%= submit_tag "Dokument hochladen", :class => "button_right" %>
+      </div>
+      <div class="button_left"></div>
+      <div class="clearer"></div> 
+    <% end %>
+  </div>
+<% end %>

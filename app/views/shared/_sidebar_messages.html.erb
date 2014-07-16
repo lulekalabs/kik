@@ -1,0 +1,25 @@
+<%
+  messages = current_user.person.received_messages.find(:all, :limit => 3, :order => "messages.created_at DESC")
+%>
+<div class="pad_r_l_15">
+  <h2>Benachrichtigungen:</h2>
+  <p>Ungelesener Benachrichtigungen: <%= current_user.person.unread_received_messages.count %></p>
+  <p>Benachrichtigungen insgesamt: <%= current_user.person.received_messages.count %></p>
+  <h2></h2>  
+  <ul>
+    <% messages.each do |message| %>
+      <li>
+        <p><%= l(message.created_at) %></p>
+        <b><%= h(message.sender ? message.sender.title_and_name : message.sender_email_to_title_and_name) %></b> hat Ihnen eine Nachricht geschrieben<br />
+        <b><%= link_to "ansehen &#187;", current_user.person.is_a?(Advocate) ? advocate_account_message_path(message) : client_account_message_path(message) %></b>
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="clearer"></div>
+  <h2></h2>
+  
+  <p><b><%= link_to "Alle Benachrichtigungen ansehen &#187;", 
+    current_user.person.is_a?(Advocate) ? advocate_account_messages_path : client_account_messages_path %> </b></p>
+    
+</div>

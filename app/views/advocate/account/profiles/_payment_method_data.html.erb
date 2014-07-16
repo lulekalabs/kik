@@ -1,0 +1,108 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+  auto_debit_confirmation ||= false
+  object ||= payment_method_data || @person
+  hidden_fields ||= false
+%>
+<ul class="profil">
+  <li><span class="one">Aktuelle Zahlungsart</span><span class="two">
+    <% if edit %>
+      <%= f.select :preferred_payment_method, collect_payment_method_for_select, {},
+        {:class => "option", :style => "background-color:#fffef7 ",
+          :onclick => "if($(this).attr('value') == 'debit') {$('#debit-data-#{edit ? 'edit' : 'show'}').show(); $('#paypal-data-#{edit ? 'edit' : 'show'}').hide();}" +
+            "if($(this).attr('value') == 'invoice') {$('#debit-data-#{edit ? 'edit' : 'show'}').hide(); $('#paypal-data-#{edit ? 'edit' : 'show'}').hide();}" +
+              "if($(this).attr('value') == 'paypal') {$('#debit-data-#{edit ? 'edit' : 'show'}').hide(); $('#paypal-data-#{edit ? 'edit' : 'show'}').show();}"} %>
+    <% else %>
+      <%= h(object.preferred_payment_method_name) %>
+      <% if hidden_fields %>
+        <%= f.hidden_field :preferred_payment_method %>
+      <% end %>
+    <% end %>
+  </span></li>
+  
+  <div id="debit-data-<%= edit ? 'edit' : 'show' %>" style="<%= object.preferred_payment_method == "debit" ? '' : 'display:none;' %>">
+    <li><span class="one">Kontoinhaber</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :bank_account_owner_name, :class => "field_edit" %>
+      <% else %>
+        <%= h(object.bank_account_owner_name)%>
+        <% if hidden_fields %>
+          <%= f.hidden_field :bank_account_owner_name %>
+        <% end %>
+      <% end %>
+    </span></li>
+
+    <li><span class="one">Kontonummer</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :bank_account_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(object.bank_account_number)%>
+        <% if hidden_fields %>
+          <%= f.hidden_field :bank_account_number %>
+        <% end %>
+      <% end %>
+    </span></li>
+
+    <li><span class="one">BLZ</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :bank_routing_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(object.bank_routing_number) %>
+        <% if hidden_fields %>
+          <%= f.hidden_field :bank_routing_number %>
+        <% end %>
+      <% end %>
+    </span></li>
+  
+    <li><span class="one">Kreditinstitut + Ort</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :bank_name, :class => "field_edit" %>
+        <%= f.text_field :bank_location, :class => "field_edit" %>
+      <% else %>
+        <%= h([object.bank_name, object.bank_location].reject(&:blank?).join(", "))%>
+        <% if hidden_fields %>
+          <%= f.hidden_field :bank_name %>
+          <%= f.hidden_field :bank_location %>
+        <% end %>
+      <% end %>
+    </span></li>
+    
+    <% if auto_debit_confirmation %>
+    <li><span class="one">Zahlungen per Lastschrift</span>
+      <span class="two">
+      <% if edit %>
+        <%= f.check_box :auto_debit %>
+        <div class="clearer"></div> 
+          <%= f.label :auto_debit, "Hiermit ermächtige ich kann-ich-klagen.de, Friedrichstr. 148, 10117 Berlin, widerruflich, fällige Zahlungen per Lastschrift von meinem oben angegebenen, näher bezeichneten Konto einzuziehen. Sollte keine ausreichende Deckung vorhanden sein oder im Falle des unberechtigten Widerspruchs bzw. Widerrufs der Lastschrift, werden mir zusätzlich 9,80 € für den durch die Rücklastschrift entstandenen Schaden belastet." %>
+       
+         <div class="clearer_10"></div>  
+      <% else %>
+        <% if hidden_fields %>
+          <%= f.hidden_field :auto_debit %>
+        <% end %>
+      
+        <% if object.auto_debit.to_s =~ /^(1|true)/ %>
+           <span class="fliess"> 
+                    Hiermit ermächtige ich kann-ich-klagen.de, Friedrichstr. 148, 10117 Berlin, widerruflich, fällige Zahlungen per Lastschrift von meinem oben angegebenen, näher bezeichneten Konto einzuziehen. Sollte keine ausreichende Deckung vorhanden sein oder im Falle des unberechtigten Widerspruchs bzw. Widerrufs der Lastschrift, werden mir zusätzlich 9,80 € für den durch die Rücklastschrift entstandenen Schaden belastet.</span>
+        <div class="clearer"></div>
+        <% end %>
+      <% end %>
+    </span></li>
+    <% end %>
+    
+  </div>
+
+  <div id="paypal-data-<%= edit ? 'edit' : 'show' %>" style="<%= object.preferred_payment_method == "paypal" ? '' : 'display:none;' %>">
+
+    <li><span class="one">Paypal Konto</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :paypal_account, :class => "field_edit" %>
+      <% else %>
+        <%= h(object.paypal_account) %>
+        <% if hidden_fields %>
+          <%= f.hidden_field :paypal_account %>
+        <% end %>
+      <% end %>
+    </span></li>
+  </div>
+</ul>

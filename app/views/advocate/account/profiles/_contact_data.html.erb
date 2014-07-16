@@ -1,0 +1,122 @@
+<%
+  edit ||= !defined?(:edit) && defined?(:f)
+%>
+<ul class="profil">
+
+  
+  
+  
+    
+    
+    <li><span class="one">Festnetznummer der Kanzlei</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :phone_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.phone_number) %>
+      <% end %>
+    </span></li>
+    
+    <li><span class="one">Mobilfunknummer der Kanzlei</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :rescue_phone_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.rescue_phone_number) %>
+      <% end %>
+    </span></li>
+    
+    <li><span class="one">Faxnummer der Kanzlei</span><span class="two">
+      <% if edit %>
+        <%= f.text_field :fax_number, :class => "field_edit" %>
+      <% else %>
+        <%= h(@person.fax_number)%>
+      <% end %>
+    </span></li>
+
+  <li><span class="one">E-Mail-Adresse der Kanzlei</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :email, :class => "field_edit_300" %>
+    <% else %>
+      <%= h(@person.email) %>
+    <% end %>
+  </span></li>
+  
+  <li><span class="one">Skype-Name</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :skype_name, :class => "field_edit_300" %>
+    <% else %>
+      <%= h(@person.skype_name) %>
+    <% end %>
+  </span></li> 
+  <li><span class="one">Twitter-Account</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :twitter_name, :class => "field_edit_300" %>
+       <p class="t_9_line_9">http://www.twitter.com/muster.mustermann<br />
+        Hier nur Ihren Account-Namen mit dem Sie bei Twitter angemeldet sind eintragen z.B. vorname.nachname</p>
+    <% else %>
+      <%= h(@person.twitter_name) %>
+    <% end %>
+  </span></li> 
+  <li><span class="one">Facebook-Account</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :facebook_name, :class => "field_edit_300" %>
+      <p class="t_9_line_9">http://www.facebook.com/muster.mustermann<br />
+Account    <% else %>
+      <%= h(@person.facebook_name) %>
+    <% end %>
+  </span></li> 
+  <li><span class="one">Xing-Account</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :xing_name, :class => "field_edit_300" %>
+       <p class="t_9_line_9">http://www.xing.de/muster.mustermann<br />
+        Hier nur Ihren Account-Namen mit dem Sie bei Xing angemeldet sind eintragen z.B. vorname.nachname</p>
+    <% else %>
+      <%= h(@person.xing_name) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">LinkedIn-Account</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :linkedin_name, :class => "field_edit_300" %>
+       <p class="t_9_line_9">http://www.linkedin.com/muster.mustermann<br />
+        Hier nur Ihren Account-Namen mit dem Sie bei LinkedIn angemeldet sind eintragen z.B. vorname.nachname</p>
+    <% else %>
+      <%= h(@person.linkedin_name) %>
+    <% end %>
+  </span></li>
+  
+  <li><span class="one">Bürozeiten</span><span class="two">
+    <% if edit %>
+      <%= f.text_area :company_office_hours, :class => "field_edit", :style => "height:100px"  %>
+    <% else %>
+      <%= line_break(h(@person.company_office_hours)) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Parkplätze</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_parking_lots, :class => "field_edit_300" %>
+    <% else %>
+      <%= line_break(h(@person.company_parking_lots)) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Taxistand in der Nähe</span><span class="two">
+    <% if edit %>
+      <%= f.text_field :company_taxi_stands, :class => "field_edit_300"%>
+    <% else %>
+      <%= line_break(h(@person.company_taxi_stands)) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Haltestellen Bus, Tram,<br /> U- und S-Bahn</span><span class="two">
+    <% if edit %>
+      <%= f.text_area :company_public_transportation, :class => "field_edit", :style => "height:100px"  %>
+    <% else %>
+      <%= line_break(h(@person.company_public_transportation)) %>
+    <% end %>
+  </span></li>
+  <li><span class="one">Zusatz-Information zum Standort</span><span class="two">
+    <% if edit %>
+      <%= f.text_area :company_additional_location_information, :class => "field_edit", :style => "height:100px"  %>
+    <% else %>
+      <%= line_break(h(@person.company_additional_location_information)) %>
+    <% end %>
+  </span></li>
+  
+</ul>

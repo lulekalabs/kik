@@ -1,0 +1,580 @@
+<%
+  form_url ||= client_account_advocate_reviews_path(@advocate)
+%>
+<%= error_messages_for :review %>
+<% form_for :review, @review, :url => form_url do |f| %>
+<b>Bitte geben Sie nachfolgend Ihre Bewertung ab.</b>
+<div class="clearer_5"></div>
+<div class="block_430">
+  Beantworten Sie dazu bitte mindestens die 5 Hauptfragen. Durch die Beantwortung der jeweils dazugehörigen 5 Zusatzfragen können Sie Ihre Bewertung noch verfeinern und dem betroffenen Anwalt so noch besser Feedback geben.</div>
+
+  <% if false %>  
+  <div class="block_190"> 
+    <div class="note">
+      <%= number_with_precision(@advocate.gpa, :precision => 1) %>
+    </div>
+    <div class="text">
+      Notendurchschnitt: 
+    </div>
+  </div>
+  <% end %>
+
+
+
+
+  <div class="clearer_5"></div>
+  <table class="bewerten">
+    <tr>
+      <td class="first_ohne"></td>
+      <td class="first_white"><img title="sehr gut" alt="Note eins" src="/images/z_1.jpg" /></td>
+      <td class="first_white"><img title="gut" alt="Note zwei" src="/images/z_2.jpg" /></td>
+      <td class="first_white"><img title="befriedigend" alt="Note drei" src="/images/z_3.jpg" /></td>
+      <td class="first_white"><img title="ausreichend" alt="Note vier" src="/images/z_4.jpg" /></td>
+      <td class="first_white"><img title="mangelhaft" alt="Note fuenf" src="/images/z_5.jpg" /></td>
+      <td class="first_white"><img title="ungenügend" alt="Note sechs" src="/images/z_6.jpg" /></td>
+    </tr>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die rechtliche Beratung durch Ihren Anwalt?
+        </p>
+        <p class="pad_l_10">
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "v-more", !@review.sub_section_empty?(:v) %>
+        </p>
+      </td>
+      <td class="ohne"><%= f.radio_button :v, 1, {:title => "sehr gut"} %></td>
+      <td class="ohne"><%= f.radio_button :v, 2, {:title => "gut"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :v, 3, {:title => "befriedigend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :v, 4, {:title => "ausreichend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :v, 5, {:title => "mangelhaft"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :v, 6, {:title => "ungenügend"} %></td/></td>
+    </tr>
+
+    <tbody id="v-more" style="<%= @review.sub_section_empty?(:v) ? 'display:none;' : '' %>">
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Fähigkeit Ihres Anwalts juristische Fachbegriffe und Sachverhalte verständlich zu erklären?
+        </td>
+        <td><%= f.radio_button :v1, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :v1, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :v1, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :v1, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :v1, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :v1, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Aufklärung über Kosten und Gebühren durch Ihren Anwalt?
+        </td>
+        <td><%= f.radio_button :v2, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :v2, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :v2, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :v2, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :v2, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :v2, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie fühlten Sie sich über die Chancen und Risiken durch Ihren Anwalt informiert?
+        </td>
+        <td><%= f.radio_button :v3, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :v3, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :v3, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :v3, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :v3, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :v3, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Aufklärung über mögliche Lösungswege und Alternativen?
+        </td>
+        <td><%= f.radio_button :v4, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :v4, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :v4, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :v4, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :v4, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :v4, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Haben Ihnen die Informationen Ihres Anwalts weiter geholfen?
+        </td>
+        <td><%= f.radio_button :v5, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :v5, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :v5, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :v5, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :v5, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :v5, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die Zuverlässigkeit Ihres Anwalts?
+        </p>
+        <p class="pad_l_10">
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "z-more", !@review.sub_section_empty?(:z) %>
+        </p>
+      </td>
+      <td class="ohne"><%= f.radio_button :z, 1, {:title => "sehr gut"} %></td>
+      <td class="ohne"><%= f.radio_button :z, 2, {:title => "gut"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :z, 3, {:title => "befriedigend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :z, 4, {:title => "ausreichend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :z, 5, {:title => "mangelhaft"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :z, 6, {:title => "ungenügend"} %></td/></td>
+    </tr>
+
+    <tbody id="z-more" style="<%= @review.sub_section_empty?(:z) ? 'display:none;' : '' %>">
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Gründlichkeit und Sorgfalt Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :z1, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :z1, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :z1, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :z1, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :z1, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :z1, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie beurteilen Sie die Einhaltung von Absprachen und Vereinbarungen mit Ihrem Anwalt?
+        </td>
+        <td><%= f.radio_button :z2, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :z2, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :z2, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :z2, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :z2, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :z2, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Termintreue Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :z3, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :z3, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :z3, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :z3, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :z3, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :z3, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie das Arbeitstempo Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :z4, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :z4, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :z4, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :z4, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :z4, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :z4, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Prognosefähigkeit Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :z5, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :z5, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :z5, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :z5, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :z5, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :z5, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt die Betreuung durch Ihren Anwalt?
+        </p>
+        <p class="pad_l_10">
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "m-more", !@review.sub_section_empty?(:m) %>
+        </p>
+      </td>
+      <td class="ohne"><%= f.radio_button :m, 1, {:title => "sehr gut"} %></td>
+      <td class="ohne"><%= f.radio_button :m, 2, {:title => "gut"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :m, 3, {:title => "befriedigend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :m, 4, {:title => "ausreichend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :m, 5, {:title => "mangelhaft"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :m, 6, {:title => "ungenügend"} %></td/></td>
+    </tr>
+
+    <tbody id="m-more" style="<%= @review.sub_section_empty?(:m) ? 'display:none;' : '' %>">
+      <tr>
+        <td class="c">
+          Wie bewerten Sie Ihr Vertrauensverhältnis zu Ihrem Anwalt?
+        </td>
+        <td><%= f.radio_button :m1, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :m1, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :m1, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :m1, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :m1, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :m1, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Hat sich Ihr Anwalt ausreichend Zeit für Ihre Belange genommen?
+        </td>
+        <td><%= f.radio_button :m2, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :m2, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :m2, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :m2, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :m2, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :m2, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie fühlten Sie sich in den Ablauf und die Entscheidungen einbezogen?
+        </td>
+        <td><%= f.radio_button :m3, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :m3, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :m3, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :m3, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :m3, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :m3, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Haben Sie sich bei Ihrem Anwalt aufgehoben und verstanden gefühlt?
+        </td>
+        <td><%= f.radio_button :m4, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :m4, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :m4, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :m4, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :m4, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :m4, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie beurteilen Sie das Einfühlungsvermögen und den Zuspruch Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :m5, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :m5, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :m5, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :m5, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :m5, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :m5, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>Wie bewerten Sie insgesamt die der Erreichbarkeit Ihres Anwalts?
+        </p>
+        <p class="pad_l_10">
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "e-more", !@review.sub_section_empty?(:e) %>
+        </p>
+      </td>
+      <td class="ohne"><%= f.radio_button :e, 1, {:title => "sehr gut"} %></td>
+      <td class="ohne"><%= f.radio_button :e, 2, {:title => "gut"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :e, 3, {:title => "befriedigend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :e, 4, {:title => "ausreichend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :e, 5, {:title => "mangelhaft"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :e, 6, {:title => "ungenügend"} %></td/></td>
+    </tr>
+
+    <tbody id="e-more" style="<%= @review.sub_section_empty?(:e) ? 'display:none;' : '' %>">
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Schnelligkeit der Rückmeldungen Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :e1, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :e1, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :e1, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :e1, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :e1, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :e1, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die telefonische Erreichbarkeit?
+        </td>
+        <td><%= f.radio_button :e2, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :e2, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :e2, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :e2, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :e2, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :e2, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Wartezeiten bis Sie einen (Beratungs-)termin erhalten haben?
+        </td>
+        <td><%= f.radio_button :e3, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :e3, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :e3, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :e3, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :e3, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :e3, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Parkmöglichkeiten?
+        </td>
+        <td><%= f.radio_button :e4, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :e4, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :e4, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :e4, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :e4, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :e4, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Erreichbarkeit mit öffentlichen Verkehrsmitteln?
+        </td>
+        <td><%= f.radio_button :e5, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :e5, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :e5, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :e5, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :e5, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :e5, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+
+      <tr ><td colspan="99" class="holder"> </td></tr>
+    </tbody>
+
+    <tr>
+      <td class="c_1">
+        <p>
+          Wie bewerten Sie insgesamt das Erscheinungsbild Ihres Anwalts und seiner Kanzlei?
+        </p>
+        <p class="pad_l_10">
+          <%= link_to_review_sub_toggle ["Zusatzfragen ausblenden", "Zusatzfragen einblenden"], 
+          "a-more", !@review.sub_section_empty?(:a) %>
+        </p>
+      </td>
+      <td class="ohne"><%= f.radio_button :a, 1, {:title => "sehr gut"} %></td>
+      <td class="ohne"><%= f.radio_button :a, 2, {:title => "gut"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :a, 3, {:title => "befriedigend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :a, 4, {:title => "ausreichend"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :a, 5, {:title => "mangelhaft"} %></td/></td>
+      <td class="ohne"><%= f.radio_button :a, 6, {:title => "ungenügend"} %></td/></td>
+    </tr>
+
+    <tbody id="a-more" style="<%= @review.sub_section_empty?(:a) ? 'display:none;' : '' %>">
+      <tr>
+        <td class="c">
+          Wie bewerten Sie das Auftreten Ihres Anwalts?
+        </td>
+        <td><%= f.radio_button :a1, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :a1, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :a1, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :a1, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :a1, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :a1, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Atmosphäre und Betreuung in der Anwaltskanzlei?
+        </td>
+        <td><%= f.radio_button :a2, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :a2, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :a2, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :a2, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :a2, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :a2, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie das Auftreten des Kanzleipersonals?
+        </td>
+        <td><%= f.radio_button :a3, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :a3, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :a3, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :a3, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :a3, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :a3, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr> 
+        <td class="c">
+          Wie bewerten Sie die Sauberkeit und Ordnung der Anwaltskanzlei?
+
+        </td>
+        <td><%= f.radio_button :a4, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :a4, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :a4, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :a4, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :a4, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :a4, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+      <tr>
+        <td class="c">
+          Wie bewerten Sie die Einrichtung der Anwaltskanzlei?
+
+        </td>
+        <td><%= f.radio_button :a5, 1, {:title => "sehr gut"} %></td>
+        <td><%= f.radio_button :a5, 2, {:title => "gut"} %></td/></td>
+        <td><%= f.radio_button :a5, 3, {:title => "befriedigend"} %></td/></td>
+        <td><%= f.radio_button :a5, 4, {:title => "ausreichend"} %></td/></td>
+        <td><%= f.radio_button :a5, 5, {:title => "mangelhaft"} %></td/></td>
+        <td><%= f.radio_button :a5, 6, {:title => "ungenügend"} %></td/></td>
+      </tr>
+    </tbody>
+
+    <tr>
+      <td class="first_ohne"></td>
+      <td class="first_white"><img title="sehr gut" alt="Note eins" src="/images/z_1.jpg" /></td>
+      <td class="first_white"><img title="gut" alt="Note zwei" src="/images/z_2.jpg" /></td>
+      <td class="first_white"><img title="befriedigend" alt="Note drei" src="/images/z_3.jpg" /></td>
+      <td class="first_white"><img title="ausreichend" alt="Note vier" src="/images/z_4.jpg" /></td>
+      <td class="first_white"><img title="mangelhaft" alt="Note fuenf" src="/images/z_5.jpg" /></td>
+      <td class="first_white"><img title="ungenügend" alt="Note sechs" src="/images/z_6.jpg" /></td>
+    </tr>
+  </table>
+  <div class="clearer_5"></div> 
+  <div class="block_430"></div>
+  <% if false %>
+  <div class="block_190"> 
+    <div class="note">
+      <%= number_with_precision(@advocate.grade_point_average, :precision => 1) %>
+    </div>
+    <div class="text">
+      Notendurchschnitt: 
+    </div>
+  </div>
+  <% end %>
+
+
+  <div class="clearer_5_line"></div>
+  <% if false %> 
+
+  <div class="block_430">
+    <div class="pad_5"></div> 
+    Was fanden Sie bei Ihrem Anwalt besonders gut? 
+    <div class="pad_5"></div> 
+    <%= f.text_area :like_description, :size => "40x20", :class => "text experiences_field" %>
+    <div class="pad_10"></div>
+    Was hat Ihnen bei Ihrem Anwalt nicht so gut gefallen? 
+    <div class="pad_5"></div> 
+    <%= f.text_area :dislike_description, :size => "40x20", :class => "text experiences_field" %>
+  </div>
+  <div class="clearer_5"></div>
+  <% end %>  
+
+  <h2>Weitere Angaben</h2>
+  <div class="clearer_5"></div>
+
+  <div class="block_430">Aus welchem Anlass haben Sie Ihren Anwalt aufgesucht? </div>
+  <div class="clearer_5"></div> 
+  <div class="right">
+    <%= f.select :search_reason, collect_for_search_reason_select(true, true) %>
+  </div>
+
+
+  <div class="clearer_5_line"></div>  
+  <div class="block_430">Würden Sie Ihren Anwalt einem Freund empfehlen?</div>
+  <div class="block_190">
+    <%= f.radio_button :friend_recommend, true %>Ja
+    <%= f.radio_button :friend_recommend, false %>Nein
+  </div>
+
+  <% if false %>
+  <div class="clearer_5_line"></div>
+  <div class="block_430">Haben Sie eine Rechtsschutzversicherung?  </div>
+  <div class="block_190">
+    <%= f.radio_button :remedy_insured, true %>Ja
+    <%= f.radio_button :remedy_insured, false %>Nein
+  </div> 
+  <% end %>  
+  <div class="clearer_5_line"></div>
+  <div class="block_430">Wann standen Sie zum letzten Mal mit Ihrem Anwalt im Kontakt? </div>
+  <div class="block_190">
+    <div class="left pad_l_10">
+      <%= f.date_select :last_advocate_contact, :prompt => {:month => "Monat:", :year => "Jahr:"}, 
+      :order => [:month, :year], :discard_day => true, 
+      :start_year => Time.now.year - 30, :end_year => Time.now.year %>
+    </div>
+  </div>   
+  <div class="clearer_5_line"></div>
+  <div class="block_430">Mit wie vielen Anwälten hatten Sie in der Vergangenheit Kontakt?</div>
+  <div class="block_190">
+    <div class="left pad_l_10">
+      <%= f.select :advocate_contact_count, collect_for_advocate_contact_count_select(false), {}, {:class => "year"} %>
+    </div>
+  </div>
+
+
+
+  <div class="clearer_5_line"></div>
+  <div class="block_430">Im Fall eines Rechtsstreits - haben Sie gewonnen?  </div>
+  <div class="block_190">
+    <%= f.radio_button :laswsuit_won, "yes"%>Ja
+    <%= f.radio_button :laswsuit_won, "no"%>Nein
+    <p class="pad_5"><%= f.radio_button :laswsuit_won, "na"%>Nicht relevant</p>
+  </div>
+  <div class="clearer_5_line"></div>
+
+  <% if false %>
+  <div class="clearer_20"></div>
+  <p class="t_red">Anfang>>dieser teil ist dann nur für die Advonfinder seite</p>
+  <h2>Sie sind bereits bei advofinder.de angemeldet?</h2>
+  <p>Dann loggen Sie sich hier ein, um Ihre Bewertung abzugeben.</p>
+  <input class= "field pass" value="E-Mail-Adresse" />
+  <input class= "field pass" value="Passwort" />
+  <div class="clearer_10"></div>  
+
+  <div class="button_white_right_blue">
+    <a href="" title="Bewertungsdetails zeigen">Login &amp; Bewertung abgeben</a>
+  </div>
+  <div class="button_white_left_blue"></div>
+
+  <div class="clearer_5"></div>
+  <h2>Sie sind neu hier?</h2>
+  <p>Dann geben Sie bitte Ihre E-Mail-Adresse ein und wählen Sie einen Benutzernamen aus, der Ihrer Bewertung öffentlich zugeordnet
+    werden kann, um Ihre Bewertung abzugeben.</p>
+
+    <input class= "field pass" value="E-Mail-Adresse" />
+    <input class= "field pass" value="E-Mail-Adresse wiederholen" />
+    <div class="clearer_5"></div>
+    <div class="left"><input class= "field pass" value="Benutzername" /></div>
+    <div class="left pad_16"><a>Verfügbarkeit (Benutzername) prüfen</a></div>
+    <div class="clearer"></div>
+    <div class="left t_9">Der von Ihnen frei gewählte Benutzername schützt Ihre Anonymität und wird bei der Bewertung angezeigt. Wir garantieren, dass nur der Benutzername nicht aber Ihr richtiger Name noch Ihre E-Mail-Adresse angezeigt werden. <b>Wichtig: Der Benutzername kann später nicht mehr geändert werden.</b> </div>
+
+    <p class="t_red"> Ende</p>    
+    <div class="clearer_20"></div>  
+    <div class="check">
+      <ul>
+        <li>
+          <span class="check">
+            <input id="agb" type="checkbox" value="true" name="agb" />
+          </span>
+          <span class="fliess">
+            Ja, ich habe die <a href="" title="Nutzungsbedingungen">Nutzungsbedingungen</a> und <a href="" title="Datenschutzerklärung">Datenschutzerklärung</a> von kann-ich-klagen.de gelesen und akzeptiere diese.
+          </span>
+        </li>
+        <li>
+          <span class="check">
+            <%= f.check_box :disqualification %>
+          </span>
+          <span class="fliess">
+            <%= f.label :disqualification, 
+            "Ja, ich versichere, dass ich nicht \"#{@advocate.profession_and_title_and_last_name}\" bin und nicht in #{@advocate.female? ? "deren" : "dessen"} Auftrag handle." %>
+          </span>
+        </li>
+        <li>
+          <span class="check">
+            <input id="concession" type="checkbox" value="true" name="concession" />
+          </span>
+          <span class="fliess">
+            Ja, ich möchte den kann-ich-klagen.de-Newsletter erhalten.
+          </span>
+        </li>
+      </ul> 
+    </div> 
+    <% end %>
+    <div class="pad_10"></div>
+    <%= submit_tag "Bewertung abgeben", :class => "button_right" %>
+    <div class="button_left"></div>
+
+    <div class="clearer_5"></div>
+    <% end %>

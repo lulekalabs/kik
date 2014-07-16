@@ -1,0 +1,45 @@
+<%
+  details ||= false
+  articles ||= content || @articles
+%>
+<div class="blue_right">
+  <div class="main">
+    <div class="content">
+      <div class="col_1">
+        <h2>
+          Hilfe &#38; FAQ
+        </h2>
+
+        <%= render :partial => "client/faqs/entry", :collection => articles, :locals => {:details => details} %>
+        
+      </div>
+
+      <div class="col_2">
+        <%= render :partial => 'shared/sidebar_stats' %>
+
+        <div class="pad_r_l_15">
+          <%= render :partial => "shared/sidebar_tag_cloud" %>
+          
+          <div class="clearer"></div>
+          <div class="pad_5"></div>
+
+          <h2></h2>
+          <%= link_to content_tag(:b, "Alle Einträge zeigen &#187;"), url_for({}), :class => "white_none" %>
+          <div class="pad_10"></div>
+          <h2>Hilfe:</h2> 
+          <p>Sie benötigen Hilfe und finden keine Antwort auf Ihre Frage? Bitte nutzen Sie unser Kontakt-Formular, um uns Ihre Frage zu senden:
+            <% if kik_realm? %>
+             <%= link_to "Kontakt", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von kann-ich-klagen.de " , :class=>"white"}  %> 
+            <% end %>
+            <% if af_realm? %>
+             <%= link_to "Kontakt", new_corporate_contact_path, {:title => "Ansprechpartner und Kontaktdaten von advofinder.de " , :class=>"white"}  %>
+            <% end %>  
+         </p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
